@@ -99,4 +99,11 @@
     #administracion ul li ul li{
         margin-top: 0.5em;
     }
+
+    .listaCops{
+        list-style: none;
+        columns: 1;
+        
+    }  
+    
     

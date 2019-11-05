@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CopsComponent } from './cops/cops.component';
 
 @Component({
   selector: 'app-p-espacios',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PEspaciosComponent implements OnInit {
 
+  lista:CopsComponent[];
   constructor() { }
 
   ngOnInit() {

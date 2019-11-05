@@ -1,22 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {Component} from '@angular/core'
 
-import { CopsComponent } from './cops.component';
-import { from } from 'rxjs';
+import { SenalesComponent } from './senales.component';
 
-describe('CopsComponent', () => {
-  let component: CopsComponent;
-  let fixture: ComponentFixture<CopsComponent>;
+describe('SenalesComponent', () => {
+  let component: SenalesComponent;
+  let fixture: ComponentFixture<SenalesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CopsComponent ]
+      declarations: [ SenalesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CopsComponent);
+    fixture = TestBed.createComponent(SenalesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -25,6 +23,3 @@ describe('CopsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-
-
