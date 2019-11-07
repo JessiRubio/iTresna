@@ -1,0 +1,23 @@
+html {
+    background-color: rgba(98, 96, 96, 0.555);
+    height: 100%;
+    overflow-x: hidden;
+    color:black;
+    font-family: 'Merienda', cursive;
+}
+body {
+  height: 100%;
+  margin:0;
+}
+footer{
+  background-color: #000000d7;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  color: white;
+  padding-left: 1em;
+  max-height: 3em;
+} 
+h2{
+  font-family: 'Cinzel', serif;
+}
