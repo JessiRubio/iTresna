@@ -7,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SenalesComponent implements OnInit {
 
-  titulo = "noticion";
+  titulo = "4 Trends in Big Data Innovation Governing the Future of Data Science";
 
-  texto = "Es maravilloso";
+  texto = "He leido este articulo y me ha parecido muy interesante, creo que podriamos tenerlo en cuenta para proyectos en el centro.";
 
-  n = 58;
+  n = 0;
+
+  Autor = "Jessica Rubio";
 
   constructor() { }
 

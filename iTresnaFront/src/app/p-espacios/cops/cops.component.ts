@@ -9,7 +9,7 @@ export class CopsComponent implements OnInit {
 
   nombre = "Relevante";
 
-  descripcion = "Bienvenido al mundo de las ideas"
+  numeroSenales = "1 señal";
 
   constructor() { }
 

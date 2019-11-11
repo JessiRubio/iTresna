@@ -25,14 +25,18 @@
 }
 .contenido h3{
     text-align: center;
+    font-size: 2em;
+    color: #9684bb;
 
 }
-.contenido p{
-    text-align: center;
-    font-size: 1em;
-    margin-left: 1em;
-    margin-right: 1em;
-    color: rgba(223, 221, 221, 0.555);
+
+.numeroSenales {
+
+    font-size: 0.8em;
+    margin-left: 22em;
+    margin-bottom: 22em;
+   
+
 }
 
 
