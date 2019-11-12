@@ -8,6 +8,7 @@ import { CopsComponent } from './cops/cops.component';
 })
 export class PEspaciosComponent implements OnInit {
 
+  listaMenu:String[]= ["Rutina de Observación",'Portafolio','Rutina de explotación','Informes'];
   lista:CopsComponent[];
   constructor() { }
 

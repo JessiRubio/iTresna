@@ -23,7 +23,7 @@
     margin-right: auto;
     margin-top: 2em;
 }
-.contenido h3{
+.contenido h3{ 
     text-align: center;
     font-size: 2em;
     color: #9684bb;
@@ -32,8 +32,8 @@
 
 .numeroSenales {
 
-    font-size: 0.8em;
-    margin-left: 22em;
+    font-size: 1.2em;
+    margin-left: 13em;
     margin-bottom: 22em;
    
 
