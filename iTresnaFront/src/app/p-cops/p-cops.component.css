@@ -5,73 +5,26 @@ header {
     background-color: #000000;
     height: 5em;
  }
+
 .hiTresna a{
     width: 100%;
     height: 50%;
     color: #9684bb;
     font-size: 3rem;
 }
-#menu  {
-    list-style-type: none;
-    margin: 2em;
-    margin-top: 1em;
-    padding: 0;
-    background-color: #555453;
-    border-radius: 1em;
-    color: white;
-}     
-#menu   li {
-    display: inline-block;
-    padding: 1em;
-    /*width: 10rem;*/
-}     
-#menu  a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    text-shadow: 1px 1px 1px black;
-}
-#menu ul{
-    list-style: none;
-}
-#menu ul a{
-    display: block;
-}
 
-#menu ul ul {
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0; 
-    padding:0;
-    overflow: hidden;
-    width:10.6rem;
-    z-index: +1;
-}
-#menu ul li:hover > ul {
-    display:block;
-    background-color: #000000;
-}
-#menu ul li {
-    position:relative;
-} 
-.imgMenu{
-    height: 3em;
-    width: 3em;
-}
-.path {
-    fill: red;
-}
 #administracion  ul {
     list-style-type: none;
     top: 0em;
     right: 2em;
     position: absolute;
 } 
+
 #administracion  ul  a {
     text-decoration: none;
     color: white;
 } 
+
 #administracion ul ul {
     display:none;
     position:absolute;
@@ -84,21 +37,61 @@ header {
     width:7.2em;
     background-color: #555453;
 }
+
 #administracion ul li:hover > ul {
     display:block;
     padding: 1em;
 }
+
 #administracion ul li {
     position:relative;
 }   
+
 #administracion li ul{
     display:none;
     position:absolute;
     top:1em;
     left: -6em;
 }
+
 #administracion ul li ul li{
     margin-top: 0.5em;
+}
+
+.imgMenu{
+    height: 3em;
+    width: 3em;
+}
+
+/*Menu espacios y cops*/
+#menu  {
+    list-style-type: none;
+    margin: 2em;
+    margin-top: 1em;
+    padding: 0;
+    background-color: #555453;
+    border-radius: 1em;
+    color: white;
+}
+
+#menu ul{
+    list-style: none;
+}
+
+#menu ul li {
+    display: inline-block;
+    padding: 1em;
+    position:relative;
+    /*width: 10rem;*/
+}     
+
+#menu ul li:hover > ul {
+    display:block;
+    background-color: #000000;
+}
+
+#menuSeparador{
+    border-top: 2px solid white ;
 }
 
 .listaSenales{
