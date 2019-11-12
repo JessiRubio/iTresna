@@ -11,13 +11,14 @@ header {
     color: #9684bb;
     font-size: 3rem;
 }
-#menu  ul {
+#menu  {
     list-style-type: none;
     margin: 2em;
     margin-top: 1em;
     padding: 0;
     background-color: #555453;
     border-radius: 1em;
+    color: white;
 }     
 #menu   li {
     display: inline-block;
