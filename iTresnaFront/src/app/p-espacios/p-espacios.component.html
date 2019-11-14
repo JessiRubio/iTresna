@@ -28,8 +28,8 @@
 
 <div>
     <ul class="listaCops">
-        <li> <!--*ngFor="let item of listaCops" iria dentro de li-->
-                <cops-component></cops-component>
+        <li *ngFor="let item of listaCops" > 
+            <cops-component [nombre] ="item.nombre" [numeroSenales]="item.numeroSenales"></cops-component> 
         </li>
     </ul>
 </div>

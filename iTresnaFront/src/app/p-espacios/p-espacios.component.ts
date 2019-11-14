@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CopsComponent } from './cops/cops.component';
+import { CopsItem } from '../copsitem';
 
 @Component({
   selector: 'app-p-espacios',
@@ -9,7 +10,7 @@ import { CopsComponent } from './cops/cops.component';
 export class PEspaciosComponent implements OnInit {
 
   listaEspacios:String[]= ["Rutina de Observación",'Portafolio','Rutina de explotación','Informes'];
-  lista:CopsComponent[];
+  listaCops:CopsItem[]=[new CopsItem("Relevante","1")];
   constructor() { }
 
   ngOnInit() {
