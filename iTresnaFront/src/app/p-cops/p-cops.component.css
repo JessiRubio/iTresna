@@ -19,10 +19,12 @@ header {
     right: 2em;
     position: absolute;
 } 
+
 #administracion  ul  a {
     text-decoration: none;
     color: white;
 } 
+
 #administracion ul ul {
     display:none;
     position:absolute;
@@ -35,6 +37,7 @@ header {
     width:7.2em;
     background-color: #555453;
 }
+
 #administracion ul li:hover > ul {
     display:block;
     padding: 1em;
@@ -50,6 +53,7 @@ header {
     top:1em;
     left: -6em;
 }
+
 #administracion ul li ul li{
     margin-top: 0.5em;
 }
