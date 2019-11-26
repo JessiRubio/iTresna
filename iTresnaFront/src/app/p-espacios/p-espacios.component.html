@@ -1,6 +1,6 @@
 <header>		
     <div class="hiTresna">
-            <a>iTresna</a>
+            <a>iTresna <p>{{nombre}}</p> </a>
     </div>
 
     <nav id="administracion">
@@ -21,15 +21,23 @@
 <!-- Menu-->
 <nav id="menu">
     <ul>
-        <li *ngFor="let item of listaEspacios">{{item}}</li>
+        <li *ngFor="let item of listaEspacios; let i = index" (click)="cargarItem()">
+            <div [ngClass]="(i===selected) ? 'seleccionado':'noSeleccionado'">
+                {{item.desc_esp}}
+            </div>
+        </li>
     </ul>
 </nav>
 
 
 <div>
     <ul class="listaCops">
-        <li *ngFor="let item of listaCops" > 
+        <li *ngFor="let item of listaCops"> 
             <cops-component [nombre] ="item.nombre" [numeroSenales]="item.numeroSenales"></cops-component> 
         </li>
     </ul>
+    
+    
+
+    <p>{{nombre}}</p>
 </div>

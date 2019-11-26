@@ -2,7 +2,7 @@
     /*background-color:#CCC;*/
     height: 23.5em;
     margin: 0em;
-    display: flex;
+    display: inline-block;
     justify-content: space-between ;
      /*justify-content: space-around*/
 }
@@ -10,8 +10,8 @@
 .contenido{
     height: 22em;
     width: 22em;
-    float:left;
     margin: 10px;
+    padding-top: 0.5em;
     background-color:#555453;
     border-radius: 1rem;
 }

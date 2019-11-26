@@ -7,7 +7,12 @@ import { LoginComponent } from './login/login.component';
 import { PEspaciosComponent } from './p-espacios/p-espacios.component';
 import { CopsComponent } from './p-espacios/cops/cops.component';
 import { PCopsComponent } from './p-cops/p-cops.component';
+
+import { FormsModule } from '@angular/forms';
 import { SenalesComponent } from './p-cops/senales/senales.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UsuariosService } from '../servicios/usuarios.service';
+import { EspaciosService } from '../servicios/espacios.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +25,13 @@ import { SenalesComponent } from './p-cops/senales/senales.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    
+    
   ],
-  providers: [],
+  providers: [UsuariosService,EspaciosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

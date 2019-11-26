@@ -11,6 +11,11 @@
         color: #9684bb;
         font-size: 3rem;
     }
+
+    .hiTresna a p{
+        display: inline;
+        font-size: 0.5em;
+    }
     #menu  ul {
         list-style-type: none;
         margin: 2em;
@@ -101,10 +106,17 @@
         margin-top: 0.5em;
     }
 
+    .seleccionado{
+        text-decoration: underline;
+    }
+
     .listaCops{
         list-style: none;
-        columns: 1;
-        
+        overflow: hidden;
+        margin-left: 2em;
     }  
     
+    .listaCops li{
+        display: inline-block;
+    }
     
