@@ -51,7 +51,7 @@ export class PEspaciosComponent implements OnInit {
         )
   }
 
-  cargarItem(cod_org:number){
+  cargarCops(){
     //LAMADA A LA BBDD
     //this.listaCops=array de entrada
   }
