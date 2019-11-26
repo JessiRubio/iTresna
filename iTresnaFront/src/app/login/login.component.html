@@ -8,15 +8,17 @@
     <article>
         <p>Bienvenido </p>
     </article>
-    <form class="loginForm">
-        <input type="text" placeholder="Nombre"/> <br>
-        <input type="password" placeholder="Contraseña"/> <br>
-        <a href="#" class="molvidada">Contraseña olvidada? </a>
-    </form>
-
-    <form  id="funciona" class="botonLogin" action="/Principal">
-            <button class="botonlog " type="submit">Entrar</button>
-            
+    <form class="loginForm" (ngSubmit) = "login()">
+        <input type="text" name="usuario" placeholder="Nombre" [(ngModel)] = "usuario"/> 
+        <br>
+        <input type="password" name="password" placeholder="Contraseña" [(ngModel)] = "password"/> 
+        <br>
+        <pre> {{error}}</pre>
+        <a href="#">Contraseña olvidada? </a>
+         <!-- Llamamos a la función de angular -->
+         <br>   
+         <br>
+         <button class="botonlog"  type="submit">Entrar</button>
     </form>
 
 </section>

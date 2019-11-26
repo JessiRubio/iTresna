@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'cops-component',
@@ -7,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CopsComponent implements OnInit {
 
-  nombre = "Relevante";
+  @Input() nombre:string;
 
-  descripcion = "Bienvenido al mundo de las ideas"
+  @Input() numeroSenales:string;
 
-  constructor() { }
-
+  constructor() { 
+  }
+      
   ngOnInit() {
   }
 

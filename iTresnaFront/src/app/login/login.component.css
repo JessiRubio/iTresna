@@ -13,17 +13,13 @@ header {
 
 /*Login*/
 .logSection{
-    max-height: 20em;
     width: 30%;
     background-color: rgba(255,255,255,0.8);
     padding:1%;
     border-radius:1rem;
-    position: absolute;
     margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    margin-top: 15em;
+    
 }
 
 .logSection article{
@@ -32,11 +28,7 @@ header {
 
 .logSection p{
   font-size: 25px;
-}
-
-.molvidada{
-  font-size: 15px;
-
+  text-align: center;
 }
 
 .loginForm{
@@ -45,7 +37,9 @@ header {
 }
 
 .loginForm a{
-  margin-right: 7em;
+  font-size: 15px;
+  text-align: center;
+  margin: auto;
 }
 
 input[type="text"]  {
@@ -57,9 +51,6 @@ input[type="text"]  {
   margin-bottom: 20px;
   
 }
-
-
-
 
 input[type="password"] {
   border: 2px solid;
@@ -90,6 +81,10 @@ input[type="password"]:focus {
   
 }
 
+.botonLog :hover{
+  background-color: #c7c0da;
+}
+
 .botonlog{
   border-radius: 0.4em;
   height: 3em;
@@ -98,6 +93,7 @@ input[type="password"]:focus {
 
 }
 
-.botonLogin :hover{
-  background-color: #c7c0da;
+pre{
+  color: red;
 }
+

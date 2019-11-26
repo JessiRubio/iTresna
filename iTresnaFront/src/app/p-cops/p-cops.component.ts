@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./p-cops.component.css']
 })
 export class PCopsComponent implements OnInit {
-
+  
+  listaEspacios:String[]= ["Rutina de Observación",'Portafolio','Rutina de explotación','Informes'];
+  listaCops:String[]=["Relevante"];
   constructor() { }
 
   ngOnInit() {

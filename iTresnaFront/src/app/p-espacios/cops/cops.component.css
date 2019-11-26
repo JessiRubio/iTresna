@@ -2,7 +2,7 @@
     /*background-color:#CCC;*/
     height: 23.5em;
     margin: 0em;
-    display: flex;
+    display: inline-block;
     justify-content: space-between ;
      /*justify-content: space-around*/
 }
@@ -10,8 +10,8 @@
 .contenido{
     height: 22em;
     width: 22em;
-    float:left;
     margin: 10px;
+    padding-top: 0.5em;
     background-color:#555453;
     border-radius: 1rem;
 }
@@ -23,17 +23,21 @@
     margin-right: auto;
     margin-top: 2em;
 }
-.contenido h3{
+.contenido h3{ 
     text-align: center;
+    font-size: 2em;
+    color: #9684bb;
 
 }
-.contenido p{
-    text-align: center;
-    font-size: 1em;
-    margin-left: 1em;
-    margin-right: 1em;
-    color: rgba(223, 221, 221, 0.555);
+
+a{
+    text-decoration: none;
 }
 
+.numeroSenales {
 
+    font-size: 1.2em;
+    margin-left: 13em;
+    margin-bottom: 22em;
+}
 
