@@ -1,6 +1,6 @@
 import { DefaultIterableDiffer } from "@angular/core";
 
-export class espaciosItem{
+export class EspaciosItem{
     cod_org:number;
     cod_esp:number;
     desc_esp:string;
