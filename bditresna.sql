@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2019 a las 15:58:17
+-- Tiempo de generación: 27-11-2019 a las 15:26:47
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -21,9 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bditresna`
 --
-drop database bditresna;
-create database bditresna;
-use bditresna;
+
 -- --------------------------------------------------------
 
 --
@@ -82,7 +80,7 @@ INSERT INTO `t_cops` (`cod_cop`, `cod_org`, `cod_esp`, `desc_cop`, `img_cop`, `i
 CREATE TABLE `t_espacios` (
   `cod_esp` decimal(2,0) NOT NULL,
   `cod_org` decimal(9,0) NOT NULL,
-  `desc_esp` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `desc_esp` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ind_esp_curacion` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -94,9 +92,9 @@ INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`) 
 ('1', '15763', 'Rutina de Innovación ORG1', 1),
 ('1', '444555', 'Rutina de Innovación ORG2', 1),
 ('2', '15763', 'Rutina de Portafolio ORG1', 0),
-('2', '444555', 'Rutina de pORTAFOLIOS ORG', 0),
-('3', '15763', 'Rutina de eXPLOTACIÓN ORG', 0),
-('3', '444555', 'Rutina de eXPLOTACIÓN ORG', 0);
+('2', '444555', 'Rutina de Portafolio ORG2', 0),
+('3', '15763', 'Rutina de Explotación ORG1', 0),
+('3', '444555', 'Rutina de Explotación ORG2', 0);
 
 -- --------------------------------------------------------
 
@@ -162,10 +160,10 @@ CREATE TABLE `t_permisos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_señales`
+-- Estructura de tabla para la tabla `t_senales`
 --
 
-CREATE TABLE `t_señales` (
+CREATE TABLE `t_senales` (
   `cod_señal` decimal(2,0) NOT NULL,
   `cod_org` decimal(9,0) NOT NULL,
   `cod_esp` decimal(2,0) NOT NULL,
@@ -177,6 +175,14 @@ CREATE TABLE `t_señales` (
   `cod_usuario` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ind_fich_gest` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_senales`
+--
+
+INSERT INTO `t_senales` (`cod_señal`, `cod_org`, `cod_esp`, `cod_cop`, `cod_etiqueta`, `desc_señal`, `enlace`, `fecha_hora`, `cod_usuario`, `ind_fich_gest`) VALUES
+('11', '15763', '1', '0', NULL, 'Desc 1 kkkkk 1', 'url', '2019-11-27 14:26:31', NULL, 1),
+('21', '15763', '1', '1', NULL, 'Desc 2 kkkkk 1', 'url', '2019-11-27 14:26:31', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -320,9 +326,9 @@ ALTER TABLE `t_permisos`
   ADD PRIMARY KEY (`cod_usuario`,`cod_org`,`cod_esp`,`cod_cop`);
 
 --
--- Indices de la tabla `t_señales`
+-- Indices de la tabla `t_senales`
 --
-ALTER TABLE `t_señales`
+ALTER TABLE `t_senales`
   ADD PRIMARY KEY (`cod_señal`,`cod_esp`,`cod_org`,`cod_cop`);
 
 --

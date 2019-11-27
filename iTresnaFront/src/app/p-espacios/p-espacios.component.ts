@@ -52,6 +52,18 @@ export class PEspaciosComponent implements OnInit {
   }
 
   cargarCops(){
+
+    this.CopsService.getCops(listaEspacios[selected].usu_cod_org, listaEspacios[selected].cod_esp)
+        .subscribe(
+          res =>{
+            if(res.error == 0){
+            
+            }
+          },
+          err =>{
+
+          }
+        )
     //LAMADA A LA BBDD
     //this.listaCops=array de entrada
   }
