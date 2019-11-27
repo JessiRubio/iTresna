@@ -10,6 +10,7 @@
 
     $result = array();
     $result["error"]=1;
+    $result["cops"]=array();
     if(isset($cod_org) && $cod_org!="" && isset($cod_esp) && $cod_esp!=""){
         $sql="SELECT DISTINCT cop.cod_cop, cop.desc_cop, cop.img_cop,cop.ind_cop_graficos, COUNT(sen.cod_senal)
                 FROM t_cops cop
@@ -26,6 +27,8 @@
         $query->bind_result($cod_cop,$desc_cop,$img_cop,$ind_cop_graficos,$cantidad_senales);
         while($query->fetch()){
             $result["cops"][]=array(
+                "cod_org"=>$cod_org,
+                "cod_esp"=>$cod_esp,
                 "cod_cop"=>$cod_cop,
                 "desc_cop"=>$desc_cop,
                 "img_cop"=>$img_cop,
