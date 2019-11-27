@@ -50,7 +50,10 @@ export class PEspaciosComponent implements OnInit {
         )
   }
 
-
+  cambiarSeleccionado(i:number){
+    this.selected=i;
+    this.cargarCops();
+  }
   cargarCops(){
     this.copsService.getCops(this.listaEspacios[this.selected].cod_org, this.listaEspacios[this.selected].cod_esp)
         .subscribe(
