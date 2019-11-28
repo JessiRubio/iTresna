@@ -1,73 +1,258 @@
-     .contenedorSeñales{
-        /*background-color:#CCC;*/
-        height: 23.5em;
-        margin: 2em;
-        display: flex;
-        justify-content: space-between ;
-         /*justify-content: space-around*/
-    }
+.contenedorSeñales{
+    /*background-color:#CCC;*/
+    height: 23.5em;
+    margin: 1em;
+    padding-bottom: 10em;
+     /*justify-content: space-around*/
+ 
+}
+.filtrado{
+    margin-top: 0em;
+}
+ 
+.filtrar{
+    height: 2em;
+    width: 13em;
+    margin-bottom: 2em;
+}
 
-    .contenidoSeñal{
-        height: 22em;
-        width: 70em;
-        float:left;
-        margin: 10px;
-        background-color:#555453;
-        border-radius: 1rem;
-    }
-    .contenidoSeñal img{
-        height: 10em;
-        width: 15em;
-        margin-left: 3em;
-        margin-right: auto;
-        margin-top: 3em;
-        float: left;
-    }
+.botonCurar{
+
+    margin-top: -5.5%;
+    margin-bottom: 1em;
+    margin-left: 88%;
+    border-radius: 0.4em;
+    height: 40px;
+    width: 70px;
+    outline-width: 0;
+    display: flex;
     
-    .contenidoSeñaldiv{
-        margin-top: 3em;
-        margin-left: 20em;
-        width: 45em;
-        height: 10em;
-    }
-    .contenidoSeñaldiv h3{
-        text-align: center;
-        padding-top: 2em;
+}
+
+.botonFiltrar{
+    margin-top: -2%;
+    margin-bottom: 1em;
+    border-radius: 0.4em;
+    height: 40px;
+    width: 70px;
+    outline-width: 0;
+    display: flex;
+
+}
+
+
+
+.contenidoSeñal{
+   
+    height: 100%;
+    padding-top: 2m;
+    width: 95%;
+    margin: 0em;
+    background-color:#555453;
+    border-radius: 1rem;
+}
+
+.contenidoSeñal p{
+margin-top: 1em;
+
+}
+/*.contenidoSeñal a{
+    height: 35em;
+    display: block;
+}*/
+
+.contenidoSeñal img{
+    height: 10em;
+    width: 15em;
+    margin-left: 3em;
+    margin-right: 3em;
+    margin-top: 3em;
+}
+
+
+.contenidoSeñaldiv h3{
+    text-align: center;
+    padding-top: 2em;
+    margin-top: -10em;
     
-    }
-    .contenidoSeñaldiv p{
-        text-align: center;
-        font-size: 1em;
-        margin-left: 1em;
-        margin-right: 1em;
-        color: rgba(223, 221, 221, 0.555);
-    }
+}
+
+
+.contenidoSeñaldiv{
+   /* margin-top: 3em;
+    margin-left: 20em;
+    width: 45em;*/
+   /* height: 10em;*/
+   position: relative;
+   margin-left: 18em;
+   margin-right: 1em;
+}
+
+.contenidoSeñaldiv p{
+    text-align: center;
+    font-size: 1em;
+    /*margin-left: 1em;
+    margin-right: 1em;*/
+    color: rgba(223, 221, 221, 0.555);
     
-    .infoSeñal{
-        height: 5em;
-        margin-top: 1em;
-    }
+}
+
+
+.infoSeñal{
+    padding-top: 2em;
+     
+}
+.infoSeñal p{
+    margin-left: 3em;
+    width: 30%;
+}
+
+
+.comentario{
+    margin: auto;
+    margin-left: 3.5em;
+    height: 3em;
+    width: 70%;
+    background-color: #555453;
+    color:white;
+    font-family: 'Merienda', cursive;
+}
+
+.autor{
+    text-align: right;
+    margin-right: 4em;
     
-    .infoSeñal p{
-        float: left;
-        margin-left: 3em;
-        margin-top: 0em;
-        height: 10em;
-        width: 10em;
-    }
     
-    #comentario{
-        float: right;
-        margin-left: 1em;
-        margin-right: 6em;
-        height: 3em;
-        width: 60em;
-        background-color: #555453;
-        color:white;
-        font-family: 'Merienda', cursive;
-    }
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+.contenidoSeñaldiv{
+    height: auto;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.imgprueba{
+    margin-left: 5% !important;
+    width: 90% !important;
+    height: auto !important;
+    display: inline-block;
+
+}
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 800) {
+
+
+
+
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1440px) {
+
+.contenedorSeñales{
+    /*background-color:#CCC;*/
+
+    margin: 1em;
+    width: 95%;
+ 
+}
+
+
+.botonCurar{
+
+    margin-top: -4%;
+    margin-left: 94%;
+   
     
-    .autor{
-        text-align: right;
-        margin-right: 4em;
-    }
+}
+
+.botonFiltrar{
+    margin-top: 0%;
+
+
+}
+
+
+
+
+.contenidoSeñal{
+
+    width: 100%;
+    height: 140%;
+}
+
+
+.contenidoSeñal img{
+    height: 15em;
+    width: 20em;
+    margin-left: 3em;
+    margin-right: 3em;
+    margin-top: 3em;
+}
+
+
+.contenidoSeñaldiv{
+   
+   position: relative;
+   margin-left: 18em;
+   margin-top: -17em;
+}
+
+.contenidoSeñaldiv h3{
+    text-align: center;
+    padding-top: 2em;
+    margin-top: -10em;
+    font-size: 20px;
+    
+    
+}
+
+.contenidoSeñaldiv p{
+    text-align: center;
+    margin-top: 3em;
+    font-size: 1em;
+    margin-left: 5em;
+    color: rgba(223, 221, 221, 0.555);
+    
+}
+
+
+
+.infoSeñal{
+    margin-top: 3em;
+    font-size: 20px;
+     
+}
+
+
+.autor{
+    font-size: 25px;
+    
+}
+
+
+
+
+
+
+}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2019 a las 15:26:47
+-- Tiempo de generación: 28-11-2019 a las 15:57:46
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -21,9 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bditresna`
 --
-DROP DATABASE bditresna;
-CREATE DATABASE bditresna;
-USE bditresna;
+
 -- --------------------------------------------------------
 
 --
@@ -39,6 +37,23 @@ CREATE TABLE `t_comentarios` (
   `cod_comentario` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
   `comentario` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_comentarios`
+--
+
+INSERT INTO `t_comentarios` (`cod_org`, `cod_esp`, `cod_cop`, `cod_señal`, `cod_usuario`, `cod_comentario`, `comentario`) VALUES
+('15763', '1', '1', '51', 'usu-05@org1.com', '', 'aaaaaaaaaaaaaaa'),
+('15763', '1', '2', '61', 'usu-05@org1.com', '', 'bbbb bbbbb'),
+('15763', '2', '1', '71', 'usu-03@org1.com', '', 'ccc ccc ccc'),
+('15763', '2', '2', '81', 'usu-03@org1.com', '', 'dddd ddddd dddd dd'),
+('15763', '3', '1', '91', 'usu-05@org1.com', '', 'eeee'),
+('444555', '1', '0', '12', 'usu-01@org2.com', '', 'ffffffffffffff'),
+('444555', '1', '2', '22', 'usu-01@org2.com', '', 'mdmdmdmdm I dkldk'),
+('444555', '1', '5', '32', 'usu-04@org2.com', '', 'ajkhdjkah sdah sdhakjdfhajk fh'),
+('444555', '1', '5', '42', 'usu-04@org2.com', '', 'cdfsgarsa safdegdrae ggadref gare'),
+('444555', '1', '5', '52', 'usu-04@org2.com', '', 'ooooooooooooooooooorrr rrrr'),
+('444555', '2', '1', '62', 'usu-04@org2.com', '', 'drfsgoiwesdhguewfewuifuv eufewui ');
 
 -- --------------------------------------------------------
 
@@ -112,6 +127,29 @@ CREATE TABLE `t_etiquetas` (
   `desc_etiqueta` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `t_etiquetas`
+--
+
+INSERT INTO `t_etiquetas` (`cod_etiqueta`, `cod_org`, `cod_esp`, `cod_cop`, `desc_etiqueta`) VALUES
+('0', '15763', '1', '0', 'General'),
+('0', '444555', '1', '0', 'General'),
+('0', '15763', '1', '1', 'General'),
+('0', '15763', '1', '2', 'General'),
+('0', '444555', '1', '2', 'General'),
+('0', '444555', '1', '5', 'General'),
+('0', '15763', '2', '1', 'General'),
+('0', '444555', '2', '1', 'General'),
+('0', '15763', '2', '2', 'General'),
+('0', '444555', '2', '2', 'General'),
+('0', '15763', '3', '1', 'General'),
+('0', '444555', '3', '1', 'General'),
+('1', '15763', '1', '1', 'Software'),
+('1', '444555', '1', '5', 'Ayudas domicili'),
+('2', '15763', '1', '1', 'Hardware'),
+('2', '444555', '1', '5', 'Domótica'),
+('3', '15763', '1', '1', 'Realidad Virtua');
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +163,23 @@ CREATE TABLE `t_megusta` (
   `cod_cop` decimal(2,0) NOT NULL,
   `cod_señal` decimal(2,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_megusta`
+--
+
+INSERT INTO `t_megusta` (`cod_usuario`, `cod_org`, `cod_esp`, `cod_cop`, `cod_señal`) VALUES
+('usu-01@org2.com', '444555', '1', '0', '12'),
+('usu-01@org2.com', '444555', '1', '2', '22'),
+('usu-03@org1.com', '15763', '2', '1', '71'),
+('usu-03@org1.com', '15763', '2', '2', '81'),
+('usu-04@org2.com', '444555', '1', '5', '32'),
+('usu-04@org2.com', '444555', '1', '5', '42'),
+('usu-04@org2.com', '444555', '1', '5', '52'),
+('usu-04@org2.com', '444555', '2', '1', '62'),
+('usu-05@org1.com', '15763', '1', '1', '51'),
+('usu-05@org1.com', '15763', '1', '2', '61'),
+('usu-05@org1.com', '15763', '3', '1', '91');
 
 -- --------------------------------------------------------
 
@@ -159,6 +214,42 @@ CREATE TABLE `t_permisos` (
   `ind_admin` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `t_permisos`
+--
+
+INSERT INTO `t_permisos` (`cod_usuario`, `cod_org`, `cod_esp`, `cod_cop`, `ind_admin`) VALUES
+('usu-01@org1.com', '15763', '1', '0', 0),
+('usu-01@org2.com', '444555', '1', '0', 0),
+('usu-02@org1.com', '15763', '1', '0', 0),
+('usu-02@org1.com', '15763', '1', '1', 0),
+('usu-02@org1.com', '15763', '1', '2', 0),
+('usu-02@org1.com', '15763', '2', '2', 0),
+('usu-02@org2.com', '444555', '1', '0', 0),
+('usu-02@org2.com', '444555', '1', '1', 0),
+('usu-02@org2.com', '444555', '1', '2', 0),
+('usu-02@org2.com', '444555', '2', '2', 0),
+('usu-03@org1.com', '15763', '1', '0', 0),
+('usu-03@org1.com', '15763', '1', '3', 1),
+('usu-03@org1.com', '15763', '2', '1', 0),
+('usu-03@org2.com', '444555', '1', '0', 0),
+('usu-03@org2.com', '444555', '1', '3', 1),
+('usu-03@org2.com', '444555', '2', '1', 0),
+('usu-04@org1.com', '15763', '1', '0', 0),
+('usu-04@org1.com', '15763', '1', '3', 0),
+('usu-04@org1.com', '15763', '2', '2', 1),
+('usu-04@org2.com', '444555', '1', '0', 0),
+('usu-04@org2.com', '444555', '1', '3', 0),
+('usu-04@org2.com', '444555', '2', '2', 1),
+('usu-05@org1.com', '15763', '1', '0', 0),
+('usu-05@org1.com', '15763', '1', '1', 1),
+('usu-05@org1.com', '15763', '1', '2', 1),
+('usu-05@org1.com', '15763', '2', '1', 0),
+('usu-05@org2.com', '15763', '2', '1', 1),
+('usu-05@org2.com', '444555', '1', '0', 0),
+('usu-05@org2.com', '444555', '1', '1', 1),
+('usu-05@org2.com', '444555', '2', '1', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -166,12 +257,12 @@ CREATE TABLE `t_permisos` (
 --
 
 CREATE TABLE `t_senales` (
-  `cod_señal` decimal(2,0) NOT NULL,
+  `cod_senal` decimal(2,0) NOT NULL,
   `cod_org` decimal(9,0) NOT NULL,
   `cod_esp` decimal(2,0) NOT NULL,
   `cod_cop` decimal(2,0) NOT NULL,
   `cod_etiqueta` decimal(2,0) DEFAULT NULL,
-  `desc_señal` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `desc_senal` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `enlace` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `cod_usuario` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -182,9 +273,24 @@ CREATE TABLE `t_senales` (
 -- Volcado de datos para la tabla `t_senales`
 --
 
-INSERT INTO `t_senales` (`cod_señal`, `cod_org`, `cod_esp`, `cod_cop`, `cod_etiqueta`, `desc_señal`, `enlace`, `fecha_hora`, `cod_usuario`, `ind_fich_gest`) VALUES
+INSERT INTO `t_senales` (`cod_senal`, `cod_org`, `cod_esp`, `cod_cop`, `cod_etiqueta`, `desc_senal`, `enlace`, `fecha_hora`, `cod_usuario`, `ind_fich_gest`) VALUES
 ('11', '15763', '1', '0', NULL, 'Desc 1 kkkkk 1', 'url', '2019-11-27 14:26:31', NULL, 1),
-('21', '15763', '1', '1', NULL, 'Desc 2 kkkkk 1', 'url', '2019-11-27 14:26:31', NULL, 0);
+('12', '444555', '1', '0', NULL, 'Desc 1 kkkkk 2', 'url', '2019-11-27 16:28:15', NULL, 1),
+('21', '15763', '1', '1', NULL, 'Desc 2 kkkkk 1', 'url', '2019-11-27 14:26:31', NULL, 0),
+('22', '444555', '1', '2', NULL, 'Desc 2 kkkkk 2', 'url', '2019-11-27 16:29:25', NULL, 0),
+('31', '15763', '1', '1', NULL, 'Desc 3 kkkkk 1', 'url', '2019-11-27 16:24:03', NULL, 0),
+('32', '444555', '1', '5', NULL, 'Desc 3 kkkkk 2', 'url', '2019-11-27 16:29:25', NULL, 0),
+('41', '15763', '1', '1', NULL, 'Desc 4 kkkkk 1', 'url', '2019-11-27 16:24:03', NULL, 0),
+('42', '444555', '1', '5', NULL, 'Desc 4 kkkkk 2', 'url', '2019-11-28 13:31:41', NULL, 0),
+('51', '15763', '1', '1', NULL, 'Desc 5 kkkkk 1', 'url', '2019-11-27 16:25:29', NULL, 0),
+('52', '444555', '1', '5', NULL, 'Desc 5 kkkkk 2', 'url', '2019-11-28 13:31:41', NULL, 0),
+('61', '15763', '1', '2', NULL, 'Desc 6 kkkkk 1', 'url', '2019-11-27 16:25:29', NULL, 0),
+('62', '444555', '2', '1', NULL, 'Desc 6 kkkkk 2', 'url', '2019-11-28 13:31:41', NULL, 0),
+('71', '15763', '2', '1', NULL, 'Desc 7 kkkkk 1', 'url', '2019-11-27 16:27:04', NULL, 0),
+('72', '444555', '2', '2', NULL, 'Desc 7 kkkkk 2', 'url', '2019-11-28 13:31:41', NULL, 0),
+('81', '15763', '2', '2', NULL, 'Desc 8 kkkkk 1', 'url', '2019-11-27 16:27:04', NULL, 0),
+('82', '444555', '3', '1', NULL, 'Desc 8 kkkkk 2', 'url', '2019-11-28 13:31:41', NULL, 0),
+('91', '15763', '1', '0', NULL, 'Desc 9 kkkkk 1', 'url', '2019-11-27 16:28:15', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -282,6 +388,28 @@ CREATE TABLE `t_variable` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
+-- Volcado de datos para la tabla `t_variable`
+--
+
+INSERT INTO `t_variable` (`cod_org`, `cod_esp`, `cod_cop`, `cod_señal`, `tip_variable`, `val_variable`) VALUES
+('15763', '2', '1', '71', '1', '45'),
+('15763', '2', '1', '71', '2', '57'),
+('15763', '2', '1', '71', '3', '4'),
+('15763', '2', '1', '71', '4', '23'),
+('15763', '2', '1', '72', '1', '78'),
+('15763', '2', '1', '72', '2', '21'),
+('15763', '2', '1', '72', '3', '2'),
+('15763', '2', '1', '72', '4', '4'),
+('444555', '2', '1', '62', '1', '88'),
+('444555', '2', '1', '62', '2', '9'),
+('444555', '2', '1', '62', '3', '12'),
+('444555', '2', '1', '62', '4', '33'),
+('444555', '2', '1', '63', '1', '44'),
+('444555', '2', '1', '63', '2', '55'),
+('444555', '2', '1', '63', '3', '66'),
+('444555', '2', '1', '63', '4', '77');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -331,7 +459,7 @@ ALTER TABLE `t_permisos`
 -- Indices de la tabla `t_senales`
 --
 ALTER TABLE `t_senales`
-  ADD PRIMARY KEY (`cod_señal`,`cod_esp`,`cod_org`,`cod_cop`);
+  ADD PRIMARY KEY (`cod_senal`,`cod_esp`,`cod_org`,`cod_cop`);
 
 --
 -- Indices de la tabla `t_tip_usuario`
