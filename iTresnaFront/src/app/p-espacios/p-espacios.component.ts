@@ -5,6 +5,7 @@ import { CopsItem } from '../clases/copsitem';
 import { EspaciosService } from '../../servicios/espacios.service';
 import { CopsService } from '../../servicios/cops.service';
 import { EspaciosItem } from '../clases/espaciosItem';
+import { NavigationExtras } from '@angular/router'
 
 
 @Component({
@@ -20,7 +21,7 @@ export class PEspaciosComponent implements OnInit {
   constructor(
     private espaciosService:EspaciosService,
     private copsService:CopsService,
-    private ruta: Router
+    private router: Router
   ) { 
     this.nombre = "";
   }
@@ -42,33 +43,34 @@ export class PEspaciosComponent implements OnInit {
             if(res.error == 0){
                this.listaEspacios=res.espacios;
                this.cargarCops();
+            }else{
+              //TODO Allert
             }
           }, 
           err =>{
 
           } 
-        )
+        );
   }
 
   cambiarSeleccionado(i:number){
     this.selected=i;
     this.cargarCops();
   }
+
   cargarCops(){
     this.copsService.getCops(this.listaEspacios[this.selected].cod_org, this.listaEspacios[this.selected].cod_esp)
         .subscribe(
           res =>{
             if(res.error == 0){
                 this.listaCops = res.cops;
-                console.log(res.cops);
+            }else{
+              //TODO alert
             }
           },
           err =>{
 
           }
         )
-    //LAMADA A LA BBDD
-    //this.listaCops=array de entrada
   }
-
 }
