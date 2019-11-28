@@ -30,22 +30,23 @@
     echo json_encode($result);
     
     function obtenerPermisos($cod_usuario){
-        include("./../conexion.php");
+        require_once("./../conexion.php");
             if(isset($cod_usuario) && $cod_usuario!=""){
-                $sql="SELECT *
+                $sql="SELECT cod_org, cod_esp, cod_cop, ind_admin
                     FROM t_permisos
                     WHERE cod_usuario=?
                     ORDER BY cod_org,cod_esp,cod_cop";
                 $query=$conexion->prepare($sql);
                 $query->bind_param("s",$cod_usuario);
                 $query->execute();
-                $query->bind_result($cod_usuario,$cod_org,$cod_esp,$cod_cop,$ind_admin);
+                $query->bind_result($cod_org,$cod_esp,$cod_cop,$ind_admin);
                 while($query->fetch()){
-                    $result[$cod_org][$cod_esp][]=array( 
+                    $result[]=array(
+                        "cod_org"=>$cod_org,
+                        "cod_esp"=>$cod_esp,
                         "cod_cop"=>$cod_cop,
                         "ind_admin"=>$ind_admin
-                    );             
-                }        
+                    );                     
             }
         return $result;
     }
