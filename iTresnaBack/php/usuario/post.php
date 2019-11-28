@@ -15,7 +15,7 @@
             $query->execute();
             $query->bind_result($cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2);
             $query->fetch();
-            $result=array(
+            $result["usuario"][]=array(
                 "cod_usuario"=>$cod_usuario,
                 "tip_usuario"=>$tip_usuario,
                 "cod_org"=>$cod_org,
@@ -23,8 +23,30 @@
                 "nombre"=>$nombre,
                 "ape1"=>$ape1,
                 "ape2"=>$ape2,
-                "error"=>0
-            );                       
+                "permisos"=>obtenerPermisos($cod_usuario)
+            );  
+            $result["error"] = 0;
         }
-	echo json_encode($result);
+    echo json_encode($result);
+    
+    function obtenerPermisos($cod_usuario){
+        include("./../conexion.php");
+            if(isset($cod_usuario) && $cod_usuario!=""){
+                $sql="SELECT *
+                    FROM t_permisos
+                    WHERE cod_usuario=?
+                    ORDER BY cod_org,cod_esp,cod_cop";
+                $query=$conexion->prepare($sql);
+                $query->bind_param("s",$cod_usuario);
+                $query->execute();
+                $query->bind_result($cod_usuario,$cod_org,$cod_esp,$cod_cop,$ind_admin);
+                while($query->fetch()){
+                    $result[$cod_org][$cod_esp][]=array( 
+                        "cod_cop"=>$cod_cop,
+                        "ind_admin"=>$ind_admin
+                    );             
+                }        
+            }
+        return $result;
+    }
 ?>
