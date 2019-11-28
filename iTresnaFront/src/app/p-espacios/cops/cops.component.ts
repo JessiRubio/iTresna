@@ -13,7 +13,6 @@ export class CopsComponent implements OnInit {
 
   constructor() { 
   }
-      
   ngOnInit() {
   }
 
