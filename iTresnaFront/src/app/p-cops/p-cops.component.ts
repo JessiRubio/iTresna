@@ -28,7 +28,7 @@ export class PCopsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       console.log(params);
       this.copSeleccionado = params['copSeleccionado'];
-      var codEspacios = params['codEspacio'];
+      this.cod_esp = params['codEspacio'];
       this.cargarEspacios();
       this.cargarCops();
     });
@@ -41,7 +41,6 @@ export class PCopsComponent implements OnInit {
           res =>{
             if(res.error == 0){
                this.listaEspacios=res.espacios;
-               this.cargarCops();
             }else{
               //TODO Allert
             }
@@ -52,18 +51,20 @@ export class PCopsComponent implements OnInit {
         );
   }
   cargarCops(){
+    console.log(this.cod_org,this.cod_esp);
     this.copsService.getCops(this.cod_org,this.cod_esp)
         .subscribe(
           res =>{
             if(res.error == 0){
                 this.listaCops = res.cops;
+                console.log(res);
             }else{
             }
           },
           err =>{
 
           }
-        )
+        );
   }
 
 }

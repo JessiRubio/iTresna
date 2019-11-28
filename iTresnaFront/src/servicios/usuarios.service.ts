@@ -16,4 +16,7 @@ export class UsuariosService {
     var json={'usuario':usuario,'password':password};
     return this.httpClient.post(this.url,json);
   }
+  permisos(cod_usuario:number):Observable<any>{
+    return null;
+  }
 }

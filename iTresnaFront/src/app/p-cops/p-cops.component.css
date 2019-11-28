@@ -97,3 +97,6 @@ header {
 .listaSenales{
     list-style: none;
 }
+.seleccionado{
+    text-decoration: underline;
+}
