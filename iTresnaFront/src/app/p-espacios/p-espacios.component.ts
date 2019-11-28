@@ -18,12 +18,12 @@ export class PEspaciosComponent implements OnInit {
   listaEspacios:EspaciosItem[];
   selected:number = 0;
   listaCops:CopsItem[];
+  permisos:any;
   constructor(
     private espaciosService:EspaciosService,
     private copsService:CopsService,
     private router: Router
   ) { 
-    this.nombre = "";
   }
 
 
@@ -72,5 +72,9 @@ export class PEspaciosComponent implements OnInit {
 
           }
         )
+  }
+
+  cargarPermisos(){
+    
   }
 }
