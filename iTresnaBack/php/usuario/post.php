@@ -30,7 +30,7 @@
     echo json_encode($result);
     
     function obtenerPermisos($cod_usuario){
-        require_once("./../conexion.php");
+        include("./../conexion.php");
             if(isset($cod_usuario) && $cod_usuario!=""){
                 $sql="SELECT cod_org, cod_esp, cod_cop, ind_admin
                     FROM t_permisos
@@ -46,7 +46,8 @@
                         "cod_esp"=>$cod_esp,
                         "cod_cop"=>$cod_cop,
                         "ind_admin"=>$ind_admin
-                    );                     
+                    );    
+                }                 
             }
         return $result;
     }
