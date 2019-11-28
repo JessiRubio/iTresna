@@ -21,7 +21,7 @@
 <!-- Menu-->
 <nav id="menu">
     <ul>
-        <li *ngFor="let item of listaEspacios; let i = index" (click)="cargarItem()">
+        <li *ngFor="let item of listaEspacios; let i = index" (click)="cambiarSeleccionado(i)">
             <div [ngClass]="(i===selected) ? 'seleccionado':'noSeleccionado'">
                 {{item.desc_esp}}
             </div>
@@ -33,11 +33,11 @@
 <div>
     <ul class="listaCops">
         <li *ngFor="let item of listaCops"> 
-            <cops-component [nombre] ="item.nombre" [numeroSenales]="item.numeroSenales"></cops-component> 
+            <cops-component [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
         </li>
     </ul>
     
     
 
-    <p>{{nombre}}</p>
+    <p>{{desc_cod}}</p>
 </div>
