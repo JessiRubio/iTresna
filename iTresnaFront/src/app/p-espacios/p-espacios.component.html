@@ -32,11 +32,9 @@
 
 <div>
     <ul class="listaCops">
-        <li *ngFor="let item of listaCops; let i = index" (click)="cambiarPagina(item)"> 
-            <a [routerLink]="['/Cops']" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}">
-                <cops-component  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
-            </a>
-    </li>
+        <li *ngFor="let item of listaCops; let i = index" (click)="cambiarPagina(item)">
+            <cops-component  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
+        </li>
     </ul>
     
     

@@ -6,7 +6,7 @@ import { EspaciosService } from '../../servicios/espacios.service';
 import { CopsService } from '../../servicios/cops.service';
 import { EspaciosItem } from '../clases/espaciosItem';
 import { NavigationExtras } from '@angular/router'
-import { Usuario } from '../clases/usuario';
+import { Usuario, Permiso } from '../clases/usuario';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { Usuario } from '../clases/usuario';
 export class PEspaciosComponent implements OnInit {
   nombre:string;
   usuarioLogado:Usuario;
-  listaEspacios:EspaciosItem[];
+  listaEspacios:EspaciosItem[]=[];
   selected:number = 0;
   listaCops:CopsItem[];
   constructor(
@@ -28,22 +28,19 @@ export class PEspaciosComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-
-    
+  async ngOnInit() {
     if(localStorage.length>0){
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
-      this.espacios();
+      await this.espaciosPorCod(this.usuarioLogado.cod_org);
     }
-    
   }
-
-  espacios(){
-    this.espaciosService.getEspacios(this.usuarioLogado.cod_org)
+  espaciosPorCod(cod_org:number){
+    this.espaciosService.getEspacios(cod_org)
         .subscribe(
           res =>{
             if(res.error == 0){
-               this.listaEspacios=res.espacios;
+               var espaciosTemp:EspaciosItem[]=res.espacios;
+               espaciosTemp.forEach(x=>this.listaEspacios.push(x));
                this.cargarCops();
             }else{
               //TODO Allert
@@ -52,16 +49,19 @@ export class PEspaciosComponent implements OnInit {
           err =>{
 
           } 
-        );
+      );
   }
 
   cambiarSeleccionado(i:number){
-    this.selected=i;
-    this.cargarCops();
+    if(i!=this.selected){
+      this.selected=i;
+      this.cargarCops();
+    }
   }
 
   cargarCops(){
-    this.copsService.getCops(this.listaEspacios[this.selected].cod_org, this.listaEspacios[this.selected].cod_esp)
+    var espacio:EspaciosItem=this.listaEspacios[this.selected];
+    this.copsService.getCops(espacio.cod_org, espacio.cod_esp)
         .subscribe(
           res =>{
             if(res.error == 0){
@@ -73,6 +73,13 @@ export class PEspaciosComponent implements OnInit {
           err =>{
 
           }
-        )
+        );
+  }
+  cambiarPagina(item:CopsItem){
+    if(this.usuarioLogado.permisos.filter(x=>x.cod_esp==item.cod_esp && x.cod_cop==item.cod_esp && x.admin).length>0){
+      this.router.navigateByUrl('/Cops',{
+        queryParams:{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}
+      });
+    }
   }
 }
