@@ -6,6 +6,7 @@ import { EspaciosService } from '../../servicios/espacios.service';
 import { CopsService } from '../../servicios/cops.service';
 import { EspaciosItem } from '../clases/espaciosItem';
 import { NavigationExtras } from '@angular/router'
+import { Usuario } from '../clases/usuario';
 
 
 @Component({
@@ -15,10 +16,10 @@ import { NavigationExtras } from '@angular/router'
 })
 export class PEspaciosComponent implements OnInit {
   nombre:string;
+  usuarioLogado:Usuario;
   listaEspacios:EspaciosItem[];
   selected:number = 0;
   listaCops:CopsItem[];
-  permisos:any;
   constructor(
     private espaciosService:EspaciosService,
     private copsService:CopsService,
@@ -28,16 +29,17 @@ export class PEspaciosComponent implements OnInit {
 
 
   ngOnInit() {
-    var usuario=localStorage.getItem("usu_nombre");
+
+    
     if(localStorage.length>0){
-      this.nombre=usuario.toString();
+      this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
+      this.espacios();
     }
-    this.espacios();
+    
   }
 
   espacios(){
-
-    this.espaciosService.getEspacios(parseInt(localStorage.getItem("usu_cod_org")))
+    this.espaciosService.getEspacios(this.usuarioLogado.cod_org)
         .subscribe(
           res =>{
             if(res.error == 0){
@@ -72,9 +74,5 @@ export class PEspaciosComponent implements OnInit {
 
           }
         )
-  }
-
-  cargarPermisos(){
-    
   }
 }

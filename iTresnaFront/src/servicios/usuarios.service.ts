@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { Usuario } from './../app/clases/usuario';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +15,5 @@ export class UsuariosService {
   login(usuario:string,password:string):Observable<any>{
     var json={'usuario':usuario,'password':password};
     return this.httpClient.post(this.url,json);
-  }
-  permisos(cod_usuario:number):Observable<any>{
-    return null;
   }
 }
