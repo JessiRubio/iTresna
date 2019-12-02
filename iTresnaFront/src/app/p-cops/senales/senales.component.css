@@ -54,13 +54,10 @@
 
 .contenidoSeñal p{
 
-    margin-top: 1em;
+    margin-top: 2em;
 
 }
-/*.contenidoSeñal a{
-    height: 35em;
-    display: block;
-}*/
+
 
 .contenidoSeñal img{
     height: 10em;
@@ -74,7 +71,19 @@
 .contenidoSeñaldiv h3{
     text-align: center;
     padding-top: 2em;
-    margin-top: -10em;
+    margin-top: -2em;
+    
+}
+
+.contenidoSeñaldiv h2{
+    font-size: 15px;
+    display: flex;
+    margin-left: -16em;
+    margin-top: -13em;
+
+    
+
+    
     
 }
 
@@ -95,12 +104,11 @@
     /*margin-left: 1em;
     margin-right: 1em;*/
     color: rgba(223, 221, 221, 0.555);
-    
 }
 
 
 .infoSeñal{
-    padding-top: 2em;
+    padding-top: 2.5em;
      
 }
 
@@ -121,6 +129,7 @@
     font-size: 25px;
     outline-width: 0;
     margin-top: 1%;
+    border:none;
 
 }
 .botonLike img{
@@ -128,18 +137,38 @@
     margin-right: 0em;
     margin-top: 0em;
     height:20px;
-    width:20px ;
+    width:20px;
+
+}
+
+.botonPapelera{
+    display: flex;
+    color: rgba(223, 221, 221, 0.555);
+    background-color: #555453;
+    margin-left: 6%;
+    font-size: 25px;
+    outline-width: 0;
+    margin-top: 1%;
+    border:none;
+
+}
+.botonPapelera img{
+    margin-left: 0em;
+    margin-right: 0em;
+    margin-top: 0em;
+    height:30px;
+    width:30px ;
 
 }
 
 
-
-
 .comentario{
     margin: auto;
-    margin-left: 3.5em;
+    margin-left: 25.5em;
     height: 3em;
-    width: 70%;
+    display: flex;
+    width: 60%;
+    margin-top:-3em;
     background-color: #555453;
     color:white;
     font-family: 'Merienda', cursive;
@@ -148,6 +177,7 @@
 .autor{
     text-align: right;
     margin-right: 4em;
+    
     
     
 }
@@ -223,7 +253,28 @@
         margin-top: 1%;
     
     }
+
+    
     .botonLike img{
+        margin-left: 0em;
+        margin-right: 0em;
+        margin-top: 0em;
+        height:20px;
+        width:20px ;
+    
+    }
+    
+    .botonPapelera{
+        color: rgba(223, 221, 221, 0.555);
+        background-color: #555453;
+        margin-left: 6%;
+        font-size: 25px;
+        outline-width: 0;
+        margin-top: 1%;
+    
+    }
+
+    .botonPapelera img{
         margin-left: 0em;
         margin-right: 0em;
         margin-top: 0em;
