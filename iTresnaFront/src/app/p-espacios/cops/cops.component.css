@@ -25,19 +25,17 @@
 }
 .contenido h3{ 
     text-align: center;
-    font-size: 2em;
+    font-size: 1.5em;
     color: #9684bb;
 
 }
 
-a{
-    text-decoration: none;
-}
 
 .numeroSenales {
 
     font-size: 1.2em;
     margin-left: 13em;
     margin-bottom: 22em;
+    color: #9684bb;
 }
 
