@@ -32,8 +32,8 @@
 
 <div>
     <ul class="listaCops">
-        <li *ngFor="let item of listaCops; let i = index" (click)="cambiarPagina(item)" [ngClass]="(estaEnPermisos(item))?'seleccionable':'noSeleccionable'">
-            <cops-component  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
+        <li *ngFor="let item of listaCops; let i = index" (click)="cambiarPagina(item)" >
+            <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
         </li>
     </ul>
     

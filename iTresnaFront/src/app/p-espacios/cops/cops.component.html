@@ -1,6 +1,6 @@
 <div class="contenedor">
    
-    <section class="contenido">
+    <section [ngClass]="(ind_admin)?'seleccionable':'noSeleccionable'" class="contenido" >
             <img class="imgprueba" src="assets/prueba.png" alt="prueba">
             
             <h3>{{desc_cop}}</h3>

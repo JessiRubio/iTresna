@@ -7,9 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CopsComponent implements OnInit {
 
+  @Input() ind_admin:boolean;
+
   @Input() desc_cop:string;
 
   @Input() cantidad_senales:number;
+
+ 
 
   constructor() { 
   }

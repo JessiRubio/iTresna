@@ -119,9 +119,4 @@
     .listaCops li{
         display: inline-block;
     }
-    .seleccionable{
-        background: red;
-    }
-    .noSeleccionable{
-        background:blue;
-    }
+    

@@ -15,6 +15,12 @@
     background-color:#555453;
     border-radius: 1rem;
 }
+.seleccionable{
+    background-color:#BBB;
+}
+.noSeleccionable{
+    background-color:#333;
+}
 .contenido img{
     height: 10em;
     width: 10em;
