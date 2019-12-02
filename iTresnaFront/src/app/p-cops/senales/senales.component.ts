@@ -11,7 +11,7 @@ export class SenalesComponent implements OnInit {
 
   texto = "He leido este articulo y me ha parecido muy interesante, creo que podriamos tenerlo en cuenta para proyectos en el centro.";
 
-  likes= "5";
+  likes= 5;
 
   etiquetas= "data";
 
@@ -19,6 +19,7 @@ export class SenalesComponent implements OnInit {
 
   Autor = "Jessica Rubio";
 
+  likesb=0;
 
   visible: boolean = false ; // hidden by default
 
@@ -26,6 +27,23 @@ export class SenalesComponent implements OnInit {
 visibilidad() {
 
 this.visible = ! this.visible;
+
+}
+
+like(){
+
+  if (this.likesb==0){
+  this.likes+=1;
+  this.likesb=1;
+  
+  }
+  else if  (this.likesb==1){
+    this.likes-=1;
+    this.likesb=0;
+  
+  }
+  
+  
 
 }
 
