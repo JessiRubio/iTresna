@@ -45,11 +45,12 @@
                 $query->execute();
                 $query->bind_result($basura,$cod_org,$cod_esp,$cod_cop,$ind_admin);
                 while($query->fetch()){
+                    
                     $result[]=array(
                         "cod_org"=>$cod_org,
                         "cod_esp"=>$cod_esp,
                         "cod_cop"=>$cod_cop,
-                        "ind_admin"=>$ind_admin
+                        "ind_admin"=>$ind_admin==1
                     );    
                 }                 
             }

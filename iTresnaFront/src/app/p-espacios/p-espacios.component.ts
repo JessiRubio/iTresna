@@ -76,7 +76,8 @@ export class PEspaciosComponent implements OnInit {
         );
   }
   cambiarPagina(item:CopsItem){
-    if(this.usuarioLogado.permisos.filter(x=>x.cod_esp==item.cod_esp && x.cod_cop==item.cod_esp && x.admin).length>0){
+    if(this.usuarioLogado.permisos.filter(x=>x.cod_esp===item.cod_esp && x.cod_cop===item.cod_cop && x.ind_admin).length>0){
+      console.log("entra");
       this.router.navigateByUrl('/Cops',{
         queryParams:{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}
       });

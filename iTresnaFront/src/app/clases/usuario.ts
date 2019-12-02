@@ -13,5 +13,5 @@ export class Permiso{
     cod_org:number;
     cod_esp:number;
     cod_cop:number;
-    admin:boolean;
+    ind_admin:boolean;
 }
