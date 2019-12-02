@@ -5,7 +5,10 @@
         $data = json_decode($json);
         $password=$data->password;
         $usuario=$data->usuario;
-        $result["error"]=1;
+        $result=array(
+            "error"=>1,
+            "usuario"=>array()
+        );
         if(isset($usuario) && $usuario!="" && isset($password) && $password!=""){
             $sql="SELECT *
                 FROM t_usuarios
@@ -15,7 +18,7 @@
             $query->execute();
             $query->bind_result($cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2);
             $query->fetch();
-            $result["usuario"][]=array(
+            $result["usuario"]=array(
                 "cod_usuario"=>$cod_usuario,
                 "tip_usuario"=>$tip_usuario,
                 "cod_org"=>$cod_org,
@@ -31,15 +34,16 @@
     
     function obtenerPermisos($cod_usuario){
         include("./../conexion.php");
+        $result=array();
             if(isset($cod_usuario) && $cod_usuario!=""){
-                $sql="SELECT cod_org, cod_esp, cod_cop, ind_admin
+                $sql="SELECT *
                     FROM t_permisos
                     WHERE cod_usuario=?
                     ORDER BY cod_org,cod_esp,cod_cop";
                 $query=$conexion->prepare($sql);
                 $query->bind_param("s",$cod_usuario);
                 $query->execute();
-                $query->bind_result($cod_org,$cod_esp,$cod_cop,$ind_admin);
+                $query->bind_result($basura,$cod_org,$cod_esp,$cod_cop,$ind_admin);
                 while($query->fetch()){
                     $result[]=array(
                         "cod_org"=>$cod_org,

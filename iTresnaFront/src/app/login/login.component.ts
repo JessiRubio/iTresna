@@ -30,16 +30,10 @@ export class LoginComponent implements OnInit {
   login(){
     this.usuariosService.login(this.usuario, this.password).subscribe(
       res=>{
-
-        if(res.error==0 && res.nombre!=null){
-          localStorage.setItem("cod_usuario",res.cod_usuario);
-          localStorage.setItem("tip_usuario",res.tip_usuario);
-          localStorage.setItem("usu_cod_org",res.cod_org);
-          localStorage.setItem("usu_password",res.sarbidea);
-          localStorage.setItem("usu_nombre",res.nombre);
-          localStorage.setItem("ape1", res.ape1);
-          localStorage.setItem("ape2", res.ape2);
-
+        if(res.error==0){
+          var usuarioParsed:string=JSON.stringify(res.usuario);
+          localStorage.setItem("usuario",usuarioParsed);
+          
           this.ruta.navigateByUrl("Principal");
         }
         else{
