@@ -18,7 +18,7 @@
 
 .botonCurar{
 
-    margin-top: -5.5%;
+    margin-top: -4.5%;
     margin-bottom: 1em;
     margin-left: 88%;
     border-radius: 0.4em;
@@ -53,7 +53,8 @@
 }
 
 .contenidoSeñal p{
-margin-top: 1em;
+
+    margin-top: 1em;
 
 }
 /*.contenidoSeñal a{
@@ -102,10 +103,36 @@ margin-top: 1em;
     padding-top: 2em;
      
 }
+
 .infoSeñal p{
-    margin-left: 3em;
+    display: flex;
+    margin-top: -2em;
+    margin-left: 13%;
+    font-size: 15px;
     width: 30%;
 }
+
+
+
+.botonLike{
+    color: rgba(223, 221, 221, 0.555);
+    background-color: #555453;
+    margin-left: 6%;
+    font-size: 25px;
+    outline-width: 0;
+    margin-top: 1%;
+
+}
+.botonLike img{
+    margin-left: 0em;
+    margin-right: 0em;
+    margin-top: 0em;
+    height:20px;
+    width:20px ;
+
+}
+
+
 
 
 .comentario{
@@ -129,28 +156,24 @@ margin-top: 1em;
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
-.contenidoSeñaldiv{
-    height: auto;
-    width: 90%;
-    margin-left: 5%;
-}
+    .contenidoSeñaldiv{
+        height: auto;
+        width: 90%;
+        margin-left: 5%;
+    }
 
-.imgprueba{
-    margin-left: 5% !important;
-    width: 90% !important;
-    height: auto !important;
-    display: inline-block;
+    .imgprueba{
+        margin-left: 5% !important;
+        width: 90% !important;
+        height: auto !important;
+        display: inline-block;
 
-}
+    }
 
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) and (max-width: 800) {
-
-
-
-
 
 }
 
@@ -169,86 +192,101 @@ margin-top: 1em;
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1440px) {
 
-.contenedorSeñales{
-    /*background-color:#CCC;*/
+    .contenedorSeñales{
+        /*background-color:#CCC;*/
 
-    margin: 1em;
-    width: 95%;
- 
-}
-
-
-.botonCurar{
-
-    margin-top: -4%;
-    margin-left: 94%;
-   
+        margin: 1em;
+        width: 95%;
     
-}
-
-.botonFiltrar{
-    margin-top: 0%;
+    }
 
 
-}
+    .botonCurar{
 
-
-
-
-.contenidoSeñal{
-
-    width: 100%;
-    height: 140%;
-}
-
-
-.contenidoSeñal img{
-    height: 15em;
-    width: 20em;
-    margin-left: 3em;
-    margin-right: 3em;
-    margin-top: 3em;
-}
-
-
-.contenidoSeñaldiv{
-   
-   position: relative;
-   margin-left: 18em;
-   margin-top: -17em;
-}
-
-.contenidoSeñaldiv h3{
-    text-align: center;
-    padding-top: 2em;
-    margin-top: -10em;
-    font-size: 20px;
+        margin-top: -4%;
+        margin-left: 94%;
     
+    }
+
+    .botonFiltrar{
+        margin-top: 0%;
+
+
+    }
+
+    .botonLike{
+        color: rgba(223, 221, 221, 0.555);
+        background-color: #555453;
+        margin-left: 6%;
+        font-size: 25px;
+        outline-width: 0;
+        margin-top: 1%;
     
-}
-
-.contenidoSeñaldiv p{
-    text-align: center;
-    margin-top: 3em;
-    font-size: 1em;
-    margin-left: 5em;
-    color: rgba(223, 221, 221, 0.555);
+    }
+    .botonLike img{
+        margin-left: 0em;
+        margin-right: 0em;
+        margin-top: 0em;
+        height:20px;
+        width:20px ;
     
-}
+    }
 
 
 
-.infoSeñal{
-    margin-top: 3em;
-    font-size: 20px;
-     
-}
+
+    .contenidoSeñal{
+
+        width: 100%;
+        height: 140%;
+    }
 
 
-.autor{
-    font-size: 25px;
+    .contenidoSeñal img{
+        height: 15em;
+        width: 20em;
+        margin-left: 3em;
+        margin-right: 3em;
+        margin-top: 3em;
+    }
+
+
+    .contenidoSeñaldiv{
     
-}
+    position: relative;
+    margin-left: 18em;
+    margin-top: -17em;
+    }
+
+    .contenidoSeñaldiv h3{
+        text-align: center;
+        padding-top: 2em;
+        margin-top: -10em;
+        font-size: 20px;
+        
+        
+    }
+
+    .contenidoSeñaldiv p{
+        text-align: center;
+        margin-top: 3em;
+        font-size: 1em;
+        margin-left: 5em;
+        color: rgba(223, 221, 221, 0.555);
+        
+    }
+
+    .infoSeñal{
+        margin-top: 3em;
+        font-size: 20px;
+        
+    }
+
+
+    .autor{
+        font-size: 25px;
+        
+    }
 
 
 
