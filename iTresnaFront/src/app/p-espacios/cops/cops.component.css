@@ -16,10 +16,10 @@
     border-radius: 1rem;
 }
 .seleccionable{
-    background-color:#BBB;
+    background-color:#333;
 }
 .noSeleccionable{
-    background-color:#333;
+    background-color:#BBB;
 }
 .contenido img{
     height: 10em;
@@ -32,7 +32,7 @@
 .contenido h3{ 
     text-align: center;
     font-size: 1.5em;
-    color: #9684bb;
+    color: #b3a3d3;
 
 }
 
@@ -42,6 +42,6 @@
     font-size: 1.2em;
     margin-left: 13em;
     margin-bottom: 22em;
-    color: #9684bb;
+    color: #b3a3d3;
 }
 
