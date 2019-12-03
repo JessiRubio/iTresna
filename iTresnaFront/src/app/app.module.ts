@@ -13,6 +13,7 @@ import { SenalesComponent } from './p-cops/senales/senales.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from '../servicios/usuarios.service';
 import { EspaciosService } from '../servicios/espacios.service';
+import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EspaciosService } from '../servicios/espacios.service';
     CopsComponent,
     PCopsComponent,
     SenalesComponent,
+    MenuOverflowComponent,
   ],
   imports: [
     BrowserModule,
