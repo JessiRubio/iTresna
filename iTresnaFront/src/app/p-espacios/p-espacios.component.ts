@@ -17,21 +17,21 @@ import { Usuario, Permiso } from '../clases/usuario';
 export class PEspaciosComponent implements OnInit {
   nombre:string;
   usuarioLogado:Usuario;
-  listaEspacios:EspaciosItem[]=[];
+  listaEspacios:EspaciosItem[];
   selected:number = 0;
-  listaCops:CopsItem[];
   constructor(
     private espaciosService:EspaciosService,
-    private copsService:CopsService,
+    private copService:CopsService,
     private router: Router
   ) { 
+    this.listaEspacios=[];
   }
 
 
-  async ngOnInit() {
+  ngOnInit() {
     if(localStorage.length>0){
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
-      await this.espaciosPorCod(this.usuarioLogado.cod_org);
+      this.espaciosPorCod(this.usuarioLogado.cod_org);
     }
   }
   espaciosPorCod(cod_org:number){
@@ -39,11 +39,14 @@ export class PEspaciosComponent implements OnInit {
         .subscribe(
           res =>{
             if(res.error == 0){
-               var espaciosTemp:EspaciosItem[]=res.espacios;
-               espaciosTemp.forEach(x=>this.listaEspacios.push(x));
-               this.cargarCops();
+              console.dir(res.espacios);
+               this.listaEspacios=res.espacios;
+               this.listaEspacios.forEach(x=>{
+                 x.listaCop=[];
+                 this.cargarCops(x);
+               });
+               
             }else{
-              //TODO Allert
             }
           }, 
           err =>{
@@ -51,37 +54,36 @@ export class PEspaciosComponent implements OnInit {
           } 
       );
   }
+  
+  obtCops():CopsItem[]{
+    try{
+      return this.listaEspacios[this.selected].listaCop;
+    }catch{
+      return [];
+    }
+  }
 
   cambiarSeleccionado(i:number){
     if(i!=this.selected){
       this.selected=i;
-      this.cargarCops();
     }
   }
 
-  cargarCops(){
-    var espacio:EspaciosItem=this.listaEspacios[this.selected];
-    this.copsService.getCops(espacio.cod_org, espacio.cod_esp)
-        .subscribe(
-          res =>{
+  public cargarCops(espacio:EspaciosItem){
+    this.copService.getCops(espacio.cod_org,espacio.cod_esp).subscribe(
+        res=>{
             if(res.error == 0){
-                this.listaCops = res.cops;
+                espacio.listaCop = res.cops;
             }else{
               //TODO alert
             }
-          },
-          err =>{
-
-          }
-        );
+        },
+        err=>{
+            //TODO
+        }
+    );
   }
-  cambiarPagina(item:CopsItem){
-    if(this.usuarioLogado.permisos.filter(x=>x.cod_esp===item.cod_esp && x.cod_cop===item.cod_cop && x.ind_admin).length>0){
-      this.router.navigateByUrl('/Cops',{
-        queryParams:{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}
-      });
-    }
-  }
+  
   estaEnPermisos(item:CopsItem):boolean{
     return this.usuarioLogado.permisos.filter(x=>x.cod_esp===item.cod_esp && x.cod_cop===item.cod_cop && x.ind_admin).length>0;
   }

@@ -1,15 +1,18 @@
-import { DefaultIterableDiffer } from "@angular/core";
+import { DefaultIterableDiffer, Pipe, NgModule } from "@angular/core";
+import { CopsItem } from "./copsitem";
+import { CopsService } from "./../../servicios/cops.service";
 
+@NgModule()
 export class EspaciosItem{
     cod_org:number;
     cod_esp:number;
     desc_esp:string;
     ind_esp_curacion:number;
+    listaCop:CopsItem[]=[];
 
-    constructor(co:number,ce:number,de:string,iec:number){
-        this.cod_org = co;
-        this.cod_esp = ce;
-        this.desc_esp = de;
-        this.ind_esp_curacion = iec;
+    constructor(private copService:CopsService){
+        this.listaCop=[];   
     }
+   
+   
 }
