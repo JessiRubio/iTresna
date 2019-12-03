@@ -1,53 +1,10 @@
-.contenedorSeñales{
-    /*background-color:#CCC;*/
-    height: 23.5em;
-    margin: 1em;
-    padding-bottom: 10em;
-     /*justify-content: space-around*/
- 
-}
-.filtrado{
-    margin-top: 0em;
-}
- 
-.filtrar{
-    height: 2em;
-    width: 13em;
-    margin-bottom: 2em;
-}
-
-.botonCurar{
-
-    margin-top: -4.5%;
-    margin-bottom: 1em;
-    margin-left: 88%;
-    border-radius: 0.4em;
-    height: 40px;
-    width: 70px;
-    outline-width: 0;
-    display: flex;
-    
-}
-
-.botonFiltrar{
-    margin-top: -2%;
-    margin-bottom: 1em;
-    border-radius: 0.4em;
-    height: 40px;
-    width: 70px;
-    outline-width: 0;
-    display: flex;
-
-}
-
-
-
 .contenidoSeñal{
    
     height: 100%;
     padding-top: 2m;
     width: 95%;
     margin: 0em;
+    margin-top: -9em;
     background-color:#555453;
     border-radius: 1rem;
 }

@@ -23,15 +23,6 @@ export class SenalesComponent implements OnInit {
 
   likesb=0;
 
-  visible: boolean = false ; // hidden by default
-
-
-visibilidad() {
-
-this.visible = ! this.visible;
-
-}
-
 like(){
 
   if (this.likesb==0){
