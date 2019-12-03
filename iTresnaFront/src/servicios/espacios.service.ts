@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EspaciosItem } from '../app/clases/espaciosItem';
 
 
 @Injectable({
@@ -13,6 +14,6 @@ export class EspaciosService {
   constructor(private httpClient:HttpClient) { }
 
   getEspacios(cod_org:number):Observable<any>{
-    return this.httpClient.get(this.url+'?usu_cod_org='+cod_org);
+    return this.httpClient.get<any>(this.url+'?usu_cod_org='+cod_org);
   }
 }

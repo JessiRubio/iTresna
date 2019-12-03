@@ -13,6 +13,7 @@ import { SenalesComponent } from './p-cops/senales/senales.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from '../servicios/usuarios.service';
 import { EspaciosService } from '../servicios/espacios.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,7 @@ import { EspaciosService } from '../servicios/espacios.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    
-    
+    HttpClientModule
   ],
   providers: [UsuariosService,EspaciosService],
   bootstrap: [AppComponent]
