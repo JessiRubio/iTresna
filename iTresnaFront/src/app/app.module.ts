@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from '../servicios/usuarios.service';
 import { EspaciosService } from '../servicios/espacios.service';
 import { RouterModule } from '@angular/router';
+import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RouterModule } from '@angular/router';
     CopsComponent,
     PCopsComponent,
     SenalesComponent,
+    MenuOverflowComponent,
   ],
   imports: [
     BrowserModule,
