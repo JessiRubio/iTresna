@@ -19,6 +19,8 @@ export class PCopsComponent implements OnInit {
   private cod_org:number;
   private cod_esp:number;
   private admin:boolean=false;
+
+  visible: boolean = false ; // hidden by default
   
   constructor(
     private route: ActivatedRoute,
@@ -68,5 +70,11 @@ export class PCopsComponent implements OnInit {
           }
         );
   }
+
+  visibilidad() {
+
+    this.visible = ! this.visible;
+    
+    }
 
 }

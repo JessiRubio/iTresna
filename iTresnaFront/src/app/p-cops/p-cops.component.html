@@ -1,10 +1,4 @@
-<header>		
-    <div class="hiTresna">
-            <a>iTresna</a>
-    </div>
-
-    <app-menu-overflow></app-menu-overflow>
-</header>
+<app-header-generico></app-header-generico>
 
 <!-- Menu-->
 <nav id="menu">
@@ -15,6 +9,37 @@
         <li *ngFor="let item of listaCops" [ngClass]="(item.cod_cop===copSeleccionado) ? 'seleccionado':'noSeleccionado'">{{item.desc_cop}}</li>
     </ul>
 </nav>
+
+<div class="contenedorSeñales">
+
+    <button class="botonFiltrar" (click) = visibilidad() type="submit">Filtrar</button>
+    <button class="botonCurar"  type="submit">Curar</button>
+    
+    <div class="filtrado" *ngIf="visible">
+
+            <select name="filtro" class="filtrar">
+                <option value="fechaAsc" > Por fecha ascendente</option>
+                <option value="fechaDesc" > Por fecha descendente</option>
+                <option Value="likes" > Por likes</option>
+                <option value="comentarios" > Por comentarios</option>
+            </select>
+
+            <select name="filtroUsuarios"  class="filtrar">
+                <option value="usuarios" > Por usuarios</option>
+                <option value="usu1" > usuario1</option>
+                <option value="usu2" > usaurio2</option>
+            </select>
+
+            <select name="filtroEtiquetas"  class="filtrar">
+                <option value="etiquetas" > Por etiquetas</option>
+                <option value="et1" > etiqueta1</option>
+                <option value="et2" > etiqueta2</option>
+                
+            </select>
+
+
+    </div>
+</div>
 
 <div>
     <ul class="listaSenales">

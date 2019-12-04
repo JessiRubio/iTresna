@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from '../servicios/usuarios.service';
 import { EspaciosService } from '../servicios/espacios.service';
 import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
+import { HeaderGenericoComponent } from './header-generico/header-generico.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
     PCopsComponent,
     SenalesComponent,
     MenuOverflowComponent,
+    HeaderGenericoComponent,
   ],
   imports: [
     BrowserModule,
