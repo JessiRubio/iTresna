@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Usuario, Permiso } from '../clases/usuario';
+
 
 @Component({
   selector: 'app-menu-overflow',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuOverflowComponent implements OnInit {
 
-  constructor() { }
+  constructor( private ruta: Router) { }
+
 
   ngOnInit() {
+  }
+
+  onClick(e){
+
+    if(e.target.innerHTML==='Cerrar sesión'){
+      localStorage.clear();
+      this.ruta.navigateByUrl("");
+
+    }
+
+  }
+
+  cerrarSesion(){
+
+    this.ruta.navigateByUrl("");
+
   }
 
 }
