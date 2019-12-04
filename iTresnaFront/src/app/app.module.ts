@@ -11,8 +11,9 @@ import { PCopsComponent } from './p-cops/p-cops.component';
 import { FormsModule } from '@angular/forms';
 import { SenalesComponent } from './p-cops/senales/senales.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UsuariosService } from '../servicios/usuarios.service';
-import { EspaciosService } from '../servicios/espacios.service';
+import { UsuariosService } from './servicios/usuarios.service';
+import { EspaciosService } from './servicios/espacios.service';
+import { SenalesService} from './servicios/senales.service';
 import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
 import { HeaderGenericoComponent } from './header-generico/header-generico.component';
 
@@ -33,7 +34,7 @@ import { HeaderGenericoComponent } from './header-generico/header-generico.compo
     FormsModule,
     HttpClientModule
   ],
-  providers: [UsuariosService,EspaciosService],
+  providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

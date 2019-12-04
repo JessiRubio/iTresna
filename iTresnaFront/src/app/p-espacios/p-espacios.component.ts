@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CopsComponent } from './cops/cops.component';
 import { CopsItem } from '../clases/copsitem';
-import { EspaciosService } from '../../servicios/espacios.service';
-import { CopsService } from '../../servicios/cops.service';
+import { EspaciosService } from './../servicios/espacios.service';
+import { CopsService } from './../servicios/cops.service';
 import { EspaciosItem } from '../clases/espaciosItem';
 import { NavigationExtras } from '@angular/router'
 import { Usuario, Permiso } from '../clases/usuario';

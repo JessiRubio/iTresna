@@ -3,10 +3,16 @@
 <!-- Menu-->
 <nav id="menu">
     <ul>
-        <li *ngFor="let item of listaEspacios;let i = index" [ngClass]="(item.cod_esp===cod_esp) ? 'seleccionado':'noSeleccionado'">{{item.desc_esp}}</li>
+        <li *ngFor="let item of listaEspacios" (click)="volverAtras(item)"
+            [ngClass]="(item.cod_esp===cod_esp) ? 'seleccionado':'noSeleccionado'">
+            {{item.desc_esp}}
+        </li>
     </ul>
     <ul id="menuSeparador">
-        <li *ngFor="let item of listaCops" [ngClass]="(item.cod_cop===copSeleccionado) ? 'seleccionado':'noSeleccionado'">{{item.desc_cop}}</li>
+        <li *ngFor="let item of listaCops;let i = index" (click)="cambiarCopSeleccion(i)"
+            [ngClass]="(i==copSeleccionado) ? 'seleccionado':'noSeleccionado'">
+            {{item.desc_cop}}
+        </li>
     </ul>
 </nav>
 
@@ -43,7 +49,7 @@
 
 <div>
     <ul class="listaSenales">
-        <li>
+        <li *ngFor="let item of listaSenales">
             <app-senales></app-senales>
         </li>
     </ul>

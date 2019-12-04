@@ -1,6 +1,5 @@
 import { DefaultIterableDiffer, Pipe, NgModule } from "@angular/core";
 import { CopsItem } from "./copsitem";
-import { CopsService } from "./../../servicios/cops.service";
 
 @NgModule()
 export class EspaciosItem{
@@ -10,7 +9,7 @@ export class EspaciosItem{
     ind_esp_curacion:number;
     listaCop:CopsItem[]=[];
 
-    constructor(private copService:CopsService){
+    constructor(){
         this.listaCop=[];   
     }
    
