@@ -18,6 +18,7 @@ export class PCopsComponent implements OnInit {
   private copSeleccionado:number;
   private cod_org:number;
   private cod_esp:number;
+  private admin:boolean=false;
   
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class PCopsComponent implements OnInit {
       console.log(params);
       this.copSeleccionado = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
+      this.admin = params['admin'];
       this.cargarEspacios();
       this.cargarCops();
     });

@@ -1,22 +1,6 @@
-<header>		
-    <div class="hiTresna">
-            <a>iTresna <p>{{usuarioLogado.nombre}}</p> </a>
-    </div>
 
-    <nav id="administracion">
-        <ul>
-            <li><img class="imgMenu" src="assets/menu.svg" alt="Menu">
-                <ul>
-                    <li><a href=".html">Perfil</a></li>
-                    <li><a href=".html">Administración</a></li>
-                    <li><a href=".html">Cerrar sesión</a></li>
-                    <li><a href=".html">Idiomas</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+<app-header-generico></app-header-generico>
 
-</header>
 
 <!-- Menu-->
 <nav id="menu">
@@ -32,8 +16,10 @@
 
 <div>
     <ul class="listaCops">
-        <li *ngFor="let item of listaCops; let i = index" (click)="cambiarPagina(item)" >
-            <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
+        <li *ngFor="let item of obtCops(); let i = index" >
+            <a routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp,admin:item.ind_admin}">
+                <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
+            </a>    
         </li>
     </ul>
     

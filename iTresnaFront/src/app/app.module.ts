@@ -13,6 +13,9 @@ import { SenalesComponent } from './p-cops/senales/senales.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from '../servicios/usuarios.service';
 import { EspaciosService } from '../servicios/espacios.service';
+import { RouterModule } from '@angular/router';
+import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
+import { HeaderGenericoComponent } from './header-generico/header-generico.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,14 @@ import { EspaciosService } from '../servicios/espacios.service';
     CopsComponent,
     PCopsComponent,
     SenalesComponent,
+    MenuOverflowComponent,
+    HeaderGenericoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    
-    
+    HttpClientModule
   ],
   providers: [UsuariosService,EspaciosService],
   bootstrap: [AppComponent]
