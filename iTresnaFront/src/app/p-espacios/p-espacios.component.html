@@ -22,9 +22,14 @@
 <div>
     <ul class="listaCops">
         <li *ngFor="let item of obtCops(); let i = index" >
-            <a routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp,admin:item.ind_admin}">
-                <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
-            </a>    
+                <a *ngIf="estaEnPermisos(item); else elsePermisos" routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp,admin:item.ind_admin}">
+                    <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
+                </a>
+            <ng-template #elsePermisos>
+                <a >
+                    <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component>
+                </a>
+            </ng-template>
         </li>
     </ul>
     
