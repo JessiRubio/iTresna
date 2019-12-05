@@ -19,7 +19,10 @@
 <div class="contenedorSeñales">
 
     <button class="botonFiltrar" (click) = visibilidad() type="submit">Filtrar</button>
-    <button class="botonCurar"  type="submit">Curar</button>
+    <a *ngIf="tienePermisos()">
+        <button class="botonCurar"  type="submit">Curar</button>
+    </a>
+    
     
     <div class="filtrado" *ngIf="visible">
 

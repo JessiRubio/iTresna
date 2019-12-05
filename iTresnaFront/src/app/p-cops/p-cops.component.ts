@@ -31,9 +31,8 @@ export class PCopsComponent implements OnInit {
     private copsService:CopsService,
     private senalesService:SenalesService) {}
   ngOnInit() {
-    
+    console.log("llego");
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
-    this.cod_org=parseInt(localStorage.getItem("usu_cod_org"));
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
@@ -46,7 +45,7 @@ export class PCopsComponent implements OnInit {
   }
 
   cargarEspacios(){
-    this.espaciosService.getEspacios(this.cod_org)
+    this.espaciosService.getEspacios(this.usuarioLogeado.cod_org)
         .subscribe(
           res =>{
             if(res.error == 0){
@@ -61,7 +60,7 @@ export class PCopsComponent implements OnInit {
         );
   }
   cargarCops(){
-    this.copsService.getCops(this.cod_org,this.cod_esp)
+    this.copsService.getCops(this.usuarioLogeado.cod_org,this.cod_esp)
         .subscribe(
           res =>{
             if(res.error == 0){
@@ -76,7 +75,7 @@ export class PCopsComponent implements OnInit {
         );
   }
   cargarSenales(){
-    this.senalesService.getSenales(this.cod_org,this.cod_esp,this.cod_cop,this.usuarioLogeado.cod_usuario).subscribe(
+    this.senalesService.getSenales(this.usuarioLogeado.cod_org,this.cod_esp,this.cod_cop,this.usuarioLogeado.cod_usuario).subscribe(
       res=>{
         if(res.error==0){
           this.listaSenales=res.senales;
@@ -98,6 +97,14 @@ export class PCopsComponent implements OnInit {
   }
   visibilidad() {
     this.visible = ! this.visible;
+  }
+
+  tienePermisos():boolean{
+    var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
+    if(permisos.length>0){
+      return permisos[0].ind_admin;
+    }
+    return false;
   }
   
 }
