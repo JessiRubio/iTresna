@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouteConfigLoadEnd, RouteConfigLoadStart } from
 import { EspaciosService } from './../servicios/espacios.service';
 import { SenalesService} from './../servicios/senales.service';
 import { CopsService } from './../servicios/cops.service';
+import { Usuario } from  './../clases/usuario';
 
 @Component({
   selector: 'app-p-cops',
@@ -14,11 +15,10 @@ import { CopsService } from './../servicios/cops.service';
 })
 
 export class PCopsComponent implements OnInit {
-  
+  private usuarioLogeado:Usuario;
   private listaEspacios:EspaciosItem[];
   private listaSenales:SenalesItem[];
   private listaCops:CopsItem[];
-  private copSeleccionado:number;
   private cod_org:number;
   private cod_esp:number;
   private cod_cop:number;
@@ -31,6 +31,8 @@ export class PCopsComponent implements OnInit {
     private copsService:CopsService,
     private senalesService:SenalesService) {}
   ngOnInit() {
+    
+    this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
     this.cod_org=parseInt(localStorage.getItem("usu_cod_org"));
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
@@ -74,12 +76,10 @@ export class PCopsComponent implements OnInit {
         );
   }
   cargarSenales(){
-    console.log("entra");
-    this.senalesService.getSenales(this.cod_org,this.cod_esp,this.cod_cop).subscribe(
+    this.senalesService.getSenales(this.cod_org,this.cod_esp,this.cod_cop,this.usuarioLogeado.cod_usuario).subscribe(
       res=>{
         if(res.error==0){
           this.listaSenales=res.senales;
-          console.log(this.listaSenales);
         }
       },
       err=>{
@@ -87,14 +87,17 @@ export class PCopsComponent implements OnInit {
       }
     );
   }
-
+  cambiarCopSeleccion(i:number){
+    if(this.cod_cop=i){
+      this.cod_cop=i;
+      this.cargarSenales();
+    }
+  }
   volverAtras(item){
     console.warn("TODO esta funcion aun esta por hacer, volvera a la pestaña anterior seleccionando el espacio")
   }
   visibilidad() {
-
     this.visible = ! this.visible;
-    
-    }
-
+  }
+  
 }

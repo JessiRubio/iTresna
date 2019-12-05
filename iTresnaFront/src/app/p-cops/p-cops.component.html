@@ -4,13 +4,13 @@
 <nav id="menu">
     <ul>
         <li *ngFor="let item of listaEspacios" (click)="volverAtras(item)"
-            [ngClass]="(item.cod_esp===cod_esp) ? 'seleccionado':'noSeleccionado'">
+            [ngClass]="(item.cod_esp==cod_esp) ? 'seleccionado':'noSeleccionado'">
             {{item.desc_esp}}
         </li>
     </ul>
     <ul id="menuSeparador">
-        <li *ngFor="let item of listaCops;let i = index" (click)="cambiarCopSeleccion(i)"
-            [ngClass]="(i==copSeleccionado) ? 'seleccionado':'noSeleccionado'">
+        <li *ngFor="let item of listaCops" (click)="cambiarCopSeleccion(item.cod_cop)"
+            [ngClass]="(item.cod_cop==cod_cop) ? 'seleccionado':'noSeleccionado'">
             {{item.desc_cop}}
         </li>
     </ul>
@@ -50,7 +50,7 @@
 <div>
     <ul class="listaSenales">
         <li *ngFor="let item of listaSenales">
-            <app-senales></app-senales>
+            <app-senales [senal]="item"></app-senales>
         </li>
     </ul>
 

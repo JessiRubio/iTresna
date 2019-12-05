@@ -2,9 +2,9 @@
         <a href="https://www.newgenapps.com/blog/trends-big-data-innovation-future-data-science" ><img class="imgprueba" src="assets/cyberSecurityData.jpg" alt="prueba" ></a>
 
         <div class="contenidoSeñaldiv">
-            <h2>{{fecha}}</h2>
+            <h2>{{senal.fecha_hora}}</h2>
             <h3>{{titulo}}</h3>
-            <p>{{texto}}</p>
+            <p>{{senal.desc_senal}}</p>
         </div>
 
         
@@ -12,17 +12,18 @@
         <div class="infoSeñal">
                 
             <button class="botonLike" (click) = like() type="submit"><img class="like" src="assets/like.png" alt="like" >  {{likes}}</button>
-            <p clas="etiqueta" >Etiquetas: {{etiquetas}}</p>
+            <p clas="etiqueta" >Etiquetas: {{senal.cod_etiqueta}}</p>
 
             <select name="comentarios" class="comentario">
-                    <option selected Values="0"> {{n}} Comentarios</option>
+                    <option selected values="0"> {{senal.cantidad_comentarios}} Comentarios</option>
+                    
             </select>
 
             
 
         </div>
 
-        <p class="autor">{{Autor}}</p>
+        <p class="autor">{{senal.cod_usuario}}</p>
 
         <button class="botonPapelera" type="submit"><img class="papelera" src="assets/papelera.png" alt="papelera" > </button>
 

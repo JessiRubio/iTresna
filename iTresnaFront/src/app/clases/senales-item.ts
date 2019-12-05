@@ -9,4 +9,7 @@ export class SenalesItem {
     fecha_hora:Date;
     cod_usuario:string;
     ind_fech_gest:boolean;
+    cantidad_comentarios:number;
+    me_gustas:number;
+    me_ha_gustado:boolean;
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { SenalesItem } from '../../clases/senales-item';
 
 @Component({
   selector: 'app-senales',
@@ -8,31 +9,10 @@ import { Router } from '@angular/router';
 })
 export class SenalesComponent implements OnInit {
 
- 
-  titulo = "4 Trends in Big Data Innovation Governing the Future of Data Science";
-
-  texto = "He leido este articulo y me ha parecido muy interesante, creo que podriamos tenerlo en cuenta para proyectos en el centro.";
-  fecha="27/11/2019"
-
-  likes= 5;
-
-  etiquetas= "data";
-
-  n = 0;
-
-  Autor = "Jessica Rubio";
-
-  likesb=0;
-
+  @Input() senal:SenalesItem;
+  private titulo:String= "";
   like(){
-    if (this.likesb==0){
-    this.likes+=1;
-    this.likesb=1;
-    }
-    else if  (this.likesb==1){
-      this.likes-=1;
-      this.likesb=0;
-    }
+    console.warn("TODO esta funcion aun esta por hacer, te añadira como me gusta");
   }
 
   constructor(private router:Router) {
@@ -44,6 +24,10 @@ export class SenalesComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.cargarTituloPagina();
+  }
+  cargarTituloPagina(){
+    console.warn("TODO esta funcion esta por hacer, cargara el titulo en la señal.")
   }
 
 }
