@@ -28,9 +28,8 @@
                 "ind_esp_curacion" => $ind_esp_curacion,
 
             );
-            $result["error"]=0;
-
-        }        
+        }
+        $result["error"]=0;        
     }
     echo json_encode($result);
 ?>

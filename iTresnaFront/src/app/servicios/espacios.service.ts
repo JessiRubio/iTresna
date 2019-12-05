@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EspaciosItem } from '../app/clases/espaciosItem';
+import { EspaciosItem } from '../clases/espaciosItem';
 
 
 @Injectable({

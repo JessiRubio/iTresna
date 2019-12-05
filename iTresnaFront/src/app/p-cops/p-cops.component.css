@@ -26,7 +26,11 @@
 }
 
 #menuSeparador{
-    border-top: 2px solid white ;
+    border-top: 2px solid white;    
+    
+}
+#menuSeparador li{
+    display: inline-block;
 }
 
 .listaSenales{
