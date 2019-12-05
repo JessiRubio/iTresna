@@ -21,9 +21,14 @@ export class LoginComponent implements OnInit {
     this.usuario = "";
     this.password = "";
     this.error = "";
+
+    
   }
 
   ngOnInit() {
+
+    
+
   }
 
   /* Funciones para el login */
