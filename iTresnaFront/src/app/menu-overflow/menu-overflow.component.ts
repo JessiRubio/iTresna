@@ -10,7 +10,17 @@ import { Usuario, Permiso } from '../clases/usuario';
 })
 export class MenuOverflowComponent implements OnInit {
 
-  constructor( private ruta: Router) { }
+  constructor( private ruta: Router) {
+
+    this.ruta.events.subscribe((ev) => {
+      if (localStorage.getItem("usuario") === null) {
+        
+        this.ruta.navigateByUrl("/");
+
+      }
+    });
+
+   }
 
 
   ngOnInit() {
@@ -20,6 +30,7 @@ export class MenuOverflowComponent implements OnInit {
 
     if(e.target.innerHTML==='Cerrar sesión'){
       localStorage.clear();
+
       this.ruta.navigateByUrl("");
 
     }

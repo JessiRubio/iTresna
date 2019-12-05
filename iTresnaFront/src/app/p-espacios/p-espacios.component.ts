@@ -33,6 +33,8 @@ export class PEspaciosComponent implements OnInit {
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
       this.espaciosPorCod(this.usuarioLogado.cod_org);
     }
+
+
   }
   espaciosPorCod(cod_org:number){
     this.espaciosService.getEspacios(cod_org)
