@@ -37,7 +37,7 @@ export class PCopsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
-      this.admin = params['admin'];
+      this.admin = params['admin']==1;
       this.cargarEspacios();
       this.cargarCops();
       this.cargarSenales();
