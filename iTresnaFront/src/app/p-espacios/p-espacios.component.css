@@ -69,7 +69,8 @@
     }
 
     .seleccionado{
-        text-decoration: underline;
+        text-decoration-line: underline;
+        background: #888;
     }
 
     .listaCops{
