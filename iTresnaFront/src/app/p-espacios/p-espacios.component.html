@@ -6,9 +6,9 @@
 <nav id="menu">
     <ul>
         <li *ngFor="let item of listaEspacios; let i = index" (click)="cambiarSeleccionado(i)">
-            <div [ngClass]="(i===selected) ? 'seleccionado':'noSeleccionado'">
+            <a [ngClass]="(i===selected) ? 'seleccionado':'noSeleccionado'">
                 {{item.desc_esp}}
-            </div>
+            </a>
         </li>
     </ul>
 </nav>
