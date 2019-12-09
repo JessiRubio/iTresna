@@ -37,10 +37,4 @@ export class MenuOverflowComponent implements OnInit {
 
   }
 
-  cerrarSesion(){
-
-    this.ruta.navigateByUrl("");
-
-  }
-
 }
