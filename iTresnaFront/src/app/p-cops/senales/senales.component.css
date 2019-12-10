@@ -1,5 +1,4 @@
 .contenidoSeñal{
-   
     height: 100%;
     padding-top: 2m;
     width: 95%;
@@ -10,11 +9,8 @@
 }
 
 .contenidoSeñal p{
-
     margin-top: 2em;
-
 }
-
 
 .contenidoSeñal img{
     height: 10em;
@@ -24,12 +20,10 @@
     margin-top: 3em;
 }
 
-
 .contenidoSeñaldiv h3{
     text-align: center;
     padding-top: 2em;
     margin-top: -2em;
-    
 }
 
 .contenidoSeñaldiv h2{
@@ -37,13 +31,7 @@
     display: flex;
     margin-left: -16em;
     margin-top: -13em;
-
-    
-
-    
-    
 }
-
 
 .contenidoSeñaldiv{
    /* margin-top: 3em;
@@ -63,10 +51,8 @@
     color: rgba(223, 221, 221, 0.555);
 }
 
-
 .infoSeñal{
-    padding-top: 2.5em;
-     
+    padding-top: 2.5em;    
 }
 
 .infoSeñal p{
@@ -77,8 +63,6 @@
     width: 30%;
 }
 
-
-
 .botonLike{
     color: rgba(223, 221, 221, 0.555);
     background-color: #555453;
@@ -87,15 +71,14 @@
     outline-width: 0;
     margin-top: 1%;
     border:none;
-
 }
+
 .botonLike img{
     margin-left: 0em;
     margin-right: 0em;
     margin-top: 0em;
     height:20px;
     width:20px;
-
 }
 
 .botonPapelera{
@@ -107,17 +90,15 @@
     outline-width: 0;
     margin-top: 1%;
     border:none;
-
 }
+
 .botonPapelera img{
     margin-left: 0em;
     margin-right: 0em;
     margin-top: 0em;
     height:30px;
     width:30px ;
-
 }
-
 
 .comentario{
     margin: auto;
@@ -134,9 +115,6 @@
 .autor{
     text-align: right;
     margin-right: 4em;
-    
-    
-    
 }
 
 
@@ -172,133 +150,8 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
 }
 
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* Extra large devices (large laptops and desktops, 1200px and up)*/
 @media only screen and (min-width: 1440px) {
-
-    .contenedorSeñales{
-        /*background-color:#CCC;*/
-
-        margin: 1em;
-        width: 95%;
-    
-    }
-
-
-    .botonCurar{
-
-        margin-top: -4%;
-        margin-left: 94%;
-    
-    }
-
-    .botonFiltrar{
-        margin-top: 0%;
-
-
-    }
-
-    .botonLike{
-        color: rgba(223, 221, 221, 0.555);
-        background-color: #555453;
-        margin-left: 6%;
-        font-size: 25px;
-        outline-width: 0;
-        margin-top: 1%;
-    
-    }
-
-    
-    .botonLike img{
-        margin-left: 0em;
-        margin-right: 0em;
-        margin-top: 0em;
-        height:20px;
-        width:20px ;
-    
-    }
-    
-    .botonPapelera{
-        color: rgba(223, 221, 221, 0.555);
-        background-color: #555453;
-        margin-left: 6%;
-        font-size: 25px;
-        outline-width: 0;
-        margin-top: 1%;
-    
-    }
-
-    .botonPapelera img{
-        margin-left: 0em;
-        margin-right: 0em;
-        margin-top: 0em;
-        height:20px;
-        width:20px ;
-    
-    }
-
-
-
-
-    .contenidoSeñal{
-
-        width: 100%;
-        height: 140%;
-    }
-
-
-    .contenidoSeñal img{
-        height: 15em;
-        width: 20em;
-        margin-left: 3em;
-        margin-right: 3em;
-        margin-top: 3em;
-    }
-
-
-    .contenidoSeñaldiv{
-    
-    position: relative;
-    margin-left: 18em;
-    margin-top: -17em;
-    }
-
-    .contenidoSeñaldiv h3{
-        text-align: center;
-        padding-top: 2em;
-        margin-top: -10em;
-        font-size: 20px;
-        
-        
-    }
-
-    .contenidoSeñaldiv p{
-        text-align: center;
-        margin-top: 3em;
-        font-size: 1em;
-        margin-left: 5em;
-        color: rgba(223, 221, 221, 0.555);
-        
-    }
-
-    .infoSeñal{
-        margin-top: 3em;
-        font-size: 20px;
-        
-    }
-
-
-    .autor{
-        font-size: 25px;
-        
-    }
-
-
-
-
-
-
 }

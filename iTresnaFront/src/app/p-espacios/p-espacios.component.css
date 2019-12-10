@@ -11,6 +11,13 @@
     margin-left: 2em;
 }  
 
-.listaCops li{
-    display: inline-block;
-}
+    .listaCops{
+        list-style: none;
+        overflow: hidden;
+        margin-left: 2em;
+    }  
+    
+    .listaCops li{
+        display: inline-block;
+    }
+    
