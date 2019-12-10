@@ -21,6 +21,8 @@
 .noSeleccionable{
     background-color:#BBB;
 }
+
+
 .contenido img{
     height: 10em;
     width: 10em;
@@ -35,7 +37,9 @@
     color: #b3a3d3;
 
 }
-
+.noSeleccionable h3{
+    color: #333;
+}
 
 .numeroSenales {
 
