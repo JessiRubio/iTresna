@@ -14,9 +14,7 @@ export class MenuOverflowComponent implements OnInit {
 
     this.ruta.events.subscribe((ev) => {
       if (localStorage.getItem("usuario") === null) {
-        
         this.ruta.navigateByUrl("/");
-
       }
     });
 
@@ -27,20 +25,12 @@ export class MenuOverflowComponent implements OnInit {
   }
 
   onClick(e){
-
     if(e.target.innerHTML==='Cerrar sesión'){
       localStorage.clear();
-
       this.ruta.navigateByUrl("");
-
     }
-
   }
 
-  cerrarSesion(){
-
-    this.ruta.navigateByUrl("");
-
-  }
+  
 
 }

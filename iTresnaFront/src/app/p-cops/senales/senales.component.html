@@ -25,6 +25,8 @@
 
         <p class="autor">{{senal.cod_usuario}}</p>
 
-        <button class="botonPapelera" type="submit"><img class="papelera" src="assets/papelera.png" alt="papelera" > </button>
+        <a *ngIf="tienePermisosPapelera()">
+            <button class="botonPapelera" type="submit"><img class="papelera" src="assets/papelera.png" alt="papelera" > </button>
+        </a>
 
 </section>
