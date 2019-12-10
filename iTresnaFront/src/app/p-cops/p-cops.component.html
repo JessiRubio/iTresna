@@ -2,18 +2,8 @@
 
 <!-- Menu-->
 <nav id="menu">
-    <ul>
-        <li *ngFor="let item of listaEspacios" (click)="volverAtras(item)"
-            [ngClass]="(item.cod_esp==cod_esp) ? 'seleccionado':'noSeleccionado'">
-            {{item.desc_esp}}
-        </li>
-    </ul>
-    <ul id="menuSeparador">
-        <li *ngFor="let item of listaCops" (click)="cambiarCopSeleccion(item.cod_cop)"
-            [ngClass]="(item.cod_cop==cod_cop) ? 'seleccionado':'noSeleccionado'">
-            {{item.desc_cop}}
-        </li>
-    </ul>
+    <div class="espacio"><p>{{espacio.desc_esp}}</p></div>
+    <div class="cop"><p>{{cop.desc_cop}}</p></div>
 </nav>
 
 <div class="contenedorSeñales">

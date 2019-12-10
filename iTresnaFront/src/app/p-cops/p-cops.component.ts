@@ -7,6 +7,7 @@ import { EspaciosService } from './../servicios/espacios.service';
 import { SenalesService} from './../servicios/senales.service';
 import { CopsService } from './../servicios/cops.service';
 import { Usuario } from  './../clases/usuario';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-p-cops',
@@ -16,64 +17,57 @@ import { Usuario } from  './../clases/usuario';
 
 export class PCopsComponent implements OnInit {
   private usuarioLogeado:Usuario;
-  private listaEspacios:EspaciosItem[];
-  private listaSenales:SenalesItem[];
-  private listaCops:CopsItem[];
-  private cod_org:number;
   private cod_esp:number;
   private cod_cop:number;
   private admin:boolean=false;
   private visible: boolean = false ; // hidden by default
+
+  private listaSenales:SenalesItem[]=[];
+  private cop:CopsItem;
+  private espacio:EspaciosItem;
+  
   
   constructor(
     private route: ActivatedRoute,
     private espaciosService:EspaciosService,
     private copsService:CopsService,
     private senalesService:SenalesService) {}
-    
-    ngOnInit() {
-    console.log("llego");
+  ngOnInit() {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
-      this.admin = params['admin']==1;
-      this.cargarEspacios();
-      this.cargarCops();
+      this.cargarEsp();
+      this.cargarCop();
       this.cargarSenales();
     });
-    
   }
-
-  cargarEspacios(){
-    this.espaciosService.getEspacios(this.usuarioLogeado.cod_org)
+  cargarEsp(){
+    this.espaciosService.getEspacio(this.usuarioLogeado.cod_org,this.cod_esp)
         .subscribe(
-          res =>{
-            if(res.error == 0){
-               this.listaEspacios=res.espacios;
-            }else{
-              //TODO Allert
-            }
-          }, 
-          err =>{
-
-          } 
-        );
-  }
-  cargarCops(){
-    this.copsService.getCops(this.usuarioLogeado.cod_org,this.cod_esp)
-        .subscribe(
-          res =>{
-            if(res.error == 0){
-                this.listaCops = res.cops;
-            }else{
-              //TODO Allert
+          res=>{
+            if(res.error==0){
+              this.espacio=res.espacio;
             }
           },
-          err =>{
-
+          err=>{
+            
           }
         );
+  }
+  cargarCop(){
+    this.copsService.getCop(this.usuarioLogeado.cod_org,this.cod_esp,this.cod_cop)
+      .subscribe(
+        res=>{  
+          console.log(res);
+          if(res.error==0){
+            this.cop=res.cop;
+          }
+        },
+        err=>{
+
+        }
+      );
   }
   cargarSenales(){
     this.senalesService.getSenales(this.usuarioLogeado.cod_org,this.cod_esp,this.cod_cop,this.usuarioLogeado.cod_usuario).subscribe(
@@ -90,7 +84,6 @@ export class PCopsComponent implements OnInit {
   cambiarCopSeleccion(i:number){
     if(this.cod_cop=i){
       this.cod_cop=i;
-      this.cargarSenales();
     }
   }
   volverAtras(item){

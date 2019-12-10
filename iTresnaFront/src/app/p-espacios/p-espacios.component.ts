@@ -33,22 +33,19 @@ export class PEspaciosComponent implements OnInit {
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
       this.espaciosPorCod(this.usuarioLogado.cod_org);
     }
-
-
   }
   espaciosPorCod(cod_org:number){
     this.espaciosService.getEspacios(cod_org)
         .subscribe(
           res =>{
             if(res.error == 0){
-              console.dir(res.espacios);
-               this.listaEspacios=res.espacios;
-               this.listaEspacios.forEach(x=>{
-                 x.listaCop=[];
-                 this.cargarCops(x);
-               });
-               
-            }else{
+              this.listaEspacios=res.espacios;
+              this.listaEspacios.forEach(x=>{
+                x.listaCop=[];
+                this.cargarCops(x);
+              });
+            }
+            else{
             }
           }, 
           err =>{
@@ -71,7 +68,7 @@ export class PEspaciosComponent implements OnInit {
     }
   }
 
-  public cargarCops(espacio:EspaciosItem){
+  cargarCops(espacio:EspaciosItem){
     this.copService.getCops(espacio.cod_org,espacio.cod_esp).subscribe(
         res=>{
             if(res.error == 0){

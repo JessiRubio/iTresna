@@ -5,10 +5,8 @@
 <!-- Menu-->
 <nav id="menu">
     <ul>
-        <li *ngFor="let item of listaEspacios; let i = index" (click)="cambiarSeleccionado(i)">
-            <a [ngClass]="(i===selected) ? 'seleccionado':'noSeleccionado'">
-                {{item.desc_esp}}
-            </a>
+        <li *ngFor="let item of listaEspacios; let i = index" (click)="cambiarSeleccionado(i)" [ngClass]="(i===selected) ? 'seleccionado':'noSeleccionado'">
+            {{item.desc_esp}}
         </li>
     </ul>
 </nav>
@@ -17,9 +15,9 @@
 <div>
     <ul class="listaCops">
         <li *ngFor="let item of obtCops(); let i = index" >
-                <a *ngIf="estaEnPermisos(item); else elsePermisos" routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}">
-                    <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
-                </a>
+            <a *ngIf="estaEnPermisos(item); else elsePermisos" routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}">
+                <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component> 
+            </a>
             <ng-template #elsePermisos>
                 <a >
                     <cops-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales"></cops-component>

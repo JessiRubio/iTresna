@@ -7,7 +7,7 @@ export class EspaciosItem{
     cod_esp:number;
     desc_esp:string;
     ind_esp_curacion:number;
-    listaCop:CopsItem[]=[];
+    listaCop:CopsItem[];
 
     constructor(){
         this.listaCop=[];   

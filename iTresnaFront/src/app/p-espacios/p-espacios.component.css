@@ -1,85 +1,39 @@
-/*Header y menu*/
-    header {
-        padding-left: 1em;
-        box-shadow: 4px 4px 5px rgba(0,0,0,0.3);
-        background-color: #000000;
-        height: 5em;
-     }
-    .hiTresna a{
-        width: 100%;
-        height: 50%;
-        color: #b3a3d3;
-        font-size: 3rem;
-    }
 
-    .hiTresna a p{
-        display: inline;
-        font-size: 0.5em;
-    }
-    #menu  ul {
-        list-style-type: none;
-        margin: 2em;
-        margin-top: 1em;
-        padding: 0;
-        background-color: #555453;
-        border-radius: 1em;
-    }     
-    #menu   li {
-        display: inline-block;
-        padding: 1em;
-        color: white;
-        /*width: 10rem;*/
-    }     
-    #menu  a {
-        color: white;
-        text-decoration: none;
-        font-size: 20px;
-        text-shadow: 1px 1px 1px black;
-    }
-    #menu ul{
-        list-style: none;
-    }
-    #menu ul a{
-        display: block;
-    }
-   
-    #menu ul ul {
-        display:none;
-        position:absolute;
-        top:100%;
-        left:0; 
-        padding:0;
-        overflow: hidden;
-        width:10.6rem;
-        z-index: +1;
-    }
-    #menu ul li:hover > ul {
-        display:block;
-        background-color: #000000;
-    }
-    #menu ul li {
-        position:relative;
-    } 
-    .imgMenu{
-        height: 3em;
-        width: 3em;
-    }
-    .path {
-        fill: red;
-    }
+#menu ul {
+    list-style-type: none;
+    margin: 2em;
+    margin-top: 1em;
+    padding: 0;
+    background-color: #555453;
+    border-radius: 1em;
+}
+#menu>ul>li {
+    display: inline-block;
+    padding: 1em;
+    color: white;
+    border-radius: 1em;
+}
+#menu>ul>li:hover{
+    cursor: pointer;
+}
+/*Cops*/
+.listaCops{
+    list-style: none;
+    overflow: hidden;
+    margin-left: 2em;
+}  
 
-    .seleccionado{
-        text-decoration-line: underline;
-        background: #888;
-    }
+.seleccionado{
+    background: #888;
+}
 
-    .listaCops{
-        list-style: none;
-        overflow: hidden;
-        margin-left: 2em;
-    }  
-    
-    .listaCops li{
-        display: inline-block;
-    }
-    
+.listaCops{
+    list-style: none;
+    overflow: hidden;
+    margin-left: 2em;
+}  
+
+.listaCops li{
+    display: inline-block;
+}
+
