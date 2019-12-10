@@ -14,4 +14,7 @@ export class CopsService {
   getCops(cod_org:number,cod_esp:number):Observable<any>{
     return this.httpClient.get(this.url+'?cod_org='+cod_org+'&cod_esp='+cod_esp);
   }
+  getCop(cod_org:number,cod_esp:number,cod_cop:number):Observable<any>{
+    return this.httpClient.get(this.url+'?cod_org='+cod_org+'&cod_esp='+cod_esp+'&cod_cop='+cod_cop);
+  }
 }

@@ -1,3 +1,5 @@
+import { SenalesItem } from "./senales-item";
+
 export class CopsItem{
 
     cod_org:number;
@@ -7,6 +9,7 @@ export class CopsItem{
     img_cop:string;
     ind_cod_graficos:number
     cantidad_senales:number;
+    listaSenales:SenalesItem[]=[];
 
     constructor(co,ce,cc,icg,cs:number,dc,ic:string){
         this.cod_org = co;
