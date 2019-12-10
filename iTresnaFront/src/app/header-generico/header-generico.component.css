@@ -15,8 +15,8 @@ header {
 
 .hiTresna p{
     font-size: 1.5rem;
-    display: inline-block;
     color: #9684bb;
-    margin-left: 1em;
+    margin-right: 10%;
+    float: right;
     
 }
