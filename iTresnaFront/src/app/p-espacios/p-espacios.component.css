@@ -1,5 +1,21 @@
-/*Menu*
 
+#menu ul {
+    list-style-type: none;
+    margin: 2em;
+    margin-top: 1em;
+    padding: 0;
+    background-color: #555453;
+    border-radius: 1em;
+}
+#menu>ul>li {
+    display: inline-block;
+    padding: 1em;
+    color: white;
+    border-radius: 1em;
+}
+#menu>ul>li:hover{
+    cursor: pointer;
+}
 /*Cops*/
 .listaCops{
     list-style: none;
@@ -7,18 +23,17 @@
     margin-left: 2em;
 }  
 
-    .seleccionado{
-        text-decoration-line: underline;
-        background: #888;
-    }
+.seleccionado{
+    background: #888;
+}
 
-    .listaCops{
-        list-style: none;
-        overflow: hidden;
-        margin-left: 2em;
-    }  
-    
-    .listaCops li{
-        display: inline-block;
-    }
-    
+.listaCops{
+    list-style: none;
+    overflow: hidden;
+    margin-left: 2em;
+}  
+
+.listaCops li{
+    display: inline-block;
+}
+
