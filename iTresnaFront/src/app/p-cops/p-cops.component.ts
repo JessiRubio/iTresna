@@ -30,7 +30,8 @@ export class PCopsComponent implements OnInit {
     private espaciosService:EspaciosService,
     private copsService:CopsService,
     private senalesService:SenalesService) {}
-  ngOnInit() {
+    
+    ngOnInit() {
     console.log("llego");
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
     this.route.queryParams.subscribe(params => {
