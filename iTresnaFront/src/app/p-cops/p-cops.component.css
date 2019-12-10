@@ -36,6 +36,10 @@
 .listaSenales{
     list-style: none;
 }
+.listaSenales li{
+    margin-bottom: 12em;
+}
+
 .seleccionado{
     text-decoration: underline;
 }
