@@ -1,8 +1,4 @@
-/*Menu*/
-.espacio{
-    width: 100%;
-    height: 2em;
-}
+/*Menu*
 
 /*Cops*/
 .listaCops{
@@ -10,6 +6,11 @@
     overflow: hidden;
     margin-left: 2em;
 }  
+
+    .seleccionado{
+        text-decoration-line: underline;
+        background: #888;
+    }
 
     .listaCops{
         list-style: none;
