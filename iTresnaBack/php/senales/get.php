@@ -11,6 +11,7 @@
     
     $result = array();
     $result["error"]=1;
+    $result["etiquetas"] = array();
     if(isset($cod_usuario) && $cod_usuario!="" &&isset($cod_org) 
         && $cod_org !="" && isset($cod_esp) && $cod_esp!="" && isset($cod_cop) 
         && $cod_cop!=""){
@@ -40,7 +41,8 @@
                 "me_gustas" => meGustas($cod_org,$cod_esp,$cod_cop,$cod_senal),
                 "me_ha_gustado" => meHaGustado($cod_org,$cod_esp,$cod_cop,$cod_senal,$cod_usuario)
             );
-        }      
+        }  
+        $result["etiquetas"] = cargarEtiquetas($cod_org,$cod_esp,$cod_cop);    
         $result["error"]=0;
         $query->close();
     }
@@ -86,6 +88,25 @@
         $query->bind_result($cantidad);
         $query->fetch();
         $result=$cantidad;
+        $query->close();
+        return $result;
+    }
+
+    function cargarEtiquetas($cod_org,$cod_esp,$cod_cop){
+        include("./../conexion.php");
+        $sql="SELECT DiSTINCT(desc_etiqueta), cod_etiqueta
+                FROM t_etiquetas
+                WHERE cod_org=? AND cod_esp=? AND cod_cop=?";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
+        $query->execute();
+        $query->bind_result($desc_etiqueta, $cod_etiqueta);
+        while($query->fetch()){
+            $result[]=array(
+                "cod_etiqueta" => $cod_etiqueta,
+                "desc_etiqueta" => $desc_etiqueta
+            );
+        }
         $query->close();
         return $result;
     }
