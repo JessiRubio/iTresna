@@ -8,6 +8,7 @@ import { SenalesService} from './../servicios/senales.service';
 import { CopsService } from './../servicios/cops.service';
 import { Usuario } from  './../clases/usuario';
 import { Observable } from 'rxjs';
+import { Etiqueta } from '../clases/etiquetaitem';
 
 @Component({
   selector: 'app-p-cops',
@@ -23,6 +24,7 @@ export class PCopsComponent implements OnInit {
   private visible: boolean = false ; // hidden by default
 
   private listaSenales:SenalesItem[]=[];
+  private listaEtiquetas:Etiqueta[]=[]
   private cop:CopsItem;
   private espacio:EspaciosItem;
   
@@ -32,6 +34,7 @@ export class PCopsComponent implements OnInit {
     private espaciosService:EspaciosService,
     private copsService:CopsService,
     private senalesService:SenalesService) {}
+
   ngOnInit() {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
     this.route.queryParams.subscribe(params => {
@@ -74,6 +77,7 @@ export class PCopsComponent implements OnInit {
       res=>{
         if(res.error==0){
           this.listaSenales=res.senales;
+          this.listaEtiquetas=res.etiquetas;
         }
       },
       err=>{
