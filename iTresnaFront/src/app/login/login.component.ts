@@ -18,9 +18,14 @@ export class LoginComponent implements OnInit {
     private usuariosService:UsuariosService,
     private ruta: Router
   ) { 
+    
+
+
     this.usuario = "";
     this.password = "";
     this.error = "";
+
+    
 
     
   }
