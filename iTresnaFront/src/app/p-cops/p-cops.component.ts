@@ -24,7 +24,8 @@ export class PCopsComponent implements OnInit {
   private visible: boolean = false ; // hidden by default
 
   private listaSenales:SenalesItem[]=[];
-  private listaEtiquetas:Etiqueta[]=[]
+  private listaEtiquetas:Etiqueta[]=[];
+  private listaUsuarios:string[]=[];
   private cop:CopsItem;
   private espacio:EspaciosItem;
   
@@ -78,6 +79,7 @@ export class PCopsComponent implements OnInit {
         if(res.error==0){
           this.listaSenales=res.senales;
           this.listaEtiquetas=res.etiquetas;
+          this.listaUsuarios=res.usuarios;
         }
       },
       err=>{
