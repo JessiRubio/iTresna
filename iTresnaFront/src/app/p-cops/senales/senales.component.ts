@@ -14,7 +14,7 @@ export class SenalesComponent implements OnInit {
   private cod_esp:number;
   private cod_cop:number;
   private admin:boolean=false;
-  private papelerav: boolean = false;
+  private papeleraVisible: boolean = false;
   
 
 
@@ -62,7 +62,7 @@ export class SenalesComponent implements OnInit {
 
   esPropietario(){
     if(this.senal.cod_usuario===this.usuarioLogeado.cod_usuario){
-      this.papelerav=true;
+      this.papeleraVisible=true;
     } 
 
   }
