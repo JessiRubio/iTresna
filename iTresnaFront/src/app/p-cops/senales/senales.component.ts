@@ -10,7 +10,7 @@ import { SenalesItem } from '../../clases/senales-item';
 export class SenalesComponent implements OnInit {
 
   @Input() senal:SenalesItem;
-  private titulo:String= "";
+  private titulo:String= "Lorem Ipsum";
   like(){
     console.warn("TODO esta funcion aun esta por hacer, te añadira como me gusta");
   }

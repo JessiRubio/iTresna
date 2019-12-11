@@ -1,18 +1,23 @@
-<section class="contenidoSeñal">
-        <a href="https://www.newgenapps.com/blog/trends-big-data-innovation-future-data-science" ><img class="imgprueba" src="assets/cyberSecurityData.jpg" alt="prueba" ></a>
+<section class="contenidoSenal">
 
-        <div class="contenidoSeñaldiv">
-            <h2>{{senal.fecha_hora}}</h2>
-            <h3>{{titulo}}</h3>
-            <p>{{senal.desc_senal}}</p>
+        <div class="contenidoSenaldiv">
+            <p>{{senal.fecha_hora}}</p>
+            <a href="https://www.newgenapps.com/blog/trends-big-data-innovation-future-data-science" ><img class="imgprueba" src="assets/cyberSecurityData.jpg" alt="prueba" ></a>
+            <div class="textoSenal">
+                    <h2>{{titulo}}</h2>
+                    <h3>{{senal.desc_senal}}</h3>
+            </div>
         </div>
 
         
 
-        <div class="infoSeñal">
-                
-            <button class="botonLike" (click) = like() type="submit"><img class="like" src="assets/like.png" alt="like" >  {{likes}}</button>
-            <p clas="etiqueta" >Etiquetas: {{senal.cod_etiqueta}}</p>
+        <div class="infoSenal">
+            <div class="zonaLike">
+                <button class="botonLike" (click) = like() type="submit">
+                    <img class="like" src="assets/like.png" alt="like" > </button>
+                    <p>{{senal.me_gustas}}</p>
+            </div>
+            <p class="etiqueta" >Etiquetas: {{senal.cod_etiqueta}}</p>
 
             <select name="comentarios" class="comentario">
                     <option selected values="0"> {{senal.cantidad_comentarios}} Comentarios</option>
@@ -22,9 +27,8 @@
             
 
         </div>
-
-        <p class="autor">{{senal.cod_usuario}}</p>
-
         <button class="botonPapelera" type="submit"><img class="papelera" src="assets/papelera.png" alt="papelera" > </button>
+        <p class="autor">{{senal.cod_usuario||"Anónimo"}}</p>
+
 
 </section>
