@@ -7,8 +7,6 @@
             <p>{{senal.desc_senal}}</p>
         </div>
 
-        
-
         <div class="infoSeñal">
                 
             <button class="botonLike" (click) = like() type="submit"><img class="like" src="assets/like.png" alt="like" >  {{likes}}</button>
@@ -19,12 +17,11 @@
                     
             </select>
 
-            
-
         </div>
 
         <p class="autor">{{senal.cod_usuario}}</p>
 
-        <button class="botonPapelera" type="submit"><img class="papelera" src="assets/papelera.png" alt="papelera" > </button>
+        <button *ngIf="papeleraVisible || tienePermisosPapelera()"  class="botonPapelera" type="submit"><img class="papelera" src="assets/papelera.png" alt="papelera" > </button>
+        
 
 </section>
