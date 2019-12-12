@@ -19,7 +19,7 @@
                 <option value="etiquetas" > Filtrar por etiquetas:</option>
                 <option *ngFor="let item of cop.etiquetas" >{{item.desc_etiqueta}}</option>             
             </select>
-            <select name="filtroUsuarios"  class="filtrar">
+            <select name="filtroUsuarios"  class="filtrar" (change)="selectChangeHandler($event)"  >
                 <option value="usuarios" > Filtrar por Usuario:</option>
                 <option *ngFor="let item of cop.usuarios">{{item}}</option>
             </select>

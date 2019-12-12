@@ -24,6 +24,8 @@ export class PCopsComponent implements OnInit {
   private listaSenales:SenalesItem[]=[];
   private cop:CopsItem=new CopsItem();
   private espacio:EspaciosItem = new EspaciosItem();
+  selected: string = '';
+
   
   
   constructor(
@@ -69,6 +71,10 @@ export class PCopsComponent implements OnInit {
         }
       );
   }
+  selectChangeHandler (event: any) {
+    this.selected = event.target.value;
+    console.warn(this.selected);
+  }
   cargarSenales(){
     this.senalesService.getSenales(this.usuarioLogeado.cod_org,this.cod_esp,this.cod_cop,this.usuarioLogeado.cod_usuario).subscribe(
       res=>{
@@ -100,6 +106,7 @@ export class PCopsComponent implements OnInit {
     return this.usuarioLogeado.tip_usuario==1||
       cod_org_actual==this.usuarioLogeado.cod_org;
   }
+
   
   ordenar(){
 
