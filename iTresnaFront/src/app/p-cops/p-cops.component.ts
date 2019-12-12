@@ -28,7 +28,9 @@ export class PCopsComponent implements OnInit {
   private listaUsuarios:string[]=[];
   private cop:CopsItem;
   private espacio:EspaciosItem;
-  
+  selected: string = '';
+
+
   
   constructor(
     private route: ActivatedRoute,
@@ -73,6 +75,10 @@ export class PCopsComponent implements OnInit {
         }
       );
   }
+  selectChangeHandler (event: any) {
+    this.selected = event.target.value;
+    console.warn(this.selected);
+  }
   cargarSenales(){
     this.senalesService.getSenales(this.usuarioLogeado.cod_org,this.cod_esp,this.cod_cop,this.usuarioLogeado.cod_usuario).subscribe(
       res=>{
@@ -106,5 +112,6 @@ export class PCopsComponent implements OnInit {
     }
     return false;
   }
+
   
 }

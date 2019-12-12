@@ -32,7 +32,7 @@
                 <option *ngFor="let item of listaEtiquetas; let i = index">{{item.desc_etiqueta}}</option>
                             
             </select>
-            <select name="filtroUsuarios"  class="filtrar">
+            <select name="filtroUsuarios"  class="filtrar" (change)="selectChangeHandler($event)"  >
                 <option value="usuarios" > Filtrar por Usuario:</option>
                 <option *ngFor="let item of listaUsuarios; let i = index">{{item}}</option>
                 
