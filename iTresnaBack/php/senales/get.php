@@ -19,7 +19,8 @@
         $sql= "SELECT cod_senal,cod_org,cod_esp,cod_cop,cod_etiqueta,
                       desc_senal,enlace,fecha_hora, cod_usuario,ind_fich_gest
                 FROM t_senales
-                WHERE cod_org = ? AND cod_esp = ? AND cod_cop = ?";
+                WHERE cod_org = ? AND cod_esp = ? AND cod_cop = ?
+                ORDER BY fecha_hora DESC";
         $query=$conexion->prepare($sql);
         $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
         $query->execute();

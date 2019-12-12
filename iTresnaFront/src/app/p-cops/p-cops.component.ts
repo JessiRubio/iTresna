@@ -20,8 +20,6 @@ export class PCopsComponent implements OnInit {
   private usuarioLogeado:Usuario;
   private cod_esp:number;
   private cod_cop:number;
-  private admin:boolean=false;
-  private visible: boolean = false ; // hidden by default
 
   private listaSenales:SenalesItem[]=[];
   private cop:CopsItem=new CopsItem();
@@ -76,8 +74,6 @@ export class PCopsComponent implements OnInit {
       res=>{
         if(res.error==0){
           this.listaSenales=res.senales;
-          this.listaEtiquetas=res.etiquetas;
-          this.listaUsuarios=res.usuarios;
         }
       },
       err=>{
@@ -92,9 +88,6 @@ export class PCopsComponent implements OnInit {
   }
   volverAtras(item){
     console.warn("TODO esta funcion aun esta por hacer, volvera a la pestaña anterior seleccionando el espacio")
-  }
-  visibilidad() {
-    this.visible = ! this.visible;
   }
 
   tienePermisos():boolean{

@@ -5,52 +5,42 @@
     <div class="espacio"><p>{{espacio.desc_esp}}</p></div>
     <div class="cop"><p>{{cop.desc_cop}}</p></div>
 </nav>
-
-<div class="contenedorSeñales">
-
-    <button class="botonFiltrar" (click) = visibilidad() type="submit">Filtrar</button>
-    <a *ngIf="tienePermisos()">
-        <button class="botonCurar"  type="submit">Curar</button>
-    </a>
-    
-    
-    <div class="filtrado" *ngIf="visible">
-
+<div class="opciones">
+        <label class = "ordenar">Ordenar por:
             <select name="filtro" class="filtrar">
-                <option value="titulo" > Ordenar por:</option>
-                <option value="fechaAsc" > Por fecha ascendente</option>
+            
                 <option value="fechaDesc" > Por fecha descendente</option>
-                <option value="usuarioAsc" > Por Usuario ascendente</option>
+                <option value="fechaAsc" > Por fecha ascendente</option>
                 <option value="usuarioDesc" > Por Usuario descendente</option>
-                
-                
-                
-                
+                <option value="usuarioAsc" > Por Usuario ascendente</option>
             </select>
+        </label>
+        <label class = "filtros">Filtrar por:
             <select name="filtroEtiquetas"  class="filtrar">
                 <option value="etiquetas" > Filtrar por etiquetas:</option>
-                <option *ngFor="let item of cop.etiquetas" >{{item.desc_etiqueta}}</option>
-                            
+                <option *ngFor="let item of cop.etiquetas" >{{item.desc_etiqueta}}</option>             
             </select>
             <select name="filtroUsuarios"  class="filtrar">
                 <option value="usuarios" > Filtrar por Usuario:</option>
                 <option *ngFor="let item of cop.usuarios">{{item}}</option>
-                
             </select>
-
-            
-
-
+        </label>
+        <a *ngIf="tienePermisos()">
+                <button class="botonCurar"  type="submit">Curar</button>
+            </a>
     </div>
-</div>
 
-<div>
-    <ul class="listaSenales">
+    
+<div class="contenedorSeñales">
+    <ul>
         <li *ngFor="let item of listaSenales">
             <app-senales [senal]="item"></app-senales>
         </li>
     </ul>
+</div>
+
+    
 
     <a href="" class="float"><p>+</p></a>
-</div>
+
 
