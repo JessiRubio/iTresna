@@ -84,8 +84,11 @@ export class PEspaciosComponent implements OnInit {
   }
   
   estaEnPermisos(item:CopsItem):boolean{
-    return this.usuarioLogado.permisos.filter(x=>x.cod_esp===item.cod_esp && x.cod_cop===item.cod_cop).length>0;
+    var permiso:boolean = true;
+    if (this.usuarioLogado.tip_usuario>2){
+      permiso => this.usuarioLogado.permisos.filter(x=>x.cod_esp===item.cod_esp && x.cod_cop===item.cod_cop).length>0;
+    }
+    return permiso;
   }
-
 
 }

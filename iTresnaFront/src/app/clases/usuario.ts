@@ -7,7 +7,7 @@ export class Usuario{
     nombre:string;
     permisos:Permiso[];
     sarbide:string;
-    tip_usuario:string;
+    tip_usuario:number;
 }
 export class Permiso{
     cod_org:number;
