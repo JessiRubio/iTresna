@@ -19,15 +19,11 @@ export class LoginComponent implements OnInit {
     private ruta: Router
   ) { 
     
-
-
     this.usuario = "";
     this.password = "";
     this.error = "";
 
-    
 
-    
   }
 
   ngOnInit() {
