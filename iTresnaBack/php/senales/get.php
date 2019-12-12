@@ -43,8 +43,6 @@
                 "me_ha_gustado" => meHaGustado($cod_org,$cod_esp,$cod_cop,$cod_senal,$cod_usuario)
             );
         }  
-        $result["etiquetas"] = cargarEtiquetas($cod_org,$cod_esp,$cod_cop);    
-        $result["usuarios"]= cargarUsuariosConAcceso($cod_org,$cod_esp,$cod_cop);
         $result["error"]=0;
         $query->close();
     }
@@ -94,38 +92,5 @@
         return $result;
     }
 
-    function cargarEtiquetas($cod_org,$cod_esp,$cod_cop){
-        include("./../conexion.php");
-        $sql="SELECT DiSTINCT(desc_etiqueta), cod_etiqueta
-                FROM t_etiquetas
-                WHERE cod_org=? AND cod_esp=? AND cod_cop=?";
-        $query=$conexion->prepare($sql);
-        $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
-        $query->execute();
-        $query->bind_result($desc_etiqueta, $cod_etiqueta);
-        while($query->fetch()){
-            $result[]=array(
-                "cod_etiqueta" => $cod_etiqueta,
-                "desc_etiqueta" => $desc_etiqueta
-            );
-        }
-        $query->close();
-        return $result;
-    }
-
-    function cargarUsuariosConAcceso($cod_org,$cod_esp,$cod_cop){
-        include("./../conexion.php");
-        $sql="SELECT nombre, ape1,ape2
-            FROM t_usuarios tu, t_permisos tp 
-            WHERE tp.cod_org=? AND tp.cod_esp=? AND tp.cod_cop=? AND tu.cod_usuario = tp.cod_usuario";
-        $query=$conexion->prepare($sql);
-        $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
-        $query->execute();
-        $query->bind_result($nombre, $ape1, $ape2);
-        while($query->fetch()){
-            $result[]=$nombre." ".$ape1." ".$ape2;
-        }
-        $query->close();
-        return $result;
-    }
+    
 ?>

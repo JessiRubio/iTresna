@@ -20,8 +20,8 @@
                 <option value="titulo" > Ordenar por:</option>
                 <option value="fechaAsc" > Por fecha ascendente</option>
                 <option value="fechaDesc" > Por fecha descendente</option>
-                <option Value="usuarioAsc" > Por Usuario ascendente</option>
-                <option Value="usuarioDesc" > Por Usuario descendente</option>
+                <option value="usuarioAsc" > Por Usuario ascendente</option>
+                <option value="usuarioDesc" > Por Usuario descendente</option>
                 
                 
                 
@@ -29,12 +29,12 @@
             </select>
             <select name="filtroEtiquetas"  class="filtrar">
                 <option value="etiquetas" > Filtrar por etiquetas:</option>
-                <option *ngFor="let item of listaEtiquetas; let i = index">{{item.desc_etiqueta}}</option>
+                <option *ngFor="let item of cop.etiquetas" >{{item.desc_etiqueta}}</option>
                             
             </select>
             <select name="filtroUsuarios"  class="filtrar">
                 <option value="usuarios" > Filtrar por Usuario:</option>
-                <option *ngFor="let item of listaUsuarios; let i = index">{{item}}</option>
+                <option *ngFor="let item of cop.usuarios">{{item}}</option>
                 
             </select>
 
