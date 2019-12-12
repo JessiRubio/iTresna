@@ -1,9 +1,10 @@
 .contenidoSenal{
-    height: 100%;
+    height: auto;
     padding: 1em;
-    width: 95%;
-    margin: 0;
-    margin-top: -9em;
+    margin: 5%;
+    margin-left: 0;
+    margin-top: 0;
+    width: auto;
     background-color:#555453;
     border-radius: 1em;
 }
