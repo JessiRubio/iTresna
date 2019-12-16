@@ -8,7 +8,7 @@ import { SenalesService} from './../servicios/senales.service';
 import { CopsService } from './../servicios/cops.service';
 import { Usuario } from  './../clases/usuario';
 import { Observable } from 'rxjs';
-import { Etiqueta } from '../clases/etiquetaitem';
+import { EtiquetaItem } from './../clases/copsitem';
 
 @Component({
   selector: 'app-p-cops',
@@ -108,7 +108,42 @@ export class PCopsComponent implements OnInit {
   }
 
   
-  ordenar(){
+  ordenar(valorSelect:string){
+    switch(valorSelect){
+      case "0":
+        this.listaSenales.sort((a,b)=>{
+          var x:Date = a.fecha_hora;
+            var y:Date = b.fecha_hora;
+            return ((x<y) ? 1 : ((x>y) ? -1: 0));
+        });
+        break;
+      case "1":
+        console.log("ascendente");
+
+          this.listaSenales.sort((a:SenalesItem,b:SenalesItem)=>{
+            var x:Date = a.fecha_hora;
+            var y:Date = b.fecha_hora;
+            return ((x<y) ? -1 : ((x>y) ? 1: 0));
+          });
+        break;
+      case "2":
+        this.listaSenales.sort((a,b)=>{
+          var x:string = a.cod_usuario;
+          var y:string = b.cod_usuario;
+          return ((x<y) ? 1 : ((x>y) ? -1: 0));
+        });
+        break;
+      case "3":
+          this.listaSenales.sort((a,b)=>{
+            var x:string = a.cod_usuario;
+            var y:string = b.cod_usuario;
+            return ((x<y) ? -1 : ((x>y) ? 1: 0));
+          });
+        break;
+    }
+
+  }
+  filtrar(){
 
   }
 }

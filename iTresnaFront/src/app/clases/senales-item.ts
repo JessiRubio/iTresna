@@ -12,4 +12,5 @@ export class SenalesItem {
     cantidad_comentarios:number;
     me_gustas:number;
     me_ha_gustado:boolean;
+    
 }

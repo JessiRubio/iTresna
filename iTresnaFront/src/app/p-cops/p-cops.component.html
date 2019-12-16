@@ -7,20 +7,18 @@
 </nav>
 <div class="opciones">
         <label class = "ordenar">Ordenar por:
-            <select name="filtro" class="filtrar">
-                <option value="fechaDesc"> Por fecha descendente</option>
-                <option value="fechaAsc" > Por fecha ascendente</option>
-                <option value="usuarioDesc" > Por Usuario descendente</option>
-                <option value="usuarioAsc" > Por Usuario ascendente</option>
+            <select name="filtro" class="filtrar" (change)="ordenar($event.target.value)">
+                <option value="0"> Por fecha descendente</option>
+                <option value="1" > Por fecha ascendente</option>
+                <option value="2" > Por Usuario descendente</option>
+                <option value="3" > Por Usuario ascendente</option>
             </select>
         </label>
         <label class = "filtros">Filtrar por:
             <select name="filtroEtiquetas"  class="filtrar">
-                <option value="etiquetas" > Filtrar por etiquetas:</option>
                 <option *ngFor="let item of cop.etiquetas" >{{item.desc_etiqueta}}</option>             
             </select>
             <select name="filtroUsuarios"  class="filtrar" (change)="selectChangeHandler($event)"  >
-                <option value="usuarios" > Filtrar por Usuario:</option>
                 <option *ngFor="let item of cop.usuarios">{{item}}</option>
             </select>
         </label>
