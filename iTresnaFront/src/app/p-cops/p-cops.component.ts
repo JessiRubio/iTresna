@@ -8,7 +8,7 @@ import { SenalesService} from './../servicios/senales.service';
 import { CopsService } from './../servicios/cops.service';
 import { Usuario } from  './../clases/usuario';
 import { Observable } from 'rxjs';
-import { Etiqueta } from '../clases/etiquetaitem';
+import { EtiquetaItem } from '../clases/copsitem';
 
 @Component({
   selector: 'app-p-cops',
