@@ -1,12 +1,10 @@
 html {
     background-color: rgba(98, 96, 96, 0.555);
-    height: 100%;
     overflow-x: hidden;
-    color:black;
+    color: black;
     font-family: 'Merienda', cursive;
 }
 body {
-  height: 100%;
   margin:0;
 }
 footer{
@@ -16,7 +14,8 @@ footer{
   bottom: 0;
   color: white;
   padding-left: 1em;
-  max-height: 3em;
+  height: 5%;
+  
 } 
 h2{
   font-family: 'Cinzel', serif;
