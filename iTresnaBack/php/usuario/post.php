@@ -18,17 +18,19 @@
             $query->execute();
             $query->bind_result($cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2);
             $query->fetch();
-            $result["usuario"]=array(
-                "cod_usuario"=>$cod_usuario,
-                "tip_usuario"=>$tip_usuario,
-                "cod_org"=>$cod_org,
-                "sarbidea"=>$sarbidea,
-                "nombre"=>$nombre,
-                "ape1"=>$ape1,
-                "ape2"=>$ape2,
-                "permisos"=>obtenerPermisos($cod_usuario)
-            );  
-            $result["error"] = 0;
+            if($cod_usuario!=null){
+                $result["usuario"]=array(
+                    "cod_usuario"=>$cod_usuario,
+                    "tip_usuario"=>$tip_usuario,
+                    "cod_org"=>$cod_org,
+                    "sarbidea"=>$sarbidea,
+                    "nombre"=>$nombre,
+                    "ape1"=>$ape1,
+                    "ape2"=>$ape2,
+                    "permisos"=>obtenerPermisos($cod_usuario)
+                );  
+                $result["error"] = 0;
+            }
         }
     echo json_encode($result);
     
