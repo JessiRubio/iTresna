@@ -15,11 +15,13 @@
             </select>
         </label>
         <label class = "filtros">Filtrar por:
-            <select name="filtroEtiquetas"  class="filtrar">
-                <option *ngFor="let item of cop.etiquetas" >{{item.desc_etiqueta}}</option>             
+            <select name="filtroEtiquetas"  class="filtrar" (change)="filtrarEtiquetas($event.target.value)">
+                <option value="0">Todos</option>
+                <option *ngFor="let item of cop.etiquetas;let i = index" value='{{i+1}}'>{{item.desc_etiqueta}}</option>             
             </select>
-            <select name="filtroUsuarios"  class="filtrar" (change)="selectChangeHandler($event)"  >
-                <option *ngFor="let item of cop.usuarios">{{item}}</option>
+            <select name="filtroUsuarios"  class="filtrar" (change)="filtrarUsuarios($event.target.value)"  >
+                <option value="0">Todos</option>
+                <option *ngFor="let item of cop.usuarios;let i = index" value='{{i+1}}'>{{item}}</option>
             </select>
         </label>
         <a *ngIf="tienePermisos()">
@@ -30,7 +32,7 @@
     
 <div class="contenedorSeñales">
     <ul>
-        <li *ngFor="let item of listaSenales">
+        <li *ngFor="let item of listSenalesMostradas">
             <app-senales [senal]="item"></app-senales>
         </li>
     </ul>
