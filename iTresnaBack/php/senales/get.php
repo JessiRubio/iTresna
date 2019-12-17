@@ -92,6 +92,5 @@
         $query->close();
         return $result;
     }
-
     
 ?>
