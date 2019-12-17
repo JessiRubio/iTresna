@@ -22,13 +22,15 @@ export class LoginComponent implements OnInit {
     this.usuario = "";
     this.password = "";
     this.error = "";
-
+    this.ruta.events.subscribe((ev) => {
+      if (localStorage.getItem("usuario").length>0) {
+        this.ruta.navigateByUrl("Principal");
+      }
+    });
 
   }
 
   ngOnInit() {
-
-    
 
   }
 
