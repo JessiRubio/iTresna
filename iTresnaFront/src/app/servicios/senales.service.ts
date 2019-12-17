@@ -15,4 +15,15 @@ export class SenalesService {
                   cod_espacio+"&cod_cop="+cod_cop+"&cod_usuario="+cod_usuario);
 
   }
+  like(cod_usuario:string,cod_org:number,cod_esp:number,
+    cod_cop:number,cod_senal:number):Observable<any>{
+    var JSON={
+      "cod_usuario":cod_usuario,
+      "cod_org":cod_org,
+      "cod_esp":cod_esp,
+      "cod_cop":cod_cop,
+      "cod_senal":cod_senal
+    };
+    return this.http.post(this.URL,JSON);
+  }
 }

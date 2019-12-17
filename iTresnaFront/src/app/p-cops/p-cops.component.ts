@@ -22,9 +22,12 @@ export class PCopsComponent implements OnInit {
   private cod_cop:number;
 
   private listaSenales:SenalesItem[]=[];
+  private listSenalesMostradas:SenalesItem[]=[];
   private cop:CopsItem=new CopsItem();
   private espacio:EspaciosItem = new EspaciosItem();
   selected: string = '';
+  private filtroEtiqueta:number=-1;
+  private filtroUsuario:number=-1;
 
   
   
@@ -80,6 +83,7 @@ export class PCopsComponent implements OnInit {
       res=>{
         if(res.error==0){
           this.listaSenales=res.senales;
+          this.listSenalesMostradas=res.senales;
         }
       },
       err=>{
@@ -143,7 +147,59 @@ export class PCopsComponent implements OnInit {
     }
 
   }
+  filtrarEtiquetas(valorSelect:string){
+    this.filtroEtiqueta = Number.parseInt(valorSelect);
+    this.filtroEtiqueta--;
+    this.filtrar();    
+  }
+  filtrarUsuarios(valorSelect:string){
+    this.filtroUsuario = Number.parseInt(valorSelect);
+    this.filtroUsuario--;
+    this.filtrar();
+  }
   filtrar(){
-
+    var etiqueta:EtiquetaItem;
+    var usuario:string;
+    console.log(this.listaSenales);
+    console.log(this.filtroEtiqueta);
+    console.log(this.filtroUsuario)
+    if(this.filtroEtiqueta>=0 && this.filtroUsuario>=0){
+      console.log("filtro etiqueta y nombre");
+      etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
+      usuario=this.cop.usuario[this.filtroUsuario];
+      this.listSenalesMostradas=this.listaSenales.filter(
+        x=>{
+          if(x.cod_etiqueta==etiqueta.cod_etiqueta && x.cod_usuario===usuario){
+            return true;
+          }
+          return false;
+        }
+      );
+    }
+    else if (this.filtroUsuario>0){
+      console.log("filtro nombre");
+      usuario=this.cop.usuario[this.filtroUsuario];
+      this.listSenalesMostradas=this.listaSenales.filter(
+        x=>{
+          if(x.cod_usuario===usuario){
+            return true;
+          }
+          return false;
+        }
+      );
+    }else if (this.filtroEtiqueta>0){
+      console.log("filtro etiqueta");
+      etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
+      this.listSenalesMostradas=this.listaSenales.filter(
+        x=>{
+          if(x.cod_etiqueta==etiqueta.cod_etiqueta){
+            return true;
+          }
+          return false;
+        }
+      );
+    }else{
+      this.listSenalesMostradas=this.listaSenales;
+    }
   }
 }

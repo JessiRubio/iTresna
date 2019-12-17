@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router, RouteConfigLoadEnd, RouteConfigLoadStart } from '@angular/router';
 import { SenalesItem } from '../../clases/senales-item';
 import { Usuario } from  './../../clases/usuario';
+import { SenalesService } from '../../servicios/senales.service';
 
 @Component({
   selector: 'app-senales',
@@ -16,18 +17,14 @@ export class SenalesComponent implements OnInit {
   private admin:boolean=false;
   private papeleraVisible: boolean = false;
   
-
-
   @Input() senal:SenalesItem;
   private titulo:String= "Lorem Ipsum";
-  like(){
-    console.warn("TODO esta funcion aun esta por hacer, te añadira como me gusta");
-  }
+  
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
-    
+    private route: ActivatedRoute,
+    private senalesService:SenalesService
     ) {
 
     this.router.events.subscribe((ev)=>{
@@ -42,11 +39,27 @@ export class SenalesComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
-      this.admin = params['admin']==1;
     });
 
     this.cargarTituloPagina();
     this.esPropietario();
+  }
+  
+  like(){
+    var codUser=this.usuarioLogeado.cod_usuario;
+    this.senalesService.like(codUser,this.senal.cod_org,this.senal.cod_esp,this.senal.cod_cop,this.senal.cod_senal).subscribe(
+      res=>{
+        if(res.error==0){
+          if(res.aniadido==1){
+            this.senal.me_ha_gustado=true;
+            this.senal.me_gustas+=1;
+          }else{
+            this.senal.me_ha_gustado=true;
+            this.senal.me_gustas-=1;
+          }
+        }
+      }
+    );
   }
   cargarTituloPagina(){
     console.warn("TODO esta funcion esta por hacer, cargara el titulo en la señal.")
@@ -63,8 +76,7 @@ export class SenalesComponent implements OnInit {
   esPropietario(){
     if(this.senal.cod_usuario===this.usuarioLogeado.cod_usuario){
       this.papeleraVisible=true;
-    } 
-
+    }
   }
 
 }
