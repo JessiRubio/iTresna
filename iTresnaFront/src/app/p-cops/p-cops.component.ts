@@ -9,6 +9,8 @@ import { CopsService } from './../servicios/cops.service';
 import { Usuario } from  './../clases/usuario';
 import { Observable } from 'rxjs';
 import { EtiquetaItem } from './../clases/copsitem';
+import { ModalSenalComponent } from './modalsenal/modalsenal.component';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-p-cops',
@@ -35,7 +37,9 @@ export class PCopsComponent implements OnInit {
     private route: ActivatedRoute,
     private espaciosService:EspaciosService,
     private copsService:CopsService,
-    private senalesService:SenalesService) {}
+    private senalesService:SenalesService,
+    private dialog:MatDialog
+    ) {}
 
   ngOnInit() {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
@@ -201,5 +205,21 @@ export class PCopsComponent implements OnInit {
     }else{
       this.listSenalesMostradas=this.listaSenales;
     }
+  }
+  nuevaSenal(){
+    const dialofConfig = new MatDialogConfig();
+    dialofConfig.disableClose=true;
+    dialofConfig.autoFocus=true;
+    dialofConfig.position={
+      'top':'0',
+      'left':'0'    
+    }
+    dialofConfig.data={
+      etiquetas:this.cop.etiquetas
+    }
+    const dialogRef=this.dialog.open(ModalSenalComponent,dialofConfig);
+    dialogRef.afterClosed().subscribe(
+      data=>console.log(data)
+    );
   }
 }

@@ -7,8 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { PEspaciosComponent } from './p-espacios/p-espacios.component';
 import { CopsComponent } from './p-espacios/cops/cops.component';
 import { PCopsComponent } from './p-cops/p-cops.component';
+import { MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatRippleModule, MatSelectModule, MatMenuModule } from "@angular/material";
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SenalesComponent } from './p-cops/senales/senales.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from './servicios/usuarios.service';
@@ -16,6 +17,8 @@ import { EspaciosService } from './servicios/espacios.service';
 import { SenalesService} from './servicios/senales.service';
 import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
 import { HeaderGenericoComponent } from './header-generico/header-generico.component';
+import { ModalSenalComponent } from './p-cops/modalsenal/modalsenal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,14 +30,26 @@ import { HeaderGenericoComponent } from './header-generico/header-generico.compo
     SenalesComponent,
     MenuOverflowComponent,
     HeaderGenericoComponent,
+    ModalSenalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    BrowserModule ,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatMenuModule,    
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ModalSenalComponent]
 })
 export class AppModule { }
