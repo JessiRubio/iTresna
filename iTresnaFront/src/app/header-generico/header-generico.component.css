@@ -17,7 +17,123 @@ header {
 .hiTresna p{
     font-size: 1.5rem;
     color: #9684bb;
-    margin-right: 10%;
-    float: right;
+    margin-left: 85%;
+    margin-top: -3%;
+}
+
+
+
+@media only screen and (min-width: 320px) {
+
+    .hiTresna p{
+      
+        margin-left: 50%;
+        margin-top: -10%;
+        font-size: 18px;
+    }
+
+    .hiTresna a{
+        font-size: 27px;
+        margin-top: 6%;
+    }
+
+}
+
+@media only screen and (min-width: 375px) {
+
+    .hiTresna p{
+        font-size: 1.5rem;
+        margin-left: 55%;
+        margin-top: -12%;
+    }
+
+    .hiTresna a{
+        font-size: 3rem;
+        margin-top: 0%;
+    }
     
+
+}
+
+@media only screen and (min-width: 425px) {
+
+    .hiTresna p{
+      
+        margin-left: 60%;
+        margin-top: -11%;
+    }
+
+}
+
+@media only screen and (min-width: 500px) {
+
+    .hiTresna p{
+      
+        margin-top: -9%;
+    }
+}
+
+/* Extra small devices (phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    .hiTresna p{
+      
+        margin-left: 65%;
+        margin-top: -8%;
+    }
+
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .hiTresna p{
+      
+        margin-left: 75%;
+        margin-top: -6%;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1024px) {
+
+    .hiTresna p{
+      
+        margin-left: 80%;
+        margin-top: -4%;
+    }
+    
+}
+
+@media only screen and (min-width: 1280px) {
+ 
+}
+
+
+@media only screen and (min-width: 1440px) {
+
+    .hiTresna p{
+      
+        margin-left: 80%;
+        margin-top: -3%;
+    }
+
+}
+
+@media only screen and (min-width: 2560px) {
+
+    .hiTresna p{
+      
+        margin-left: 90%;
+        margin-top: -1.5%;
+    }
+
+   
 }

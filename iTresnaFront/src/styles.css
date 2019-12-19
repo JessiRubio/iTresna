@@ -21,3 +21,29 @@ footer{
 h2{
   font-family: 'Cinzel', serif;
 }
+<<<<<<< HEAD
+=======
+
+
+@media only screen and (min-width: 320px) {
+
+  footer{
+    height: 4%;
+  } 
+
+  footer p{
+    font-size: 12px;
+  }
+
+
+}
+
+
+@media only screen and (min-width: 375px) {
+  footer p{
+    font-size: 14px;
+  }
+}
+
+
+>>>>>>> 300f3803401582505a3bdd3ad6a52eff40818664

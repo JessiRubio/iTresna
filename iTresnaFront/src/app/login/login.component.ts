@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     this.usuario = "";
     this.password = "";
     this.error = "";
+
     this.ruta.events.subscribe((ev) => {
       if (localStorage.getItem("usuario").length>0) {
         this.ruta.navigateByUrl("Principal");
@@ -40,8 +41,7 @@ export class LoginComponent implements OnInit {
       res=>{
         if(res.error==0){
           var usuarioParsed:string=JSON.stringify(res.usuario);
-          localStorage.setItem("usuario",usuarioParsed);
-          
+          localStorage.setItem("usuario", usuarioParsed);
           this.ruta.navigateByUrl("Principal");
         }
         else{
