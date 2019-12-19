@@ -49,3 +49,63 @@
     color: #b3a3d3;
 }
 
+
+@media only screen and (min-width: 320px) {
+    .contenido{
+        height: 20em;
+        width: 18em;
+       
+    }
+
+    .contenido img{
+        height: 8em;
+        width: 8em;
+    }
+
+
+    .contenido h3{ 
+        font-size: 1.2em;
+    }
+
+    .contenido p{
+        margin-left: 60%;
+        margin-top: 25%;
+        font-size: 1em;
+    }
+     
+}
+
+@media only screen and (min-width: 375px) {
+
+    .contenido{
+        height: 22em;
+        width: 22em;
+       
+    } 
+
+    .contenido img{
+        height: 10em;
+        width: 10em;
+    }
+
+    .contenido h3{ 
+        font-size: 1.5em;
+    }
+
+    .contenido p{
+        margin-left: 60%;
+        margin-top: 10%;
+        font-size: 1em;
+    }
+}
+
+
+
+@media only screen and (min-width: 2560px) {
+
+  
+
+   
+}
+
+
