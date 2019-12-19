@@ -2,16 +2,47 @@
     require_once("./../conexion.php");
     $json = file_get_contents('php://input');
     $data = json_decode($json);
+
+    $nueva_senal = $data->nueva_senal;
+    $desc_senal = $data->desc_senal;
+    $enlace = $data->$enlace;
+    $cod_etiqueta = $date->$cod_etiqueta
+
     $cod_usuario=$data->cod_usuario;
     $cod_org=$data->cod_org;
     $cod_esp=$data->cod_esp;
     $cod_cop=$data->cod_cop;
     $cod_senal=$data->cod_senal;
+
     $result=array(
         "error"=>1,
         "aniadido"=>0
     );
-    if($cod_usuario!=="" && $cod_org!=="" 
+    if($nueva_senal){
+        if($cod_usuario!=="" && $cod_org!=="" && $cod_esp!=="" && $cod_cop!=="" && $desc_senal!=="" && $enlace!=="" && $cod_etiqueta!==""){
+            $sql = "INSERT INTO t_senales 
+            VALUES cod_usuario = $cod_usuario 
+                AND cod_org = $cod_ord
+                AND cod_esp = $cod_esp
+                AND cod_cop = $cod_cop
+                AND desc_senal = $desc_senal
+                AND enlace = $enlace
+                AND cod_etiqueta = $cod_etiqueta
+                AND cod_senal = (SELECT COUNT(*) FROM t_senales) + 1
+                AND fecha_hora = getDate()
+                AND ind_fich_gest = 0"
+            ;
+            $query=$conexion->prepare($sql);
+            $query->execute();
+            $affected_rows=$query->affected_rows;
+            $result["error"]=($affected_rows==1)?0:1;
+            $result["aniadido"]=1;
+            $query->close();
+        }
+
+
+    } else {
+        if($cod_usuario!=="" && $cod_org!=="" 
         && $cod_esp!=="" && $cod_cop!=="" && $cod_senal!==""){
             
 
@@ -51,4 +82,5 @@
         
     }
     echo json_encode($result);
+}
 ?>
