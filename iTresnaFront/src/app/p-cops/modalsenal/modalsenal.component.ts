@@ -14,7 +14,7 @@ export class ModalSenalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef:MatDialogRef<ModalSenalComponent>,
-    @Inject(MAT_DIALOG_DATA) data:{etiquetas:EtiquetaItem[]}){
+    @Inject(MAT_DIALOG_DATA) data){
 
       this.etiquetas=data.etiquetas;
 

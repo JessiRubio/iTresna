@@ -1,19 +1,21 @@
 <!--  https://blog.angular-university.io/angular-material-dialog/ -->
 <h2 mat-dialog-title>Nueva Señal</h2>
 <mat-dialog-content [formGroup]="form">
-    <mat-form-field>
+    <mat-form-field class="expand">
         <input matInput
             placeholder="URL"
                formControlName="url">
     </mat-form-field>
-    <mat-form-field>
-        <input matInput
+    <br>
+    <mat-form-field class="expand">
+        <textarea matInput
                 placeholder="Descripcion"
-               formControlName="descripcion">
+               formControlName="descripcion"></textarea>
     </mat-form-field>
-    <mat-form-field>
+    <br>
+    <mat-form-field class="expand">
             <mat-select placeholder="Elige una etiqueta" formControllerName="etiqueta" >
-                <mat-option *ngFor="let item of etiquetas" [value]="item.cod_etiqueta">
+                <mat-option *ngFor="let item of etiquetas" value="item.cod_etiqueta">
                     {{item.desc_etiqueta}}
                 </mat-option>
             </mat-select>
@@ -21,6 +23,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Publicar</button>
 </mat-dialog-actions>
 <!--  https://blog.angular-university.io/angular-material-dialog/ -->

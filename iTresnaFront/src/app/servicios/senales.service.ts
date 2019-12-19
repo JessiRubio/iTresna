@@ -26,4 +26,7 @@ export class SenalesService {
     };
     return this.http.post(this.URL,JSON);
   }
+  nuevaSenal(senal):Observable<any>{
+    return this.http.post(this.URL,senal);
+  }
 }

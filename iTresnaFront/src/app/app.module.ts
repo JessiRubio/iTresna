@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PEspaciosComponent } from './p-espacios/p-espacios.component';
 import { CopsComponent } from './p-espacios/cops/cops.component';
 import { PCopsComponent } from './p-cops/p-cops.component';
-import { MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatRippleModule, MatSelectModule, MatMenuModule } from "@angular/material";
+import { MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatRippleModule, MatSelectModule, MatMenuModule, MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material";
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SenalesComponent } from './p-cops/senales/senales.component';
@@ -18,7 +18,7 @@ import { SenalesService} from './servicios/senales.service';
 import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
 import { HeaderGenericoComponent } from './header-generico/header-generico.component';
 import { ModalSenalComponent } from './p-cops/modalsenal/modalsenal.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,15 +38,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     MatDialogModule,
-    BrowserModule ,
-    BrowserAnimationsModule,
+    NoopAnimationsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatMenuModule,    
+    MatSelectModule
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],

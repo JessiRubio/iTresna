@@ -1,3 +1,4 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 html {
     background-color: rgba(98, 96, 96, 0.555);
     overflow-x: hidden;

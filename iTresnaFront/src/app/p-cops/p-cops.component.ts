@@ -103,7 +103,6 @@ export class PCopsComponent implements OnInit {
   volverAtras(item){
     console.warn("TODO esta funcion aun esta por hacer, volvera a la pestaña anterior seleccionando el espacio")
   }
-
   tienePermisos():boolean{
     var cod_org_actual=this.cop.cod_org;
     var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
@@ -114,8 +113,6 @@ export class PCopsComponent implements OnInit {
     return this.usuarioLogeado.tip_usuario==1||
       cod_org_actual==this.usuarioLogeado.cod_org;
   }
-
-  
   ordenar(valorSelect:string){
     switch(valorSelect){
       case "0":
@@ -208,18 +205,32 @@ export class PCopsComponent implements OnInit {
   }
   nuevaSenal(){
     const dialofConfig = new MatDialogConfig();
-    dialofConfig.disableClose=true;
     dialofConfig.autoFocus=true;
-    dialofConfig.position={
-      'top':'0',
-      'left':'0'    
-    }
+    dialofConfig.minWidth="50%";
     dialofConfig.data={
       etiquetas:this.cop.etiquetas
     }
     const dialogRef=this.dialog.open(ModalSenalComponent,dialofConfig);
     dialogRef.afterClosed().subscribe(
-      data=>console.log(data)
+      data=>{
+        var senal={"cod_org":this.cop.cod_org,
+                    "cod_esp":this.cod_esp,
+                    "cod_cop":this.cod_cop,
+                    "cod_etiqueta":data.etiqueta,
+                    "desc_senal":data.descripcion,
+                    "enlace":data.url,
+                    "cod_usuario":this.usuarioLogeado.cod_usuario};
+        this.senalesService.nuevaSenal(senal).subscribe(
+          res=>{
+            if(res.error==1){
+              this.nuevaSenal();
+            }
+          },
+          err=>{
+
+          }
+        )
+      }
     );
   }
 }

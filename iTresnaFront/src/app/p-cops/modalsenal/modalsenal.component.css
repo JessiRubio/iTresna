@@ -1,0 +1,13 @@
+.expand{
+    width: 90%;
+    left: 5%;
+    right: 5%;
+}
+.mat-raised-button{
+    box-shadow: none;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 0.5em;
+    background: black;
+    margin: auto;
+}
