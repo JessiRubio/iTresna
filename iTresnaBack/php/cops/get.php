@@ -40,7 +40,7 @@
 
         $result["error"]=0;
     }
-    else if(isset($cod_org) && $cod_org!="" && isset($cod_esp) && $cod_esp!=""){
+    else if(isset($cod_org) && $cod_org!="" && isset($cod_esp) && $cod_esp!="" && isset($cod_usuario) && $cod_usuario!= "" ){
         $sql="SELECT DISTINCT cop.cod_cop, cop.desc_cop, cop.img_cop,cop.ind_cop_graficos, COUNT(sen.cod_senal)
                 FROM t_cops cop
                 LEFT JOIN t_senales sen
@@ -49,9 +49,10 @@
                 AND cop.cod_cop=sen.cod_cop
                 WHERE cop.cod_org=? AND cop.cod_esp=?
                 GROUP BY cop.cod_cop, cop.cod_esp, cop.cod_org
-                ORDER BY cop.cod_cop";
+                ORDER BY (SELECT cod_cop FROM t_permisos WHERE cod_usuario=?
+                           AND cod_org=? AND cod_esp=? AND cod_cop=cop.cod_cop) DESC";
         $query=$conexion->prepare($sql);
-        $query->bind_param("dd",$cod_org,$cod_esp);
+        $query->bind_param("ddsdd",$cod_org,$cod_esp,$cod_usuario,$cod_org,$cod_esp);
         $query->execute();
         $query->bind_result($cod_cop,$desc_cop,$img_cop,$ind_cop_graficos,$cantidad_senales);
         while($query->fetch()){

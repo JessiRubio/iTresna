@@ -69,7 +69,7 @@ export class PEspaciosComponent implements OnInit {
   }
 
   cargarCops(espacio:EspaciosItem){
-    this.copService.getCops(espacio.cod_org,espacio.cod_esp).subscribe(
+    this.copService.getCops(espacio.cod_org,espacio.cod_esp,this.usuarioLogado.cod_usuario).subscribe(
         res=>{
             if(res.error == 0){
                 espacio.listaCop = res.cops;
