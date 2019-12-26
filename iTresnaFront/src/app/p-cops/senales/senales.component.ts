@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouteConfigLoadEnd, RouteConfigLoadStart } from
 import { SenalesItem } from '../../clases/senales-item';
 import { Usuario } from  './../../clases/usuario';
 import { SenalesService } from '../../servicios/senales.service';
+import { NgLocalization } from '@angular/common';
 
 @Component({
   selector: 'app-senales',
@@ -84,6 +85,24 @@ export class SenalesComponent implements OnInit {
       }
       return false;
     }
+  }
+
+  borrar(){
+    this.senalesService.deleteSenal(this.senal).subscribe(
+      response =>{
+        if (response.error ==1){
+          console.log("Ha habido un error, intentelo de nuevo más tarde");
+        }else{
+          console.log("Señal eliminada");
+          location.reload();
+          
+        }
+      },
+      error =>{
+        console.log(error);
+
+      }
+    );
   }
 
 }

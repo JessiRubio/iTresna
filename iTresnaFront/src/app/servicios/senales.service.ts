@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SenalesItem } from '../clases/senales-item';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,14 @@ export class SenalesService {
     };
     return this.http.post(this.URL,JSON);
   }
+
   nuevaSenal(senal):Observable<any>{
     return this.http.post(this.URL,senal);
+  }
+
+  deleteSenal(senal):Observable<any>{
+    console.log(senal);
+    return this.http.delete(this.URL+"?cod_org="+senal.cod_org+"&cod_esp="+
+        senal.cod_esp+"&cod_cop="+senal.cod_cop+"&cod_senal="+senal.cod_senal);
   }
 }

@@ -13,8 +13,8 @@
                 case 'POST':
                     include('post.php');
                     break;
-                case 'PUT':
-                    include('put.php');
+                case 'DELETE':
+                    include('delete.php');
                     break;
                 default:
                     echo "Método no soportado";

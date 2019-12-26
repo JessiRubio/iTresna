@@ -46,7 +46,6 @@ export class PCopsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
-      console.log("en el onInit");
       this.cargarEsp();
       this.cargarCop();
       this.cargarSenales();
@@ -57,7 +56,6 @@ export class PCopsComponent implements OnInit {
         .subscribe(
           res=>{
             if(res.error==0){
-              console.log("en cargar espacio");
               this.espacio=res.espacio;
             }
           },
@@ -72,7 +70,6 @@ export class PCopsComponent implements OnInit {
         res=>{  
           console.log(res);
           if(res.error==0){
-            console.log("en cargar cop");
             this.cop=res.cop;
           }
         },
