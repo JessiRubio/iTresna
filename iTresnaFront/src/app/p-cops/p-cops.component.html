@@ -6,20 +6,20 @@
     <div class="cop"><p>{{cop.desc_cop}}</p></div>
 </nav>
 <div class="opciones">
-        <label class = "ordenar">Ordenar por:
-            <select name="filtro" class="filtrar" (change)="ordenar($event.target.value)">
-                <option value="0"> Por fecha descendente</option>
-                <option value="1" > Por fecha ascendente</option>
-                <option value="2" > Por Usuario descendente</option>
-                <option value="3" > Por Usuario ascendente</option>
-            </select>
-        </label>
+        <mat-label class = "ordenar">Ordenar por:
+            <mat-select value="0" class="matSelect" name="filtro" class="filtrar" (selectionChange)="ordenar($event.value)">
+                <mat-option value="0"> Por fecha descendente</mat-option>
+                <mat-option value="1" > Por fecha ascendente</mat-option>
+                <mat-option value="2" > Por Usuario descendente</mat-option>
+                <mat-option value="3" > Por Usuario ascendente</mat-option>
+            </mat-select>
+        </mat-label>
         <label class = "filtros">Filtrar por:
-            <select name="filtroEtiquetas"  class="filtrar" (change)="filtrarEtiquetas($event.target.value)">
+            <select value="0" name="filtroEtiquetas"  class="filtrar" (change)="filtrarEtiquetas($event.target.value)">
                 <option value="0">Todas las etiquetas</option>
                 <option *ngFor="let item of cop.etiquetas;let i = index" value='{{i+1}}'>{{item.desc_etiqueta}}</option>             
             </select>
-            <select name="filtroUsuarios"  class="filtrar" (change)="filtrarUsuarios($event.target.value)"  >
+            <select value="0" name="filtroUsuarios"  class="filtrar" (change)="filtrarUsuarios($event.target.value)"  >
                 <option value="0">Todos los usuarios</option>
                 <option *ngFor="let item of cop.usuarios;let i = index" value='{{i+1}}'>{{item}}</option>
             </select>

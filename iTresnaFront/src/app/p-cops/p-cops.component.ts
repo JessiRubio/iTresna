@@ -113,27 +113,36 @@ export class PCopsComponent implements OnInit {
     return this.usuarioLogeado.tip_usuario==1||
       cod_org_actual==this.usuarioLogeado.cod_org;
   }
-  ordenar(valorSelect:string){
+  ordenar(valorSelect:String){
     switch(valorSelect){
       case "0":
         this.listaSenales.sort((a,b)=>{
           var x:Date = a.fecha_hora;
-            var y:Date = b.fecha_hora;
+          var y:Date = b.fecha_hora;
+          if((a.ind_fech_gest&&b.ind_fech_gest)||(!a.ind_fech_gest&&!b.ind_fech_gest)){
             return ((x<y) ? 1 : ((x>y) ? -1: 0));
+          }
+          else if(a.ind_fech_gest){
+            return -1;
+          }
+          else{
+            return 1;
+          }
+          
         });
         break;
       case "1":
           this.listaSenales.sort((a:SenalesItem,b:SenalesItem)=>{
             var x:Date = a.fecha_hora;
             var y:Date = b.fecha_hora;
-            if((a.ind_fech_gest&&b.ind_fech_gest)||(!a.ind_fech_gest&&b.ind_fech_gest)){
+            if((a.ind_fech_gest&&b.ind_fech_gest)||(!a.ind_fech_gest&&!b.ind_fech_gest)){
               return ((x<y) ? -1 : ((x>y) ? 1: 0));
             }
             else if(a.ind_fech_gest){
-              return 1;
+              return -1;
             }
             else{
-              return -1;
+              return 1;
             }
           });
         break;
@@ -141,14 +150,30 @@ export class PCopsComponent implements OnInit {
         this.listaSenales.sort((a,b)=>{
           var x:string = a.cod_usuario;
           var y:string = b.cod_usuario;
-          return ((x<y) ? 1 : ((x>y) ? -1: 0));
+          if((a.ind_fech_gest&&b.ind_fech_gest)||(!a.ind_fech_gest&&!b.ind_fech_gest)){
+            return ((x<y) ? 1 : ((x>y) ? -1: 0));
+          }
+          else if(a.ind_fech_gest){
+            return -1;
+          }
+          else{
+            return 1;
+          }
         });
         break;
       case "3":
           this.listaSenales.sort((a,b)=>{
             var x:string = a.cod_usuario;
             var y:string = b.cod_usuario;
-            return ((x<y) ? -1 : ((x>y) ? 1: 0));
+            if((a.ind_fech_gest&&b.ind_fech_gest)||(!a.ind_fech_gest&&!b.ind_fech_gest)){
+              return ((x<y) ? -1 : ((x>y) ? 1: 0));
+            }
+            else if(a.ind_fech_gest){
+              return -1;
+            }
+            else{
+              return 1;
+            }
           });
         break;
     }
