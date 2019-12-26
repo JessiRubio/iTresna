@@ -19,7 +19,6 @@ header {
     padding:1%;
     border-radius:1rem;
     margin: auto;
-    margin-top: 15em;
     
 }
 
@@ -98,7 +97,6 @@ pre{
   color: red;
 }
 
-
 @media only screen and (min-width:320px){
   .logSection{
     width: 70%;
@@ -119,7 +117,7 @@ pre{
   .logSection{
     width: 40%;
     margin: auto;
-    margin-top: 20%;
+    margin-top: 10%;
   }
 }
 
@@ -130,6 +128,5 @@ pre{
     margin-top: 10%;
   }
 }
-
 
 
