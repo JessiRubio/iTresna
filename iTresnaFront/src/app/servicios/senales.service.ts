@@ -18,6 +18,7 @@ export class SenalesService {
   like(cod_usuario:string,cod_org:number,cod_esp:number,
     cod_cop:number,cod_senal:number):Observable<any>{
     var JSON={
+      "nueva_senal":false,
       "cod_usuario":cod_usuario,
       "cod_org":cod_org,
       "cod_esp":cod_esp,

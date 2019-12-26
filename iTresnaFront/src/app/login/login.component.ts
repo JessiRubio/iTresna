@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   
   constructor(
     private usuariosService:UsuariosService,
-    private ruta: Router
+    private router: Router
   ) { 
     
     this.usuario = "";
@@ -25,19 +25,24 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+    if(localStorage.getItem("usuario")!=null){
+      this.router.navigateByUrl("Principal");
+    }
+    this.usuariosService.logged().subscribe(
+      res=>{
+        if(res){
+          this.router.navigateByUrl("Principal");
+        }
+      }
+    );
   }
-
   /* Funciones para el login */
   login(){
     this.usuariosService.login(this.usuario, this.password).subscribe(
       response=>{
-        if(response.error==0){
-          localStorage.setItem("usuario",JSON.stringify(response.usuario));
-          this.ruta.navigateByUrl("Principal");
-        }
-        else{
+        if(response.error==1){
           this.error="Datos Incorrectos";
+          setTimeout(()=>this.error="",2500);
         }
       },
       error=>{

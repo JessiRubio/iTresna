@@ -19,7 +19,6 @@ export class UsuariosService {
   logged():Observable<boolean>{
     return this.loginState.asObservable();
   }
-  
   /* Llamada al servicio php con los atributos del login */
   login(usuario:string,password:string):Observable<any>{
     var json={'usuario':usuario,'password':password};
@@ -28,6 +27,7 @@ export class UsuariosService {
       .then(
         response=>{
           if(response.error==0){
+            localStorage.setItem("usuario",JSON.stringify(response.usuario));
             this.loginState.next(response.error==0);
           }
         }
