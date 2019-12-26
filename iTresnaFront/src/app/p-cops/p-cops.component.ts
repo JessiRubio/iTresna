@@ -203,6 +203,7 @@ export class PCopsComponent implements OnInit {
       this.listSenalesMostradas=this.listaSenales;
     }
   }
+
   nuevaSenal(){
     const dialofConfig = new MatDialogConfig();
     dialofConfig.autoFocus=true;
