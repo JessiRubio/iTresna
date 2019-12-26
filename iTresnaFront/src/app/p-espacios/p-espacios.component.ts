@@ -30,9 +30,9 @@ export class PEspaciosComponent implements OnInit {
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     if(localStorage.length>0){
-      this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
+       this.usuarioLogado=await JSON.parse(localStorage.getItem("usuario"));
       this.espaciosPorCod(this.usuarioLogado.cod_org);
     }/*
     this.usuarioService.logged().subscribe(
@@ -90,13 +90,17 @@ export class PEspaciosComponent implements OnInit {
             }
         },
         err=>{
-            //TODO
         }
     );
   }
   
   estaEnPermisos(item:CopsItem):boolean{
-    return this.usuarioLogado.permisos.filter(x=>x.cod_esp===item.cod_esp && x.cod_cop===item.cod_cop).length>0||this.usuarioLogado.tip_usuario<2;
+    return this.usuarioLogado.permisos.filter(x=>{
+      console.log(item);
+      console.log(x);
+      return x.cod_org===item.cod_org && x.cod_esp===item.cod_esp && x.cod_cop===item.cod_cop;
+    }).length>0
+    ||this.usuarioLogado.tip_usuario<=2;
   }
 
 }

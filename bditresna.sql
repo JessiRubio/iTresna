@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2019 a las 16:44:14
+-- Tiempo de generación: 23-12-2019 a las 15:57:57
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -21,10 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bditresna`
 --
+CREATE DATABASE IF NOT EXISTS `bditresna` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `bditresna`;
 
-drop database bditresna;
-create database bditresna;
-use bditresna;
 -- --------------------------------------------------------
 
 --
@@ -32,31 +31,14 @@ use bditresna;
 --
 
 CREATE TABLE `t_comentarios` (
-  `cod_org` decimal(9,0) NOT NULL,
-  `cod_esp` decimal(2,0) NOT NULL,
-  `cod_cop` decimal(2,0) NOT NULL,
-  `cod_senal` decimal(2,0) NOT NULL,
-  `cod_usuario` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `cod_comentario` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
-  `comentario` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
+  `cod_comentario` int(11) NOT NULL,
+  `cod_senal` int(11) NOT NULL,
+  `cod_cop` int(11) NOT NULL,
+  `cod_esp` int(11) NOT NULL,
+  `cod_org` int(11) NOT NULL,
+  `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `comentario` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `t_comentarios`
---
-
-INSERT INTO `t_comentarios` (`cod_org`, `cod_esp`, `cod_cop`, `cod_senal`, `cod_usuario`, `cod_comentario`, `comentario`) VALUES
-('15763', '1', '1', '51', 'usu-05@org1.com', '', 'aaaaaaaaaaaaaaa'),
-('15763', '1', '2', '61', 'usu-05@org1.com', '', 'bbbb bbbbb'),
-('15763', '2', '1', '71', 'usu-03@org1.com', '', 'ccc ccc ccc'),
-('15763', '2', '2', '81', 'usu-03@org1.com', '', 'dddd ddddd dddd dd'),
-('15763', '3', '1', '91', 'usu-05@org1.com', '', 'eeee'),
-('444555', '1', '0', '12', 'usu-01@org2.com', '', 'ffffffffffffff'),
-('444555', '1', '2', '22', 'usu-01@org2.com', '', 'mdmdmdmdm I dkldk'),
-('444555', '1', '5', '32', 'usu-04@org2.com', '', 'ajkhdjkah sdah sdhakjdfhajk fh'),
-('444555', '1', '5', '42', 'usu-04@org2.com', '', 'cdfsgarsa safdegdrae ggadref gare'),
-('444555', '1', '5', '52', 'usu-04@org2.com', '', 'ooooooooooooooooooorrr rrrr'),
-('444555', '2', '1', '62', 'usu-04@org2.com', '', 'drfsgoiwesdhguewfewuifuv eufewui ');
 
 -- --------------------------------------------------------
 
@@ -65,11 +47,11 @@ INSERT INTO `t_comentarios` (`cod_org`, `cod_esp`, `cod_cop`, `cod_senal`, `cod_
 --
 
 CREATE TABLE `t_cops` (
-  `cod_cop` decimal(2,0) NOT NULL,
-  `cod_org` decimal(9,0) NOT NULL,
-  `cod_esp` decimal(2,0) NOT NULL,
+  `cod_cop` int(11) NOT NULL,
+  `cod_esp` int(11) NOT NULL,
+  `cod_org` int(11) NOT NULL,
   `desc_cop` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `img_cop` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `img_cop` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ind_cop_graficos` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -77,19 +59,20 @@ CREATE TABLE `t_cops` (
 -- Volcado de datos para la tabla `t_cops`
 --
 
-INSERT INTO `t_cops` (`cod_cop`, `cod_org`, `cod_esp`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
-('0', '15763', '1', 'Señales Relevantes ORG1', NULL, 0),
-('0', '444555', '1', 'Señales Relevantes ORG2', NULL, 0),
-('1', '15763', '1', 'Informática', NULL, 0),
-('1', '15763', '2', 'Pre-proyectos ORG1', NULL, 1),
-('1', '15763', '3', 'Plan de Explotación ORG1', NULL, 0),
-('1', '444555', '2', 'Pre-Proyecto ORG2', NULL, 1),
-('1', '444555', '3', 'Plan de explotación ORG2', NULL, 0),
-('2', '15763', '1', 'Kimika', NULL, 0),
-('2', '15763', '2', 'Poyectos en curso ORG1', NULL, 0),
-('2', '444555', '1', 'Administración y finanzas', NULL, 0),
-('2', '444555', '2', 'Proyectos en curso ORG2', NULL, 0),
-('5', '444555', '1', 'Integración social', NULL, 0);
+INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
+(1, 1, 1, 'Señales Relevantes', NULL, NULL),
+(2, 1, 1, 'Informatica', NULL, NULL),
+(3, 1, 1, 'Integración Social', NULL, NULL),
+(4, 1, 1, 'Administración y Finanzas', NULL, NULL),
+(5, 1, 1, 'F.O.L.', NULL, NULL),
+(6, 2, 1, 'Pre-proyecto', NULL, NULL),
+(7, 2, 1, 'Proyecto en curso', NULL, NULL),
+(8, 3, 1, 'Plan de Explotación', NULL, NULL),
+(11, 4, 2, 'Señales Relevantes', NULL, NULL),
+(12, 4, 2, 'Ibermatica Digital', NULL, NULL),
+(13, 5, 2, 'Pre-proyectos', NULL, NULL),
+(14, 5, 2, 'Proyecto en curso', NULL, NULL),
+(15, 6, 2, 'Plan de Explotación', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -98,9 +81,9 @@ INSERT INTO `t_cops` (`cod_cop`, `cod_org`, `cod_esp`, `desc_cop`, `img_cop`, `i
 --
 
 CREATE TABLE `t_espacios` (
-  `cod_esp` decimal(2,0) NOT NULL,
-  `cod_org` decimal(9,0) NOT NULL,
-  `desc_esp` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `cod_esp` int(11) NOT NULL,
+  `cod_org` int(11) NOT NULL,
+  `desc_esp` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ind_esp_curacion` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -109,12 +92,12 @@ CREATE TABLE `t_espacios` (
 --
 
 INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`) VALUES
-('1', '15763', 'Rutina de Innovación ORG1', 1),
-('1', '444555', 'Rutina de Innovación ORG2', 1),
-('2', '15763', 'Rutina de Portafolio ORG1', 0),
-('2', '444555', 'Rutina de Portafolio ORG2', 0),
-('3', '15763', 'Rutina de Explotación ORG1', 0),
-('3', '444555', 'Rutina de Explotación ORG2', 0);
+(1, 1, 'Rutina de Innovación', NULL),
+(2, 1, 'Rutina de Portafolio', NULL),
+(3, 1, 'Rutina de Explotación', NULL),
+(4, 2, 'Rutina de Innovación', NULL),
+(5, 2, 'Rutina de Portafolio', NULL),
+(6, 2, 'Rutina de Explotación', NULL);
 
 -- --------------------------------------------------------
 
@@ -123,35 +106,12 @@ INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`) 
 --
 
 CREATE TABLE `t_etiquetas` (
-  `cod_etiqueta` decimal(2,0) NOT NULL,
-  `cod_org` decimal(9,0) NOT NULL,
-  `cod_esp` decimal(2,0) NOT NULL,
-  `cod_cop` decimal(2,0) NOT NULL,
-  `desc_etiqueta` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL
+  `cod_etiqueta` int(11) NOT NULL,
+  `cod_cop` int(11) NOT NULL,
+  `cod_esp` int(11) NOT NULL,
+  `cod_org` int(11) NOT NULL,
+  `desc_etiqueta` varchar(16) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `t_etiquetas`
---
-
-INSERT INTO `t_etiquetas` (`cod_etiqueta`, `cod_org`, `cod_esp`, `cod_cop`, `desc_etiqueta`) VALUES
-('0', '15763', '1', '0', 'General'),
-('0', '444555', '1', '0', 'General'),
-('0', '15763', '1', '1', 'General'),
-('0', '15763', '1', '2', 'General'),
-('0', '444555', '1', '2', 'General'),
-('0', '444555', '1', '5', 'General'),
-('0', '15763', '2', '1', 'General'),
-('0', '444555', '2', '1', 'General'),
-('0', '15763', '2', '2', 'General'),
-('0', '444555', '2', '2', 'General'),
-('0', '15763', '3', '1', 'General'),
-('0', '444555', '3', '1', 'General'),
-('1', '15763', '1', '1', 'Software'),
-('1', '444555', '1', '5', 'Ayudas domicili'),
-('2', '15763', '1', '1', 'Hardware'),
-('2', '444555', '1', '5', 'Domótica'),
-('3', '15763', '1', '1', 'Realidad Virtua');
 
 -- --------------------------------------------------------
 
@@ -160,29 +120,12 @@ INSERT INTO `t_etiquetas` (`cod_etiqueta`, `cod_org`, `cod_esp`, `cod_cop`, `des
 --
 
 CREATE TABLE `t_megusta` (
-  `cod_usuario` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `cod_org` decimal(9,0) NOT NULL,
-  `cod_esp` decimal(2,0) NOT NULL,
-  `cod_cop` decimal(2,0) NOT NULL,
-  `cod_senal` decimal(2,0) NOT NULL
+  `cod_senal` int(11) NOT NULL,
+  `cod_cop` int(11) NOT NULL,
+  `cod_esp` int(11) NOT NULL,
+  `cod_org` int(11) NOT NULL,
+  `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `t_megusta`
---
-
-INSERT INTO `t_megusta` (`cod_usuario`, `cod_org`, `cod_esp`, `cod_cop`, `cod_senal`) VALUES
-('usu-01@org2.com', '444555', '1', '0', '12'),
-('usu-01@org2.com', '444555', '1', '2', '22'),
-('usu-03@org1.com', '15763', '2', '1', '71'),
-('usu-03@org1.com', '15763', '2', '2', '81'),
-('usu-04@org2.com', '444555', '1', '5', '32'),
-('usu-04@org2.com', '444555', '1', '5', '42'),
-('usu-04@org2.com', '444555', '1', '5', '52'),
-('usu-04@org2.com', '444555', '2', '1', '62'),
-('usu-05@org1.com', '15763', '1', '1', '51'),
-('usu-05@org1.com', '15763', '1', '2', '61'),
-('usu-05@org1.com', '15763', '3', '1', '91');
 
 -- --------------------------------------------------------
 
@@ -191,8 +134,8 @@ INSERT INTO `t_megusta` (`cod_usuario`, `cod_org`, `cod_esp`, `cod_cop`, `cod_se
 --
 
 CREATE TABLE `t_org` (
-  `cod_org` decimal(8,0) NOT NULL,
-  `desc_org` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
+  `cod_org` int(11) NOT NULL,
+  `desc_org` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -200,8 +143,8 @@ CREATE TABLE `t_org` (
 --
 
 INSERT INTO `t_org` (`cod_org`, `desc_org`) VALUES
-('15763', 'Primera Organización Pruebas 15763'),
-('444555', 'Segunda Organización Pruebas 44555');
+(1, 'FP Txurdinaga'),
+(2, 'Ibermatica');
 
 -- --------------------------------------------------------
 
@@ -210,10 +153,10 @@ INSERT INTO `t_org` (`cod_org`, `desc_org`) VALUES
 --
 
 CREATE TABLE `t_permisos` (
-  `cod_usuario` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `cod_org` decimal(9,0) NOT NULL,
-  `cod_esp` decimal(2,0) NOT NULL,
-  `cod_cop` decimal(2,0) NOT NULL,
+  `cod_usuario` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
+  `cod_cop` int(11) NOT NULL,
+  `cod_esp` int(11) NOT NULL,
+  `cod_org` int(11) NOT NULL,
   `ind_admin` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -221,37 +164,8 @@ CREATE TABLE `t_permisos` (
 -- Volcado de datos para la tabla `t_permisos`
 --
 
-INSERT INTO `t_permisos` (`cod_usuario`, `cod_org`, `cod_esp`, `cod_cop`, `ind_admin`) VALUES
-('usu-01@org1.com', '15763', '1', '0', 0),
-('usu-01@org2.com', '444555', '1', '0', 0),
-('usu-02@org1.com', '15763', '1', '0', 0),
-('usu-02@org1.com', '15763', '1', '1', 0),
-('usu-02@org1.com', '15763', '1', '2', 0),
-('usu-02@org1.com', '15763', '2', '2', 0),
-('usu-02@org2.com', '444555', '1', '0', 0),
-('usu-02@org2.com', '444555', '1', '1', 0),
-('usu-02@org2.com', '444555', '1', '2', 0),
-('usu-02@org2.com', '444555', '2', '2', 0),
-('usu-03@org1.com', '15763', '1', '0', 0),
-('usu-03@org1.com', '15763', '1', '3', 1),
-('usu-03@org1.com', '15763', '2', '1', 0),
-('usu-03@org2.com', '444555', '1', '0', 0),
-('usu-03@org2.com', '444555', '1', '3', 1),
-('usu-03@org2.com', '444555', '2', '1', 0),
-('usu-04@org1.com', '15763', '1', '0', 0),
-('usu-04@org1.com', '15763', '1', '3', 0),
-('usu-04@org1.com', '15763', '2', '2', 1),
-('usu-04@org2.com', '444555', '1', '0', 0),
-('usu-04@org2.com', '444555', '1', '3', 0),
-('usu-04@org2.com', '444555', '2', '2', 1),
-('usu-05@org1.com', '15763', '1', '0', 0),
-('usu-05@org1.com', '15763', '1', '1', 1),
-('usu-05@org1.com', '15763', '1', '2', 1),
-('usu-05@org1.com', '15763', '2', '1', 0),
-('usu-05@org2.com', '15763', '2', '1', 1),
-('usu-05@org2.com', '444555', '1', '0', 0),
-('usu-05@org2.com', '444555', '1', '1', 1),
-('usu-05@org2.com', '444555', '2', '1', 1);
+INSERT INTO `t_permisos` (`cod_usuario`, `cod_cop`, `cod_esp`, `cod_org`, `ind_admin`) VALUES
+('usuario@usuario.com', 11, 4, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -260,40 +174,17 @@ INSERT INTO `t_permisos` (`cod_usuario`, `cod_org`, `cod_esp`, `cod_cop`, `ind_a
 --
 
 CREATE TABLE `t_senales` (
-  `cod_senal` decimal(2,0) NOT NULL,
-  `cod_org` decimal(9,0) NOT NULL,
-  `cod_esp` decimal(2,0) NOT NULL,
-  `cod_cop` decimal(2,0) NOT NULL,
-  `cod_etiqueta` decimal(2,0) DEFAULT NULL,
-  `desc_senal` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `enlace` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `cod_usuario` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
-  `ind_fich_gest` tinyint(1) DEFAULT NULL
+  `cod_senal` int(11) NOT NULL,
+  `cod_cop` int(11) NOT NULL,
+  `cod_esp` int(11) NOT NULL,
+  `cod_org` int(11) NOT NULL,
+  `cod_etiqueta` int(11) DEFAULT NULL,
+  `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `desc_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `enlace` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fecha_hora` date DEFAULT NULL,
+  `ind_fich_gest` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `t_senales`
---
-
-INSERT INTO `t_senales` (`cod_senal`, `cod_org`, `cod_esp`, `cod_cop`, `cod_etiqueta`, `desc_senal`, `enlace`, `fecha_hora`, `cod_usuario`, `ind_fich_gest`) VALUES
-('11', '15763', '1', '0', '0', 'Desc 1 kkkkk 1', 'url', '2019-12-16 15:41:36', 'usu-01@org1.com', 1),
-('12', '444555', '1', '0', '0', 'Desc 1 kkkkk 2', 'url', '2019-12-16 15:41:39', 'usu-03@org2.com', 1),
-('21', '15763', '1', '1', '1', 'Desc 2 kkkkk 1', 'url', '2019-12-16 15:41:43', 'usu-04@org1.com', 0),
-('22', '444555', '1', '2', '0', 'Desc 2 kkkkk 2', 'url', '2019-12-16 15:41:45', 'usu-05@org2.com', 0),
-('31', '15763', '1', '1', '1', 'Desc 3 kkkkk 1', 'url', '2019-12-16 15:41:51', 'usu-01@org1.com', 0),
-('32', '444555', '1', '5', '2', 'Desc 3 kkkkk 2', 'url', '2019-12-16 15:41:56', 'usu-01@org2.com', 0),
-('41', '15763', '1', '1', '0', 'Desc 4 kkkkk 1', 'url', '2019-12-16 15:41:58', 'usu-05@org1.com', 0),
-('42', '444555', '1', '5', '0', 'Desc 4 kkkkk 2', 'url', '2019-12-16 15:42:00', 'usu-02@org2.com', 0),
-('51', '15763', '1', '1', '0', 'Desc 5 kkkkk 1', 'url', '2019-12-16 15:42:03', '', 0),
-('52', '444555', '1', '5', '0', 'Desc 5 kkkkk 2', 'url', '2019-12-16 15:42:04', '', 0),
-('61', '15763', '1', '2', '1', 'Desc 6 kkkkk 1', 'url', '2019-12-16 15:42:08', 'usu-02@org1.com', 0),
-('62', '444555', '2', '1', '0', 'Desc 6 kkkkk 2', 'url', '2019-12-16 15:42:10', 'usu-01@org2.com', 0),
-('71', '15763', '2', '1', '1', 'Desc 7 kkkkk 1', 'url', '2019-12-16 15:42:14', 'usu-02@org1.com', 0),
-('72', '444555', '2', '2', '0', 'Desc 7 kkkkk 2', 'url', '2019-12-16 15:42:16', '', 0),
-('81', '15763', '2', '2', '0', 'Desc 8 kkkkk 1', 'url', '2019-12-16 15:42:18', 'usu-02@org1.com', 0),
-('82', '444555', '3', '1', '0', 'Desc 8 kkkkk 2', 'url', '2019-12-16 15:42:20', 'usu-01@org1.com', 0),
-('91', '15763', '1', '0', '0', 'Desc 9 kkkkk 1', 'url', '2019-12-16 15:42:21', 'usu-02@org1.com', 0);
 
 -- --------------------------------------------------------
 
@@ -302,8 +193,8 @@ INSERT INTO `t_senales` (`cod_senal`, `cod_org`, `cod_esp`, `cod_cop`, `cod_etiq
 --
 
 CREATE TABLE `t_tip_usuario` (
-  `tip_usuario` decimal(2,0) NOT NULL,
-  `desc_usuario` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL
+  `tip_usuario` int(11) NOT NULL,
+  `desc_usuario` varchar(33) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -311,9 +202,9 @@ CREATE TABLE `t_tip_usuario` (
 --
 
 INSERT INTO `t_tip_usuario` (`tip_usuario`, `desc_usuario`) VALUES
-('1', 'Administración general de'),
-('2', 'Administrador de una Orga'),
-('3', 'Usuario de una organizaci');
+(1, 'Administrador de una Organización'),
+(2, 'Usuario de una organización'),
+(3, 'Usuario de una Organización');
 
 -- --------------------------------------------------------
 
@@ -322,24 +213,9 @@ INSERT INTO `t_tip_usuario` (`tip_usuario`, `desc_usuario`) VALUES
 --
 
 CREATE TABLE `t_tip_variable` (
-  `tip_variable` decimal(2,0) NOT NULL,
-  `desc_variable` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL
+  `tip_variable` int(11) NOT NULL,
+  `desc_variable` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `t_tip_variable`
---
-
-INSERT INTO `t_tip_variable` (`tip_variable`, `desc_variable`) VALUES
-('1', 'Recurso económicos'),
-('2', 'Recursos horarios'),
-('3', 'Impacto y Urgencia'),
-('4', 'Incertidumbre'),
-('5', 'Carácter Innovador'),
-('6', 'Variable 1'),
-('7', 'Variable 2'),
-('8', 'Variable 3'),
-('9', 'Variable 4');
 
 -- --------------------------------------------------------
 
@@ -348,13 +224,13 @@ INSERT INTO `t_tip_variable` (`tip_variable`, `desc_variable`) VALUES
 --
 
 CREATE TABLE `t_usuarios` (
-  `cod_usuario` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `tip_usuario` decimal(2,0) DEFAULT NULL,
-  `cod_org` decimal(9,0) NOT NULL,
-  `sarbidea` decimal(8,0) DEFAULT NULL,
-  `nombre` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ape1` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ape2` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL
+  `cod_usuario` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
+  `tip_usuario` int(11) DEFAULT NULL,
+  `cod_org` int(11) DEFAULT NULL,
+  `sarbidea` varchar(16) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nombre` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ape1` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ape2` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -362,18 +238,11 @@ CREATE TABLE `t_usuarios` (
 --
 
 INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `nombre`, `ape1`, `ape2`) VALUES
-('Adm_gnrl@iTresna.com', '1', '15763', '12345678', 'ADM-1', 'Adminape1', 'Adminape2'),
-('Adm-ORG-1@@ORG1.COM', '2', '15763', '12345678', 'ADM-1', 'Ap21', 'Ap22'),
-('usu-01@org1.com', '4', '15763', '12345678', 'JCP2', 'Ap21', 'Ap22'),
-('usu-02@org1.com', '4', '15763', '12345678', 'JCP2', 'Ap21', 'Ap22'),
-('usu-03@org1.com', '4', '15763', '12345678', 'JCP2', 'Ap21', 'Ap22'),
-('usu-04@org1.com', '4', '15763', '12345678', 'JCP2222', 'Ap21', 'Ap22'),
-('usu-05@org1.com', '4', '15763', '12345678', 'JCP22', 'Ap21', 'Ap22'),
-('usu-01@org2.com', '4', '444555', '12345678', 'UB3', 'Ap31', 'Ap32'),
-('usu-02@org2.com', '4', '444555', '12345678', 'UB3', 'Ap31', 'Ap32'),
-('usu-03@org2.com', '4', '444555', '12345678', 'UB3', 'Ap31', 'Ap32'),
-('usu-04@org2.com', '4', '444555', '12345678', 'UB3', 'Ap31', 'Ap32'),
-('usu-05@org2.com', '4', '444555', '12345678', 'UB3', 'Ap31', 'Ap32');
+('jaime.corrales@gmail.com', 1, 1, 'jaime123', 'Jaime', 'Corrales', 'Petralanda'),
+('jonanderdecastro@gmail.com', 2, 1, '12345678', 'Jon Ander', 'De Castro', 'Da Silva'),
+('rubiovargas.jessica@gmail.com', 2, 1, '12345678', 'Jessica', 'Rubio', 'Vargas'),
+('unaimarg@gmail.com', 2, 2, '12345678', 'Unai', 'Martin', 'Gonzalez'),
+('usuario@usuario.com', 3, 2, '12345678', 'Usuario', '', '');
 
 -- --------------------------------------------------------
 
@@ -382,35 +251,13 @@ INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `
 --
 
 CREATE TABLE `t_variable` (
-  `cod_org` decimal(9,0) NOT NULL,
-  `cod_esp` decimal(2,0) NOT NULL,
-  `cod_cop` decimal(2,0) NOT NULL,
-  `cod_señal` decimal(2,0) NOT NULL,
-  `tip_variable` decimal(2,0) NOT NULL,
-  `val_variable` decimal(2,0) DEFAULT NULL
+  `cod_senal` int(11) NOT NULL,
+  `cod_cop` int(11) NOT NULL,
+  `cod_esp` int(11) NOT NULL,
+  `cod_org` int(11) NOT NULL,
+  `tip_variable` int(11) DEFAULT NULL,
+  `val_variable` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `t_variable`
---
-
-INSERT INTO `t_variable` (`cod_org`, `cod_esp`, `cod_cop`, `cod_señal`, `tip_variable`, `val_variable`) VALUES
-('15763', '2', '1', '71', '1', '45'),
-('15763', '2', '1', '71', '2', '57'),
-('15763', '2', '1', '71', '3', '4'),
-('15763', '2', '1', '71', '4', '23'),
-('15763', '2', '1', '72', '1', '78'),
-('15763', '2', '1', '72', '2', '21'),
-('15763', '2', '1', '72', '3', '2'),
-('15763', '2', '1', '72', '4', '4'),
-('444555', '2', '1', '62', '1', '88'),
-('444555', '2', '1', '62', '2', '9'),
-('444555', '2', '1', '62', '3', '12'),
-('444555', '2', '1', '62', '4', '33'),
-('444555', '2', '1', '63', '1', '44'),
-('444555', '2', '1', '63', '2', '55'),
-('444555', '2', '1', '63', '3', '66'),
-('444555', '2', '1', '63', '4', '77');
 
 --
 -- Índices para tablas volcadas
@@ -420,31 +267,37 @@ INSERT INTO `t_variable` (`cod_org`, `cod_esp`, `cod_cop`, `cod_señal`, `tip_va
 -- Indices de la tabla `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
-  ADD PRIMARY KEY (`cod_org`,`cod_esp`,`cod_cop`,`cod_senal`,`cod_usuario`,`cod_comentario`);
+  ADD PRIMARY KEY (`cod_comentario`,`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fk_t_comentario_senal` (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fp_comentario_usuario` (`cod_usuario`);
 
 --
 -- Indices de la tabla `t_cops`
 --
 ALTER TABLE `t_cops`
-  ADD PRIMARY KEY (`cod_cop`,`cod_org`,`cod_esp`);
+  ADD PRIMARY KEY (`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fk_t_cops` (`cod_esp`,`cod_org`);
 
 --
 -- Indices de la tabla `t_espacios`
 --
 ALTER TABLE `t_espacios`
-  ADD PRIMARY KEY (`cod_esp`,`cod_org`);
+  ADD PRIMARY KEY (`cod_esp`,`cod_org`),
+  ADD KEY `fk_t_espacios` (`cod_org`);
 
 --
 -- Indices de la tabla `t_etiquetas`
 --
 ALTER TABLE `t_etiquetas`
-  ADD PRIMARY KEY (`cod_etiqueta`,`cod_esp`,`cod_cop`,`cod_org`);
+  ADD PRIMARY KEY (`cod_etiqueta`,`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fk_t_etiquetas` (`cod_cop`,`cod_esp`,`cod_org`);
 
 --
 -- Indices de la tabla `t_megusta`
 --
 ALTER TABLE `t_megusta`
-  ADD PRIMARY KEY (`cod_usuario`,`cod_org`,`cod_esp`,`cod_cop`,`cod_senal`);
+  ADD PRIMARY KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fk_t_meguta_usuario` (`cod_usuario`);
 
 --
 -- Indices de la tabla `t_org`
@@ -456,13 +309,17 @@ ALTER TABLE `t_org`
 -- Indices de la tabla `t_permisos`
 --
 ALTER TABLE `t_permisos`
-  ADD PRIMARY KEY (`cod_usuario`,`cod_org`,`cod_esp`,`cod_cop`);
+  ADD PRIMARY KEY (`cod_usuario`,`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fk_t_permisos_cop` (`cod_cop`,`cod_esp`,`cod_org`);
 
 --
 -- Indices de la tabla `t_senales`
 --
 ALTER TABLE `t_senales`
-  ADD PRIMARY KEY (`cod_senal`,`cod_esp`,`cod_org`,`cod_cop`);
+  ADD PRIMARY KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fk_t_senales_cop` (`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fk_t_senales_usuario` (`cod_usuario`),
+  ADD KEY `fk_t_senales_etiqueta` (`cod_etiqueta`);
 
 --
 -- Indices de la tabla `t_tip_usuario`
@@ -480,13 +337,133 @@ ALTER TABLE `t_tip_variable`
 -- Indices de la tabla `t_usuarios`
 --
 ALTER TABLE `t_usuarios`
-  ADD PRIMARY KEY (`cod_org`,`cod_usuario`);
+  ADD PRIMARY KEY (`cod_usuario`),
+  ADD KEY `fK_t_usuario_tip` (`tip_usuario`),
+  ADD KEY `fk_t_usuario_org` (`cod_org`);
 
 --
 -- Indices de la tabla `t_variable`
 --
 ALTER TABLE `t_variable`
-  ADD PRIMARY KEY (`cod_org`,`cod_esp`,`cod_cop`,`cod_señal`,`tip_variable`);
+  ADD PRIMARY KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
+  ADD KEY `fk_variable_tipo` (`tip_variable`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `t_comentarios`
+--
+ALTER TABLE `t_comentarios`
+  MODIFY `cod_comentario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `t_cops`
+--
+ALTER TABLE `t_cops`
+  MODIFY `cod_cop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `t_espacios`
+--
+ALTER TABLE `t_espacios`
+  MODIFY `cod_esp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `t_etiquetas`
+--
+ALTER TABLE `t_etiquetas`
+  MODIFY `cod_etiqueta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `t_org`
+--
+ALTER TABLE `t_org`
+  MODIFY `cod_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `t_senales`
+--
+ALTER TABLE `t_senales`
+  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `t_tip_usuario`
+--
+ALTER TABLE `t_tip_usuario`
+  MODIFY `tip_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `t_tip_variable`
+--
+ALTER TABLE `t_tip_variable`
+  MODIFY `tip_variable` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `t_comentarios`
+--
+ALTER TABLE `t_comentarios`
+  ADD CONSTRAINT `fk_t_comentario_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fp_comentario_usuario` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`);
+
+--
+-- Filtros para la tabla `t_cops`
+--
+ALTER TABLE `t_cops`
+  ADD CONSTRAINT `fk_t_cops` FOREIGN KEY (`cod_esp`,`cod_org`) REFERENCES `t_espacios` (`cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `t_espacios`
+--
+ALTER TABLE `t_espacios`
+  ADD CONSTRAINT `fk_t_espacios` FOREIGN KEY (`cod_org`) REFERENCES `t_org` (`cod_org`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `t_etiquetas`
+--
+ALTER TABLE `t_etiquetas`
+  ADD CONSTRAINT `fk_t_etiquetas` FOREIGN KEY (`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_cops` (`cod_cop`, `cod_esp`, `cod_org`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `t_megusta`
+--
+ALTER TABLE `t_megusta`
+  ADD CONSTRAINT `fk_t_megusta_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_t_meguta_usuario` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `t_permisos`
+--
+ALTER TABLE `t_permisos`
+  ADD CONSTRAINT `fk_t_permisos_USUARIO` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_t_permisos_cop` FOREIGN KEY (`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_cops` (`cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `t_senales`
+--
+ALTER TABLE `t_senales`
+  ADD CONSTRAINT `fk_t_senales_cop` FOREIGN KEY (`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_cops` (`cod_cop`, `cod_esp`, `cod_org`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_t_senales_etiqueta` FOREIGN KEY (`cod_etiqueta`) REFERENCES `t_etiquetas` (`cod_etiqueta`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_t_senales_usuario` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `t_usuarios`
+--
+ALTER TABLE `t_usuarios`
+  ADD CONSTRAINT `fK_t_usuario_tip` FOREIGN KEY (`tip_usuario`) REFERENCES `t_tip_usuario` (`tip_usuario`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_t_usuario_org` FOREIGN KEY (`cod_org`) REFERENCES `t_org` (`cod_org`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `t_variable`
+--
+ALTER TABLE `t_variable`
+  ADD CONSTRAINT `fk_t_variable_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_variable_tipo` FOREIGN KEY (`tip_variable`) REFERENCES `t_tip_variable` (`tip_variable`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -12,7 +12,7 @@
     $result["error"]=1;
     if (isset($cod_org) && $cod_org!="" && isset($cod_esp)
         && $cod_esp!="" && isset($cod_cop) && $cod_cop!=""){
-        $sql="SELECT DISTINCT cop.desc_cop, cop.img_cop,cop.ind_cop_graficos, COUNT(sen.cod_senal)
+        $sql="SELECT DISTINCT cop.cod_org,cop.cod_esp,cop.cod_cop,cop.desc_cop, cop.img_cop,cop.ind_cop_graficos, COUNT(sen.cod_senal)
                 FROM t_cops cop
                 LEFT JOIN t_senales sen
                 ON cop.cod_org=sen.cod_org 
@@ -22,14 +22,14 @@
                 GROUP BY cop.cod_cop, cop.cod_esp, cop.cod_org
                 ORDER BY cop.cod_cop";
         $query=$conexion->prepare($sql);
-        $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
+        $query->bind_param("iii",$cod_org,$cod_esp,$cod_cop);
         $query->execute();
-        $query->bind_result($desc_cop,$img_cop,$ind_cop_graficos,$cantidad_senales);
+        $query->bind_result($cod_org_bd,$cod_esp_bd,$cod_cop_bd,$desc_cop,$img_cop,$ind_cop_graficos,$cantidad_senales);
         $query->fetch();
         $result["cop"]=array(
-            "cod_org"=>$cod_org,
-            "cod_esp"=>$cod_esp,
-            "cod_cop"=>$cod_cop,
+            "cod_org"=>$cod_org_bd,
+            "cod_esp"=>$cod_esp_bd,
+            "cod_cop"=>$cod_cop_bd,
             "desc_cop"=>$desc_cop,
             "img_cop"=>$img_cop,
             "ind_cop_graficos"=>$ind_cop_graficos,
@@ -41,7 +41,8 @@
         $result["error"]=0;
     }
     else if(isset($cod_org) && $cod_org!="" && isset($cod_esp) && $cod_esp!="" && isset($cod_usuario) && $cod_usuario!= "" ){
-        $sql="SELECT DISTINCT cop.cod_cop, cop.desc_cop, cop.img_cop,cop.ind_cop_graficos, COUNT(sen.cod_senal)
+        
+        $sql="SELECT DISTINCT cop.cod_org,cop.cod_esp,cop.cod_cop, cop.desc_cop, cop.img_cop,cop.ind_cop_graficos, COUNT(sen.cod_senal)
                 FROM t_cops cop
                 LEFT JOIN t_senales sen
                 ON cop.cod_org=sen.cod_org 
@@ -52,13 +53,13 @@
                 ORDER BY (SELECT cod_cop FROM t_permisos WHERE cod_usuario=?
                            AND cod_org=? AND cod_esp=? AND cod_cop=cop.cod_cop) DESC";
         $query=$conexion->prepare($sql);
-        $query->bind_param("ddsdd",$cod_org,$cod_esp,$cod_usuario,$cod_org,$cod_esp);
+        $query->bind_param("iisii",$cod_org,$cod_esp,$cod_usuario,$cod_org,$cod_esp);
         $query->execute();
-        $query->bind_result($cod_cop,$desc_cop,$img_cop,$ind_cop_graficos,$cantidad_senales);
+        $query->bind_result($cod_org_bd,$cod_esp_bd,$cod_cop,$desc_cop,$img_cop,$ind_cop_graficos,$cantidad_senales);
         while($query->fetch()){
             $result["cops"][]=array(
-                "cod_org"=>$cod_org,
-                "cod_esp"=>$cod_esp,
+                "cod_org"=>$cod_org_bd,
+                "cod_esp"=>$cod_esp_bd,
                 "cod_cop"=>$cod_cop,
                 "desc_cop"=>$desc_cop,
                 "img_cop"=>$img_cop,
@@ -75,7 +76,7 @@
                 FROM t_etiquetas
                 WHERE cod_org=? AND cod_esp=? AND cod_cop=?";
         $query=$conexion->prepare($sql);
-        $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
+        $query->bind_param("iii",$cod_org,$cod_esp,$cod_cop);
         $query->execute();
         $query->bind_result($desc_etiqueta, $cod_etiqueta);
         while($query->fetch()){
@@ -94,7 +95,7 @@
             FROM t_usuarios tu, t_permisos tp 
             WHERE tp.cod_org=? AND tp.cod_esp=? AND tp.cod_cop=? AND tu.cod_usuario = tp.cod_usuario";
         $query=$conexion->prepare($sql);
-        $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
+        $query->bind_param("iii",$cod_org,$cod_esp,$cod_cop);
         $query->execute();
         $query->bind_result($nombre, $ape1, $ape2);
         while($query->fetch()){
