@@ -7,6 +7,7 @@ import { CopsService } from './../servicios/cops.service';
 import { EspaciosItem } from '../clases/espaciosItem';
 import { NavigationExtras } from '@angular/router'
 import { Usuario, Permiso } from '../clases/usuario';
+import { UsuariosService } from '../servicios/usuarios.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class PEspaciosComponent implements OnInit {
   constructor(
     private espaciosService:EspaciosService,
     private copService:CopsService,
-    private router: Router
+    private router: Router,
+    private usuarioService:UsuariosService
   ) { 
     this.listaEspacios=[];
   }
@@ -32,7 +34,17 @@ export class PEspaciosComponent implements OnInit {
     if(localStorage.length>0){
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
       this.espaciosPorCod(this.usuarioLogado.cod_org);
-    }
+    }/*
+    this.usuarioService.logged().subscribe(
+      x=>{
+        if(!x){
+          this.router.navigateByUrl("")
+        }else{
+          
+        }
+      }
+    );
+    */
   }
   espaciosPorCod(cod_org:number){
     this.espaciosService.getEspacios(cod_org)

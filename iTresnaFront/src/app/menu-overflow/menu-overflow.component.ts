@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario, Permiso } from '../clases/usuario';
+import { UsuariosService } from '../servicios/usuarios.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Usuario, Permiso } from '../clases/usuario';
 })
 export class MenuOverflowComponent implements OnInit {
 
-  constructor( private ruta: Router) {
+  constructor( private ruta: Router,private usuarioService:UsuariosService) {
 
     this.ruta.events.subscribe((ev) => {
       if (localStorage.getItem("usuario") === null) {
@@ -26,8 +27,7 @@ export class MenuOverflowComponent implements OnInit {
 
   onClick(e){
     if(e.target.innerHTML==='Cerrar sesión'){
-      localStorage.clear();
-      this.ruta.navigateByUrl("");
+      this.usuarioService.logout();
     }
   }
 

@@ -22,35 +22,30 @@ export class LoginComponent implements OnInit {
     this.usuario = "";
     this.password = "";
     this.error = "";
-
-    this.ruta.events.subscribe((ev) => {
-      if (localStorage.getItem("usuario").length>0) {
-        this.ruta.navigateByUrl("Principal");
-      }
-    });
-
   }
 
   ngOnInit() {
-
+    /*
+    this.usuariosService.logged().subscribe(
+      res=> {
+        if(res){
+          this.ruta.navigateByUrl("Principal")
+        }
+      },
+      error=>{
+      }
+    );
+    */
   }
 
   /* Funciones para el login */
   login(){
     this.usuariosService.login(this.usuario, this.password).subscribe(
-      res=>{
-        if(res.error==0){
-          var usuarioParsed:string=JSON.stringify(res.usuario);
-          localStorage.setItem("usuario", usuarioParsed);
+      response=>{
+        if(response.error==0)
           this.ruta.navigateByUrl("Principal");
-        }
-        else{
-          this.error = "Datos incorrectos"
-        }
-
       },
-      err=>{
-        console.error(err);
+      error=>{
 
       }
     );
