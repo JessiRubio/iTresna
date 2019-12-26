@@ -22,6 +22,10 @@ SET time_zone = "+00:00";
 -- Base de datos: `bditresna`
 --
 
+DROP DATABASE bditresna;
+CREATE DATABASE IF NOT EXISTS `bditresna` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `bditresna`;
+
 -- --------------------------------------------------------
 
 --

@@ -15,7 +15,6 @@ export class SenalesComponent implements OnInit {
   private cod_esp:number;
   private cod_cop:number;
   private admin:boolean=false;
-  private papeleraVisible: boolean = false;
   
   @Input() senal:SenalesItem;
   private titulo:String= "Lorem Ipsum";
@@ -42,7 +41,6 @@ export class SenalesComponent implements OnInit {
     });
 
     this.cargarTituloPagina();
-    this.esPropietario();
   }
   
   like(){
@@ -64,18 +62,27 @@ export class SenalesComponent implements OnInit {
   cargarTituloPagina(){
     console.warn("TODO esta funcion esta por hacer, cargara el titulo en la señal.")
   }
-
-  tienePermisosPapelera():boolean{
-    var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
-    if(permisos.length>0){
-      return permisos[0].ind_admin;
+  puedeEditar():boolean{
+    if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario){
+      return true;
+    }else{
+      var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
+      if(permisos.length>0){
+        return permisos[0].ind_admin;
+      }
+      return false;
     }
-    return false;
   }
-
-  esPropietario(){
-    if(this.senal.cod_usuario===this.usuarioLogeado.cod_usuario){
-      this.papeleraVisible=true;
+  puedeBorrar():boolean{
+    if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario 
+      || this.usuarioLogeado.tip_usuario<=2){
+      return true;
+    }else{
+      var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
+      if(permisos.length>0){
+        return permisos[0].ind_admin;
+      }
+      return false;
     }
   }
 

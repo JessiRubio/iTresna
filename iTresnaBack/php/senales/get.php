@@ -20,7 +20,7 @@
                       desc_senal,enlace,fecha_hora, cod_usuario,ind_fich_gest
                 FROM t_senales
                 WHERE cod_org = ? AND cod_esp = ? AND cod_cop = ?
-                ORDER BY fecha_hora DESC";
+                ORDER BY ind_fich_gest DESC,fecha_hora DESC";
         $query=$conexion->prepare($sql);
         $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
         $query->execute();
@@ -38,7 +38,7 @@
                 "enlace" => $enlace,
                 "fecha_hora" => $fecha_hora,
                 "cod_usuario" => $cod_usuario_senal,
-                "ind_fech_gest" => $ind_fich_gest,
+                "ind_fech_gest" => ($ind_fich_gest==1),
                 "cantidad_comentarios" => cantidadComentarios($cod_org,$cod_esp,$cod_cop,$cod_senal),
                 "me_gustas" => meGustas($cod_org,$cod_esp,$cod_cop,$cod_senal),
                 "me_ha_gustado" => meHaGustado($cod_org,$cod_esp,$cod_cop,$cod_senal,$cod_usuario)

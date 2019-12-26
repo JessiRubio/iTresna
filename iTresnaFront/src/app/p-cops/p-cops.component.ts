@@ -126,12 +126,18 @@ export class PCopsComponent implements OnInit {
         });
         break;
       case "1":
-        console.log("ascendente");
-
           this.listaSenales.sort((a:SenalesItem,b:SenalesItem)=>{
             var x:Date = a.fecha_hora;
             var y:Date = b.fecha_hora;
-            return ((x<y) ? -1 : ((x>y) ? 1: 0));
+            if((a.ind_fech_gest&&b.ind_fech_gest)||(!a.ind_fech_gest&&b.ind_fech_gest)){
+              return ((x<y) ? -1 : ((x>y) ? 1: 0));
+            }
+            else if(a.ind_fech_gest){
+              return 1;
+            }
+            else{
+              return -1;
+            }
           });
         break;
       case "2":
@@ -168,7 +174,6 @@ export class PCopsComponent implements OnInit {
     console.log(this.filtroEtiqueta);
     console.log(this.filtroUsuario)
     if(this.filtroEtiqueta>=0 && this.filtroUsuario>=0){
-      console.log("filtro etiqueta y nombre");
       etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
       usuario=this.cop.usuario[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
@@ -181,7 +186,6 @@ export class PCopsComponent implements OnInit {
       );
     }
     else if (this.filtroUsuario>0){
-      console.log("filtro nombre");
       usuario=this.cop.usuario[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
@@ -192,7 +196,6 @@ export class PCopsComponent implements OnInit {
         }
       );
     }else if (this.filtroEtiqueta>0){
-      console.log("filtro etiqueta");
       etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
@@ -206,6 +209,7 @@ export class PCopsComponent implements OnInit {
       this.listSenalesMostradas=this.listaSenales;
     }
   }
+
   nuevaSenal(){
     const dialofConfig = new MatDialogConfig();
     dialofConfig.autoFocus=true;

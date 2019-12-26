@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("usuario",JSON.stringify(response.usuario));
           this.ruta.navigateByUrl("Principal");
         }
+        else{
+          this.error="Datos Incorrectos";
+        }
       },
       error=>{
 
