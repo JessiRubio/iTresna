@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-12-2019 a las 15:57:57
+-- Tiempo de generación: 26-12-2019 a las 09:40:41
 -- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Versión de PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bditresna`
 --
+
 DROP DATABASE bditresna;
 CREATE DATABASE IF NOT EXISTS `bditresna` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `bditresna`;
@@ -40,6 +41,14 @@ CREATE TABLE `t_comentarios` (
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `comentario` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_comentarios`
+--
+
+INSERT INTO `t_comentarios` (`cod_comentario`, `cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usuario`, `comentario`) VALUES
+(9, 3, 5, 1, 1, 'rubiovargas.jessica@gmail.com', 'hola'),
+(10, 3, 5, 1, 1, 'usuario@usuario.com', 'hi');
 
 -- --------------------------------------------------------
 
@@ -114,6 +123,27 @@ CREATE TABLE `t_etiquetas` (
   `desc_etiqueta` varchar(16) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `t_etiquetas`
+--
+
+INSERT INTO `t_etiquetas` (`cod_etiqueta`, `cod_cop`, `cod_esp`, `cod_org`, `desc_etiqueta`) VALUES
+(1, 2, 1, 1, 'Hardware'),
+(2, 2, 1, 1, 'Software'),
+(3, 5, 1, 1, 'Nominas'),
+(4, 1, 1, 1, 'Interesante'),
+(5, 1, 1, 1, 'Química'),
+(6, 1, 1, 1, 'Informática'),
+(7, 1, 1, 1, 'Cocina'),
+(8, 1, 1, 1, 'FOL'),
+(16, 3, 1, 1, 'Sociedad'),
+(17, 4, 1, 1, 'Finanzas'),
+(18, 4, 1, 1, 'Administración'),
+(21, 6, 2, 1, 'Información'),
+(22, 7, 2, 1, 'Recursos'),
+(23, 8, 3, 1, 'Útil'),
+(24, 12, 4, 2, 'Software');
+
 -- --------------------------------------------------------
 
 --
@@ -127,6 +157,16 @@ CREATE TABLE `t_megusta` (
   `cod_org` int(11) NOT NULL,
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_megusta`
+--
+
+INSERT INTO `t_megusta` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usuario`) VALUES
+(3, 5, 1, 1, 'usuario@usuario.com'),
+(4, 2, 1, 1, 'rubiovargas.jessica@gmail.com'),
+(13, 11, 4, 2, 'usuario@usuario.com'),
+(13, 11, 4, 2, 'jaime.corrales@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -166,6 +206,7 @@ CREATE TABLE `t_permisos` (
 --
 
 INSERT INTO `t_permisos` (`cod_usuario`, `cod_cop`, `cod_esp`, `cod_org`, `ind_admin`) VALUES
+('jaime.corrales@gmail.com', 1, 1, 1, NULL),
 ('usuario@usuario.com', 11, 4, 2, 0);
 
 -- --------------------------------------------------------
@@ -186,6 +227,23 @@ CREATE TABLE `t_senales` (
   `fecha_hora` date DEFAULT NULL,
   `ind_fich_gest` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_senales`
+--
+
+INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiqueta`, `cod_usuario`, `desc_senal`, `enlace`, `fecha_hora`, `ind_fich_gest`) VALUES
+(3, 5, 1, 1, 3, 'jaime.corrales@gmail.com', 'noticia', 'enlace', '2019-12-10', NULL),
+(4, 2, 1, 1, 2, 'jonanderdecastro@gmail.com', 'noticia', 'enlace', '2019-11-20', NULL),
+(5, 1, 1, 1, 1, 'usuario@usuario.com', 'noticia', 'enlace', '2019-12-21', NULL),
+(6, 5, 1, 1, 3, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-11-11', NULL),
+(7, 12, 4, 2, 24, 'unaimarg@gmail.com', 'noticia', 'enlace', '2020-01-14', NULL),
+(8, 2, 1, 1, 2, 'usuario@usuario.com', 'noticia', 'enlace', '2019-12-23', NULL),
+(9, 2, 1, 1, 1, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-13', NULL),
+(10, 2, 1, 1, 1, 'jonanderdecastro@gmail.com', 'noticias', 'enlace', '2019-12-01', NULL),
+(11, 3, 1, 1, 16, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2020-02-13', NULL),
+(12, 8, 3, 1, 4, 'usuario@usuario.com', 'noticia', 'enalce', '2019-12-13', NULL),
+(13, 11, 4, 2, 24, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-30', NULL);
 
 -- --------------------------------------------------------
 
@@ -217,6 +275,17 @@ CREATE TABLE `t_tip_variable` (
   `tip_variable` int(11) NOT NULL,
   `desc_variable` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_tip_variable`
+--
+
+INSERT INTO `t_tip_variable` (`tip_variable`, `desc_variable`) VALUES
+(1, 'Recurso económicos'),
+(2, 'Recursos horarios'),
+(3, 'Impacto y Urgencia'),
+(4, 'Incertidumbre'),
+(5, 'Carácter Innovador');
 
 -- --------------------------------------------------------
 
@@ -261,6 +330,15 @@ CREATE TABLE `t_variable` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
+-- Volcado de datos para la tabla `t_variable`
+--
+
+INSERT INTO `t_variable` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `tip_variable`, `val_variable`) VALUES
+(4, 2, 1, 1, 3, 23),
+(6, 5, 1, 1, 5, 66),
+(13, 11, 4, 2, 1, 50);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -297,8 +375,8 @@ ALTER TABLE `t_etiquetas`
 -- Indices de la tabla `t_megusta`
 --
 ALTER TABLE `t_megusta`
-  ADD PRIMARY KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
-  ADD KEY `fk_t_meguta_usuario` (`cod_usuario`);
+  ADD KEY `fk_t_meguta_usuario` (`cod_usuario`),
+  ADD KEY `cod_senal` (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) USING BTREE;
 
 --
 -- Indices de la tabla `t_org`
@@ -357,7 +435,7 @@ ALTER TABLE `t_variable`
 -- AUTO_INCREMENT de la tabla `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
-  MODIFY `cod_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `t_cops`
@@ -375,7 +453,7 @@ ALTER TABLE `t_espacios`
 -- AUTO_INCREMENT de la tabla `t_etiquetas`
 --
 ALTER TABLE `t_etiquetas`
-  MODIFY `cod_etiqueta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_etiqueta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `t_org`
@@ -387,7 +465,7 @@ ALTER TABLE `t_org`
 -- AUTO_INCREMENT de la tabla `t_senales`
 --
 ALTER TABLE `t_senales`
-  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `t_tip_usuario`
@@ -399,7 +477,7 @@ ALTER TABLE `t_tip_usuario`
 -- AUTO_INCREMENT de la tabla `t_tip_variable`
 --
 ALTER TABLE `t_tip_variable`
-  MODIFY `tip_variable` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tip_variable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

@@ -70,7 +70,7 @@ h3{
     font-family: 'Merienda', cursive;
 }
 
-.botonPapelera{
+.boton{
     color: rgba(223, 221, 221, 0.555);
     background-color: #555453;
     margin-left: 5%;
@@ -79,7 +79,7 @@ h3{
     border:none;
 }
 
-.botonPapelera img{
+.boton img{
     height:30px;
     width:30px ;
 }

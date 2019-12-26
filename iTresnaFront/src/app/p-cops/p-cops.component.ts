@@ -46,6 +46,7 @@ export class PCopsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
+      console.log("en el onInit");
       this.cargarEsp();
       this.cargarCop();
       this.cargarSenales();
@@ -56,6 +57,7 @@ export class PCopsComponent implements OnInit {
         .subscribe(
           res=>{
             if(res.error==0){
+              console.log("en cargar espacio");
               this.espacio=res.espacio;
             }
           },
@@ -70,11 +72,12 @@ export class PCopsComponent implements OnInit {
         res=>{  
           console.log(res);
           if(res.error==0){
+            console.log("en cargar cop");
             this.cop=res.cop;
           }
         },
         err=>{
-
+          console.log(err);
         }
       );
   }
@@ -123,12 +126,18 @@ export class PCopsComponent implements OnInit {
         });
         break;
       case "1":
-        console.log("ascendente");
-
           this.listaSenales.sort((a:SenalesItem,b:SenalesItem)=>{
             var x:Date = a.fecha_hora;
             var y:Date = b.fecha_hora;
-            return ((x<y) ? -1 : ((x>y) ? 1: 0));
+            if((a.ind_fech_gest&&b.ind_fech_gest)||(!a.ind_fech_gest&&b.ind_fech_gest)){
+              return ((x<y) ? -1 : ((x>y) ? 1: 0));
+            }
+            else if(a.ind_fech_gest){
+              return 1;
+            }
+            else{
+              return -1;
+            }
           });
         break;
       case "2":
@@ -165,7 +174,6 @@ export class PCopsComponent implements OnInit {
     console.log(this.filtroEtiqueta);
     console.log(this.filtroUsuario)
     if(this.filtroEtiqueta>=0 && this.filtroUsuario>=0){
-      console.log("filtro etiqueta y nombre");
       etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
       usuario=this.cop.usuario[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
@@ -178,7 +186,6 @@ export class PCopsComponent implements OnInit {
       );
     }
     else if (this.filtroUsuario>0){
-      console.log("filtro nombre");
       usuario=this.cop.usuario[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
@@ -189,7 +196,6 @@ export class PCopsComponent implements OnInit {
         }
       );
     }else if (this.filtroEtiqueta>0){
-      console.log("filtro etiqueta");
       etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{

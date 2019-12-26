@@ -71,6 +71,7 @@
     }
     echo json_encode($result);
     function cargarEtiquetas($cod_org,$cod_esp,$cod_cop){
+        $result=array();
         include("./../conexion.php");
         $sql="SELECT DiSTINCT(desc_etiqueta), cod_etiqueta
                 FROM t_etiquetas
@@ -90,12 +91,13 @@
     }
 
     function cargarUsuariosConAcceso($cod_org,$cod_esp,$cod_cop){
+        $result=array();
         include("./../conexion.php");
         $sql="SELECT nombre, ape1,ape2
             FROM t_usuarios tu, t_permisos tp 
-            WHERE tp.cod_org=? AND tp.cod_esp=? AND tp.cod_cop=? AND tu.cod_usuario = tp.cod_usuario";
+            WHERE tp.cod_org=? AND tp.cod_esp=? AND tp.cod_cop=? AND tu.cod_usuario = tp.cod_usuario OR tu.tip_usuario=2 AND tu.cod_org=?";
         $query=$conexion->prepare($sql);
-        $query->bind_param("iii",$cod_org,$cod_esp,$cod_cop);
+        $query->bind_param("iiii",$cod_org,$cod_esp,$cod_cop,$cod_org);
         $query->execute();
         $query->bind_result($nombre, $ape1, $ape2);
         while($query->fetch()){
