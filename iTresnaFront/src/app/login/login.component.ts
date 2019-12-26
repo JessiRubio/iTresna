@@ -25,25 +25,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*
-    this.usuariosService.logged().subscribe(
-      res=> {
-        if(res){
-          this.ruta.navigateByUrl("Principal")
-        }
-      },
-      error=>{
-      }
-    );
-    */
+   
   }
 
   /* Funciones para el login */
   login(){
     this.usuariosService.login(this.usuario, this.password).subscribe(
       response=>{
-        if(response.error==0)
+        if(response.error==0){
+          localStorage.setItem("usuario",JSON.stringify(response.usuario));
           this.ruta.navigateByUrl("Principal");
+        }
       },
       error=>{
 

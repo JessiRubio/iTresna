@@ -30,21 +30,11 @@ export class PEspaciosComponent implements OnInit {
   }
 
 
-  async ngOnInit() {
+  ngOnInit() {
     if(localStorage.length>0){
-       this.usuarioLogado=await JSON.parse(localStorage.getItem("usuario"));
+      this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
       this.espaciosPorCod(this.usuarioLogado.cod_org);
-    }/*
-    this.usuarioService.logged().subscribe(
-      x=>{
-        if(!x){
-          this.router.navigateByUrl("")
-        }else{
-          
-        }
-      }
-    );
-    */
+    }
   }
   espaciosPorCod(cod_org:number){
     this.espaciosService.getEspacios(cod_org)

@@ -27,9 +27,9 @@ export class UsuariosService {
     observable.toPromise()
       .then(
         response=>{
-          this.loginState.next(response.error==0);
-          if(response.error==0)
-            localStorage.setItem("usuario",JSON.stringify(response.usuario));
+          if(response.error==0){
+            this.loginState.next(response.error==0);
+          }
         }
       )
       .catch(

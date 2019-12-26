@@ -13,13 +13,8 @@ export class MenuOverflowComponent implements OnInit {
 
   constructor( private ruta: Router,private usuarioService:UsuariosService) {
 
-    this.ruta.events.subscribe((ev) => {
-      if (localStorage.getItem("usuario") === null) {
-        this.ruta.navigateByUrl("/");
-      }
-    });
 
-   }
+  }
 
 
   ngOnInit() {
