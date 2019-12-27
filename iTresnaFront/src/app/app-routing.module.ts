@@ -26,7 +26,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
   constructor(private router:Router,private usuarioService:UsuariosService){
-   
     this.usuarioService.logged().subscribe(
       res=>{
         if(!res){

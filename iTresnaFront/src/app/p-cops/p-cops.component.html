@@ -33,7 +33,7 @@
 <div class="contenedorSeñales">
     <ul>
         <li *ngFor="let item of listSenalesMostradas">
-            <app-senales [senal]="item"></app-senales>
+            <app-senales [senal]="item" [etiquetas]="cop.etiquetas"></app-senales>
         </li>
     </ul>
 </div>

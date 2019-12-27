@@ -14,8 +14,10 @@
     </mat-form-field>
     <br>
     <mat-form-field class="expand">
-            <mat-select placeholder="Elige una etiqueta" formControllerName="etiqueta" >
-                <mat-option *ngFor="let item of etiquetas" value="item.cod_etiqueta">
+            <mat-select [(value)]="selected"
+                placeholder="Elige una etiqueta" 
+                formControllerName="etiqueta">
+                <mat-option *ngFor="let item of etiquetas" [value]="item.cod_etiqueta">
                     {{item.desc_etiqueta}}
                 </mat-option>
             </mat-select>
