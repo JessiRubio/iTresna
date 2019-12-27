@@ -3,6 +3,9 @@ import { ActivatedRoute, Router, RouteConfigLoadEnd, RouteConfigLoadStart } from
 import { SenalesItem } from '../../clases/senales-item';
 import { Usuario } from  './../../clases/usuario';
 import { SenalesService } from '../../servicios/senales.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalSenalComponent } from '../modalsenal/modalsenal.component';
+import { EtiquetaItem } from '../../clases/copsitem';
 
 @Component({
   selector: 'app-senales',
@@ -17,13 +20,16 @@ export class SenalesComponent implements OnInit {
   private admin:boolean=false;
   
   @Input() senal:SenalesItem;
+  @Input() etiquetas:EtiquetaItem[];
+
   private titulo:String= "Lorem Ipsum";
   
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private senalesService:SenalesService
+    private senalesService:SenalesService,
+    private dialog:MatDialog
     ) {
 
     this.router.events.subscribe((ev)=>{
@@ -63,7 +69,7 @@ export class SenalesComponent implements OnInit {
     console.warn("TODO esta funcion esta por hacer, cargara el titulo en la señal.")
   }
   puedeEditar():boolean{
-    if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario){
+    if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario||this.usuarioLogeado.tip_usuario<=2){
       return true;
     }else{
       var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
@@ -84,6 +90,40 @@ export class SenalesComponent implements OnInit {
       }
       return false;
     }
+  }
+  editar(){
+      const dialofConfig = new MatDialogConfig();
+      dialofConfig.autoFocus=true;
+      dialofConfig.minWidth="50%";
+      dialofConfig.data={
+        etiquetas:this.etiquetas,
+        url:this.senal.enlace,
+        descripcion:this.senal.desc_senal,
+        etiquetaSenal:this.senal.cod_etiqueta
+      }
+      const dialogRef=this.dialog.open(ModalSenalComponent,dialofConfig);
+      dialogRef.afterClosed().subscribe(
+        data=>{
+          if(data!=null){
+            this.senal.enlace=data.url;
+            this.senal.desc_senal=data.descripcion;
+            this.senal.cod_etiqueta=data.etiqueta;
+            this.senalesService.modificarSenal(this.senal).subscribe(
+              response=>{
+                if(response.error!=0){
+                  window.alert("No se ha podido modificar la senñal");
+                }
+                else{
+                  window.alert("Señal modificada correctamente");
+                }
+              },
+              error=>{
+                window.alert("Error de conexion o fallo en servidor");
+              }
+            );
+          }
+        }
+      );
   }
 
 }

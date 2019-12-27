@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from './../servicios/usuarios.service';
 import { Router } from '@angular/router';
+import { ifError } from 'assert';
 
 
 @Component({
@@ -29,10 +30,9 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl("Principal");
     }
     this.usuariosService.logged().subscribe(
-      res=>{
-        if(res){
-          this.router.navigateByUrl("Principal");
-        }
+      respose=>{
+        if(respose)
+        this.router.navigateByUrl("Principal");
       }
     );
   }

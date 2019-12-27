@@ -46,7 +46,7 @@
             && $cod_esp!=="" && $cod_cop!=="" && $cod_senal!==""){
 
             if(!haDadoLike($cod_usuario,$cod_org,$cod_esp,$cod_cop,$cod_senal)){
-                $sql="INSERT INTO t_megusta VALUES(?,?,?,?,?)";
+                $sql="INSERT INTO t_megusta(cod_senal,cod_cop,cod_esp,cod_org,cod_usuario) VALUES(?,?,?,?,?)";
                 $query=$conexion->prepare($sql);
                 $query->bind_param("iiiis",$cod_senal,$cod_cop,$cod_esp,$cod_org,$cod_usuario);
                 $query->execute();

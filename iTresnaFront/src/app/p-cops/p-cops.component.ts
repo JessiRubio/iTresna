@@ -35,6 +35,7 @@ export class PCopsComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
+    private router:Router,
     private espaciosService:EspaciosService,
     private copsService:CopsService,
     private senalesService:SenalesService,
@@ -42,6 +43,9 @@ export class PCopsComponent implements OnInit {
     ) {}
 
   ngOnInit() {
+    if(localStorage.getItem("usuario")==null){
+      this.router.navigateByUrl("");
+    }
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
@@ -81,10 +85,7 @@ export class PCopsComponent implements OnInit {
         }
       );
   }
-  selectChangeHandler (event: any) {
-    this.selected = event.target.value;
-    console.warn(this.selected);
-  }
+  
   cargarSenales(){
     this.senalesService.getSenales(this.usuarioLogeado.cod_org,this.cod_esp,this.cod_cop,this.usuarioLogeado.cod_usuario).subscribe(
       res=>{

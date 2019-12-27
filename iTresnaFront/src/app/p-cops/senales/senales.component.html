@@ -26,7 +26,7 @@
 
         </div>
         <button *ngIf="puedeBorrar()" class="boton"><img class="papelera" src="assets/papelera.png" alt="papelera"> </button>
-        <button *ngIf="puedeEditar()" class="boton"><img class="papelera" src="assets/edit.png" alt="papelera"></button>
+        <button *ngIf="puedeEditar()" (click)="editar()" class="boton"><img class="papelera" src="assets/edit.png" alt="papelera"></button>
         <p class="autor">{{senal.cod_usuario||"Anónimo"}}</p>
 
 

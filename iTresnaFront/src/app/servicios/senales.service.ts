@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SenalesItem } from '../clases/senales-item';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,8 @@ export class SenalesService {
   }
   nuevaSenal(senal):Observable<any>{
     return this.http.post(this.URL,senal);
+  }
+  modificarSenal(senal:SenalesItem):Observable<any>{
+    return this.http.put(this.URL,senal);
   }
 }
