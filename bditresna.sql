@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-12-2019 a las 10:05:08
+-- Tiempo de generación: 27-12-2019 a las 10:37:06
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -66,19 +66,19 @@ CREATE TABLE `t_cops` (
 --
 
 INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
-(1, 1, 1, 'Señales Relevantes', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\prueba.png', NULL),
+(1, 1, 1, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\prueba.png', NULL),
 (2, 1, 1, 'Informatica', NULL, NULL),
-(3, 1, 1, 'Integración Social', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\integracion_social.png', NULL),
-(4, 1, 1, 'Administración y Finanzas', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\administracion_y_finanzas.svg', NULL),
-(5, 1, 1, 'F.O.L.', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\fol.jpeg', NULL),
-(6, 2, 1, 'Pre-proyecto', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\pre_proyecto.png', NULL),
-(7, 2, 1, 'Proyecto en curso', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\proyectos.png', NULL),
-(8, 3, 1, 'Plan de Explotación', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\plan_explotacion.jpeg', NULL),
-(11, 4, 2, 'Señales Relevantes', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\senales_relevantes_2', NULL),
-(12, 4, 2, 'Ibermatica Digital', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\ibermatica_digital.png', NULL),
-(13, 5, 2, 'Pre-proyectos', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\pre-proyecto2.png', NULL),
-(14, 5, 2, 'Proyecto en curso', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\proyectos2.png', NULL),
-(15, 6, 2, 'Plan de Explotación', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\plan_explotacion2.png', NULL);
+(3, 1, 1, 'Integración Social', 'http:\\\\localhost:8080\\media\\Cops\\integracion_social.png', NULL),
+(4, 1, 1, 'Administración y Finanzas', 'http:\\\\localhost:8080\\media\\Cops\\administracion_y_finanzas.svg', NULL),
+(5, 1, 1, 'F.O.L.', 'http:\\\\localhost:8080\\media\\Cops\\fol.jpeg', NULL),
+(6, 2, 1, 'Pre-proyecto', 'http:\\\\localhost:8080\\media\\Cops\\pre_proyecto.png', NULL),
+(7, 2, 1, 'Proyecto en curso', 'http:\\\\localhost:8080\\media\\Cops\\proyectos.png', NULL),
+(8, 3, 1, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion.jpeg', NULL),
+(11, 4, 2, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\senales_relevantes_2.png', NULL),
+(12, 4, 2, 'Ibermatica Digital', 'http:\\\\localhost:8080\\media\\Cops\\ibermatica_digital.png', NULL),
+(13, 5, 2, 'Pre-proyectos', 'http:\\\\localhost:8080\\media\\Cops\\pre-proyecto2.png', NULL),
+(14, 5, 2, 'Proyecto en curso', 'http:\\\\localhost:8080\\media\\Cops\\proyectos2.png', NULL),
+(15, 6, 2, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion2.png', NULL);
 
 -- --------------------------------------------------------
 

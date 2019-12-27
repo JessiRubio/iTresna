@@ -13,9 +13,12 @@ export class CopsComponent implements OnInit {
 
   @Input() cantidad_senales:number;
 
+  @Input() img:string;
+
  
 
   constructor() { 
+    console.log(this.img);
   }
   ngOnInit() {
   }
