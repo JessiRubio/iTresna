@@ -256,6 +256,7 @@ export class PCopsComponent implements OnInit {
               window.alert("No se ha podido añadir la senñal");
             }
             else if(response.error==0 && response.aniadido==1){
+              location.reload();
               window.alert("Señal añadida correctamente");
             }
           },
@@ -266,5 +267,6 @@ export class PCopsComponent implements OnInit {
         )
       }
     );
+    
   }
 }

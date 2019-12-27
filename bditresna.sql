@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-12-2019 a las 11:42:53
+-- Tiempo de generación: 27-12-2019 a las 13:43:06
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -21,9 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bditresna`
 --
-DROP DATABASE bditresna;
-CREATE DATABASE bditresna;
-use bditresna;
+
 -- --------------------------------------------------------
 
 --
@@ -164,7 +162,8 @@ INSERT INTO `t_megusta` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usua
 (3, 5, 1, 1, 'usuario@usuario.com'),
 (4, 2, 1, 1, 'rubiovargas.jessica@gmail.com'),
 (13, 11, 4, 2, 'usuario@usuario.com'),
-(13, 11, 4, 2, 'jaime.corrales@gmail.com');
+(13, 11, 4, 2, 'jaime.corrales@gmail.com'),
+(5, 1, 1, 1, 'rubiovargas.jessica@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -222,7 +221,7 @@ CREATE TABLE `t_senales` (
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `desc_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `enlace` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha_hora` date DEFAULT NULL,
+  `fecha_hora` date DEFAULT current_timestamp(),
   `ind_fich_gest` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -463,7 +462,7 @@ ALTER TABLE `t_org`
 -- AUTO_INCREMENT de la tabla `t_senales`
 --
 ALTER TABLE `t_senales`
-  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `t_tip_usuario`
