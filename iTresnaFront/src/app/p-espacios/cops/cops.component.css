@@ -34,7 +34,9 @@
 .contenido h3{ 
     text-align: center;
     font-size: 1.5em;
-    color: #b3a3d3;
+    background: linear-gradient(to right, #EDDFFB, #E3E0FA, #E0EAF8, #C9EAF3);
+    -webkit-background-clip: text;
+    color: transparent;  
 
 }
 .noSeleccionable h3{
@@ -43,10 +45,12 @@
 
 .numeroSenales {
 
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin-left: 13em;
     margin-bottom: 22em;
-    color: #b3a3d3;
+    background: linear-gradient(to right, #C79BF2, #B0A7F1, #8EB4E6, #7BCAE1);
+    -webkit-background-clip: text;
+    color: transparent; 
 }
 
 
@@ -95,7 +99,7 @@
     .contenido p{
         margin-left: 60%;
         margin-top: 10%;
-        font-size: 1em;
+        font-size: 1.4em;
     }
 }
 
