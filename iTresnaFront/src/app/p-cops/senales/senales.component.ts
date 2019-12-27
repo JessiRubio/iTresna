@@ -126,4 +126,20 @@ export class SenalesComponent implements OnInit {
       );
   }
 
+  borrar(){
+    this.senalesService.deleteSenal(this.senal).subscribe(
+      response =>{
+        if (response.error ==1){
+          console.log("Ha habido un error, intentelo de nuevo más tarde");
+        }else{
+          console.log("Señal eliminada");
+          location.reload();
+        }
+      },
+      error =>{
+        window.alert("Error de conexion o fallo en servidor");
+      }
+    );
+  }
+
 }

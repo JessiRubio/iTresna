@@ -22,7 +22,7 @@
                 WHERE cod_org = ? AND cod_esp = ? AND cod_cop = ?
                 ORDER BY ind_fich_gest DESC,fecha_hora DESC";
         $query=$conexion->prepare($sql);
-        $query->bind_param("ddd",$cod_org,$cod_esp,$cod_cop);
+        $query->bind_param("iii",$cod_org,$cod_esp,$cod_cop);
         $query->execute();
         $query->bind_result($cod_senal,$cod_org,$cod_esp,$cod_cop,
                             $cod_etiqueta,$desc_senal,$enlace,$fecha_hora,
@@ -41,7 +41,8 @@
                 "ind_fech_gest" => ($ind_fich_gest==1),
                 "cantidad_comentarios" => cantidadComentarios($cod_org,$cod_esp,$cod_cop,$cod_senal),
                 "me_gustas" => meGustas($cod_org,$cod_esp,$cod_cop,$cod_senal),
-                "me_ha_gustado" => meHaGustado($cod_org,$cod_esp,$cod_cop,$cod_senal,$cod_usuario)
+                "me_ha_gustado" => meHaGustado($cod_org,$cod_esp,$cod_cop,$cod_senal,$cod_usuario),
+                "desc_etiqueta" => buscarEtiqueta($cod_org,$cod_esp,$cod_cop,$cod_etiqueta)
             );
         }  
         $result["error"]=0;
@@ -56,7 +57,7 @@
         FROM t_megusta
         WHERE cod_org=? AND cod_esp=? AND cod_cop=? AND cod_senal=?";
         $query=$conexion->prepare($sql);
-        $query->bind_param("dddd",$cod_org,$cod_esp,$cod_cop,$cod_senal);
+        $query->bind_param("iiii",$cod_org,$cod_esp,$cod_cop,$cod_senal);
         $query->execute();
         $query->bind_result($cantidad);
         $query->fetch();
@@ -70,7 +71,7 @@
         FROM t_megusta
         WHERE cod_org=? AND cod_esp=? AND cod_cop=? AND cod_senal=? AND cod_usuario=?";
         $query=$conexion->prepare($sql);
-        $query->bind_param("dddds",$cod_org,$cod_esp,$cod_cop,$cod_senal,$cod_usuario);
+        $query->bind_param("iiiis",$cod_org,$cod_esp,$cod_cop,$cod_senal,$cod_usuario);
         $query->execute();
         $query->bind_result($cantidad);
         $query->fetch();
@@ -84,11 +85,26 @@
                 FROM t_comentarios
                 WHERE cod_org=? AND cod_esp=? AND cod_cop=? AND cod_senal=?";
         $query=$conexion->prepare($sql);
-        $query->bind_param("dddd",$cod_org,$cod_esp,$cod_cop,$cod_senal);
+        $query->bind_param("iiii",$cod_org,$cod_esp,$cod_cop,$cod_senal);
         $query->execute();
         $query->bind_result($cantidad);
         $query->fetch();
         $result=$cantidad;
+        $query->close();
+        return $result;
+    }
+
+    function buscarEtiqueta($cod_org,$cod_esp,$cod_cop,$cod_etiqueta){
+        include("./../conexion.php");
+        $sql="SELECT desc_etiqueta
+                FROM t_etiquetas
+                WHERE cod_org=? AND cod_esp=? AND cod_cop=? AND cod_etiqueta=?";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("iiii",$cod_org,$cod_esp,$cod_cop,$cod_etiqueta);
+        $query->execute();
+        $query->bind_result($desc_etiqueta);
+        $query->fetch();
+        $result=$desc_etiqueta;
         $query->close();
         return $result;
     }

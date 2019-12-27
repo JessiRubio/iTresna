@@ -28,10 +28,15 @@ export class SenalesService {
     };
     return this.http.post(this.URL,JSON);
   }
+
   nuevaSenal(senal):Observable<any>{
     return this.http.post(this.URL,senal);
   }
   modificarSenal(senal:SenalesItem):Observable<any>{
     return this.http.put(this.URL,senal);
+  }
+  deleteSenal(senal):Observable<any>{
+    return this.http.delete(this.URL+"?cod_org="+senal.cod_org+"&cod_esp="+
+        senal.cod_esp+"&cod_cop="+senal.cod_cop+"&cod_senal="+senal.cod_senal);
   }
 }
