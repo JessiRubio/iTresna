@@ -1,9 +1,9 @@
 <?php
-    require_once("./../conexion.php");
+    include("./../conexion.php");
     $json = file_get_contents('php://input');
     $data = json_decode($json);
 
-    $nueva_senal = $data->nueva_senal;
+    $accion = $data->accion;
     $cod_usuario=$data->cod_usuario;
     $cod_org=$data->cod_org;
     $cod_esp=$data->cod_esp;
@@ -13,33 +13,27 @@
         "error"=>1,
         "aniadido"=>0
     );
-    if($nueva_senal){
+    if($accion==="nueva_senal"){
+        
         $desc_senal = $data->desc_senal;
-        $enlace = $data->$enlace;
-        $cod_etiqueta = $date->$cod_etiqueta;
-        if($cod_usuario!=="" && $cod_org!=="" && $cod_esp!=="" && $cod_cop!=="" && $desc_senal!=="" && $enlace!=="" && $cod_etiqueta!==""){
-            $sql = "INSERT INTO t_senales 
-            VALUES cod_usuario = $cod_usuario 
-                AND cod_org = $cod_ord
-                AND cod_esp = $cod_esp
-                AND cod_cop = $cod_cop
-                AND desc_senal = $desc_senal
-                AND enlace = $enlace
-                AND cod_etiqueta = $cod_etiqueta
-                AND cod_senal = (SELECT COUNT(*) FROM t_senales) + 1
-                AND fecha_hora = getDate()
-                AND ind_fich_gest = 0"
-            ;
+        $enlace = $data->enlace;
+        $cod_etiqueta = $data->cod_etiqueta;
+        if($cod_usuario!="" && $cod_org!="" && $cod_esp!="" && $cod_cop!="" 
+            && $desc_senal!="" && $enlace!="" && $cod_etiqueta!="")
+        {
+            
+            $sql = "INSERT INTO t_senales(cod_cop,cod_esp,cod_org,cod_etiqueta,
+                cod_usuario,desc_senal,enlace) VALUES(?,?,?,?,?,?,?)";
             $query=$conexion->prepare($sql);
+            $query->bind_param("iiiisss",$cod_cop,$cod_esp,$cod_org,$cod_etiqueta,$cod_usuario,
+                $desc_senal,$enlace);
             $query->execute();
-            $affected_rows=$query->affected_rows;
-            $result["error"]=($affected_rows==1)?0:1;
-            $result["aniadido"]=1;
+            $result["error"]=(($query->affected_rows)>0)?0:1;
+            $result["aniadido"]=$query->affected_rows;
             $query->close();
         }
 
-
-    } else {
+    } else if($accion==="like"){
         
         $cod_senal=$data->cod_senal;
         if($cod_usuario!=="" && $cod_org!=="" 
@@ -66,10 +60,11 @@
                 $query->close();
             }
         }
+    }else{
+        $result["metodo"]="Metodo no soportado";
     }
     echo json_encode($result);
-    function haDadoLike($cod_usuario,$cod_org,$cod_esp,$cod_cop,$cod_senal):bool{
-        
+    function haDadoLike($cod_usuario,$cod_org,$cod_esp,$cod_cop,$cod_senal):bool{  
         include("./../conexion.php");
         $sql="SELECT COUNT(*)
                 FROM t_megusta
