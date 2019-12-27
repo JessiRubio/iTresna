@@ -3,6 +3,8 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EtiquetaItem } from '../../clases/copsitem';
+import { MatLinkPreviewService, MatLinkPreviewComponent } from '@angular-material-extensions/link-preview';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 @Component({
   selector: 'app-modalsenal',
@@ -12,8 +14,10 @@ import { EtiquetaItem } from '../../clases/copsitem';
 export class ModalSenalComponent implements OnInit {
   form:FormGroup;
   etiquetas:EtiquetaItem[];
+  preview:MatLinkPreviewComponent;
   selected;
   constructor(
+    private http:HttpClient,
     private fb: FormBuilder,
     private dialogRef:MatDialogRef<ModalSenalComponent>,
     @Inject(MAT_DIALOG_DATA) data){
@@ -28,13 +32,20 @@ export class ModalSenalComponent implements OnInit {
       this.form = this.fb.group({
         url:[data.url,Validators.required],
         descripcion:[data.descripcion,Validators.required],
-        etiqueta:[this.selected,Validators.required]
+        etiqueta:[this.selected,Validators.required],
       });
   }
   ngOnInit() {
   }
-  save(){
+  async save(){
+    var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
+    console.log(this.preview);
+    await this.preview.linkPreviewService.fetchLink(this.form.value.url).subscribe(
+      response=>{
+        console.log(response);
+      }
+    );
     this.form.value.etiqueta=this.selected;
-    this.dialogRef.close(this.form.value);
+    //this.dialogRef.close(this.form.value);
   }
 }

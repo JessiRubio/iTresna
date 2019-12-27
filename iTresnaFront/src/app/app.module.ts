@@ -19,6 +19,7 @@ import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
 import { HeaderGenericoComponent } from './header-generico/header-generico.component';
 import { ModalSenalComponent } from './p-cops/modalsenal/modalsenal.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatLinkPreviewModule } from '@angular-material-extensions/link-preview';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatLinkPreviewModule.forRoot()
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],

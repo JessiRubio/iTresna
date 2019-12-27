@@ -3,8 +3,10 @@
 <mat-dialog-content [formGroup]="form">
     <mat-form-field class="expand">
         <input matInput
+            matLinkPreview
             placeholder="URL"
-               formControlName="url">
+            formControlName="url">
+        <mat-link-preview-container formControlName="preview" [multiple]="true"></mat-link-preview-container>
     </mat-form-field>
     <br>
     <mat-form-field class="expand">

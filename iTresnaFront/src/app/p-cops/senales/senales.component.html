@@ -2,7 +2,7 @@
 
         <div class="contenidoSenaldiv">
             <p>{{senal.fecha_hora}}</p>
-            <a href="https://www.newgenapps.com/blog/trends-big-data-innovation-future-data-science" ><img class="imgprueba" src="assets/cyberSecurityData.jpg" alt="prueba" ></a>
+            <a href="https://www.newgenapps.com/blog/trends-big-data-innovation-future-data-science" ><img class="imgprueba" [src]="imagen" alt="prueba" ></a>
             <div class="textoSenal">
                     <h2>{{titulo}}</h2>
                     <h3>{{senal.desc_senal}}</h3>
@@ -17,7 +17,7 @@
                     <img class="like" src="assets/like.png" alt="like" > </button>
                     <p>{{senal.me_gustas}}</p>
             </div>
-            <p class="etiqueta" >Etiquetas: {{senal.desc_etiqueta}}</p>
+            <p class="etiqueta" >Etiquetas: {{buscarEtiqueta()}}</p>
 
             <select name="comentarios" class="comentario">
                     <option selected values="0"> {{senal.cantidad_comentarios}} Comentarios</option>

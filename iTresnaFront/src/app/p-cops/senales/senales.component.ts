@@ -6,6 +6,8 @@ import { SenalesService } from '../../servicios/senales.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalSenalComponent } from '../modalsenal/modalsenal.component';
 import { EtiquetaItem } from '../../clases/copsitem';
+import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-material-extensions/link-preview';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-senales',
@@ -23,9 +25,11 @@ export class SenalesComponent implements OnInit {
   @Input() etiquetas:EtiquetaItem[];
 
   private titulo:String= "Lorem Ipsum";
+  private imagen:string="";
   
 
   constructor(
+    private http:HttpClient,
     private router: Router,
     private route: ActivatedRoute,
     private senalesService:SenalesService,
@@ -37,6 +41,7 @@ export class SenalesComponent implements OnInit {
         this.router.navigateByUrl("");
       }
     });
+
    }
 
   ngOnInit() {
@@ -47,6 +52,14 @@ export class SenalesComponent implements OnInit {
     });
 
     this.cargarTituloPagina();
+  }
+
+  buscarEtiqueta():string{
+    try{
+      return this.etiquetas.find(x=>x.cod_etiqueta==this.senal.cod_etiqueta).desc_etiqueta;
+    }catch(exception){
+      return "";
+    }
   }
   
   like(){
@@ -66,7 +79,13 @@ export class SenalesComponent implements OnInit {
     );
   }
   cargarTituloPagina(){
-    console.warn("TODO esta funcion esta por hacer, cargara el titulo en la señal.")
+    var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
+    preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(
+      response=>{
+        this.titulo=response.title;
+        this.imagen=response.image;
+      }
+    );
   }
   puedeEditar():boolean{
     if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario||this.usuarioLogeado.tip_usuario<=2){
