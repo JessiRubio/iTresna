@@ -19,7 +19,7 @@ export class SenalesService {
   like(cod_usuario:string,cod_org:number,cod_esp:number,
     cod_cop:number,cod_senal:number):Observable<any>{
     var JSON={
-      "nueva_senal":false,
+      "accion":"like",
       "cod_usuario":cod_usuario,
       "cod_org":cod_org,
       "cod_esp":cod_esp,
@@ -29,7 +29,19 @@ export class SenalesService {
     return this.http.post(this.URL,JSON);
   }
 
-  nuevaSenal(senal):Observable<any>{
+  nuevaSenal(cod_org:number,cod_esp:number,cod_cop:number,cod_usuario:string,
+    cod_etiqueta:number, desc_sen:string, url:string):Observable<any>
+  {
+    var senal={
+      "accion":"nueva_senal",
+      "cod_org":cod_org,
+      "cod_esp":cod_esp,
+      "cod_cop":cod_cop,
+      "cod_usuario":cod_usuario,
+      "cod_etiqueta":cod_etiqueta,
+      "desc_senal":desc_sen,
+      "enlace":url
+    };
     return this.http.post(this.URL,senal);
   }
   modificarSenal(senal:SenalesItem):Observable<any>{

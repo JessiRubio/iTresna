@@ -30,8 +30,6 @@ export class PCopsComponent implements OnInit {
   selected: string = '';
   private filtroEtiqueta:number=-1;
   private filtroUsuario:number=-1;
-
-  
   
   constructor(
     private route: ActivatedRoute,
@@ -72,13 +70,11 @@ export class PCopsComponent implements OnInit {
     this.copsService.getCop(this.usuarioLogeado.cod_org,this.cod_esp,this.cod_cop)
       .subscribe(
         res=>{  
-          console.log(res);
           if(res.error==0){
             this.cop=res.cop;
           }
         },
         err=>{
-          console.log(err);
         }
       );
   }
@@ -243,21 +239,29 @@ export class PCopsComponent implements OnInit {
     const dialogRef=this.dialog.open(ModalSenalComponent,dialofConfig);
     dialogRef.afterClosed().subscribe(
       data=>{
-        var senal={"cod_org":this.cop.cod_org,
+        var senal={
+                    "nueva_senal":true,
+                    "cod_org":this.cop.cod_org,
                     "cod_esp":this.cod_esp,
                     "cod_cop":this.cod_cop,
                     "cod_etiqueta":data.etiqueta,
                     "desc_senal":data.descripcion,
                     "enlace":data.url,
                     "cod_usuario":this.usuarioLogeado.cod_usuario};
-        this.senalesService.nuevaSenal(senal).subscribe(
-          res=>{
-            if(res.error==1){
-              this.nuevaSenal();
+        this.senalesService.nuevaSenal(this.cop.cod_org,this.cop.cod_esp,
+                              this.cop.cod_org,this.usuarioLogeado.cod_usuario,
+                              data.etiqueta, data.descripcion, data.url).subscribe(
+          response=>{
+            if(response.error!=0 && response.aniadido==0){
+              window.alert("No se ha podido añadir la senñal");
+            }
+            else if(response.error==0 && response.aniadido==1){
+              window.alert("Señal añadida correctamente");
             }
           },
           err=>{
-
+            console.log(err);
+            window.alert("Error de conexion o fallo en servidor");
           }
         )
       }
