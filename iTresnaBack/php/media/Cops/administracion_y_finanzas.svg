@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="950"
+   height="950"
+   id="svg4368"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Flor-de-la-Permacultura.svg">
+  <defs
+     id="defs4370">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1222">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 0,0 1190.551,0 0,841.89 L 0,841.89 0,0 z"
+         id="path1224" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1066">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 389.249,49.617 755.833,0 0,740.953 -755.833,0 0,-740.953 z"
+         id="path1068" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath958">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 389.249,49.617 755.833,0 0,740.953 -755.833,0 0,-740.953 z"
+         id="path960" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath942">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 389.249,49.617 755.833,0 0,740.953 -755.833,0 0,-740.953 z"
+         id="path944" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath758">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 389.249,49.617 755.833,0 0,740.953 -755.833,0 0,-740.953 z"
+         id="path760" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath766">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 669.634,435.044 194.94,0 0,-385.4273 -194.94,0 0,385.4273 z"
+         id="path768" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath770">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 669.634,49.617 194.94,0 0,385.428 -194.94,0 0,-385.428 z"
+         id="path772" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath790">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 767.119,451.642 318.981,0 0,-287.222 -318.981,0 0,287.222 z"
+         id="path792" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath794">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 767.119,164.42 318.984,0 0,287.223 -318.984,0 0,-287.223 z"
+         id="path796" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath814">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 767.143,588.951 377.937,0 0,-207.654 -377.937,0 0,207.654 z"
+         id="path816" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath818">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 767.143,381.297 377.94,0 0,207.654 -377.94,0 0,-207.654 z"
+         id="path820" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath838">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 734.927,790.57 246.197,0 0,-355.468 -246.197,0 0,355.468 z"
+         id="path840" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath842">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 734.927,435.102 246.197,0 0,355.467 -246.197,0 0,-355.467 z"
+         id="path844" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath862">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 553.219,790.539 246.281,0 0,-355.467 -246.281,0 0,355.467 z"
+         id="path864" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath866">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 553.219,435.072 246.281,0 0,355.467 -246.281,0 0,-355.467 z"
+         id="path868" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath886">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 389.249,588.839 377.936,0 0,-207.642 -377.936,0 0,207.642 z"
+         id="path888" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath890">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 389.249,381.197 377.936,0 0,207.643 -377.936,0 0,-207.643 z"
+         id="path892" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath910">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 448.166,451.642 318.986,0 0,-287.288 -318.986,0 0,287.288 z"
+         id="path912" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath914">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 448.166,164.354 318.986,0 0,287.288 -318.986,0 0,-287.288 z"
+         id="path916" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="715.98858"
+     inkscape:cy="548.28843"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1536"
+     inkscape:window-height="804"
+     inkscape:window-x="-8"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4373">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(160.96642,-136.88575)">
+    <g
+       id="g6678"
+       transform="translate(2,-12)">
+      <g
+         transform="matrix(1.25,0,0,-1.25,-647.52767,1148.907)"
+         id="g778"
+         style="opacity:0.5">
+        <g
+           clip-path="url(#clipPath770)"
+           id="g780">
+          <g
+             transform="translate(825.6351,388.5253)"
+             id="g782">
+            <path
+               inkscape:connector-curvature="0"
+               d="m 0,0 c 0,0 38.939,-91.095 38.939,-182.418 0,-91.324 -34.007,-156.491 -97.469,-156.491 l -0.002,0 c -63.462,0 -97.469,65.167 -97.469,156.491 0,91.323 39.16,182.346 39.16,182.346 L -58.53,46.519 0,0 z"
+               style="fill:#9841a6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1"
+               id="path784" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(1.25,0,0,-1.25,-647.52767,1148.907)"
+         id="g802"
+         style="opacity:0.5;stroke:#000000;stroke-opacity:1">
+        <g
+           style="stroke:#000000;stroke-opacity:1"
+           clip-path="url(#clipPath794)"
+           id="g804">
+          <g
+             style="stroke:#000000;stroke-opacity:1"
+             transform="translate(839.6851,451.6419)"
+             id="g806">
+            <path
+               inkscape:connector-curvature="0"
+               d="m 0,0 c 0,0 95.794,-26.14 167.192,-83.081 71.401,-56.937 101.147,-124.159 61.582,-173.776 l -0.005,0 c -39.565,-49.617 -111.718,-35.57 -183.114,21.367 -71.404,56.939 -118.214,144.055 -118.214,144.055 L -72.566,-16.544 0,0 z"
+               style="fill:#dc0f47;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1"
+               id="path808" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(1.25,0,0,-1.25,-647.52767,1148.907)"
+         id="g826"
+         style="opacity:0.5;stroke:#000000;stroke-opacity:1">
+        <g
+           style="stroke:#000000;stroke-opacity:1"
+           clip-path="url(#clipPath818)"
+           id="g828">
+          <g
+             style="stroke:#000000;stroke-opacity:1"
+             transform="translate(799.5002,502.3824)"
+             id="g830">
+            <path
+               inkscape:connector-curvature="0"
+               d="m 0,0 c 0,0 80.116,58.374 169.151,78.695 89.034,20.321 160.137,1.67 174.258,-60.201 l 0,-0.004 C 357.533,-43.381 301.563,-91.034 212.53,-111.355 123.495,-131.678 26.135,-113.857 26.135,-113.857 L -32.358,-67.273 0,0 z"
+               style="fill:#f79825;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1"
+               id="path832" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(1.25,0,0,-1.25,-647.52767,1148.907)"
+         id="g850"
+         style="opacity:0.5;stroke:#000000;stroke-opacity:1">
+        <g
+           style="stroke:#000000;stroke-opacity:1"
+           clip-path="url(#clipPath842)"
+           id="g852">
+          <g
+             style="stroke:#000000;stroke-opacity:1"
+             transform="translate(734.928,502.0912)"
+             id="g854">
+            <path
+               inkscape:connector-curvature="0"
+               d="m 0,0 c 0,0 4.109,99.286 43.737,181.563 39.622,82.283 98.538,126.241 155.713,98.708 l 0.004,-0.002 C 256.633,252.734 258.996,179.264 219.37,96.986 179.749,14.707 104.758,-50.449 104.758,-50.449 L 32.22,-66.989 0,0 z"
+               style="fill:#e3ed4b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1"
+               id="path856" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(1.25,0,0,-1.25,-647.52767,1148.907)"
+         id="g874"
+         style="opacity:0.5;stroke:#000000;stroke-opacity:1">
+        <g
+           style="stroke:#000000;stroke-opacity:1"
+           clip-path="url(#clipPath866)"
+           id="g876">
+          <g
+             style="stroke:#000000;stroke-opacity:1"
+             transform="translate(694.5246,451.6419)"
+             id="g878">
+            <path
+               inkscape:connector-curvature="0"
+               d="m 0,0 c 0,0 -74.858,65.125 -114.479,147.405 -39.626,82.278 -37.259,155.747 19.915,183.283 l 0.005,0.002 C -37.382,358.228 21.527,314.264 61.153,231.984 100.779,149.707 104.977,50.74 104.977,50.74 L 72.668,-16.57 0,0 z"
+               style="fill:#6cc742;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1"
+               id="path880" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(1.25,0,0,-1.25,-647.52767,1148.907)"
+         id="g898"
+         style="opacity:0.5;stroke:#000000;stroke-opacity:1">
+        <g
+           style="stroke:#000000;stroke-opacity:1"
+           clip-path="url(#clipPath890)"
+           id="g900">
+          <g
+             style="stroke:#000000;stroke-opacity:1"
+             transform="translate(708.7932,388.4527)"
+             id="g902">
+            <path
+               inkscape:connector-curvature="0"
+               d="m 0,0 c 0,0 -97.459,-17.863 -186.49,2.462 -89.034,20.319 -145.001,67.979 -130.88,129.845 l 0.003,0.005 c 14.117,61.873 85.22,80.521 174.253,60.2 89.033,-20.318 169.249,-78.874 169.249,-78.874 L 58.393,46.545 0,0 z"
+               style="fill:#58c8d1;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1"
+               id="path904" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(1.25,0,0,-1.25,-647.52767,1148.907)"
+         id="g922"
+         style="opacity:0.5;stroke:#000000;stroke-opacity:1">
+        <g
+           style="stroke:#000000;stroke-opacity:1"
+           clip-path="url(#clipPath914)"
+           id="g924">
+          <g
+             style="stroke:#000000;stroke-opacity:1"
+             transform="translate(767.1264,360.2068)"
+             id="g926">
+            <path
+               inkscape:connector-curvature="0"
+               d="m 0,0 c 0,0 -46.794,-87.186 -118.19,-144.118 -71.401,-56.941 -143.557,-70.984 -183.122,-21.369 l -0.002,0.005 c -39.572,49.614 -9.819,116.829 61.577,173.771 71.396,56.939 167.134,83.146 167.134,83.146 L 0.026,74.821 0,0 z"
+               style="fill:#3c48a5;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1"
+               id="path928" />
+          </g>
+        </g>
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         d="m 576.92921,395.70387 c -112.70125,-131.8475 -310.9025,-147.35375 -442.73875,-34.635 -112.0575,95.8 -125.23625,264.2975 -29.43625,376.34375 81.43,95.24625 224.625,106.4425 319.87375,25.01625 80.95625,-69.2175 90.48375,-190.95375 21.2575,-271.915 -58.82375,-68.78875 -162.27625,-76.8875 -231.08875,-18.06875 -58.49875,49.98625 -65.37375,137.965 -15.36,196.44625 42.49875,49.715 117.23125,55.565 166.95,13.06 22.18875,-18.975 34.10125,-45.5 35.17875,-72.525"
+         style="fill:none;stroke:#dc0f47;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path932" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 522.20493,389.23 59.89875,10.6525 -9.1375,-55.53125"
+         style="fill:none;stroke:#dc0f47;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path936" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 381.46183,549.43125 c 31.3475,37.89375 25.4325,93.52625 -13.22875,124.265 -38.665,30.72625 -95.425,24.91125 -126.7775,-12.97375 -31.3525,-37.90375 -25.43,-93.53375 13.22625,-124.26375 38.6675,-30.73 95.42125,-24.92375 126.78,12.9725"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path948" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 381.46183,549.43125 c 31.3475,37.89375 25.4325,93.52625 -13.22875,124.265 -38.665,30.72625 -95.425,24.91125 -126.7775,-12.97375 -31.3525,-37.90375 -25.43,-93.53375 13.22625,-124.26375 38.6675,-30.73 95.42125,-24.92375 126.78,12.9725 z"
+         style="fill:none;stroke:#dc0f47;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path952" />
+      <g
+         id="g954"
+         transform="matrix(1.25,0,0,-1.25,-647.52767,1148.907)">
+        <g
+           clip-path="url(#clipPath958)"
+           id="g956">
+          <text
+             id="text962"
+             transform="matrix(1,0,0,-1,726.1909,452.3538)">
+            <tspan
+               id="tspan964"
+               sodipodi:role="line"
+               y="0"
+               x="0 10.361894 20.723787 25.904736 38.335281 43.516228 47.65353 56.971779 67.333672 72.514618 81.83287"
+               style="font-size:18.6364994px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-ItalicMT">La Ética y</tspan>
+            <tspan
+               id="tspan966"
+               sodipodi:role="line"
+               y="23.295626"
+               x="-13.977375 -9.8400717 0.52182198 9.8400717 15.021019 27.451565 33.65752 37.794823 48.156715 57.474964 61.61227 71.974159 76.111465 86.473358 95.791611"
+               style="font-size:18.6364994px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-ItalicMT">los Principios</tspan>
+            <tspan
+               id="tspan968"
+               sodipodi:role="line"
+               y="46.591251"
+               x="-1.043644 9.3182497 19.680143 24.861092 38.316643 42.453945 51.772198 62.13409 72.495987"
+               style="font-size:18.6364994px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-ItalicMT">de Diseño</tspan>
+          </text>
+        </g>
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         d="m 313.29908,677.64712 c 40.11625,0 72.6375,-32.52125 72.6375,-72.6375 0,-40.1175 -32.52125,-72.6375 -72.6375,-72.6375 -40.11625,0 -72.6375,32.52 -72.6375,72.6375 0,40.11625 32.52125,72.6375 72.6375,72.6375"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path1228" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text6432"
+         y="583.65143"
+         x="310.11685"
+         style="font-size:23px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold"
+         xml:space="preserve"><tspan
+           y="583.65143"
+           x="310.11685"
+           id="tspan6434"
+           sodipodi:role="line">La Ética y</tspan><tspan
+           id="tspan6436"
+           y="612.40143"
+           x="310.11685"
+           sodipodi:role="line">los Principios</tspan><tspan
+           id="tspan6438"
+           y="641.15143"
+           x="310.11685"
+           sodipodi:role="line">de Diseño</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text6432-7"
+         y="278.31982"
+         x="166.7115"
+         style="font-size:33px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold"
+         xml:space="preserve"><tspan
+           id="tspan6438-6"
+           y="278.31982"
+           x="166.7115"
+           sodipodi:role="line">Administración</tspan><tspan
+           id="tspan6472"
+           y="319.56982"
+           x="166.7115"
+           sodipodi:role="line">de la tierra y</tspan><tspan
+           id="tspan6474"
+           y="360.81982"
+           x="166.7115"
+           sodipodi:role="line">de la naturaleza</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:33px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold"
+         x="458.52673"
+         y="297.65997"
+         id="text6476"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           x="458.52673"
+           y="297.65997"
+           id="tspan6482">Construcción</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text6489"
+         y="528.40747"
+         x="611.27679"
+         style="font-size:33px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold"
+         xml:space="preserve"><tspan
+           id="tspan6491"
+           y="528.40747"
+           x="611.27679"
+           sodipodi:role="line">Herramientas</tspan><tspan
+           id="tspan6493"
+           y="569.65747"
+           x="611.27679"
+           sodipodi:role="line">y Tecnología</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:33px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold"
+         x="557.27832"
+         y="789.79187"
+         id="text6495"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           x="557.27832"
+           y="789.79187"
+           id="tspan6499">Educación</tspan><tspan
+           id="tspan6503"
+           sodipodi:role="line"
+           x="557.27832"
+           y="831.04187">y Cultura</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text6505"
+         y="917.59113"
+         x="308.189"
+         style="font-size:33px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold"
+         xml:space="preserve"><tspan
+           y="917.59113"
+           x="308.189"
+           sodipodi:role="line"
+           id="tspan6509">Salud y</tspan><tspan
+           id="tspan6513"
+           y="958.84113"
+           x="308.189"
+           sodipodi:role="line">Bienestar</tspan><tspan
+           id="tspan6515"
+           y="1000.0911"
+           x="308.189"
+           sodipodi:role="line">Espiritual</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:33px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold"
+         x="37.468136"
+         y="805.63745"
+         id="text6517"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           x="37.468136"
+           y="805.63745"
+           id="tspan6523">Finanzas</tspan><tspan
+           id="tspan6530"
+           sodipodi:role="line"
+           x="37.468136"
+           y="846.88745">y Economía</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text6532"
+         y="507.78604"
+         x="12.429692"
+         style="font-size:33px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Bold"
+         xml:space="preserve"><tspan
+           y="507.78604"
+           x="12.429692"
+           sodipodi:role="line"
+           id="tspan6536">Tenencia de la tierra</tspan><tspan
+           id="tspan6540"
+           y="549.03601"
+           x="12.429692"
+           sodipodi:role="line">y Gobernación</tspan><tspan
+           id="tspan6542"
+           y="590.28601"
+           x="12.429692"
+           sodipodi:role="line">Comunitaria</tspan></text>
+    </g>
+  </g>
+</svg>
