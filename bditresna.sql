@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-12-2019 a las 09:40:41
+-- Tiempo de generación: 27-12-2019 a las 10:05:08
 -- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.1.33
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,10 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bditresna`
 --
-
-DROP DATABASE bditresna;
-CREATE DATABASE IF NOT EXISTS `bditresna` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `bditresna`;
 
 -- --------------------------------------------------------
 
@@ -70,19 +66,19 @@ CREATE TABLE `t_cops` (
 --
 
 INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
-(1, 1, 1, 'Señales Relevantes', NULL, NULL),
+(1, 1, 1, 'Señales Relevantes', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\prueba.png', NULL),
 (2, 1, 1, 'Informatica', NULL, NULL),
-(3, 1, 1, 'Integración Social', NULL, NULL),
-(4, 1, 1, 'Administración y Finanzas', NULL, NULL),
-(5, 1, 1, 'F.O.L.', NULL, NULL),
-(6, 2, 1, 'Pre-proyecto', NULL, NULL),
-(7, 2, 1, 'Proyecto en curso', NULL, NULL),
-(8, 3, 1, 'Plan de Explotación', NULL, NULL),
-(11, 4, 2, 'Señales Relevantes', NULL, NULL),
-(12, 4, 2, 'Ibermatica Digital', NULL, NULL),
-(13, 5, 2, 'Pre-proyectos', NULL, NULL),
-(14, 5, 2, 'Proyecto en curso', NULL, NULL),
-(15, 6, 2, 'Plan de Explotación', NULL, NULL);
+(3, 1, 1, 'Integración Social', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\integracion_social.png', NULL),
+(4, 1, 1, 'Administración y Finanzas', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\administracion_y_finanzas.svg', NULL),
+(5, 1, 1, 'F.O.L.', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\fol.jpeg', NULL),
+(6, 2, 1, 'Pre-proyecto', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\pre_proyecto.png', NULL),
+(7, 2, 1, 'Proyecto en curso', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\proyectos.png', NULL),
+(8, 3, 1, 'Plan de Explotación', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\plan_explotacion.jpeg', NULL),
+(11, 4, 2, 'Señales Relevantes', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\senales_relevantes_2', NULL),
+(12, 4, 2, 'Ibermatica Digital', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\ibermatica_digital.png', NULL),
+(13, 5, 2, 'Pre-proyectos', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\pre-proyecto2.png', NULL),
+(14, 5, 2, 'Proyecto en curso', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\proyectos2.png', NULL),
+(15, 6, 2, 'Plan de Explotación', 'iTresna\\iTresnaFront\\src\\assets\\Cops\\plan_explotacion2.png', NULL);
 
 -- --------------------------------------------------------
 

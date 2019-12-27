@@ -8,25 +8,29 @@ header {
 
 .hiTresna a{
     height: 50%;
-    color: #9684bb;
     font-size: 3rem;
     display: inline-block;
     text-decoration-line: none;
+    background: linear-gradient(to left, #C79BF2, #B0A7F1, #8EB4E6, #7BCAE1);
+    -webkit-background-clip: text;
+    color: transparent;  
 }
 
 .hiTresna p{
-    font-size: 1.5rem;
-    color: #9684bb;
+    font-size: 1.8rem;
     margin-left: 85%;
     margin-top: -3%;
+    background: linear-gradient(to right, #C79BF2, #B0A7F1, #8EB4E6, #7BCAE1);
+    -webkit-background-clip: text;
+    color: transparent;  
 }
+
 
 
 
 @media only screen and (min-width: 320px) {
 
     .hiTresna p{
-      
         margin-left: 50%;
         margin-top: -10%;
         font-size: 18px;
@@ -42,7 +46,7 @@ header {
 @media only screen and (min-width: 375px) {
 
     .hiTresna p{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         margin-left: 55%;
         margin-top: -12%;
     }
