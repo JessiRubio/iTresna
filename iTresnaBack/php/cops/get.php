@@ -50,8 +50,8 @@
                 AND cop.cod_cop=sen.cod_cop
                 WHERE cop.cod_org=? AND cop.cod_esp=?
                 GROUP BY cop.cod_cop, cop.cod_esp, cop.cod_org
-                ORDER BY (SELECT cod_cop FROM t_permisos WHERE cod_usuario=?
-                           AND cod_org=? AND cod_esp=? AND cod_cop=cop.cod_cop) DESC";
+                ORDER BY cop.cod_cop ASC, (SELECT cod_cop FROM t_permisos WHERE cod_usuario=?
+                           AND cod_org=? AND cod_esp=? AND cod_cop=cop.cod_cop) ASC";
         $query=$conexion->prepare($sql);
         $query->bind_param("iisii",$cod_org,$cod_esp,$cod_usuario,$cod_org,$cod_esp);
         $query->execute();
