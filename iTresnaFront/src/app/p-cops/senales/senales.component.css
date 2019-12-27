@@ -87,12 +87,8 @@ h3{
 
 .autor{
     display: inline-block;
-<<<<<<< HEAD
-    margin-left:70%;
-=======
     width: 80%;
     text-align: right;
->>>>>>> fe8966a0960fbe95c6390e69225322c38c669438
 }
 
 button:hover{
