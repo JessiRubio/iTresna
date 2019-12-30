@@ -12,14 +12,14 @@
     width: 22em;
     margin: 10px;
     padding-top: 0.5em;
-    background-color:#555453;
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 1rem;
 }
 .seleccionable{
-    background-color:rgb(82, 80, 80);
+    background-color:rgb(243, 239, 239);
 }
 .noSeleccionable{
-    background-color:rgb(243, 239, 239);
+    background-color:rgb(82, 80, 80);
 }
 
 
@@ -36,11 +36,11 @@
     font-size: 1.5em;
     background: linear-gradient(to right, #EDDFFB, #E3E0FA, #E0EAF8, #C9EAF3);
     -webkit-background-clip: text;
-    color: transparent;  
+    color: #333;  
 
 }
 .noSeleccionable h3{
-    color: #333;
+    color: transparent;
 }
 
 .numeroSenales {

@@ -1,16 +1,22 @@
 
 <app-header-generico></app-header-generico>
 
-
-<!-- Menu-->
-<nav id="menu">
-    <ul>
-        <li *ngFor="let item of listaEspacios; let i = index" (click)="cambiarSeleccionado(i)" [ngClass]="(i===selected) ? 'seleccionado':'noSeleccionado'">
-            {{item.desc_esp}}
-        </li>
-    </ul>
-</nav>
-
+<div class="cabecera">
+    <section>
+        <img src="./../../assets/logo2.png" alt="">
+        <pre>Gaurko eta biharko profesionalak prestatzen
+ Formamos profesionales de hoy y de mañana
+        </pre>
+    </section>
+    <!-- Menu-->
+    <nav id="menu">
+        <ul>
+            <li *ngFor="let item of listaEspacios; let i = index" (click)="cambiarSeleccionado(i)" [ngClass]="(i===selected) ? 'seleccionado':'noSeleccionado'">
+                {{item.desc_esp}}
+            </li>
+        </ul>
+    </nav>
+</div>
 
 <div>
     <ul class="listaCops">
