@@ -14,7 +14,6 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 export class ModalSenalComponent implements OnInit {
   form:FormGroup;
   etiquetas:EtiquetaItem[];
-  preview:MatLinkPreviewComponent;
   selected;
   constructor(
     private http:HttpClient,
@@ -37,15 +36,8 @@ export class ModalSenalComponent implements OnInit {
   }
   ngOnInit() {
   }
-  async save(){
-    var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
-    console.log(this.preview);
-    await this.preview.linkPreviewService.fetchLink(this.form.value.url).subscribe(
-      response=>{
-        console.log(response);
-      }
-    );
+  save(){
     this.form.value.etiqueta=this.selected;
-    //this.dialogRef.close(this.form.value);
+    this.dialogRef.close(this.form.value);
   }
 }

@@ -21,7 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bditresna`
 --
-
+DROP DATABASE bditresna;
+CREATE DATABASE bditresna;
+USE bditresna;
 -- --------------------------------------------------------
 
 --

@@ -36,12 +36,6 @@ export class SenalesComponent implements OnInit {
     private dialog:MatDialog
     ) {
 
-    this.router.events.subscribe((ev)=>{
-      if(localStorage.length==0){
-        this.router.navigateByUrl("");
-      }
-    });
-
    }
 
   ngOnInit() {
