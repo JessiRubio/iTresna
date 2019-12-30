@@ -204,7 +204,7 @@ export class PCopsComponent implements OnInit {
         }
       );
     }
-    else if (this.filtroUsuario>0){
+    else if (this.filtroUsuario>=0){
       usuario=this.cop.usuario[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
@@ -214,7 +214,7 @@ export class PCopsComponent implements OnInit {
           return false;
         }
       );
-    }else if (this.filtroEtiqueta>0){
+    }else if (this.filtroEtiqueta>=0){
       etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
