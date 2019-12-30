@@ -72,6 +72,7 @@ export class PCopsComponent implements OnInit {
         res=>{  
           if(res.error==0){
             this.cop=res.cop;
+            console.log(this.cop);
           }
         },
         err=>{
@@ -96,9 +97,6 @@ export class PCopsComponent implements OnInit {
     if(this.cod_cop=i){
       this.cod_cop=i;
     }
-  }
-  volverAtras(item){
-    console.warn("TODO esta funcion aun esta por hacer, volvera a la pestaña anterior seleccionando el espacio")
   }
   tienePermisos():boolean{
     var cod_org_actual=this.cop.cod_org;
@@ -189,23 +187,21 @@ export class PCopsComponent implements OnInit {
   filtrar(){
     var etiqueta:EtiquetaItem;
     var usuario:string;
-    console.log(this.listaSenales);
-    console.log(this.filtroEtiqueta);
-    console.log(this.filtroUsuario)
     if(this.filtroEtiqueta>=0 && this.filtroUsuario>=0){
       etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
       usuario=this.cop.usuario[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
-          if(x.cod_etiqueta==etiqueta.cod_etiqueta && x.cod_usuario===usuario){
+          if(x.cod_etiqueta==etiqueta.cod_etiqueta && x.cod_usuario==usuario){
             return true;
           }
           return false;
         }
       );
     }
-    else if (this.filtroUsuario>0){
-      usuario=this.cop.usuario[this.filtroUsuario];
+    else if (this.filtroUsuario>=0){
+      console.log(this.cop);
+      usuario=this.cop.usuarios[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
           if(x.cod_usuario===usuario){
@@ -214,7 +210,7 @@ export class PCopsComponent implements OnInit {
           return false;
         }
       );
-    }else if (this.filtroEtiqueta>0){
+    }else if (this.filtroEtiqueta>=0){
       etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
@@ -237,34 +233,28 @@ export class PCopsComponent implements OnInit {
       etiquetas:this.cop.etiquetas
     }
     const dialogRef=this.dialog.open(ModalSenalComponent,dialofConfig);
+    
     dialogRef.afterClosed().subscribe(
       data=>{
-        var senal={
-                    "nueva_senal":true,
-                    "cod_org":this.cop.cod_org,
-                    "cod_esp":this.cod_esp,
-                    "cod_cop":this.cod_cop,
-                    "cod_etiqueta":data.etiqueta,
-                    "desc_senal":data.descripcion,
-                    "enlace":data.url,
-                    "cod_usuario":this.usuarioLogeado.cod_usuario};
-        this.senalesService.nuevaSenal(this.cop.cod_org,this.cop.cod_esp,
-                              this.cop.cod_org,this.usuarioLogeado.cod_usuario,
-                              data.etiqueta, data.descripcion, data.url).subscribe(
-          response=>{
-            if(response.error!=0 && response.aniadido==0){
-              window.alert("No se ha podido añadir la senñal");
+        if(data!=null){
+          this.senalesService.nuevaSenal(this.cop.cod_org,this.cop.cod_esp,
+          this.cop.cod_cop,this.usuarioLogeado.cod_usuario,
+          data.etiqueta, data.descripcion, data.url).subscribe(
+            response=>{
+              if(response.error!=0 && response.aniadido==0){
+                window.alert("No se ha podido añadir la senñal");
+              }
+              else if(response.error==0 && response.aniadido==1){
+                location.reload();
+                window.alert("Señal añadida correctamente");
+              }
+            },
+            err=>{
+              console.log(err);
+              window.alert("Error de conexion o fallo en servidor");
             }
-            else if(response.error==0 && response.aniadido==1){
-              location.reload();
-              window.alert("Señal añadida correctamente");
-            }
-          },
-          err=>{
-            console.log(err);
-            window.alert("Error de conexion o fallo en servidor");
-          }
-        )
+          );
+        }
       }
     );
     

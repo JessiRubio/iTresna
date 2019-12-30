@@ -1,7 +1,6 @@
 .contenidoSenal{
     height: auto;
-    padding: 1em;
-    margin: 5%;
+    padding-top: 0.2rem;
     margin-left: 0;
     margin-top: 0;
     width: auto;
@@ -10,6 +9,12 @@
 }
 .contenidoSenaldiv>*{
     margin-left: 5%;
+    margin-right: 0;
+}
+.fecha{
+    margin: 0;
+    margin-left: 2%;
+    width: 20%;
 }
 .textoSenal{
     display: inline-block;
