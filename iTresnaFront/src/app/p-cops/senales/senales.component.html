@@ -1,8 +1,8 @@
 <section class="contenidoSenal">
 
         <div class="contenidoSenaldiv">
-            <p>{{senal.fecha_hora}}</p>
-            <a href="https://www.newgenapps.com/blog/trends-big-data-innovation-future-data-science" ><img class="imgprueba" [src]="imagen" alt="prueba" ></a>
+           
+            <a [href]="senal.enlace" ><img class="imgprueba" [src]="imagen" alt="prueba" ></a>
             <div class="textoSenal">
                     <h2>{{titulo}}</h2>
                     <h3>{{senal.desc_senal}}</h3>
@@ -28,6 +28,6 @@
         <button *ngIf="puedeBorrar()" class="boton" (click)="borrar()"><img class="papelera" src="assets/papelera.png" alt="papelera"> </button>
         <button *ngIf="puedeEditar()" (click)="editar()" class="boton"><img class="papelera" src="assets/edit.png" alt="papelera"></button>
         <p class="autor">{{senal.cod_usuario||"Anónimo"}}</p>
-
+        <p class="fecha">{{senal.fecha_hora}}</p>
 
 </section>

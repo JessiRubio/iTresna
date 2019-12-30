@@ -11,7 +11,7 @@ export class CopsItem{
     cantidad_senales:number=0;
     listaSenales:SenalesItem[]=[];
     etiquetas:EtiquetaItem[]=[];
-    usuario:string[]=[];
+    usuarios:string[]=[];
 
     /*
     constructor(co,ce,cc,icg,cs:number,dc,ic:string){

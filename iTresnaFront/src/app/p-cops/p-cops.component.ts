@@ -192,7 +192,7 @@ export class PCopsComponent implements OnInit {
       usuario=this.cop.usuario[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
-          if(x.cod_etiqueta==etiqueta.cod_etiqueta && x.cod_usuario===usuario){
+          if(x.cod_etiqueta==etiqueta.cod_etiqueta && x.cod_usuario==usuario){
             return true;
           }
           return false;
@@ -200,7 +200,8 @@ export class PCopsComponent implements OnInit {
       );
     }
     else if (this.filtroUsuario>=0){
-      usuario=this.cop.usuario[this.filtroUsuario];
+      console.log(this.cop);
+      usuario=this.cop.usuarios[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
           if(x.cod_usuario===usuario){
