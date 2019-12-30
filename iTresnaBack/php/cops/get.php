@@ -93,15 +93,15 @@
     function cargarUsuariosConAcceso($cod_org,$cod_esp,$cod_cop){
         $result=array();
         include("./../conexion.php");
-        $sql="SELECT nombre, ape1,ape2
+        $sql="SELECT DISTINCT tu.cod_usuario
             FROM t_usuarios tu, t_permisos tp 
             WHERE tp.cod_org=? AND tp.cod_esp=? AND tp.cod_cop=? AND tu.cod_usuario = tp.cod_usuario OR tu.tip_usuario=2 AND tu.cod_org=?";
         $query=$conexion->prepare($sql);
         $query->bind_param("iiii",$cod_org,$cod_esp,$cod_cop,$cod_org);
         $query->execute();
-        $query->bind_result($nombre, $ape1, $ape2);
+        $query->bind_result($cod_usuario);
         while($query->fetch()){
-            $result[]=$nombre." ".$ape1." ".$ape2;
+            $result[]=$cod_usuario;
         }
         $query->close();
         return $result;
