@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-12-2019 a las 13:46:45
+-- Tiempo de generación: 30-12-2019 a las 16:03:13
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -183,8 +183,8 @@ CREATE TABLE `t_org` (
 --
 
 INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`) VALUES
-(1, 'FP Txurdinaga', '', '', ''),
-(2, 'Ibermatica', '', '', '');
+(1, 'FP Txurdinaga', '', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen'),
+(2, 'Ibermatica', '', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización');
 
 -- --------------------------------------------------------
 
