@@ -1,11 +1,42 @@
+.cabecera{
+    background-color: #000000d7;
+    width: 100%;
+    margin:0;
+}
+
+.cabecera section img{
+    width: 20%;
+    display: inline-block;
+    margin:2%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.cabecera section pre{
+    width: 60%;
+    margin:2%;
+    margin-left: 8%;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2em;
+    font-style: italic ;
+    color:white;
+    display: inline-block;
+    text-align:center;
+    vertical-align: top;
+}
+
+#menu{
+    margin-top: -2em;
+}
 
 #menu ul {
     list-style-type: none;
-    margin: 2em;
-    margin-top: 1em;
     padding: 0;
-    background-color: #555453;
+    /*background-color: #555453;*/
     border-radius: 1em;
+    text-align: center;
+    margin-top: 0;
 }
 #menu>ul>li {
     display: inline-block;

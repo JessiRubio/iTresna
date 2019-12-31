@@ -1,0 +1,10 @@
+colors{
+    --colorPrimary: linear-gradient(to right, #EDDFFB, #E3E0FA, #E0EAF8, #C9EAF3);
+    --colorBlack: #000000d7;
+    --colorWhite: white;
+    --colorCopsActivas: rgb(243, 239, 239);
+    --colorCopsIncativas: rgb(82, 80, 80);
+    --colorTextoMulticolor: linear-gradient(to left, #C79BF2, #B0A7F1, #8EB4E6, #7BCAE1);
+    --colorTextoMulticolorInvertido: linear-gradient(to right, #C79BF2, #B0A7F1, #8EB4E6, #7BCAE1);
+}
+

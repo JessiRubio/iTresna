@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-12-2019 a las 13:43:06
+-- Tiempo de generación: 30-12-2019 a las 16:03:13
 -- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Versión de PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,9 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bditresna`
 --
-DROP DATABASE bditresna;
-CREATE DATABASE bditresna;
-USE bditresna;
+
 -- --------------------------------------------------------
 
 --
@@ -69,13 +67,13 @@ CREATE TABLE `t_cops` (
 
 INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
 (1, 1, 1, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\prueba.png', NULL),
-(2, 1, 1, 'Informatica', 'http:\\\\localhost:8080\\media\\Cops\\informatica.png', NULL),
+(2, 1, 1, 'Informatica', NULL, NULL),
 (3, 1, 1, 'Integración Social', 'http:\\\\localhost:8080\\media\\Cops\\integracion_social.png', NULL),
 (4, 1, 1, 'Administración y Finanzas', 'http:\\\\localhost:8080\\media\\Cops\\administracion_y_finanzas.svg', NULL),
-(5, 1, 1, 'F.O.L.', 'http:\\\\localhost:8080\\media\\Cops\\fol.jpg', NULL),
+(5, 1, 1, 'F.O.L.', 'http:\\\\localhost:8080\\media\\Cops\\fol.jpeg', NULL),
 (6, 2, 1, 'Pre-proyecto', 'http:\\\\localhost:8080\\media\\Cops\\pre_proyecto.png', NULL),
 (7, 2, 1, 'Proyecto en curso', 'http:\\\\localhost:8080\\media\\Cops\\proyectos.png', NULL),
-(8, 3, 1, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion.jpg', NULL),
+(8, 3, 1, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion.jpeg', NULL),
 (11, 4, 2, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\senales_relevantes_2.png', NULL),
 (12, 4, 2, 'Ibermatica Digital', 'http:\\\\localhost:8080\\media\\Cops\\ibermatica_digital.png', NULL),
 (13, 5, 2, 'Pre-proyectos', 'http:\\\\localhost:8080\\media\\Cops\\pre-proyecto2.png', NULL),
@@ -163,9 +161,8 @@ CREATE TABLE `t_megusta` (
 INSERT INTO `t_megusta` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usuario`) VALUES
 (3, 5, 1, 1, 'usuario@usuario.com'),
 (4, 2, 1, 1, 'rubiovargas.jessica@gmail.com'),
-(13, 11, 4, 2, 'usuario@usuario.com'),
 (13, 11, 4, 2, 'jaime.corrales@gmail.com'),
-(5, 1, 1, 1, 'rubiovargas.jessica@gmail.com');
+(13, 11, 4, 2, 'usuario@usuario.com');
 
 -- --------------------------------------------------------
 
@@ -175,16 +172,19 @@ INSERT INTO `t_megusta` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usua
 
 CREATE TABLE `t_org` (
   `cod_org` int(11) NOT NULL,
-  `desc_org` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL
+  `desc_org` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `img_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `enlace_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `eslogan_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `t_org`
 --
 
-INSERT INTO `t_org` (`cod_org`, `desc_org`) VALUES
-(1, 'FP Txurdinaga'),
-(2, 'Ibermatica');
+INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`) VALUES
+(1, 'FP Txurdinaga', '', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen'),
+(2, 'Ibermatica', '', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización');
 
 -- --------------------------------------------------------
 
@@ -223,26 +223,27 @@ CREATE TABLE `t_senales` (
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `desc_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `enlace` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha_hora` date DEFAULT current_timestamp(),
-  `ind_fich_gest` tinyint(4) DEFAULT NULL
+  `fecha_hora` date DEFAULT NULL,
+  `ind_fich_gest` tinyint(4) DEFAULT NULL,
+  `img_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `t_senales`
 --
 
-INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiqueta`, `cod_usuario`, `desc_senal`, `enlace`, `fecha_hora`, `ind_fich_gest`) VALUES
-(3, 5, 1, 1, 3, 'jaime.corrales@gmail.com', 'noticia', 'enlace', '2019-12-10', NULL),
-(4, 2, 1, 1, 2, 'jonanderdecastro@gmail.com', 'noticia', 'enlace', '2019-11-20', NULL),
-(5, 1, 1, 1, 1, 'usuario@usuario.com', 'noticia', 'enlace', '2019-12-21', NULL),
-(6, 5, 1, 1, 3, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-11-11', NULL),
-(7, 12, 4, 2, 24, 'unaimarg@gmail.com', 'noticia', 'enlace', '2020-01-14', NULL),
-(8, 2, 1, 1, 2, 'usuario@usuario.com', 'noticia', 'enlace', '2019-12-23', NULL),
-(9, 2, 1, 1, 1, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-13', NULL),
-(10, 2, 1, 1, 1, 'jonanderdecastro@gmail.com', 'noticias', 'enlace', '2019-12-01', NULL),
-(11, 3, 1, 1, 16, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2020-02-13', NULL),
-(12, 8, 3, 1, 4, 'usuario@usuario.com', 'noticia', 'enalce', '2019-12-13', NULL),
-(13, 11, 4, 2, 24, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-30', NULL);
+INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiqueta`, `cod_usuario`, `desc_senal`, `enlace`, `fecha_hora`, `ind_fich_gest`, `img_senal`) VALUES
+(3, 5, 1, 1, 3, 'jaime.corrales@gmail.com', 'noticia', 'enlace', '2019-12-10', NULL, ''),
+(4, 2, 1, 1, 2, 'jonanderdecastro@gmail.com', 'noticia', 'enlace', '2019-11-20', NULL, ''),
+(5, 1, 1, 1, 1, 'usuario@usuario.com', 'noticia', 'enlace', '2019-12-21', NULL, ''),
+(6, 5, 1, 1, 3, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-11-11', NULL, ''),
+(7, 12, 4, 2, 24, 'unaimarg@gmail.com', 'noticia', 'enlace', '2020-01-14', NULL, ''),
+(8, 2, 1, 1, 2, 'usuario@usuario.com', 'noticia', 'enlace', '2019-12-23', NULL, ''),
+(9, 2, 1, 1, 1, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-13', NULL, ''),
+(10, 2, 1, 1, 1, 'jonanderdecastro@gmail.com', 'noticias', 'enlace', '2019-12-01', NULL, ''),
+(11, 3, 1, 1, 16, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2020-02-13', NULL, ''),
+(12, 8, 3, 1, 4, 'usuario@usuario.com', 'noticia', 'enalce', '2019-12-13', NULL, ''),
+(13, 11, 4, 2, 24, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-30', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -299,19 +300,22 @@ CREATE TABLE `t_usuarios` (
   `sarbidea` varchar(16) COLLATE utf8_spanish_ci DEFAULT NULL,
   `nombre` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ape1` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ape2` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL
+  `ape2` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `campo_clasificador1` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `campo_clasificador2` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `campo_clasificador3` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `t_usuarios`
 --
 
-INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `nombre`, `ape1`, `ape2`) VALUES
-('jaime.corrales@gmail.com', 1, 1, 'jaime123', 'Jaime', 'Corrales', 'Petralanda'),
-('jonanderdecastro@gmail.com', 2, 1, '12345678', 'Jon Ander', 'De Castro', 'Da Silva'),
-('rubiovargas.jessica@gmail.com', 2, 1, '12345678', 'Jessica', 'Rubio', 'Vargas'),
-('unaimarg@gmail.com', 2, 2, '12345678', 'Unai', 'Martin', 'Gonzalez'),
-('usuario@usuario.com', 3, 2, '12345678', 'Usuario', '', '');
+INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `nombre`, `ape1`, `ape2`, `campo_clasificador1`, `campo_clasificador2`, `campo_clasificador3`) VALUES
+('jaime.corrales@gmail.com', 1, 1, 'jaime123', 'Jaime', 'Corrales', 'Petralanda', '', '', ''),
+('jonanderdecastro@gmail.com', 2, 1, '12345678', 'Jon Ander', 'De Castro', 'Da Silva', '', '', ''),
+('rubiovargas.jessica@gmail.com', 2, 1, '12345678', 'Jessica', 'Rubio', 'Vargas', '', '', ''),
+('unaimarg@gmail.com', 2, 2, '12345678', 'Unai', 'Martin', 'Gonzalez', '', '', ''),
+('usuario@usuario.com', 3, 2, '12345678', 'Usuario', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -464,7 +468,7 @@ ALTER TABLE `t_org`
 -- AUTO_INCREMENT de la tabla `t_senales`
 --
 ALTER TABLE `t_senales`
-  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `t_tip_usuario`
