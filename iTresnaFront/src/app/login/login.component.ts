@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from './../servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { ifError } from 'assert';
+import { Usuario } from  './../clases/usuario';
 
 
 @Component({
@@ -32,9 +33,13 @@ export class LoginComponent implements OnInit {
     this.usuariosService.logged().subscribe(
       respose=>{
         if(respose)
-        this.router.navigateByUrl("Principal");
+                     
+          this.router.navigateByUrl("Principal");
+        
       }
     );
+
+    
   }
   /* Funciones para el login */
   login(){
