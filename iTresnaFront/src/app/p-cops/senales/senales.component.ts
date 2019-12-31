@@ -25,7 +25,7 @@ export class SenalesComponent implements OnInit {
   @Input() etiquetas:EtiquetaItem[];
 
   private titulo:String= "Lorem Ipsum";
-  private imagen:string="";
+  private imagen:string="./../../../assets/cyberSecurityData.jpg";
   
 
   constructor(

@@ -18,7 +18,6 @@ export class CopsComponent implements OnInit {
  
 
   constructor() { 
-    console.log(this.img);
   }
   ngOnInit() {
   }

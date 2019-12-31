@@ -1,6 +1,6 @@
 .contenidoSenal{
     height: auto;
-    padding-top: 0.2rem;
+    padding:2.5%;
     margin-left: 0;
     margin-top: 0;
     width: auto;
@@ -8,46 +8,48 @@
     border-radius: 1em;
 }
 .contenidoSenaldiv>*{
-    margin-left: 5%;
-    margin-right: 0;
+    margin: 5px;
+}
+.imgprueba{
+    width: 30%;
+    height: 30%;
+}
+.textoSenal{
+    display: inline-block;
+    vertical-align: top;
+    margin:0;
+    width:65%;
+    height: 30%;
 }
 .fecha{
     margin: 0;
     margin-left: 2%;
     width: 20%;
 }
-.textoSenal{
-    display: inline-block;
-    vertical-align: top;
-    width:65%;
-}
+
 h2{
+    margin-left: 2%;
     display: block;
     text-align: center;
 }
 h3{
+    margin-left: 2%;
+    color: grey;
     text-align: justify;
     text-justify: inter-word;
 }
-
-.contenidoSenal img{
-    height: auto;
-    width: 25%;
-}
 .infoSenal{
-    padding: 3%;
+    width: 100%;
+    padding: 1%;
 }
 .infoSenal>*{
     display: inline-block;
-    margin-left:2%;
-    margin-right: 2%;
-}
-.zonaLike{
-    width: 15%
+    margin: auto;
+    margin: 2%;
 }
 .zonaLike>*{
     display: inline-block;
-    margin: 2px;
+    margin: auto;
 }
 .botonLike{
     color: rgba(223, 221, 221, 0.555);
@@ -56,20 +58,15 @@ h3{
     outline-width: 0;
     border:none;
 }
-
 .botonLike img{
     margin:0;
     height:20px;
     width:20px;
 }
-.etiqueta{
-    width: 20%;
-}
 .comentario{
+    display: inline-block;
     height: 3em;
-    display: flex;
-    width: 50%;
-    margin-top:-3em;
+    width: 100%;
     background-color: #555453;
     color:white;
     font-family: 'Merienda', cursive;
@@ -86,14 +83,14 @@ h3{
 
 .boton img{
     height:30px;
-    width:30px ;
+    width:30px;
 }
 
-
 .autor{
+    width: 35%;
     display: inline-block;
-    width: 80%;
     text-align: right;
+    
 }
 
 button:hover{
