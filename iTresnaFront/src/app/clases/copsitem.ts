@@ -12,19 +12,7 @@ export class CopsItem{
     listaSenales:SenalesItem[]=[];
     etiquetas:EtiquetaItem[]=[];
     usuarios:string[]=[];
-
-    /*
-    constructor(co,ce,cc,icg,cs:number,dc,ic:string){
-        this.cod_org = co;
-        this.cod_esp = ce;
-        this.cod_cop = cc;
-        this.desc_cop = dc;
-        this.img_cop = ic;
-        this.ind_cod_graficos = icg;
-        this.cantidad_senales =cs;
-    }
-*/
-    
+ 
 }
 export class EtiquetaItem{
     cod_etiqueta:number;

@@ -26,6 +26,8 @@ import { UsuariosComponent } from './p-administracion/usuarios/usuarios.componen
 import { PAdministracionComponent } from './p-administracion/p-administracion.component';
 import { CopComponent } from './p-espacios/cops/cop.component';
 import { AdminCopsComponent } from './p-administracion/admin-cops/admin-cops.component';
+import {MatTableModule} from '@angular/material/table';
+import { ModalAdminCopsComponent } from './p-administracion/admin-cops/modal-admin-cops/modal-admin-cops.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { AdminCopsComponent } from './p-administracion/admin-cops/admin-cops.com
     OrganizacionComponent,
     EspaciosComponent,
     UsuariosComponent,
-    AdminCopsComponent
+    AdminCopsComponent,
+    ModalAdminCopsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,10 +59,11 @@ import { AdminCopsComponent } from './p-administracion/admin-cops/admin-cops.com
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatLinkPreviewModule.forRoot()
+    MatLinkPreviewModule.forRoot(),
+    MatTableModule
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],
-  entryComponents:[ModalSenalComponent]
+  entryComponents:[ModalSenalComponent,ModalAdminCopsComponent]
 })
 export class AppModule { }

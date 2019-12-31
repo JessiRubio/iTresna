@@ -1,1 +1,33 @@
-<p>admin-cops works!</p>
+<div class="adminCops">
+    <mat-form-field>
+        <mat-label>Selecciona un espacio</mat-label>
+        <mat-select [(value)]="selected" (selectionChange)="cargarCops()">
+            <mat-option *ngFor="let item of espacios;let i=index" [value]="i">
+                {{item.desc_esp}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="tablaCops">
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+
+            </tr>
+            <tr *ngFor="let item of cops;let i=index">
+                <td>{{item.desc_cop}}</td>
+                <td>
+                    <button (click)="editar(item)" class="boton">
+                        <img class="papelera" src="assets/edit.png" alt="papelera">
+                    </button>
+                </td>
+                <td>
+                    <button class="boton" (click)="borrar(item)">
+                        <img class="papelera" src="assets/papelera.png" alt="papelera">
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
