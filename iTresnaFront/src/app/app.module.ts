@@ -19,10 +19,11 @@ import { HeaderGenericoComponent } from './header-generico/header-generico.compo
 import { ModalSenalComponent } from './p-cops/modalsenal/modalsenal.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatLinkPreviewModule } from '@angular-material-extensions/link-preview';
-import { PAdministracionComponent } from './p-administracion/p-administracion.component';
+import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizaciones.component';
 import { OrganizacionComponent } from './p-administracion/organizacion/organizacion.component';
 import { EspaciosComponent } from './p-administracion/espacios/espacios.component';
 import { UsuariosComponent } from './p-administracion/usuarios/usuarios.component';
+import { PAdministracionComponent } from './p-administracion/p-administracion.component';
 import { CopComponent } from './p-espacios/cops/cop.component';
 import { AdminCopsComponent } from './p-administracion/admin-cops/admin-cops.component';
 import {MatTableModule} from '@angular/material/table';
@@ -39,6 +40,7 @@ import { ModalAdminCopsComponent } from './p-administracion/admin-cops/modal-adm
     MenuOverflowComponent,
     HeaderGenericoComponent,
     ModalSenalComponent,
+    PAdOrganizacionesComponent,
     PAdministracionComponent,
     OrganizacionComponent,
     EspaciosComponent,
