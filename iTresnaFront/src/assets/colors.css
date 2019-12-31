@@ -1,4 +1,4 @@
-colors{
+:colors{
     --colorPrimary: linear-gradient(to right, #EDDFFB, #E3E0FA, #E0EAF8, #C9EAF3);
     --colorBlack: #000000d7;
     --colorWhite: white;

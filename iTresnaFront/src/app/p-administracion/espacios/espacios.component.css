@@ -1,17 +1,55 @@
+@import "./../../../assets/colors.css";
+
 section{
     border-top: 2px solid white;
+    margin-top: 2%;
 
 }
 
 table{
     width: 100%;
     margin-top: 2%;
+    border-left: none;
+    border-right: none;
 }
 
 table tr>*{
     text-align: center;
 }
 
+.fila:hover{
+    background-color: #333;
+    color: white;
+}
+
 table tr th{
     border-bottom: 1px solid black;
+}
+
+table tr td{
+    width: 10%;
+    text-align: center;
+}
+
+button{
+    width: 95%;
+    background-color: var(--colorCopsActivas);
+}
+
+.nombre{
+    width: 50%;
+}
+
+
+.boton{
+    background: transparent;
+    border-radius: 0.75rem;
+    height: auto;
+    width: auto;
+}
+
+.boton img{
+    height: 30px;
+    width: 30px;
+    background: transparent;
 }
