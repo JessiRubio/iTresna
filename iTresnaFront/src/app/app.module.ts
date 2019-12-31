@@ -20,6 +20,7 @@ import { HeaderGenericoComponent } from './header-generico/header-generico.compo
 import { ModalSenalComponent } from './p-cops/modalsenal/modalsenal.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatLinkPreviewModule } from '@angular-material-extensions/link-preview';
+import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizaciones.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatLinkPreviewModule } from '@angular-material-extensions/link-preview'
     SenalesComponent,
     MenuOverflowComponent,
     HeaderGenericoComponent,
-    ModalSenalComponent
+    ModalSenalComponent,
+    PAdOrganizacionesComponent
   ],
   imports: [
     BrowserModule,
