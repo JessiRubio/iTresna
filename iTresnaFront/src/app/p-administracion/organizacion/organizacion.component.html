@@ -1,1 +1,19 @@
-<p>organizacion works!</p>
+<div class="administracionOrg">
+    <form [formGroup]="form">
+        <mat-form-field class="expand">
+            <input matInput
+                placeholder="Nombre Organizacion"
+                formControlName="orgName">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="expand">
+            <input matInput
+                placeholder="Descripcion Organizacion"
+                formControlName="orgDesc">
+        </mat-form-field>
+        <br>
+        <input
+            type="file"
+            formControlName="orgIcon">
+    </form>
+</div>

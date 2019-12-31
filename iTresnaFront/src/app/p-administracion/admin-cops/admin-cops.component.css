@@ -1,0 +1,17 @@
+img{
+    height: 30px;
+    width: 30px;
+    background: transparent;
+}
+button{
+    background: transparent;
+    border-radius: 0.75rem;
+}
+table {
+    width: 100%;
+}
+.tablaCops{
+    padding-right: 10%;
+    padding-left: 10%;
+    text-align: center;
+}
