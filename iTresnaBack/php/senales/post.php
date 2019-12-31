@@ -22,11 +22,12 @@
             && $desc_senal!="" && $enlace!="" && $cod_etiqueta!="")
         {
             
-            $sql = "INSERT INTO t_senales(cod_cop,cod_esp,cod_org,cod_etiqueta,
-                cod_usuario,desc_senal,enlace) VALUES(?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO t_senales(cod_senal,cod_cop,cod_esp,cod_org,cod_etiqueta,
+                cod_usuario,desc_senal,enlace) VALUES(?,?,?,?,?,?,?,?)";
             $query=$conexion->prepare($sql);
-            $query->bind_param("iiiisss",$cod_cop,$cod_esp,$cod_org,$cod_etiqueta,$cod_usuario,
-                $desc_senal,$enlace);
+            $cod_senal=obtCodSenal($cod_cop, $cod_esp, $cod_org);
+            $query->bind_param("iiiiisss",$cod_senal, $cod_cop, $cod_esp, $cod_org,
+            $cod_etiqueta, $cod_usuario, $desc_senal,$enlace);
             $query->execute();
             $result["error"]=(($query->affected_rows)>0)?0:1;
             $result["aniadido"]=$query->affected_rows;
@@ -64,6 +65,24 @@
         $result["metodo"]="Metodo no soportado";
     }
     echo json_encode($result);
+    function obtCodSenal($cod_cop,$cod_esp,$cod_org):int{
+        include("./../conexion.php");
+        $sql = "SELECT MAX(cod_senal)
+                FROM t_senales
+                WHERE cod_org=? AND cod_esp=? AND cod_cop=?";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("iii",$cod_org,$cod_esp,$cod_cop);
+        $query->execute();
+        $query->bind_result($cod_senal);
+        $query->fetch();
+        if($cod_senal!=null){
+            $result=$cod_senal+1;
+        }else{
+            $result=0;
+        }
+        $query->close();
+        return $result;        
+    }
     function haDadoLike($cod_usuario,$cod_org,$cod_esp,$cod_cop,$cod_senal):bool{  
         include("./../conexion.php");
         $sql="SELECT COUNT(*)

@@ -88,9 +88,9 @@ h3{
 
 .autor{
     width: 35%;
-    display: inline-block;
     text-align: right;
-    
+    float:right;
+    clear: right;
 }
 
 button:hover{
