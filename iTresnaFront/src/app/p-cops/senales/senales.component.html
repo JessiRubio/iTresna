@@ -1,33 +1,30 @@
 <section class="contenidoSenal">
-
+        <p class="fecha">{{senal.fecha_hora}}</p>
         <div class="contenidoSenaldiv">
            
             <a [href]="senal.enlace" ><img class="imgprueba" [src]="imagen" alt="prueba" ></a>
             <div class="textoSenal">
                     <h2>{{titulo}}</h2>
                     <h3>{{senal.desc_senal}}</h3>
+                    <div class="infoSenal">
+                        <div class="zonaLike">
+                            <button class="botonLike" (click) = like() type="submit">
+                                <img class="like" src="assets/like.png" alt="like" >
+                            </button>
+                            <p>{{senal.me_gustas}}</p>
+                        </div>
+                        <p class="etiqueta" >Etiquetas: {{buscarEtiqueta()}}</p>
+                        <button *ngIf="puedeBorrar()" class="boton" (click)="borrar()">
+                                <img class="papelera" src="assets/papelera.png" alt="papelera">
+                        </button>
+                        <button *ngIf="puedeEditar()" (click)="editar()" class="boton">
+                                <img class="papelera" src="assets/edit.png" alt="papelera">
+                        </button>
+                        <p class="autor">{{senal.cod_usuario||"Anónimo"}}</p>
+                    </div>
             </div>
         </div>
-
-        
-
-        <div class="infoSenal">
-            <div class="zonaLike">
-                <button class="botonLike" (click) = like() type="submit">
-                    <img class="like" src="assets/like.png" alt="like" > </button>
-                    <p>{{senal.me_gustas}}</p>
-            </div>
-            <p class="etiqueta" >Etiquetas: {{buscarEtiqueta()}}</p>
-
-            <select name="comentarios" class="comentario">
-                    <option selected values="0"> {{senal.cantidad_comentarios}} Comentarios</option>
-                    
-            </select>
-
-        </div>
-        <button *ngIf="puedeBorrar()" class="boton" (click)="borrar()"><img class="papelera" src="assets/papelera.png" alt="papelera"> </button>
-        <button *ngIf="puedeEditar()" (click)="editar()" class="boton"><img class="papelera" src="assets/edit.png" alt="papelera"></button>
-        <p class="autor">{{senal.cod_usuario||"Anónimo"}}</p>
-        <p class="fecha">{{senal.fecha_hora}}</p>
-
+        <select name="comentarios" class="comentario">
+                <option selected values="0"> {{senal.cantidad_comentarios}} Comentarios</option>
+        </select>
 </section>
