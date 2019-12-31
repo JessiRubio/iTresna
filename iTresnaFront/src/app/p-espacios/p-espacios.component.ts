@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CopsComponent } from './cops/cops.component';
+import { CopComponent } from './cops/cop.component';
 import { CopsItem } from '../clases/copsitem';
 import { EspaciosService } from './../servicios/espacios.service';
 import { CopsService } from './../servicios/cops.service';

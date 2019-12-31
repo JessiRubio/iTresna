@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {Component} from '@angular/core'
 
-import { CopsComponent } from './cops.component';
+import { CopsComponent } from './cop.component';
 import { from } from 'rxjs';
 
 describe('CopsComponent', () => {

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PEspaciosComponent } from './p-espacios/p-espacios.component';
-import { CopsComponent } from './p-espacios/cops/cops.component';
 import { PCopsComponent } from './p-cops/p-cops.component';
 import { MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatRippleModule, MatSelectModule, MatMenuModule, MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material";
 
@@ -25,13 +24,15 @@ import { OrganizacionComponent } from './p-administracion/organizacion/organizac
 import { EspaciosComponent } from './p-administracion/espacios/espacios.component';
 import { UsuariosComponent } from './p-administracion/usuarios/usuarios.component';
 import { PAdministracionComponent } from './p-administracion/p-administracion.component';
+import { CopComponent } from './p-espacios/cops/cop.component';
+import { AdminCopsComponent } from './p-administracion/admin-cops/admin-cops.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PEspaciosComponent,
-    CopsComponent,
+    CopComponent,
     PCopsComponent,
     SenalesComponent,
     MenuOverflowComponent,
@@ -41,7 +42,8 @@ import { PAdministracionComponent } from './p-administracion/p-administracion.co
     PAdministracionComponent,
     OrganizacionComponent,
     EspaciosComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    AdminCopsComponent
   ],
   imports: [
     BrowserModule,

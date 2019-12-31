@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'cops-component',
-  templateUrl: './cops.component.html',
-  styleUrls: ['./cops.component.css']
+  selector: 'cop-component',
+  templateUrl: './cop.component.html',
+  styleUrls: ['./cop.component.css']
 })
-export class CopsComponent implements OnInit {
+export class CopComponent implements OnInit {
 
   @Input() ind_admin:boolean;
 
