@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-12-2019 a las 16:03:13
+-- Tiempo de generación: 31-12-2019 a las 12:42:53
 -- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.1.33
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,9 +22,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `bditresna`
 --
 
-DROP DATABASE bditresna;
-CREATE DATABASE bditresna;
-USE bditresna;
 -- --------------------------------------------------------
 
 --
@@ -70,13 +67,13 @@ CREATE TABLE `t_cops` (
 
 INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
 (1, 1, 1, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\prueba.png', NULL),
-(2, 1, 1, 'Informatica', NULL, NULL),
+(2, 1, 1, 'Informatica', 'http:\\\\localhost:8080\\media\\Cops\\informatica.png', NULL),
 (3, 1, 1, 'Integración Social', 'http:\\\\localhost:8080\\media\\Cops\\integracion_social.png', NULL),
 (4, 1, 1, 'Administración y Finanzas', 'http:\\\\localhost:8080\\media\\Cops\\administracion_y_finanzas.svg', NULL),
-(5, 1, 1, 'F.O.L.', 'http:\\\\localhost:8080\\media\\Cops\\fol.jpeg', NULL),
+(5, 1, 1, 'F.O.L.', 'http:\\\\localhost:8080\\media\\Cops\\fol.jpg', NULL),
 (6, 2, 1, 'Pre-proyecto', 'http:\\\\localhost:8080\\media\\Cops\\pre_proyecto.png', NULL),
 (7, 2, 1, 'Proyecto en curso', 'http:\\\\localhost:8080\\media\\Cops\\proyectos.png', NULL),
-(8, 3, 1, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion.jpeg', NULL),
+(8, 3, 1, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion.jpg', NULL),
 (11, 4, 2, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\senales_relevantes_2.png', NULL),
 (12, 4, 2, 'Ibermatica Digital', 'http:\\\\localhost:8080\\media\\Cops\\ibermatica_digital.png', NULL),
 (13, 5, 2, 'Pre-proyectos', 'http:\\\\localhost:8080\\media\\Cops\\pre-proyecto2.png', NULL),
