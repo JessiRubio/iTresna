@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-12-2019 a las 12:42:53
+-- Tiempo de generación: 31-12-2019 a las 13:02:40
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -98,12 +98,12 @@ CREATE TABLE `t_espacios` (
 --
 
 INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`) VALUES
-(1, 1, 'Rutina de Innovación', NULL),
-(2, 1, 'Rutina de Portafolio', NULL),
-(3, 1, 'Rutina de Explotación', NULL),
-(4, 2, 'Rutina de Innovación', NULL),
-(5, 2, 'Rutina de Portafolio', NULL),
-(6, 2, 'Rutina de Explotación', NULL);
+(1, 1, 'Rutina de Innovación', 1),
+(2, 1, 'Rutina de Portafolio', 0),
+(3, 1, 'Rutina de Explotación', 0),
+(4, 2, 'Rutina de Innovación', 1),
+(5, 2, 'Rutina de Portafolio', 0),
+(6, 2, 'Rutina de Explotación', 0);
 
 -- --------------------------------------------------------
 

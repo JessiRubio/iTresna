@@ -24,7 +24,7 @@
             "cod_org" => $cod_org_bd,
             "cod_esp" => $cod_esp,
             "desc_esp" => $desc_esp,
-            "ind_esp_curacion" => $ind_esp_curacion,
+            "ind_esp_curacion" => $ind_esp_curacion==1,
         );
         $result["error"]=0;
     }
@@ -41,7 +41,7 @@
                 "cod_org" => $cod_org_bd,
                 "cod_esp" => $cod_esp,
                 "desc_esp" => $desc_esp,
-                "ind_esp_curacion" => $ind_esp_curacion,
+                "ind_esp_curacion" => $ind_esp_curacion==1,
 
             );
         }

@@ -1,0 +1,17 @@
+section{
+    border-top: 2px solid white;
+
+}
+
+table{
+    width: 100%;
+    margin-top: 2%;
+}
+
+table tr>*{
+    text-align: center;
+}
+
+table tr th{
+    border-bottom: 1px solid black;
+}

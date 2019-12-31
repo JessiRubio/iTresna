@@ -1,1 +1,21 @@
-<p>espacios works!</p>
+<section>
+    <table>
+        <tr>
+            <th class="nombre">Nombre</th>
+            <th>Orden</th>
+            <th>Indice curación</th>
+        </tr>
+        <tr *ngFor="let item of listaEspacios">
+            <td>{{item.desc_esp}}</td>
+            <td>{{item.posicion}}</td>
+            <td><input type="checkbox" [checked]="item.ind_esp_curacion"></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button>
+                    <p>AÑADIR</p>
+                </button>
+            </td>
+        </tr>
+    </table>
+</section>
