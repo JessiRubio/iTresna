@@ -16,7 +16,7 @@
             $query=$conexion->prepare($sql);
             $query->bind_param("ss",$usuario,$password);
             $query->execute();
-            $query->bind_result($cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2);
+            $query->bind_result($cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2,$campo_clasificador1,$campo_clasificador2,$campo_clasificador3);
             $query->fetch();
             if($cod_usuario!=null){
                 $result["usuario"]=array(
@@ -27,6 +27,9 @@
                     "nombre"=>$nombre,
                     "ape1"=>$ape1,
                     "ape2"=>$ape2,
+                    "campo_clasificador1"=>$campo_clasificador1,
+                    "campo_clasificador2"=>$campo_clasificador2,
+                    "campo_clasificador3"=>$campo_clasificador3,
                     "permisos"=>obtenerPermisos($cod_usuario)
                 );  
                 $result["error"] = 0;
