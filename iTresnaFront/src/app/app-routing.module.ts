@@ -5,6 +5,7 @@ import {PEspaciosComponent} from './p-espacios/p-espacios.component';
 import {PCopsComponent} from './p-cops/p-cops.component'
 import { UsuariosService } from './servicios/usuarios.service';
 import { PAdministracionComponent } from './p-administracion/p-administracion.component';
+import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizaciones.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'Administracion',
     component:PAdministracionComponent
+  },
+  {
+  path: 'Organizaciones',
+    component:PAdOrganizacionesComponent
   }
 ];
 
