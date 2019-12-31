@@ -21,6 +21,10 @@ import { ModalSenalComponent } from './p-cops/modalsenal/modalsenal.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatLinkPreviewModule } from '@angular-material-extensions/link-preview';
 import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizaciones.component';
+import { OrganizacionComponent } from './p-administracion/organizacion/organizacion.component';
+import { EspaciosComponent } from './p-administracion/espacios/espacios.component';
+import { UsuariosComponent } from './p-administracion/usuarios/usuarios.component';
+import { PAdministracionComponent } from './p-administracion/p-administracion.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizac
     MenuOverflowComponent,
     HeaderGenericoComponent,
     ModalSenalComponent,
-    PAdOrganizacionesComponent
+    PAdOrganizacionesComponent,
+    PAdministracionComponent,
+    OrganizacionComponent,
+    EspaciosComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,

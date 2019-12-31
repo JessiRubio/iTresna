@@ -200,7 +200,6 @@ export class PCopsComponent implements OnInit {
       );
     }
     else if (this.filtroUsuario>=0){
-      console.log(this.cop);
       usuario=this.cop.usuarios[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{

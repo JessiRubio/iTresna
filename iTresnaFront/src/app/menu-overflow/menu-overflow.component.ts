@@ -24,6 +24,9 @@ export class MenuOverflowComponent implements OnInit {
     if(e.target.innerHTML==='Cerrar sesión'){
       this.usuarioService.logout();
     }
+    else if(e.target.innerHTML==='Administración'){
+      this.ruta.navigateByUrl('Administracion');
+    }
   }
 
 }
