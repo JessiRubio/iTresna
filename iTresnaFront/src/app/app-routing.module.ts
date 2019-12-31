@@ -4,6 +4,7 @@ import {LoginComponent} from './login/login.component';
 import {PEspaciosComponent} from './p-espacios/p-espacios.component';
 import {PCopsComponent} from './p-cops/p-cops.component'
 import { UsuariosService } from './servicios/usuarios.service';
+import { PAdministracionComponent } from './p-administracion/p-administracion.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'Cops',
     component: PCopsComponent
+  },
+  {
+    path: 'Administracion',
+    component:PAdministracionComponent
   }
 ];
 

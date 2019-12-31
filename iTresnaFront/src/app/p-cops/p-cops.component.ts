@@ -189,7 +189,7 @@ export class PCopsComponent implements OnInit {
     var usuario:string;
     if(this.filtroEtiqueta>=0 && this.filtroUsuario>=0){
       etiqueta=this.cop.etiquetas[this.filtroEtiqueta];
-      usuario=this.cop.usuario[this.filtroUsuario];
+      usuario=this.cop.usuarios[this.filtroUsuario];
       this.listSenalesMostradas=this.listaSenales.filter(
         x=>{
           if(x.cod_etiqueta==etiqueta.cod_etiqueta && x.cod_usuario==usuario){
