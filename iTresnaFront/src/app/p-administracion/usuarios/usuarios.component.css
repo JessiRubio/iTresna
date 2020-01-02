@@ -5,16 +5,14 @@ section{
     padding-top: 0;
 }
 
-.filtro{
-    text-align: center;
-    width: 40%;
-    padding-right: 2%;
-    padding-left: 6%;
+input{
+    border-bottom: 1px solid black;
+    margin-top: 2%;
 }
 
 table{
     width: 100%;
-    margin-top: 2%;
+    margin-top: 5%;
 }
 
 table tr>*{
@@ -28,4 +26,11 @@ table tr th{
 
 #columnaPermisos{
     width: 2%;
+}
+
+.filtro{
+    text-align: center;
+    width: 40%;
+    margin-left: 5%;
+    margin-bottom: 0;
 }

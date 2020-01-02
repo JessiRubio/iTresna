@@ -7,6 +7,7 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+
     <mat-form-field class="filtro">
         <mat-select [(value)]="selected" (selectionChange)="cargarCops()" >
             <mat-label>Selecciona una categoria</mat-label>
@@ -16,6 +17,8 @@
         </mat-select>
     </mat-form-field>
 
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Other filter">
+
     <table>
         <tr>
             <th rowspan="2">USUARIOS</th>
@@ -23,9 +26,9 @@
             <th colspan="listaCops.size" >PERMISOS</th>
         </tr>
         <tr>
-            <th>{{listaClasificacion(0)}}</th>
-            <th>{{listaClasificacion(1)}}</th>
-            <th>{{listaClasificacion(2)}}</th>
+            <th>{{listaClasificacion[0]}}</th>
+            <th>{{listaClasificacion[1]}}</th>
+            <th>{{listaClasificacion[2]}}</th>
             <th *ngFor="let item of listaCops" id="columnaPermisos">{{item.desc_cop}}</th>
         </tr>
     </table>
