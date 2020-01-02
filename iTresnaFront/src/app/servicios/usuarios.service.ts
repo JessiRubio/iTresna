@@ -27,12 +27,8 @@ export class UsuariosService {
       .then(
         response=>{
           if(response.error==0){
-
-            
-              localStorage.setItem("usuario",JSON.stringify(response.usuario));
-              this.loginState.next(response.error==0);
-            
-
+            localStorage.setItem("usuario",JSON.stringify(response.usuario));
+            this.loginState.next(response.error==0);
 
           }
         }

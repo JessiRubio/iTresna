@@ -1,9 +1,9 @@
-<p>p-ad-organizaciones works!</p>
+<app-header-generico></app-header-generico>
 
 <div class="organizaciones">
     <ul>
-        <li>
-            <a>{{organizacion}}</a>
+        <li *ngFor="let item of listaOrganizacion"> 
+            {{item.desc_org}}
         </li>
     </ul>
 </div>

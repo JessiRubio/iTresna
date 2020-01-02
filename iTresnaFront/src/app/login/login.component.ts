@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   password:string;
   error:string;
   
+  
   constructor(
     private usuariosService:UsuariosService,
     private router: Router
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit {
     this.usuariosService.logged().subscribe(
       respose=>{
         if(respose)
-                     
           this.router.navigateByUrl("Principal");
         
       }
