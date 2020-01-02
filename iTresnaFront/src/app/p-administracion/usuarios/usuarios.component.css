@@ -1,0 +1,31 @@
+section{
+    margin-bottom: 10em;
+    margin-top: 2%;
+    padding:2%;
+    padding-top: 0;
+}
+
+.filtro{
+    text-align: center;
+    width: 40%;
+    padding-right: 2%;
+    padding-left: 6%;
+}
+
+table{
+    width: 100%;
+    margin-top: 2%;
+}
+
+table tr>*{
+    text-align: center;
+}
+
+table tr th{
+    border-bottom: 1px solid black;
+    width: 5%;
+}
+
+#columnaUsuarios{
+    width: 10%;
+}

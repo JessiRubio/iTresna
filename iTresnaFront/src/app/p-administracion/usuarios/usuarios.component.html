@@ -1,1 +1,25 @@
-<p>usuarios works!</p>
+<section>
+    <mat-form-field class="filtro">
+        <mat-select [(value)]="selected" (selectionChange)="cargarCops()" >
+            <mat-label>Selecciona una clasificacion</mat-label>
+            <mat-option *ngFor="let item of listaClasificacion;let i=index" [value]="i">
+                {{item.tip_clasificacion}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="filtro">
+        <mat-select [(value)]="selected" (selectionChange)="cargarCops()" >
+            <mat-label>Selecciona una categoria</mat-label>
+            <mat-option *ngFor="let item of listaCategoria;let i=index" [value]="i">
+                {{item.categoria}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <table>
+        <tr>
+            <th id="columnaUsuarios">USUARIOS</th>
+            <th *ngFor="let item of listaCops">{{item.desc_cop}}</th>
+        </tr>
+    </table>
+</section>
