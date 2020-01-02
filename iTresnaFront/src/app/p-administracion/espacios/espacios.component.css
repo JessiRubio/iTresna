@@ -1,9 +1,16 @@
 @import "./../../../assets/colors.css";
 
 section{
-    border-top: 2px solid white;
+   /* border-top: 2px solid white;*/
     margin-top: 2%;
+    padding:2%;
+    padding-top: 0;
 
+}
+
+h2{
+    text-align: center;
+    background-image:linear-gradient(to left, #C79BF2, #B0A7F1, #8EB4E6, #7BCAE1);
 }
 
 table{
@@ -22,24 +29,24 @@ table tr>*{
     color: white;
 }
 
-table tr th{
-    border-bottom: 1px solid black;
-}
-
 table tr td{
     width: 10%;
     text-align: center;
 }
 
 button{
-    width: 95%;
+    width: 100%;
     background-color: var(--colorCopsActivas);
+}
+
+.borderth{
+    border-bottom: 1px solid black;
 }
 
 .nombre{
     width: 50%;
+    border-bottom: 1px solid black;
 }
-
 
 .boton{
     background: transparent;

@@ -40,4 +40,23 @@ export class EspaciosComponent implements OnInit {
       );
   }
 
+  setIndCuracion(item:EspaciosItem){
+    console.log(item);
+    if(item.ind_esp_curacion){
+      item.ind_esp_curacion = false;
+    }
+    else{
+      item.ind_esp_curacion = true;
+    }
+    this.espaciosService.updateEspacio(item).subscribe(
+      res =>{
+        console.log(res);
+      },
+      err=>{
+
+      }
+    );
+    console.log(item);
+  }
+
 }

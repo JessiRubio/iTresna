@@ -2,14 +2,14 @@
     <table>
         <tr>
             <th class="nombre">Nombre</th>
-            <th>Orden</th>
-            <th>Indice curación</th>
-            <th>Editar</th>
+            <th class="borderth">Orden</th>
+            <th class="borderth">Indice curación</th>
+            <th class="borderth">Editar</th>
         </tr>
         <tr *ngFor="let item of listaEspacios"  class="fila">
             <td>{{item.desc_esp}}</td>
-            <td>{{item.posicion}}</td>
-            <td><input type="checkbox" [checked]="item.ind_esp_curacion"></td>
+            <td>{{item.orden}}</td>
+            <td><input type="checkbox" [checked]="item.ind_esp_curacion" value="item.ind_esp_curacion" (change)="setIndCuracion(item)"></td>
             <td>
                 <button (click)="editar(item)" class="boton">
                     <img class="papelera" src="assets/edit.png" alt="papelera">
@@ -17,11 +17,11 @@
             </td>
         </tr>
         <tr>
-            <th colspan="4">
+            <td colspan="4">
                 <button>
                     <p>AÑADIR</p>
                 </button>
-            </th>
+            </td>
         </tr>
     </table>
 </section>

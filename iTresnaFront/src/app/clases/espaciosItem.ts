@@ -7,6 +7,7 @@ export class EspaciosItem{
     cod_esp:number=0;
     desc_esp:string="";
     ind_esp_curacion:boolean;
+    orden:number=0;
     listaCop:CopsItem[];
 
     constructor(){
