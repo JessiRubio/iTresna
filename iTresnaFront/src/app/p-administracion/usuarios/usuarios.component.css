@@ -19,13 +19,13 @@ table{
 
 table tr>*{
     text-align: center;
+    width: 5%;
 }
 
 table tr th{
     border-bottom: 1px solid black;
-    width: 5%;
 }
 
-#columnaUsuarios{
-    width: 10%;
+#columnaPermisos{
+    width: 2%;
 }
