@@ -10,7 +10,7 @@ export class CopsItem{
     ind_cod_graficos:number=0;
     cantidad_senales:number=0;
     listaSenales:SenalesItem[]=[];
-    etiquetas:EtiquetaItem[]=[];
+    etiquetas:EtiquetaItem[]=new EtiquetaItem()[0];
     usuarios:string[]=[];
  
 }
