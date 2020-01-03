@@ -64,8 +64,11 @@ export class PAdOrganizacionesComponent implements OnInit {
   public setItem = (item) => {
     if (this.currentItem === item) return;
     this.currentItem = item;
-    console.log(this.currentItem)
+    this.usuarioLogado.cod_org=this.currentItem.cod_org;
+    
+    localStorage.setItem("usuario",JSON.stringify(this.usuarioLogado));
   }
+
 
 
 }
