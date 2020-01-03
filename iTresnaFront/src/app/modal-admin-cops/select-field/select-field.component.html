@@ -1,0 +1,11 @@
+<div [formGroup]="form">
+    <mat-form-field class="expand" [class]="placeHolder">
+        <mat-select [(value)]="selected"
+            [placeholder]='placeHolder' 
+            [formControlName]='controlName'>
+            <mat-option *ngFor="let item of data" [value]="item.cod">
+                {{item.desc}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>

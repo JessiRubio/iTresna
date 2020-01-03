@@ -7,24 +7,27 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Editar</th>
-            <th>Borrar</th>
-        </tr>
-        <tr *ngFor="let item of cops;let i=index" class="fila">
-            <td>{{item.desc_cop}}</td>
-            <td>
-                <button (click)="editar(item)" class="boton">
-                    <img class="papelera" src="assets/edit.png" alt="papelera">
-                </button>
-            </td>
-            <td>
-                <button class="boton" (click)="borrar(item)">
-                    <img class="papelera" src="assets/papelera.png" alt="papelera">
-                </button>
-            </td>
-        </tr>
-    </table>
-</section>
+    <div class="tablaCops">
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+
+            </tr>
+            <tr *ngFor="let item of cops;let i=index">
+                <td>{{item.desc_cop}}</td>
+                <td>
+                    <button (click)="editar(item.cod_org,item.cod_esp,item.cod_cop)" class="boton">
+                        <img class="papelera" src="assets/edit.png" alt="papelera">
+                    </button>
+                </td>
+                <td>
+                    <button class="boton" (click)="borrar(item)">
+                        <img class="papelera" src="assets/papelera.png" alt="papelera">
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
