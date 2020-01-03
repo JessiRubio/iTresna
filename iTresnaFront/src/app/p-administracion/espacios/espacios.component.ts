@@ -41,7 +41,6 @@ export class EspaciosComponent implements OnInit {
   }
 
   setIndCuracion(item:EspaciosItem){
-    console.log(item);
     if(item.ind_esp_curacion){
       item.ind_esp_curacion = false;
     }
@@ -56,7 +55,6 @@ export class EspaciosComponent implements OnInit {
 
       }
     );
-    console.log(item);
   }
 
 }

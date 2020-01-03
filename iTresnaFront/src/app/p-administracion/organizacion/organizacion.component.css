@@ -1,0 +1,22 @@
+section{
+    margin-top: 2%;
+}
+
+a{
+    display: inline-block;
+    width: 20%;
+}
+
+form{
+    display: inline-block;
+    width: 70%;
+    margin-left: 2%;
+}
+
+#nombreOrg{
+   width: auto;
+}
+
+#descOrg{
+    width: 100%;
+}
