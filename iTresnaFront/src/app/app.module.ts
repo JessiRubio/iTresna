@@ -53,8 +53,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     ModalAdminCopsComponent,
     SelectFieldComponent,
     InputFieldComponent,
-    FileFieldComponent,
-    MaterialFileInputModule
+    FileFieldComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +67,9 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatButtonModule,
     MatSelectModule,
     MatLinkPreviewModule.forRoot(),
-    MatTableModule
+    MatTableModule,
+    MaterialFileInputModule
+
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],
