@@ -44,4 +44,8 @@ export class UsuariosService {
     localStorage.clear();
     this.loginState.next(false);
   }
+
+  getUsuario(cod_org:number):Observable<any>{
+    return this.httpClient.get<any>(this.url+'?cod_org='+cod_org);
+  }
 }
