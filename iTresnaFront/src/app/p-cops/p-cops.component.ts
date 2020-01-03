@@ -72,7 +72,6 @@ export class PCopsComponent implements OnInit {
         res=>{  
           if(res.error==0){
             this.cop=res.cop;
-            console.log(this.cop);
           }
         },
         err=>{

@@ -25,7 +25,6 @@ export class PAdOrganizacionesComponent implements OnInit {
   ngOnInit() {
     if(localStorage.getItem("usuario")!=null){
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
-      console.log(this.usuarioLogado);
       if(this.usuarioLogado.tip_usuario==1){
         this.router.navigateByUrl("Organizaciones");
       }else{

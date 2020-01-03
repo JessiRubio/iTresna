@@ -8,10 +8,10 @@ eslogan_org:string="";
 clasif1:string="";
 clasif2:string="";
 clasif3:string="";
-listaCategorias:Categorias[]=[];
+categorias:Categorias[]=[];
 }
 
 export class Categorias{
-    clasificacion:string;
+    tip_clasificacion:string;
     categoria:string;
 }
