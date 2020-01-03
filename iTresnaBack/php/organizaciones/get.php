@@ -27,7 +27,8 @@
             "eslogan_org"=>$eslogan_org,
             "clasif1"=>$clasif1,
             "clasif2"=>$clasif2,
-            "clasif3"=>$clasif3
+            "clasif3"=>$clasif3,
+            "categorias"=>cargarCategorias($cod_org)
         );
         $result["error"]=0;
 
@@ -51,4 +52,25 @@
     
     
     echo json_encode($result);
+
+    function cargarCategorias($cod_org){
+        $result=array();
+        include("./../conexion.php");
+        $sql="SELECT categoria, tip_clasificacion
+                FROM t_tip_clasificacion
+                WHERE cod_org=? 
+                ORDER BY tip_clasificacion";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("i",$cod_org);
+        $query->execute();
+        $query->bind_result($categoria, $tip_clasificacion);
+        while($query->fetch()){
+            $result[]=array(
+                "categoria" => $categoria,
+                "tip_clasificacion" => $tip_clasificacion
+            );
+        }
+        $query->close();
+        return $result;
+    }
 ?>
