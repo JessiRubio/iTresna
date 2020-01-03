@@ -10,6 +10,9 @@
                 case 'POST':
                     include('post.php');
                     break;
+                case 'GET':
+                    include('get.php');
+                    break;
                 case 'PUT':
                     include('put.php');
                     break;
