@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-01-2020 a las 14:40:19
+-- Tiempo de generación: 03-01-2020 a las 09:43:05
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -187,7 +187,7 @@ CREATE TABLE `t_org` (
 --
 
 INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`, `clasif1`, `clasif2`, `clasif3`) VALUES
-(1, 'FP Txurdinaga', '', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen', 'Departamento', 'Edad', ''),
+(1, 'FP Txurdinaga', '', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen', 'Departamento', 'Edad', 'horas semanas'),
 (2, 'Ibermatica', '', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización', 'Puesto', 'Salario', 'fecha_ingreso');
 
 -- --------------------------------------------------------

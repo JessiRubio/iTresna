@@ -1,16 +1,16 @@
 <section>
     <mat-form-field class="filtro">
+        <mat-label>Selecciona una clasificacion</mat-label>
         <mat-select [(value)]="selected" (selectionChange)="cargarclasificacion()" >
-            <mat-label>Selecciona una clasificacion</mat-label>
             <mat-option *ngFor="let item of listaClasificacion;let i=index" [value]="i">
-                {{item.tip_clasificacion}}
+                {{item}}
             </mat-option>
         </mat-select>
     </mat-form-field>
 
     <mat-form-field class="filtro">
+        <mat-label>Selecciona una categoria</mat-label>
         <mat-select [(value)]="selected" (selectionChange)="cargarCategorias()" >
-            <mat-label>Selecciona una categoria</mat-label>
             <mat-option *ngFor="let item of listaCategoria;let i=index" [value]="i">
                 {{item.categoria}}
             </mat-option>

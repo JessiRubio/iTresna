@@ -36,7 +36,7 @@ export class PAdOrganizacionesComponent implements OnInit {
         .subscribe(
           res =>{
             if(res.error == 0){
-              this.listaOrganizacion=res.organizacion;
+              this.listaOrganizacion=res.organizaciones;
               
             }
             else{

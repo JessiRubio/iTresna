@@ -11,13 +11,16 @@ import { UsuariosService } from '../servicios/usuarios.service';
 })
 export class MenuOverflowComponent implements OnInit {
 
-  constructor( private ruta: Router,private usuarioService:UsuariosService) {
-
+  usuarioLogado:Usuario;
+  constructor( private ruta: Router,
+                private usuarioService:UsuariosService) 
+  {
 
   }
 
 
   ngOnInit() {
+    this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
   }
 
   onClick(e){
