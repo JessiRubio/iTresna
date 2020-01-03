@@ -60,14 +60,19 @@ export class PAdOrganizacionesComponent implements OnInit {
       );
   }
 
-  public setItem = (item) => {
+  async setItem(item){
     if (this.currentItem === item) return;
     this.currentItem = item;
     this.usuarioLogado.cod_org=this.currentItem.cod_org;
-    
-    localStorage.setItem("usuario",JSON.stringify(this.usuarioLogado));
+    let string=await JSON.stringify(this.usuarioLogado);
+    await localStorage.setItem("usuario",string);
+    await this.guardarOrganizacion();
+    this.router.navigateByUrl("Administracion");
   }
 
+  guardarOrganizacion(){
+    localStorage.setItem("organizacion", JSON.stringify(this.currentItem));
+  }
 
 
 }

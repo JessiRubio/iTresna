@@ -2,7 +2,7 @@
 
 <div class="organizaciones">
     <ul>
-        <li *ngFor="let item of listaOrganizacion" routerLink="/Administracion" (click)="setItem(item)" class="clickable"> 
+        <li *ngFor="let item of listaOrganizacion" (click)="setItem(item)" class="clickable"> 
             {{item.desc_org}}
         </li>
     </ul>

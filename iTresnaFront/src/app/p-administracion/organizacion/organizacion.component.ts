@@ -17,10 +17,14 @@ export class OrganizacionComponent implements OnInit {
       orgDesc:["",Validators.required],
       orgIcon:new FormControl(null)
     });
+    this.organizacion=JSON.parse(localStorage.getItem("organizacion"));
+    
   }
 
   ngOnInit() {
-    this.organizacion=JSON.parse(localStorage.getItem("organizacion"));
+    if (this.organizacion.cod_org = null){
+      location.reload();
+    }
     this.form=this.fBuilder.group({
       orgName:[this.organizacion.desc_org,Validators.required],
       orgDesc:[this.organizacion.eslogan_org,Validators.required],
@@ -30,4 +34,7 @@ export class OrganizacionComponent implements OnInit {
     this.img=this.organizacion.img_org;
   }
 
+  recargarPagina(){
+    location.reload();
+  }
 }

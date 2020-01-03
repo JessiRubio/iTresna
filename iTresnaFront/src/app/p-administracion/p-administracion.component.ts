@@ -36,7 +36,6 @@ export class PAdministracionComponent implements OnInit{
     this.organizacionService.getOrganizacionActual(cod_org).subscribe(
       res =>{
         this.organizacion = res.organizacion;
-        this.guardarOrganizacion();
 
       },
       err =>{
@@ -45,8 +44,5 @@ export class PAdministracionComponent implements OnInit{
     );
   }
 
-  guardarOrganizacion(){
-    localStorage.setItem("organizacion", JSON.stringify(this.organizacion));
-  }
 
 }
