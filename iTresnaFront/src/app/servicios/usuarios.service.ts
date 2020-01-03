@@ -27,12 +27,8 @@ export class UsuariosService {
       .then(
         response=>{
           if(response.error==0){
-
-            
-              localStorage.setItem("usuario",JSON.stringify(response.usuario));
-              this.loginState.next(response.error==0);
-            
-
+            localStorage.setItem("usuario",JSON.stringify(response.usuario));
+            this.loginState.next(response.error==0);
 
           }
         }
@@ -47,5 +43,9 @@ export class UsuariosService {
   logout(){
     localStorage.clear();
     this.loginState.next(false);
+  }
+
+  getUsuario(cod_org:number):Observable<any>{
+    return this.httpClient.get<any>(this.url+'?cod_org='+cod_org);
   }
 }

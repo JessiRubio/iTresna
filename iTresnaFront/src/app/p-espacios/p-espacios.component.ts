@@ -32,8 +32,11 @@ export class PEspaciosComponent implements OnInit {
 
   ngOnInit() {
     if(localStorage.length>0){
+
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
       this.espaciosPorCod(this.usuarioLogado.cod_org);
+
+     
     }else{
       this.router.navigateByUrl("");
     }

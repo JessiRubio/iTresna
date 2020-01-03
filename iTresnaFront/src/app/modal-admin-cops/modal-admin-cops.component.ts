@@ -1,12 +1,7 @@
-import { Compiler,Component, OnInit, Inject, ViewChild, ElementRef, Renderer2, AfterViewInit, ViewChildren, ComponentFactoryResolver, ViewContainerRef, Injectable, ChangeDetectionStrategy, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { SelectFieldComponent } from './select-field/select-field.component';
-import { NgClass } from '@angular/common';
-import { DomSanitizer } from '@angular/platform-browser';
-import { InputFieldComponent } from './input-field/input-field.component';
-import { group } from '@angular/animations';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-admin-cops',
@@ -19,7 +14,6 @@ export class ModalAdminCopsComponent implements AfterViewInit,OnInit {
   private formGroup:FormGroup;
   
   constructor(
-    private renderer:Renderer2,
     private http:HttpClient,
     private formBuilder: FormBuilder,
     private dialogRef:MatDialogRef<ModalAdminCopsComponent>,

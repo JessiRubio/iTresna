@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-12-2019 a las 16:03:13
+-- Tiempo de generación: 03-01-2020 a las 10:33:49
 -- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.1.33
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,9 +22,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `bditresna`
 --
 
-DROP DATABASE bditresna;
-CREATE DATABASE bditresna;
-USE bditresna;
 -- --------------------------------------------------------
 
 --
@@ -70,13 +67,13 @@ CREATE TABLE `t_cops` (
 
 INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
 (1, 1, 1, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\prueba.png', NULL),
-(2, 1, 1, 'Informatica', NULL, NULL),
+(2, 1, 1, 'Informatica', 'http:\\\\localhost:8080\\media\\Cops\\informatica.png', NULL),
 (3, 1, 1, 'Integración Social', 'http:\\\\localhost:8080\\media\\Cops\\integracion_social.png', NULL),
 (4, 1, 1, 'Administración y Finanzas', 'http:\\\\localhost:8080\\media\\Cops\\administracion_y_finanzas.svg', NULL),
-(5, 1, 1, 'F.O.L.', 'http:\\\\localhost:8080\\media\\Cops\\fol.jpeg', NULL),
+(5, 1, 1, 'F.O.L.', 'http:\\\\localhost:8080\\media\\Cops\\fol.jpg', NULL),
 (6, 2, 1, 'Pre-proyecto', 'http:\\\\localhost:8080\\media\\Cops\\pre_proyecto.png', NULL),
 (7, 2, 1, 'Proyecto en curso', 'http:\\\\localhost:8080\\media\\Cops\\proyectos.png', NULL),
-(8, 3, 1, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion.jpeg', NULL),
+(8, 3, 1, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion.jpg', NULL),
 (11, 4, 2, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\senales_relevantes_2.png', NULL),
 (12, 4, 2, 'Ibermatica Digital', 'http:\\\\localhost:8080\\media\\Cops\\ibermatica_digital.png', NULL),
 (13, 5, 2, 'Pre-proyectos', 'http:\\\\localhost:8080\\media\\Cops\\pre-proyecto2.png', NULL),
@@ -93,20 +90,21 @@ CREATE TABLE `t_espacios` (
   `cod_esp` int(11) NOT NULL,
   `cod_org` int(11) NOT NULL,
   `desc_esp` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ind_esp_curacion` tinyint(1) DEFAULT NULL
+  `ind_esp_curacion` tinyint(1) DEFAULT NULL,
+  `orden` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `t_espacios`
 --
 
-INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`) VALUES
-(1, 1, 'Rutina de Innovación', NULL),
-(2, 1, 'Rutina de Portafolio', NULL),
-(3, 1, 'Rutina de Explotación', NULL),
-(4, 2, 'Rutina de Innovación', NULL),
-(5, 2, 'Rutina de Portafolio', NULL),
-(6, 2, 'Rutina de Explotación', NULL);
+INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`, `orden`) VALUES
+(1, 1, 'Rutina de Innovación', 1, 1),
+(2, 1, 'Rutina de Portafolio', 0, 2),
+(3, 1, 'Rutina de Explotación', 0, 3),
+(4, 2, 'Rutina de Innovación', 1, 1),
+(5, 2, 'Rutina de Portafolio', 0, 2),
+(6, 2, 'Rutina de Explotación', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -178,16 +176,19 @@ CREATE TABLE `t_org` (
   `desc_org` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
   `img_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `enlace_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `eslogan_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
+  `eslogan_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `clasif1` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
+  `clasif2` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
+  `clasif3` varchar(32) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `t_org`
 --
 
-INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`) VALUES
-(1, 'FP Txurdinaga', '', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen'),
-(2, 'Ibermatica', '', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización');
+INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`, `clasif1`, `clasif2`, `clasif3`) VALUES
+(1, 'FP Txurdinaga', '', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen', 'Departamento', 'Edad', 'horas semanas'),
+(2, 'Ibermatica', '', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización', 'Puesto', 'Salario', 'fecha_ingreso');
 
 -- --------------------------------------------------------
 
@@ -247,6 +248,43 @@ INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiq
 (11, 3, 1, 1, 16, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2020-02-13', NULL, ''),
 (12, 8, 3, 1, 4, 'usuario@usuario.com', 'noticia', 'enalce', '2019-12-13', NULL, ''),
 (13, 11, 4, 2, 24, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-30', NULL, '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `t_tip_clasificacion`
+--
+
+CREATE TABLE `t_tip_clasificacion` (
+  `cod_org` int(11) NOT NULL,
+  `cod_tip` int(1) NOT NULL,
+  `tip_clasificacion` varchar(32) COLLATE utf8_spanish2_ci NOT NULL,
+  `categoria` varchar(32) COLLATE utf8_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `t_tip_clasificacion`
+--
+
+INSERT INTO `t_tip_clasificacion` (`cod_org`, `cod_tip`, `tip_clasificacion`, `categoria`) VALUES
+(1, 1, 'Departamento', 'Matematicas'),
+(1, 1, 'Departamento', 'Informatica'),
+(1, 1, 'Departamento', 'Kimika'),
+(1, 2, 'Edad', '18<x<25'),
+(1, 1, 'Departamento', 'F.O.L'),
+(1, 2, 'Edad', '25<x<30'),
+(1, 2, 'Edad', '30<x<45'),
+(1, 2, 'Edad', '45<x'),
+(2, 1, 'Puesto', 'Analista'),
+(2, 1, 'Puesto', 'Programador junior'),
+(2, 1, 'Puesto', 'Programador señor'),
+(2, 1, 'Puesto', 'Jefe de equipo'),
+(2, 2, 'Sueldo', 'x<1000'),
+(2, 2, 'Sueldo', '1000<x<1500'),
+(2, 2, 'Sueldo', '1500<x<2000'),
+(2, 2, 'Sueldo', '2000<x<3000'),
+(2, 2, 'Sueldo', '3000<x<5000'),
+(2, 2, 'Sueldo', '5000<x');
 
 -- --------------------------------------------------------
 
@@ -314,11 +352,11 @@ CREATE TABLE `t_usuarios` (
 --
 
 INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `nombre`, `ape1`, `ape2`, `campo_clasificador1`, `campo_clasificador2`, `campo_clasificador3`) VALUES
-('jaime.corrales@gmail.com', 1, 1, 'jaime123', 'Jaime', 'Corrales', 'Petralanda', '', '', ''),
-('jonanderdecastro@gmail.com', 2, 1, '12345678', 'Jon Ander', 'De Castro', 'Da Silva', '', '', ''),
-('rubiovargas.jessica@gmail.com', 2, 1, '12345678', 'Jessica', 'Rubio', 'Vargas', '', '', ''),
-('unaimarg@gmail.com', 2, 2, '12345678', 'Unai', 'Martin', 'Gonzalez', '', '', ''),
-('usuario@usuario.com', 3, 2, '12345678', 'Usuario', '', '', '', '', '');
+('jaime.corrales@gmail.com', 1, NULL, 'jaime123', 'Jaime', 'Corrales', 'Petralanda', '', '', ''),
+('jonanderdecastro@gmail.com', 2, 1, '12345678', 'Jon Ander', 'De Castro', 'Da Silva', 'Matematicas', '19', ''),
+('rubiovargas.jessica@gmail.com', 2, 1, '12345678', 'Jessica', 'Rubio', 'Vargas', 'Informatica', '22', ''),
+('unaimarg@gmail.com', 2, 2, '12345678', 'Unai', 'Martin', 'Gonzalez', 'Jefe de Equipo', '2000', ''),
+('usuario@usuario.com', 3, 2, '12345678', 'Usuario', '', '', 'Programador', '1000', '');
 
 -- --------------------------------------------------------
 

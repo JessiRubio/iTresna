@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   usuario:string;
   password:string;
   error:string;
+  private usuarioLogeado:Usuario;
   
   constructor(
     private usuariosService:UsuariosService,
@@ -27,15 +28,22 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     if(localStorage.getItem("usuario")!=null){
       this.router.navigateByUrl("Principal");
     }
+    
     this.usuariosService.logged().subscribe(
       respose=>{
-        if(respose)
-                     
-          this.router.navigateByUrl("Principal");
-        
+        if(respose){
+
+          this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
+    
+          this.router.navigateByUrl("Organizaciones");
+
+          
+        }
       }
     );
 

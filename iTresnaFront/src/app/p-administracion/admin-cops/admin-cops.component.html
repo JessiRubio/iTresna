@@ -1,7 +1,7 @@
-<div class="adminCops">
+<section>
     <mat-form-field>
         <mat-label>Selecciona un espacio</mat-label>
-        <mat-select [(value)]="selected" (selectionChange)="cargarCops()">
+        <mat-select [(value)]="selected" (selectionChange)="cargarCops()" >
             <mat-option *ngFor="let item of espacios;let i=index" [value]="i">
                 {{item.desc_esp}}
             </mat-option>

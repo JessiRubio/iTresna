@@ -11,13 +11,21 @@ import { UsuariosService } from '../servicios/usuarios.service';
 })
 export class MenuOverflowComponent implements OnInit {
 
-  constructor( private ruta: Router,private usuarioService:UsuariosService) {
-
+  public show:boolean = false;
+ 
+  usuarioLogado:Usuario;
+  constructor( private ruta: Router,
+                private usuarioService:UsuariosService) 
+  {
 
   }
 
-
   ngOnInit() {
+    this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
+
+    if(this.usuarioLogado.tip_usuario==1){
+      this.visible();
+    }
   }
 
   onClick(e){
@@ -27,6 +35,10 @@ export class MenuOverflowComponent implements OnInit {
     else if(e.target.innerHTML==='Administración'){
       this.ruta.navigateByUrl('Administracion');
     }
+  }
+
+  visible(){
+    this.show = !this.show;
   }
 
 }
