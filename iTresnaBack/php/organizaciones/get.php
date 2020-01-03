@@ -32,7 +32,7 @@
         $result["error"]=0;
 
     }else{
-        $sql="SELECT * 
+        $sql="SELECT cod_org,desc_org,img_org,enlace_org,eslogan_org 
         FROM t_org";
         $query=$conexion->prepare($sql);
         $query->execute();
