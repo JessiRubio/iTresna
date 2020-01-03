@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-01-2020 a las 09:43:05
+-- Tiempo de generación: 03-01-2020 a las 10:33:49
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -252,10 +252,10 @@ INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiq
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_tip_clasificación`
+-- Estructura de tabla para la tabla `t_tip_clasificacion`
 --
 
-CREATE TABLE `t_tip_clasificación` (
+CREATE TABLE `t_tip_clasificacion` (
   `cod_org` int(11) NOT NULL,
   `cod_tip` int(1) NOT NULL,
   `tip_clasificacion` varchar(32) COLLATE utf8_spanish2_ci NOT NULL,
@@ -263,10 +263,10 @@ CREATE TABLE `t_tip_clasificación` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `t_tip_clasificación`
+-- Volcado de datos para la tabla `t_tip_clasificacion`
 --
 
-INSERT INTO `t_tip_clasificación` (`cod_org`, `cod_tip`, `tip_clasificacion`, `categoria`) VALUES
+INSERT INTO `t_tip_clasificacion` (`cod_org`, `cod_tip`, `tip_clasificacion`, `categoria`) VALUES
 (1, 1, 'Departamento', 'Matematicas'),
 (1, 1, 'Departamento', 'Informatica'),
 (1, 1, 'Departamento', 'Kimika'),

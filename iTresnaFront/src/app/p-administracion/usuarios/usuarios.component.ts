@@ -37,7 +37,6 @@ export class UsuariosComponent implements OnInit {
     this.usuarioService.getUsuario(cod_org).subscribe(
       res=>{
         this.listaUsuarios=res.usuarios;
-        console.log(res);
       },
       err =>{
         console.log(err);
@@ -48,7 +47,6 @@ export class UsuariosComponent implements OnInit {
   cargarOrganizacion(cod_org:number){
     this.organizacionService.getOrganizacionActual(cod_org).subscribe(
       res =>{
-        console.log(res);
         this.organizacion=res.organizacion;
 
         this.listaClasificacion=[];
