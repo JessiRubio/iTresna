@@ -1,9 +1,9 @@
-<div [formGroup]="form">
+<div [formGroup]="formGroup">
     <mat-form-field class="expand" [class]="placeHolder">
         <mat-select [(value)]="selected"
             [placeholder]='placeHolder' 
             [formControlName]='controlName'>
-            <mat-option *ngFor="let item of data" [value]="item.cod">
+            <mat-option *ngFor="let item of data;let i = index" [value]="i">
                 {{item.desc}}
             </mat-option>
         </mat-select>

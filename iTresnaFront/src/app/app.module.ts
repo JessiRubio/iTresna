@@ -31,6 +31,7 @@ import { ModalAdminCopsComponent } from './modal-admin-cops/modal-admin-cops.com
 import { SelectFieldComponent } from './modal-admin-cops/select-field/select-field.component';
 import { InputFieldComponent } from './modal-admin-cops/input-field/input-field.component';
 import { FileFieldComponent } from './modal-admin-cops/file-field/file-field.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { FileFieldComponent } from './modal-admin-cops/file-field/file-field.com
     ModalAdminCopsComponent,
     SelectFieldComponent,
     InputFieldComponent,
-    FileFieldComponent
+    FileFieldComponent,
+    MaterialFileInputModule
   ],
   imports: [
     BrowserModule,
