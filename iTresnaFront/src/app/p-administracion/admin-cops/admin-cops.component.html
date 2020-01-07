@@ -15,7 +15,7 @@
                 <th>Borrar</th>
 
             </tr>
-            <tr *ngFor="let item of cops;let i=index">
+            <tr *ngFor="let item of cops;let i=index"  class="fila">
                 <td>{{item.desc_cop}}</td>
                 <td>
                     <button (click)="editar(item.cod_org,item.cod_esp,item.cod_cop)" class="boton">
