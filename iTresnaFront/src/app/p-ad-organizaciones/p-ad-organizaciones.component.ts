@@ -15,6 +15,7 @@ export class PAdOrganizacionesComponent implements OnInit {
   usuarioLogado:Usuario;
   listaOrganizacion:Organizacion[]=[];
   currentItem;
+  organizacion:Organizacion;
   constructor(
     private organizacionesService:OrganizacionesService,
     private router: Router) 
@@ -62,6 +63,7 @@ export class PAdOrganizacionesComponent implements OnInit {
 
   async setItem(item){
     if (this.currentItem === item) return;
+    console.log(this.currentItem);
     this.currentItem = item;
     this.usuarioLogado.cod_org=this.currentItem.cod_org;
     let string=await JSON.stringify(this.usuarioLogado);
@@ -69,7 +71,7 @@ export class PAdOrganizacionesComponent implements OnInit {
     await this.guardarOrganizacion();
     this.router.navigateByUrl("Administracion");
   }
-
+  
   guardarOrganizacion(){
     localStorage.setItem("organizacion", JSON.stringify(this.currentItem));
   }

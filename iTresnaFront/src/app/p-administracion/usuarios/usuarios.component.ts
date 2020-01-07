@@ -29,7 +29,7 @@ export class UsuariosComponent implements OnInit {
     this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
     this.cargarUsuarios(this.usuarioLogado.cod_org);
     this.organizacion=JSON.parse(localStorage.getItem("organizacion"));
-
+    console.log(this.organizacion);
     this.listaClasificacion=[];
         this.listaClasificacion[0] =this.organizacion.clasif1;
         this.listaClasificacion[1] =this.organizacion.clasif2;
