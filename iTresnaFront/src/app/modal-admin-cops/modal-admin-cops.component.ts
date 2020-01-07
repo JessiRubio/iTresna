@@ -36,6 +36,6 @@ export class ModalAdminCopsComponent implements OnInit {
     this.formGroup=this.formBuilder.group({});
   }
   save(){
-    location.reload();
+    this.dialogRef.close(this.formGroup.value);
   }
 }

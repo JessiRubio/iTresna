@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
@@ -17,8 +17,11 @@ export class InputFieldComponent implements OnInit {
   ) {
     
   }
+  onChange(value){
+    this.formGroup.value[this.controlName]=value;
+  }
   ngOnInit(){
-    this.formGroup.controls[this.controlName]=new FormControl();
+    this.formGroup.controls[this.controlName]=new FormControl(this.data.desc,Validators.required);
   }
 }
 

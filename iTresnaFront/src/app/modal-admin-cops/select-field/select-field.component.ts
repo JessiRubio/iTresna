@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-select-field',
@@ -14,8 +14,11 @@ export class SelectFieldComponent implements OnInit {
   private selected:number=0;
   constructor() {
   }
-
+  changeValue(value:number){
+    this.selected=value;
+    this.formGroup.value[this.controlName]=value;
+  }
   ngOnInit() {
-    this.formGroup.controls[this.controlName]=new FormControl();
+    this.formGroup.controls[this.controlName]=new FormControl(this.selected,Validators.required);
   }
 }

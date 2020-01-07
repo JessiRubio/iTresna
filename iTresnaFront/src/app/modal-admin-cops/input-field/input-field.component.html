@@ -1,7 +1,6 @@
 <div [formGroup]="formGroup">
         <mat-form-field #input class="expand" [class]="placeHolder">
-                <input matInput
-                        [(value)]="data.desc"
+                <input matInput (input)="onChange($event.target.value)"
                         [placeholder]='placeHolder' 
                         [formControlName]='controlName'>
         </mat-form-field>
