@@ -35,7 +35,6 @@ export class UsuariosService {
       )
       .catch(
         x=>{
-          console.log(x);
         }
       );
       return observable;

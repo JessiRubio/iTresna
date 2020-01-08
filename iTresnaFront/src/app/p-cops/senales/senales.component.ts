@@ -166,9 +166,7 @@ export class SenalesComponent implements OnInit {
     this.senalesService.deleteSenal(this.senal).subscribe(
       response =>{
         if (response.error ==1){
-          console.log("Ha habido un error, intentelo de nuevo más tarde");
         }else{
-          console.log("Señal eliminada");
           location.reload();
         }
       },

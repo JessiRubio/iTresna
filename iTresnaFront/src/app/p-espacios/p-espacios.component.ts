@@ -34,8 +34,12 @@ export class PEspaciosComponent implements OnInit {
     if(localStorage.length>0){
 
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
+      if(this.usuarioLogado.tip_usuario==1){
+        this.router.navigateByUrl("Organizaciones");
+      }else{
       this.espaciosPorCod(this.usuarioLogado.cod_org);
-
+      }
+      
      
     }else{
       this.router.navigateByUrl("");

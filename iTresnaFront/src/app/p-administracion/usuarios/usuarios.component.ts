@@ -3,7 +3,7 @@ import { CopsItem } from '../../clases/copsitem';
 import { CopsService } from '../../servicios/cops.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { Usuario } from '../../clases/usuario';
-import { Organizacion } from '../../clases/organizacion';
+import { Organizacion, Categorias } from '../../clases/organizacion';
 import { OrganizacionesService } from '../../servicios/organizaciones.service';
 
 @Component({
@@ -15,22 +15,28 @@ export class UsuariosComponent implements OnInit {
 
   listaCops:CopsItem[] = [];
   listaUsuarios:Usuario[] = [];
-  listaCategorias:string[] = [];
+  listaCategorias:Categorias[] = [];
   listaClasificacion=[]=[];
   organizacion:Organizacion;
-  usuarioLogeado:Usuario;
+  usuarioLogado:Usuario;
 
-  constructor(private organizacionService:OrganizacionesService,
-              private copsService:CopsService,
+  constructor( private copsService:CopsService,
               private usuarioService:UsuariosService) 
   {
   }
 
   ngOnInit() {
-    this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
-    this.cargarUsuarios(this.usuarioLogeado.cod_org);
-    this.cargarOrganizacion(this.usuarioLogeado.cod_org);
-    /*this.cargarCops(this.usuarioLogeado.cod_org);*/
+    this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
+    this.cargarUsuarios(this.usuarioLogado.cod_org);
+    this.organizacion=JSON.parse(localStorage.getItem("organizacion"));
+    console.log(this.organizacion);
+    this.listaClasificacion=[];
+        this.listaClasificacion[0] =this.organizacion.clasif1;
+        this.listaClasificacion[1] =this.organizacion.clasif2;
+        this.listaClasificacion[2] =this.organizacion.clasif3;
+
+        this.listaCategorias=this.organizacion.categorias;
+    
   }
 
   cargarUsuarios(cod_org:number){
@@ -44,23 +50,7 @@ export class UsuariosComponent implements OnInit {
     );
   }
 
-  cargarOrganizacion(cod_org:number){
-    this.organizacionService.getOrganizacionActual(cod_org).subscribe(
-      res =>{
-        this.organizacion=res.organizacion;
 
-        this.listaClasificacion=[];
-        this.listaClasificacion[0] =this.organizacion.clasif1;
-        this.listaClasificacion[1] =this.organizacion.clasif2;
-        this.listaClasificacion[2] =this.organizacion.clasif3;
-        
-        this.listaCategorias=res.categorias;
-      },
-      err =>{
-        console.log(err);
-      }
-    );
-  }
   /*cargarCops(cod_org:number){
     this.copsService.getCopsAdministracion(cod_org).subscribe(
       res=>{

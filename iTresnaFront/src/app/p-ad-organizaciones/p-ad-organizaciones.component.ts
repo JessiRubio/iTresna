@@ -15,6 +15,7 @@ export class PAdOrganizacionesComponent implements OnInit {
   usuarioLogado:Usuario;
   listaOrganizacion:Organizacion[]=[];
   currentItem;
+  organizacion:Organizacion;
   constructor(
     private organizacionesService:OrganizacionesService,
     private router: Router) 
@@ -25,7 +26,6 @@ export class PAdOrganizacionesComponent implements OnInit {
   ngOnInit() {
     if(localStorage.getItem("usuario")!=null){
       this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
-      console.log(this.usuarioLogado);
       if(this.usuarioLogado.tip_usuario==1){
         this.router.navigateByUrl("Organizaciones");
       }else{
@@ -61,14 +61,20 @@ export class PAdOrganizacionesComponent implements OnInit {
       );
   }
 
-  public setItem = (item) => {
+  async setItem(item){
     if (this.currentItem === item) return;
+    console.log(this.currentItem);
     this.currentItem = item;
     this.usuarioLogado.cod_org=this.currentItem.cod_org;
-    
-    localStorage.setItem("usuario",JSON.stringify(this.usuarioLogado));
+    let string=await JSON.stringify(this.usuarioLogado);
+    await localStorage.setItem("usuario",string);
+    await this.guardarOrganizacion();
+    this.router.navigateByUrl("Administracion");
   }
-
+  
+  guardarOrganizacion(){
+    localStorage.setItem("organizacion", JSON.stringify(this.currentItem));
+  }
 
 
 }

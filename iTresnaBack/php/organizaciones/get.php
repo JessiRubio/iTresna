@@ -33,11 +33,11 @@
         $result["error"]=0;
 
     }else{
-        $sql="SELECT cod_org,desc_org,img_org,enlace_org,eslogan_org 
+        $sql="SELECT cod_org,desc_org,img_org,enlace_org,eslogan_org,clasif1,clasif2,clasif3
         FROM t_org";
         $query=$conexion->prepare($sql);
         $query->execute();
-        $query->bind_result($cod_org, $desc_org, $img_org, $enlace_org, $eslogan_org);
+        $query->bind_result($cod_org, $desc_org, $img_org, $enlace_org, $eslogan_org,$clasif1,$clasif2,$clasif3);
         while($query->fetch()){
             $result["organizaciones"][]=array(
                 "cod_org"=>$cod_org,
@@ -45,6 +45,10 @@
                 "img_org"=>$img_org,
                 "enlace_org"=>$enlace_org,
                 "eslogan_org"=>$eslogan_org,
+                "clasif1"=>$clasif1,
+                "clasif2"=>$clasif2,
+                "clasif3"=>$clasif3,
+                "categorias"=>cargarCategorias($cod_org)
             );
         }
         $result["error"]=0;

@@ -1,3 +1,5 @@
 
 npm install --save @angular-material-extensions/link-preview;
 
+npm i ngx-material-file-input;
+

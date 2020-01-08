@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Inject, ComponentFactoryResolver } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +27,12 @@ import { PAdministracionComponent } from './p-administracion/p-administracion.co
 import { CopComponent } from './p-espacios/cops/cop.component';
 import { AdminCopsComponent } from './p-administracion/admin-cops/admin-cops.component';
 import {MatTableModule} from '@angular/material/table';
-import { ModalAdminCopsComponent } from './p-administracion/admin-cops/modal-admin-cops/modal-admin-cops.component';
+import { ModalAdminCopsComponent } from './modal-admin-cops/modal-admin-cops.component';
+import { SelectFieldComponent } from './modal-admin-cops/select-field/select-field.component';
+import { InputFieldComponent } from './modal-admin-cops/input-field/input-field.component';
+import { FileFieldComponent } from './modal-admin-cops/file-field/file-field.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkbox-field.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,11 @@ import { ModalAdminCopsComponent } from './p-administracion/admin-cops/modal-adm
     EspaciosComponent,
     UsuariosComponent,
     AdminCopsComponent,
-    ModalAdminCopsComponent
+    ModalAdminCopsComponent,
+    SelectFieldComponent,
+    InputFieldComponent,
+    FileFieldComponent,
+    CheckboxFieldComponent
   ],
   imports: [
     BrowserModule,
@@ -60,10 +69,13 @@ import { ModalAdminCopsComponent } from './p-administracion/admin-cops/modal-adm
     MatButtonModule,
     MatSelectModule,
     MatLinkPreviewModule.forRoot(),
-    MatTableModule
+    MatTableModule,
+    MaterialFileInputModule
+
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],
-  entryComponents:[ModalSenalComponent,ModalAdminCopsComponent]
+  entryComponents:[ModalSenalComponent,ModalAdminCopsComponent,SelectFieldComponent,InputFieldComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

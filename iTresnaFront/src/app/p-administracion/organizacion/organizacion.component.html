@@ -1,12 +1,15 @@
-<div class="administracionOrg">
+<section>
+    <a href="">
+        <img [src]="img" alt="">
+    </a>
     <form [formGroup]="form">
-        <mat-form-field class="expand">
+        <mat-form-field id="nombreOrg">
             <input matInput
                 placeholder="Nombre Organizacion"
                 formControlName="orgName">
         </mat-form-field>
         <br>
-        <mat-form-field class="expand">
+        <mat-form-field id="descOrg">
             <input matInput
                 placeholder="Descripcion Organizacion"
                 formControlName="orgDesc">
@@ -16,4 +19,4 @@
             type="file"
             formControlName="orgIcon">
     </form>
-</div>
+</section>

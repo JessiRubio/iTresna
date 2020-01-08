@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Title</h2>
+<mat-dialog-content [formGroup]="formGroup">
+    <ng-container class="form-row" *ngFor="let item of intData">
+        <app-input-field [(formGroup)]="formGroup"
+                        [data]="item.data" 
+                        [controlName]="item.controlName" 
+                        [placeHolder]="item.placeHolder" 
+                        *ngIf="item.input==='inputField'">
+        </app-input-field>
+        
+        <app-file-field [(formGroup)]="formGroup"
+                    [data]="item.data" 
+                    [controlName]="item.controlName" 
+                    [placeHolder]="item.placeHolder" 
+                    *ngIf="item.input==='fileField'">
+
+        </app-file-field>
+        
+        <app-select-field [(formGroup)]="formGroup"
+                        [data]="item.data" 
+                        [controlName]="item.controlName" 
+                        [placeHolder]="item.placeHolder" 
+                        *ngIf="item.input==='selectField'">
+        </app-select-field>
+        
+        <app-checkbox-field [(formGroup)]="formGroup"
+                        [data]="item.data" 
+                        [controlName]="item.controlName" 
+                        [placeHolder]="item.placeHolder" 
+                        *ngIf="item.input==='checkboxField'">
+        </app-checkbox-field>
+    </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button mat-primary" [mat-dialog-close]="data" (click)="save()">Publicar</button>
+</mat-dialog-actions>

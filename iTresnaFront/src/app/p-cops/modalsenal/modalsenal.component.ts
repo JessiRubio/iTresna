@@ -24,7 +24,6 @@ export class ModalSenalComponent implements OnInit {
       this.etiquetas=data.etiquetas;
       if(data.etiquetaSenal!=null){
         this.selected=data.etiquetaSenal;
-        console.log(data.etiquetaSenal);
       }else{
         this.selected=this.etiquetas[0].cod_etiqueta;
       }

@@ -22,7 +22,6 @@ export class EspaciosService {
   }
 
   updateEspacio(item:EspaciosItem){
-    console.log("en update")
     if(item.ind_esp_curacion){
       this.ind_esp_curacion = 1;
     }
