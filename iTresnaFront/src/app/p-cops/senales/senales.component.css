@@ -87,15 +87,57 @@ h3{
 }
 
 .autor{
-    width: 35%;
+    
     text-align: right;
-    float:right;
     clear: right;
+    font-size: 15px;
 }
 
 button:hover{
     cursor: pointer;
 }
+
+
+
+.escribeComentario{
+    width: 40%;
+}
+textarea{
+    resize: none;
+    width: 90%;
+}
+.botonEnviar{
+    color: rgba(223, 221, 221, 0.555);
+    background-color: transparent;
+    font-size: 25px;
+    outline-width: 0;
+    border:none;
+    margin-left: -9%;
+}
+
+.botonEnviar img{
+    height:30px;
+    width:30px;
+}
+.comentarios{
+    margin-left: 40%;
+    text-decoration: none;
+    margin-top: -8%;
+    
+}
+.comentarios p{
+    font-size: 12px;
+}
+
+ul{
+    list-style: none;
+
+}
+
+
+
+
+
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -132,6 +174,34 @@ button:hover{
     h2{
         font-size: 30px;
     }
+
+
+    .infoSenal>*{
+        display: inline-block;
+        margin: auto;
+        margin: 1%;
+        font-size: 15px;
+    }
+
+    .autor{
+        font-size: 15px;
+    }
+
+    .botonEnviar{
+      
+        margin-left: -10%;
+    }
+
+    .comentarios{
+        margin-left: 40%;
+        margin-top: -10%;
+        
+    }
+
+    
+
+
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up)*/
@@ -142,6 +212,19 @@ button:hover{
     h3{
         font-size: 20px;
     }
+
+    .comentarios{
+        margin-left: 40%;
+        margin-top: -7%;
+        
+    }
+
+    .botonEnviar{
+      
+        margin-left: -7.5%;
+    }
+
+
 }
 @media only screen and (min-width: 2560px) {
     h2{
@@ -150,4 +233,31 @@ button:hover{
     h3{
         font-size: 30px;
     }
+
+
+    .imgprueba{
+        width: 25%;
+        height: 25%;
+    }
+
+    .infoSenal>*{
+        font-size: 20px;
+    }
+
+    .escribeComentario{
+        margin-top: 5%;
+        width: 30%;
+        
+    }
+
+    .comentarios{
+        margin-left: 40%;
+        margin-top: -4%;
+      
+        
+    }
+
+
+
+    
 }

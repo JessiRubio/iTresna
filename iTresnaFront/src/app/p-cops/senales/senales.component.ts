@@ -6,8 +6,10 @@ import { SenalesService } from '../../servicios/senales.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalSenalComponent } from '../modalsenal/modalsenal.component';
 import { EtiquetaItem } from '../../clases/copsitem';
+import { Comentario } from '../../clases/comentario';
 import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-material-extensions/link-preview';
 import { HttpClient } from '@angular/common/http';
+import { ComentariosService } from 'src/app/servicios/comentarios.service';
 
 @Component({
   selector: 'app-senales',
@@ -26,13 +28,14 @@ export class SenalesComponent implements OnInit {
 
   private titulo:String= "Lorem Ipsum";
   private imagen:string="./../../../assets/cyberSecurityData.jpg";
-  
+  private listaComentarios:Comentario[]=[];
 
   constructor(
     private http:HttpClient,
     private router: Router,
     private route: ActivatedRoute,
     private senalesService:SenalesService,
+    private comentariosService:ComentariosService,
     private dialog:MatDialog
     ) {
 
@@ -46,8 +49,28 @@ export class SenalesComponent implements OnInit {
     });
 
     this.cargarTituloPagina();
+    this.cargarComentarios();
   }
 
+
+  cargarComentarios(){
+    this.comentariosService.getComentarios()
+        .subscribe(
+          res =>{
+            if(res.error == 0){
+              this.listaComentarios=res.comentarios;
+              
+            }
+            else{
+              
+            }
+          }, 
+          err =>{ 
+            console.log(err);
+
+          } 
+      );
+  }
   buscarEtiqueta():string{
     try{
       return this.etiquetas.find(x=>x.cod_etiqueta==this.senal.cod_etiqueta).desc_etiqueta;
