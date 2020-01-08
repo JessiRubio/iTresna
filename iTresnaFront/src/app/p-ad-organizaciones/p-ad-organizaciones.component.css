@@ -1,13 +1,13 @@
 
 
-ul{
-    list-style: none;
+table {
+    width: 100%;
+    text-align: center;
     margin-top: 3%;
 }
 
-li{
-    margin: 1%;
-    font-size: 20px;
+table tr th{
+    border-bottom: 1px solid black;
 }
 
 .clickable:hover{
