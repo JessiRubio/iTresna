@@ -106,11 +106,35 @@ export class AdminCopsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data=>{
         if(data!=null){
-          console.log(data);
+          var file="";
+          if(data.imagen!=null){
+            var reader = new FileReader();
+            reader.readAsDataURL(data.imagen);
+            reader.onload = () =>{
+              this.modificar(cop.cod_org,
+                            cop.cod_esp,
+                            cop.cod_cop,
+                            data.name,
+                            reader.result.toString().split(',')[1]);
+            };
+            
+            console.log(reader.result);
+          }
         }
       }
     );
   
+  }
+  modificar(cod_org,cod_esp,cod_cop,desc_cop,file_encoded){
+    this.copsService.modificarCop(cod_org,cod_esp,cod_cop,desc_cop,file_encoded)
+    .subscribe(
+      response=>{
+        console.log(response);
+      },
+      error=>{
+        console.log(error);
+      }
+    );
   }
   borrar(cop:CopsItem){
 

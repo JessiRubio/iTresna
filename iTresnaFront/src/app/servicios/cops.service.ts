@@ -21,4 +21,15 @@ export class CopsService {
   getCopsAdministracion(cod_org:number):Observable<any>{
     return this.httpClient.get(this.url+ '?cod_org=s' +cod_org);
   }
+  modificarCop(cod_org:number,cod_esp:number,cod_cop:number,desc:string,imagen:string):Observable<any>{
+    
+    let json={
+      "cod_org":cod_org,
+      "cod_esp":cod_esp,
+      "cod_cop":cod_cop,
+      "desc_cop":desc,
+      "image":imagen
+    };
+    return this.httpClient.put(this.url,json);
+  }
 }

@@ -1,9 +1,38 @@
 <app-header-generico></app-header-generico>
 
 <div class="organizaciones">
-    <ul>
-        <li *ngFor="let item of listaOrganizacion" (click)="setItem(item)" class="clickable"> 
-            {{item.desc_org}}
-        </li>
-    </ul>
+    <table>
+        <tr>
+            <th>
+                ORGANIZACION
+            </th>
+            <th>
+                CONTACTO
+            </th>
+            <th>
+                MODIFICAR
+            </th>
+            <th>
+                ELIMINAR
+            </th>
+        </tr>
+        <tr *ngFor="let item of listaOrganizacion">
+            <td class="clickable" >
+                {{item.desc_org}}
+            </td>
+            <td>
+                {{item.contacto}}
+            </td>
+            <td>
+                <button (click)="setItem(item)">
+                    <img src="assets/edit.png" alt="img">
+                </button>
+            </td>
+            <td>
+                <button (click)="borrar(item)">
+                    <img src="assets/papelera.png" alt="img">
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>
