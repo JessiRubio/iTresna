@@ -37,6 +37,7 @@ export class AdminCopsComponent implements OnInit {
       }
     );
   }
+  
   cargarCops(){
     var cod_org=this.espacios[this.selected].cod_org;
     var cod_esp=this.espacios[this.selected].cod_esp;
