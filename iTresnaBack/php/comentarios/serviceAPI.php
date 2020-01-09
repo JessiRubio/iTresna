@@ -11,8 +11,8 @@ class ServicioAPI {
                 include('post.php');
                 break;
                 case 'GET':
-                    include('get.php');
-                    break;   
+                include('get.php');
+                break;   
             case 'PUT':
                 include('put.php');
                 break;

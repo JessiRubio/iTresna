@@ -54,11 +54,12 @@ export class SenalesComponent implements OnInit {
 
 
   cargarComentarios(){
-    this.comentariosService.getComentarios()
+    this.comentariosService.getComentarios(this.senal.cod_senal)
         .subscribe(
           res =>{
             if(res.error == 0){
               this.listaComentarios=res.comentarios;
+              console.log(res.comentarios);
               
             }
             else{
@@ -71,6 +72,8 @@ export class SenalesComponent implements OnInit {
           } 
       );
   }
+
+
   buscarEtiqueta():string{
     try{
       return this.etiquetas.find(x=>x.cod_etiqueta==this.senal.cod_etiqueta).desc_etiqueta;

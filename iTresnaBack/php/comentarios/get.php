@@ -10,7 +10,6 @@
     }
     $result = array();
     $result["error"]=1;
-    if(isset($cod_senal) && $cod_senal!=""){
         $sql="SELECT cod_comentario, cod_senal, cod_cop, cod_esp, cod_org, cod_usuario, comentario
             FROM t_comentarios
             WHERE cod_senal=?";
@@ -29,15 +28,11 @@
                 "comentario"=>$comentario
                 
             );
-        $result["error"]=0;
-
-    }
-
-
-
-
-
-
+        
+            $result["error"]=0;
+    
+        }
 
     
+    echo json_encode($result);
 ?>

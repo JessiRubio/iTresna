@@ -63,14 +63,7 @@ h3{
     height:20px;
     width:20px;
 }
-.comentario{
-    display: inline-block;
-    height: 3em;
-    width: 100%;
-    background-color: #555453;
-    color:white;
-    font-family: 'Merienda', cursive;
-}
+
 
 .boton{
     color: rgba(223, 221, 221, 0.555);
@@ -97,14 +90,15 @@ button:hover{
     cursor: pointer;
 }
 
-
-
 .escribeComentario{
-    width: 40%;
+    width: 100%;
+    margin-top: 3%;
+    
 }
 textarea{
     resize: none;
-    width: 90%;
+    width: 100%;
+    height: 50px;
 }
 .botonEnviar{
     color: rgba(223, 221, 221, 0.555);
@@ -112,7 +106,7 @@ textarea{
     font-size: 25px;
     outline-width: 0;
     border:none;
-    margin-left: -9%;
+    margin-left: -4.5%;
 }
 
 .botonEnviar img{
@@ -120,19 +114,32 @@ textarea{
     width:30px;
 }
 .comentarios{
-    margin-left: 40%;
     text-decoration: none;
-    margin-top: -8%;
-    
+    background-color: #858282;
+    height: 150px;
 }
 .comentarios p{
     font-size: 12px;
+    margin: 1%;
+    margin-top: 1%;
+
 }
 
 ul{
     list-style: none;
-
 }
+
+.comentario{
+    font-size: 13px;
+    margin-top: 1%;
+} 
+
+.allComentarios p{
+    font-size: 13px;
+    
+}
+
+
 
 
 
@@ -187,14 +194,10 @@ ul{
         font-size: 15px;
     }
 
-    .botonEnviar{
-      
-        margin-left: -10%;
-    }
+   
 
     .comentarios{
-        margin-left: 40%;
-        margin-top: -10%;
+        margin-top: 1%;
         
     }
 
@@ -215,7 +218,7 @@ ul{
 
     .comentarios{
         margin-left: 40%;
-        margin-top: -7%;
+        margin-top: -14%;
         
     }
 

@@ -25,9 +25,7 @@
             </div>
         </div>
 
-        <div>
-
-                
+        <div class="allComentarios">    
                 <form class="escribeComentario"> 
                         <textarea name="comentarios" placeholder="Comentario" rows=5></textarea>
                         
@@ -36,27 +34,17 @@
                         </button>
                 </form>
 
-                
                 <div class="comentarios">
+                        <p>Comentarios:</p>
                         <ul>
-                                <li *ngFor="let item of listaComentarios"> 
-                                {{item.comentario}}
+                                <li *ngFor="let item of listaComentarios" class="comentario"> 
+                                        {{item.cod_usuario}}: {{item.comentario}}
                                 </li>
-
-                                <br>
-                                <br>
                         </ul>
-                <p>Ver todos los comentarios</p>
+                
                 </div>
-                
-
-
-                
-
+                <p>Ver todos los comentarios</p>
+  
         </div>
 
-
-       <!-- <select name="comentarios" class="comentario">
-                <option selected values="0"> {{senal.cantidad_comentarios}} Comentarios</option> 
-        </select>-->
 </section>

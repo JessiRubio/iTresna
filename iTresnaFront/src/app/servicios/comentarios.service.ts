@@ -11,7 +11,9 @@ export class ComentariosService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getComentarios():Observable<any>{
-    return this.httpClient.get<any>(this.url);
+  getComentarios(cod_senal:number):Observable<any>{
+    return this.httpClient.get<any>(this.url+'?cod_senal='+cod_senal);
   }
+
+
 }
