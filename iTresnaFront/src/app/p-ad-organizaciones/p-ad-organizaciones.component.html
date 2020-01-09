@@ -17,11 +17,21 @@
             </th>
         </tr>
         <tr *ngFor="let item of listaOrganizacion">
-            <td class="clickable">
+            <td class="clickable" >
                 {{item.desc_org}}
             </td>
             <td>
                 {{item.contacto}}
+            </td>
+            <td>
+                <button (click)="setItem(item)">
+                    <img src="assets/edit.png" alt="img">
+                </button>
+            </td>
+            <td>
+                <button (click)="borrar(item)">
+                    <img src="assets/papelera.png" alt="img">
+                </button>
             </td>
         </tr>
     </table>

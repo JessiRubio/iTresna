@@ -13,3 +13,14 @@ table tr th{
 .clickable:hover{
     cursor: pointer;
 }
+
+button{
+    background: transparent;
+    border-radius: 0.75rem;
+}
+
+img{
+    height: 30px;
+    width: 30px;
+    background: transparent;
+}
