@@ -32,13 +32,13 @@ table tr td{
     text-align: center;
 }
 
+table tr th{
+    border-bottom: 1px solid black;
+}
+
 button{
     background: transparent;
     border-radius: 0.75rem;
-}
-
-.borderth{
-    border-bottom: 1px solid black;
 }
 
 .nombre{
