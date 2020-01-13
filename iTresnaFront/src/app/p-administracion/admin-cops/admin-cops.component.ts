@@ -37,6 +37,7 @@ export class AdminCopsComponent implements OnInit {
       }
     );
   }
+  
   cargarCops(){
     var cod_org=this.espacios[this.selected].cod_org;
     var cod_esp=this.espacios[this.selected].cod_esp;
@@ -114,7 +115,7 @@ export class AdminCopsComponent implements OnInit {
               this.modificar(cop.cod_org,
                             cop.cod_esp,
                             cop.cod_cop,
-                            data.name,
+                            data.nombre,
                             reader.result.toString().split(',')[1]);
             };
             

@@ -1,9 +1,7 @@
 <div [formGroup]="formGroup">
-    <mat-form-field #input class="expand" [class]="placeHolder">
-        <input matInput (input)="onChange($event.target.value)"
-            type="checkbox"
-            [(value)]="data"
-            [placeholder]='placeHolder' 
-            [formControlName]='controlName'>
-    </mat-form-field>
+    <mat-checkbox
+        (change)="onChange($event.checked)"
+        [formControlName]='controlName'>
+        {{placeHolder}}
+    </mat-checkbox>
 </div>

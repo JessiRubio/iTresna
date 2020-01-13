@@ -1,4 +1,4 @@
-
+@import "./../../assets/colors.css";
 
 table {
     width: 100%;
@@ -8,10 +8,6 @@ table {
 
 table tr th{
     border-bottom: 1px solid black;
-}
-
-.clickable:hover{
-    cursor: pointer;
 }
 
 button{
@@ -24,3 +20,35 @@ img{
     width: 30px;
     background: transparent;
 }
+
+input{
+    width: auto;
+    margin-left: 5%;
+    margin-bottom: 1.8%;
+    border-bottom: 1px solid black;
+}
+
+.clickable:hover{
+    cursor: pointer;
+}
+
+.btnAñadir{
+    width: 100%;
+    background-color: var(--colorCopsActivas);
+}
+
+.filtro{
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    margin-right: 5%;
+    margin-top: 3%;
+}
+
+.filtro *{
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+}
+
+/*clases libreria mat*/

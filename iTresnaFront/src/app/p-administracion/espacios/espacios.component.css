@@ -32,13 +32,13 @@ table tr td{
     text-align: center;
 }
 
-button{
-    width: 100%;
-    background-color: var(--colorCopsActivas);
+table tr th{
+    border-bottom: 1px solid black;
 }
 
-.borderth{
-    border-bottom: 1px solid black;
+button{
+    background: transparent;
+    border-radius: 0.75rem;
 }
 
 .nombre{
@@ -46,15 +46,13 @@ button{
     border-bottom: 1px solid black;
 }
 
-.boton{
-    background: transparent;
-    border-radius: 0.75rem;
-    height: auto;
-    width: auto;
-}
-
-.boton img{
+img{
     height: 30px;
     width: 30px;
     background: transparent;
+}
+
+.btnAñadir{
+    width: 100%;
+    background-color: var(--colorCopsActivas);
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, AfterContentInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -6,17 +6,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './checkbox-field.component.html',
   styleUrls: ['./checkbox-field.component.css']
 })
-export class CheckboxFieldComponent implements OnInit {
+export class CheckboxFieldComponent implements OnInit,AfterViewInit {
 
   @Input() formGroup:FormGroup;
-  @Input() data:boolean;
+  @Input() data:any;
   @Input() controlName:string;
   @Input() placeHolder:string;
-  constructor() { }
+  constructor(private cd:ChangeDetectorRef) { }
   onChange(value){
     this.formGroup.value[this.controlName]=value;
   }
   ngOnInit() {
-    this.formGroup.controls[this.controlName]=new FormControl();
+    this.formGroup.controls[this.controlName]=new FormControl(this.data.desc);
   }
 }

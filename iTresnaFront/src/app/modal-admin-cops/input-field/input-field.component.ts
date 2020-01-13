@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, OnInit } from '@angular/core';
+import { Component, AfterViewInit, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -6,14 +6,15 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
   templateUrl: './input-field.component.html',
   styleUrls: ['./input-field.component.css']
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent implements OnInit,AfterViewInit {
   @Input() formGroup:FormGroup;
   @Input() data:any;
   @Input() controlName:string;
   @Input() placeHolder:string;
   
   constructor(
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private cd:ChangeDetectorRef
   ) {
     
   }
@@ -22,6 +23,8 @@ export class InputFieldComponent implements OnInit {
   }
   ngOnInit(){
     this.formGroup.controls[this.controlName]=new FormControl(this.data.desc,Validators.required);
+  }
+  ngAfterViewInit(){
   }
 }
 

@@ -3,6 +3,8 @@ import { Usuario } from '../../clases/usuario';
 import { EspaciosItem } from '../../clases/espaciosItem';
 import { EspaciosService } from '../../servicios/espacios.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalAdminCopsComponent } from '../../modal-admin-cops/modal-admin-cops.component';
 
 @Component({
   selector: 'app-espacios',
@@ -15,7 +17,8 @@ export class EspaciosComponent implements OnInit {
   cod_org:number;
   listaEspacios:EspaciosItem[];
   constructor(private espaciosService:EspaciosService,
-    private usuarioService:UsuariosService) 
+    private usuarioService:UsuariosService,
+    private dialog:MatDialog) 
     { 
       this.listaEspacios=[];
     }
@@ -24,7 +27,6 @@ export class EspaciosComponent implements OnInit {
     this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
     this.cod_org=this.usuarioLogado.cod_org;
     this.cargarListaEspacios();
-    
   }
 
   cargarListaEspacios(){
@@ -56,5 +58,60 @@ export class EspaciosComponent implements OnInit {
       }
     );
   }
+  editar(cod_org:number,cod_esp:number){
+    this.espaciosService.getEspacio(cod_org,cod_esp).subscribe(
+      response=>{
+        this.editarEspacio(response.espacio);
+      }
+    );
+  }
+  private editarEspacio(espacio:EspaciosItem){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus=true;
+    dialogConfig.minWidth="50%";
+    dialogConfig.data=[
+      {
+        input:"inputField",
+        controlName:"nombre",
+        placeHolder:"Escribe el nombre de la cop",
+        data:{
+          desc:espacio.desc_esp
+        },
+        
+      },
+      {
+        input:"checkboxField",
+        controlName:"curacion",
+        placeHolder:"Se puede curar",
+        data:{
+          desc:espacio.ind_esp_curacion
+        }
+      },
+      {
+        input:"inputField",
+        controlName:"orden",
+        placeHolder:"Pone el orden en el que aparecera el esapcio",
+        data:{
+          desc:espacio.orden
+        }
+      }
+    ];
 
+    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      data=>{
+        if(data!=null){
+          espacio.desc_esp=data.nombre;
+          espacio.ind_esp_curacion=data.curacion;
+          espacio.orden=data.orden
+          this.espaciosService.updateEspacio(espacio).subscribe(
+            response=>{
+              console.log(response);
+              location.reload();
+            }
+          );
+        }        
+      }
+    )
+  }
 }
