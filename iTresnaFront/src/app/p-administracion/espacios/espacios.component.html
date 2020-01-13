@@ -11,7 +11,7 @@
             <td>{{item.orden}}</td>
             <td><input type="checkbox" [checked]="item.ind_esp_curacion" value="item.ind_esp_curacion" (change)="setIndCuracion(item)"></td>
             <td>
-                <button (click)="editar(item)" class="boton">
+                <button (click)="editar(item.cod_org,item.cod_esp)" class="boton">
                     <img class="papelera" src="assets/edit.png" alt="papelera">
                 </button>
             </td>

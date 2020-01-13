@@ -114,7 +114,7 @@ export class AdminCopsComponent implements OnInit {
               this.modificar(cop.cod_org,
                             cop.cod_esp,
                             cop.cod_cop,
-                            data.name,
+                            data.nombre,
                             reader.result.toString().split(',')[1]);
             };
             

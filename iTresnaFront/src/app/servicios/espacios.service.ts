@@ -9,7 +9,6 @@ import { EspaciosItem } from '../clases/espaciosItem';
 })
 export class EspaciosService {
 
-  ind_esp_curacion:number;
   private url="http://localhost:8080/espacios/";
 
   constructor(private httpClient:HttpClient) { }
@@ -22,17 +21,11 @@ export class EspaciosService {
   }
 
   updateEspacio(item:EspaciosItem){
-    if(item.ind_esp_curacion){
-      this.ind_esp_curacion = 1;
-    }
-    else{
-      this.ind_esp_curacion = 0;
-    }
     var JSON={
       "cod_org":item.cod_org,
       "cod_esp":item.cod_esp,
       "desc_esp":item.desc_esp,
-      "ind_esp_curacion":this.ind_esp_curacion,
+      "ind_esp_curacion":item.ind_esp_curacion,
       "orden":item.orden
     };
     return this.httpClient.put<any>(this.url,JSON);
