@@ -1,6 +1,25 @@
 <app-header-generico></app-header-generico>
 
-<div class="organizaciones">
+<section  class="filtro">
+    <mat-form-field>
+        <mat-label> Filtrar por: </mat-label>
+        <mat-select [(value)]="selected" (selectionChange)="cargarOrganizacionesOrdenadas($event.value)" >
+            <mat-option value=0>
+                Ascendente
+            </mat-option>
+            <mat-option value=1>
+                Descendente
+            </mat-option>
+            <mat-option value=2>
+                Contacto
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Contacto" name="filtroContacto" *ngIf="show">
+</section>
+
+<section class="organizaciones">
     <table>
         <tr>
             <th>
@@ -34,5 +53,12 @@
                 </button>
             </td>
         </tr>
+        <tr>
+            <td colspan="4">
+                <button class="btnAñadir">
+                    <p>AÑADIR</p>
+                </button>
+            </td>
+        </tr>
     </table>
-</div>
+</section>

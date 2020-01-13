@@ -48,7 +48,8 @@
                 "clasif1"=>$clasif1,
                 "clasif2"=>$clasif2,
                 "clasif3"=>$clasif3,
-                "categorias"=>cargarCategorias($cod_org)
+                "categorias"=>cargarCategorias($cod_org),
+                "contacto" => cargarContacto($cod_org)
             );
         }
         $result["error"]=0;
@@ -74,6 +75,22 @@
                 "tip_clasificacion" => $tip_clasificacion
             );
         }
+        $query->close();
+        return $result;
+    }
+
+    function cargarContacto($cod_org){
+        $result=array();
+        include("./../conexion.php");
+        $sql="SELECT cod_usuario
+                FROM t_usuarios
+                WHERE cod_org=? AND tip_usuario=2";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("i",$cod_org);
+        $query->execute();
+        $query->bind_result($cod_usuario);
+        $query->fetch();
+        $result = $cod_usuario;
         $query->close();
         return $result;
     }

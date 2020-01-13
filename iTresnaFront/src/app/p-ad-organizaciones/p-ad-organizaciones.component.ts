@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Organizacion } from '../clases/Organizacion';
 import { Router } from '@angular/router';
 import { OrganizacionesService} from '../servicios/organizaciones.service';
@@ -12,9 +12,12 @@ import { Usuario, Permiso } from '../clases/usuario';
 })
 export class PAdOrganizacionesComponent implements OnInit {
 
+  show:boolean=false;
+
   usuarioLogado:Usuario;
   listaOrganizacion:Organizacion[]=[];
   currentItem;
+  selected=0;
   organizacion:Organizacion;
   constructor(
     private organizacionesService:OrganizacionesService,
@@ -76,5 +79,14 @@ export class PAdOrganizacionesComponent implements OnInit {
     localStorage.setItem("organizacion", JSON.stringify(this.currentItem));
   }
 
+  cargarOrganizacionesOrdenadas(value:number){
+    this.selected=value;
+    if(this.selected == 2){
+      this.show=true;
+    }
+    else{
+      this.show=false;
+    }
+  }
 
 }
