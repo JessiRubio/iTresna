@@ -16,6 +16,11 @@ header {
     color: transparent;  
 }
 
+.hiTresna a:hover{
+    cursor: pointer;
+}
+
+
 .hiTresna p{
     font-size: 1.8rem;
     margin-left: 85%;
