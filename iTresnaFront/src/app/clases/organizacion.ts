@@ -9,6 +9,7 @@ clasif1:string="";
 clasif2:string="";
 clasif3:string="";
 categorias:Categorias[]=[];
+contacto:string="";
 }
 
 export class Categorias{
