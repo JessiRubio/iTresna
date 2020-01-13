@@ -23,7 +23,12 @@ export class SenalesComponent implements OnInit {
   private cod_cop:number;
   private admin:boolean=false;
   
+  str: string;
+  cod_coment:number=15;
+  
+  
   @Input() senal:SenalesItem;
+  @Input() comentario:Comentario;
   @Input() etiquetas:EtiquetaItem[];
 
   private titulo:String= "Lorem Ipsum";
@@ -46,6 +51,7 @@ export class SenalesComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
+
     });
 
     this.cargarTituloPagina();
@@ -98,6 +104,24 @@ export class SenalesComponent implements OnInit {
       }
     );
   }
+
+ 
+    
+  nuevoComentario(){
+    this.comentariosService.nuevoComentario(this.cod_coment,this.senal.cod_senal,this.senal.cod_cop,this.senal.cod_esp,this.senal.cod_org,this.usuarioLogeado.cod_usuario,this.str).subscribe(
+      res=>{
+        if(res.error==0){
+          if(res.aniadido==1){
+            
+          }else{
+            
+          }
+        }
+      }
+    );
+  }
+
+
   cargarTituloPagina(){
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
     preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(

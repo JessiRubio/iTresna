@@ -27,9 +27,9 @@
 
         <div class="allComentarios">    
                 <form class="escribeComentario"> 
-                        <textarea name="comentarios" placeholder="Comentario" rows=5></textarea>
+                        <textarea name="comentarios" placeholder="Comentario" [(ngModel)]="str"  rows=5></textarea>
                         
-                        <button class="botonEnviar" type="submit">
+                        <button class="botonEnviar" type="submit"  (click)=nuevoComentario()>
                                 <img  src="assets/enviar2.png" alt="enviar">
                         </button>
                 </form>
