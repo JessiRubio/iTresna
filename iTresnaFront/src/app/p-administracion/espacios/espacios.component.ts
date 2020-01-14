@@ -67,7 +67,7 @@ export class EspaciosComponent implements OnInit {
     );
   }
   private editarEspacio(espacio:EspaciosItem){
-    this.modalResponse(espacio).subscribe(
+    this.openModal(espacio).subscribe(
       data=>{
         if(data!=null){
           espacio.desc_esp=data.nombre;
@@ -83,7 +83,7 @@ export class EspaciosComponent implements OnInit {
       }
     );
   }
-  private modalResponse(espacio:EspaciosItem):Observable<any>{
+  private openModal(espacio:EspaciosItem):Observable<any>{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus=true;
     dialogConfig.minWidth="50%";
@@ -123,7 +123,7 @@ export class EspaciosComponent implements OnInit {
     espacio.desc_esp="";
     espacio.orden=0;
     espacio.ind_esp_curacion=false;
-    this.modalResponse(espacio).subscribe(
+    this.openModal(espacio).subscribe(
       data=>{
         if(data.nomnre!="" && data.orden!=0){
           var espacio=new EspaciosItem();
