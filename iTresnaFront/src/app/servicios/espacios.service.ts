@@ -30,4 +30,14 @@ export class EspaciosService {
     };
     return this.httpClient.put<any>(this.url,JSON);
   }
+  addEspacio(item:EspaciosItem){
+    var JSON={
+      "cod_org":item.cod_org,
+      "cod_esp":item.cod_esp,
+      "desc_esp":item.desc_esp,
+      "ind_esp_curacion":item.ind_esp_curacion,
+      "orden":item.orden
+    };
+    return this.httpClient.post<any>(this.url,JSON);
+  }
 }

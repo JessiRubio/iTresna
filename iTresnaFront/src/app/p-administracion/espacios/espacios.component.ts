@@ -5,6 +5,7 @@ import { EspaciosService } from '../../servicios/espacios.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalAdminCopsComponent } from '../../modal-admin-cops/modal-admin-cops.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-espacios',
@@ -66,6 +67,23 @@ export class EspaciosComponent implements OnInit {
     );
   }
   private editarEspacio(espacio:EspaciosItem){
+    this.modalResponse(espacio).subscribe(
+      data=>{
+        if(data!=null){
+          espacio.desc_esp=data.nombre;
+          espacio.ind_esp_curacion=data.curacion;
+          espacio.orden=data.orden
+          this.espaciosService.updateEspacio(espacio).subscribe(
+            response=>{
+              console.log(response);
+              location.reload();
+            }
+          );
+        }        
+      }
+    );
+  }
+  private modalResponse(espacio:EspaciosItem):Observable<any>{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus=true;
     dialogConfig.minWidth="50%";
@@ -98,13 +116,22 @@ export class EspaciosComponent implements OnInit {
     ];
 
     const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    dialogRef.afterClosed().subscribe(
+    return dialogRef.afterClosed()
+  }
+  private addEspacio(){
+    var espacio=new EspaciosItem();
+    espacio.desc_esp="";
+    espacio.orden=0;
+    espacio.ind_esp_curacion=false;
+    this.modalResponse(espacio).subscribe(
       data=>{
-        if(data!=null){
+        if(data.nomnre!="" && data.orden!=0){
+          var espacio=new EspaciosItem();
           espacio.desc_esp=data.nombre;
           espacio.ind_esp_curacion=data.curacion;
-          espacio.orden=data.orden
-          this.espaciosService.updateEspacio(espacio).subscribe(
+          espacio.orden=data.orden;
+          console.log(espacio);
+          this.espaciosService.addEspacio(espacio).subscribe(
             response=>{
               console.log(response);
               location.reload();
@@ -112,6 +139,6 @@ export class EspaciosComponent implements OnInit {
           );
         }        
       }
-    )
+    );
   }
 }
