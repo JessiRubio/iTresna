@@ -24,7 +24,27 @@
                     </div>
             </div>
         </div>
-        <select name="comentarios" class="comentario">
-                <option selected values="0"> {{senal.cantidad_comentarios}} Comentarios</option>
-        </select>
+
+        <div class="allComentarios">    
+                <form class="escribeComentario"> 
+                        <textarea name="comentarios" placeholder="Comentario" [(ngModel)]="str"  rows=5></textarea>
+                        
+                        <button class="botonEnviar" type="submit"  (click)=nuevoComentario()>
+                                <img  src="assets/enviar2.png" alt="enviar">
+                        </button>
+                </form>
+
+                <div class="comentarios">
+                        <p>Comentarios:</p>
+                        <ul>
+                                <li *ngFor="let item of listaComentarios" class="comentario"> 
+                                        {{item.cod_usuario}}: {{item.comentario}}
+                                </li>
+                        </ul>
+                
+                </div>
+                <p>Ver todos los comentarios</p>
+  
+        </div>
+
 </section>
