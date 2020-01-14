@@ -13,11 +13,23 @@
         if($orden==0){
 
         }else{
-            $sql="SELECT MAX(orden)
+            $orden=cantidadEspaciosOrg($cod_org);
+
+        }
+    }
+
+    function cantidadEspaciosOrg($cod_org){
+        $cuantos=0;
+        $sql="SELECT COUNT(*)
                 FROM t_espacios
                 WHERE cod_org=?";
             $query=$conexion->prepare($sql);
-            
-        }
+            $query->bind_param("i",$cod_org);
+            $query->execute();
+            $query->bind_result($cuantos);
+            $query->fetch();
+            $result=$cuantos;
+            $query->close();
+            return $result;
     }
 ?>

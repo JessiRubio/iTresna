@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './checkbox-field.component.html',
   styleUrls: ['./checkbox-field.component.css']
 })
-export class CheckboxFieldComponent implements OnInit,AfterViewInit {
+export class CheckboxFieldComponent implements OnInit {
 
   @Input() formGroup:FormGroup;
   @Input() data:any;
