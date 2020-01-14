@@ -2,7 +2,7 @@
 <mat-dialog-content [formGroup]="formGroup">
     <ng-container class="form-row" *ngFor="let item of intData">
         <app-input-field [(formGroup)]="formGroup"
-                        [data]="item.data" 
+                        [data]="item.data"
                         [controlName]="item.controlName" 
                         [placeHolder]="item.placeHolder" 
                         *ngIf="item.input==='inputField'">
@@ -28,6 +28,13 @@
                         [placeHolder]="item.placeHolder" 
                         *ngIf="item.input==='checkboxField'">
         </app-checkbox-field>
+
+        <app-number-field [(formGroup)]="formGroup"
+                        [data]="item.data"
+                        [controlName]="item.controlName" 
+                        [placeHolder]="item.placeHolder" 
+                        *ngIf="item.input==='numberField'">
+        </app-number-field>
     </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions>

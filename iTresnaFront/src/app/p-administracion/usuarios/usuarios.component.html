@@ -1,31 +1,50 @@
 <section>
     <mat-form-field class="filtro">
         <mat-label>Selecciona una clasificacion</mat-label>
-        <mat-select [(value)]="selected" (selectionChange)="cargarclasificacion()" >
-            <mat-option *ngFor="let item of listaClasificacion;let i=index" [value]="i">
+        <mat-select [(value)]="selected" (selectionChange)="filtrarCategorias($event.value)" >
+            <mat-option *ngFor="let item of listaClasificacion;let i=index" [value]="item">
                 {{item}}
             </mat-option>
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="filtro">
+    <mat-form-field class="filtro" *ngIf="show">
         <mat-label>Selecciona una categoria</mat-label>
-        <mat-select [(value)]="selected" (selectionChange)="cargarCategorias()" >
-            <mat-option *ngFor="let item of listaCategorias;let i=index" [value]="i">
+        <mat-select [(value)]="selectedCategoria" (selectionChange)="cargarCategorias()" >
+            <mat-option *ngFor="let item of listaCategorias;let i=index" [value]="item">
                 {{item.categoria}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
+    <br>
+
+    <mat-form-field class="filtro" >
+        <mat-label>Selecciona un espacio</mat-label>
+        <mat-select [(value)]="selectedEspacio" (selectionChange)="cargarCops($event.value)" >
+            <mat-option *ngFor="let item of listaEspacios;let i=index" [value]="item">
+                {{item.desc_esp}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="filtro" *ngIf="showCops" >
+        <mat-label>Selecciona una cop</mat-label>
+        <mat-select [(value)]="selectedCop" (selectionChange)="cargarTabla($event.value)" >
+            <mat-option *ngFor="let item of listaCops;let i=index" [value]="item">
+                {{item.desc_cop}}
             </mat-option>
         </mat-select>
     </mat-form-field>
 
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Other filter">
 
-    <table>
+    <table *ngIf="showTabla">
         <tr>
             <th rowspan="3">EMAIL</th>
             <th colspan="3">USUARIOS</th>
             <th colspan="3">DATOS CLASIFICATORIOS</th>
-            <th colspan="listaCops.size">PERMISOS</th>
+            <th colspan="2">PERMISOS</th>
         </tr>
         <tr>
             <th rowspan="2">Nombre</th>
@@ -34,13 +53,11 @@
             <th rowspan="2">{{listaClasificacion[0]}}</th>
             <th rowspan="2">{{listaClasificacion[1]}}</th>
             <th rowspan="2">{{listaClasificacion[2]}}</th>
-            <th *ngFor="let item of listaCops" colspan="2">{{item.desc_cop}}</th>
+            <th colspan="2">{{cop.desc_cop}}</th>
         </tr>
         <tr>
-            <div *ngFor="let item of listaCops">
-                <th>Uso</th>
-                <th>Admin</th>
-            </div>
+            <th>Uso</th>
+            <th>Admin</th>
         </tr>
         
     </table>

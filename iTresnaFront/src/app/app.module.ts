@@ -34,6 +34,7 @@ import { FileFieldComponent } from './modal-admin-cops/file-field/file-field.com
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkbox-field.component';
 import { ModalcomentariosComponent } from './p-cops/modalcomentarios/modalcomentarios/modalcomentarios.component';
+import { NumberFieldComponent } from './modal-admin-cops/number-field/number-field.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ModalcomentariosComponent } from './p-cops/modalcomentarios/modalcoment
     InputFieldComponent,
     FileFieldComponent,
     CheckboxFieldComponent,
+    NumberFieldComponent,
     ModalcomentariosComponent
   ],
   imports: [
