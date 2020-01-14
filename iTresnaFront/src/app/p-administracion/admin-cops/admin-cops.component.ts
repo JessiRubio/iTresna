@@ -119,7 +119,6 @@ export class AdminCopsComponent implements OnInit {
                             reader.result.toString().split(',')[1]);
             };
             
-            console.log(reader.result);
           }
         }
       }
