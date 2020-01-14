@@ -1,8 +1,8 @@
 <section>
     <mat-form-field class="filtro">
         <mat-label>Selecciona una clasificacion</mat-label>
-        <mat-select [(value)]="selected" (selectionChange)="cargarclasificacion()" >
-            <mat-option *ngFor="let item of listaClasificacion;let i=index" [value]="i">
+        <mat-select [(value)]="selected" (selectionChange)="filtrarCategorias($event.value)" >
+            <mat-option *ngFor="let item of listaClasificacion;let i=index" [value]="item">
                 {{item}}
             </mat-option>
         </mat-select>
@@ -11,9 +11,8 @@
     <mat-form-field class="filtro">
         <mat-label>Selecciona una categoria</mat-label>
         <mat-select [(value)]="selected" (selectionChange)="cargarCategorias()" >
-            <mat-option *ngFor="let item of listaCategorias;let i=index" [value]="i">
+            <mat-option *ngFor="let item of listaCategorias;let i=index" [value]="item">
                 {{item.categoria}}
-
             </mat-option>
         </mat-select>
     </mat-form-field>

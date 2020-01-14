@@ -51,15 +51,13 @@ export class UsuariosComponent implements OnInit {
   }
 
 
-  /*cargarCops(cod_org:number){
-    this.copsService.getCopsAdministracion(cod_org).subscribe(
-      res=>{
-        console.log(res);
-      },
-      err=>{
-        console.log(err);
+  filtrarCategorias(clasificacion:string){
+    this.listaCategorias = [];
+    for(var pos=0;pos<this.organizacion.categorias.length;pos++){
+      if (this.organizacion.categorias[pos].tip_clasificacion===clasificacion){
+        this.listaCategorias.push(this.organizacion.categorias[pos]);
       }
-    );
-  }*/
+    }
+  }
 
 }
