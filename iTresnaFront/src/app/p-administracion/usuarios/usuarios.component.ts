@@ -5,6 +5,8 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { Usuario } from '../../clases/usuario';
 import { Organizacion, Categorias } from '../../clases/organizacion';
 import { OrganizacionesService } from '../../servicios/organizaciones.service';
+import { EspaciosService } from '../../servicios/espacios.service';
+import { EspaciosItem } from '../../clases/espaciosItem';
 
 @Component({
   selector: 'app-usuarios',
@@ -13,14 +15,20 @@ import { OrganizacionesService } from '../../servicios/organizaciones.service';
 })
 export class UsuariosComponent implements OnInit {
 
+  listaEspacios:EspaciosItem[] = []
   listaCops:CopsItem[] = [];
   listaUsuarios:Usuario[] = [];
   listaCategorias:Categorias[] = [];
-  listaClasificacion=[]=[];
+  listaClasificacion =[] = [];
   organizacion:Organizacion;
   usuarioLogado:Usuario;
+  show:boolean = false;
+  showCops:boolean = false;
+  showTabla:boolean = false;
+  cop:CopsItem;
 
   constructor( private copsService:CopsService,
+              private espaciosService:EspaciosService,
               private usuarioService:UsuariosService) 
   {
   }
@@ -35,8 +43,7 @@ export class UsuariosComponent implements OnInit {
         this.listaClasificacion[1] =this.organizacion.clasif2;
         this.listaClasificacion[2] =this.organizacion.clasif3;
 
-        this.listaCategorias=this.organizacion.categorias;
-    
+    this.cargarEspacios(this.organizacion.cod_org);
   }
 
   cargarUsuarios(cod_org:number){
@@ -52,6 +59,7 @@ export class UsuariosComponent implements OnInit {
 
 
   filtrarCategorias(clasificacion:string){
+    this.show = true;
     this.listaCategorias = [];
     for(var pos=0;pos<this.organizacion.categorias.length;pos++){
       if (this.organizacion.categorias[pos].tip_clasificacion===clasificacion){
@@ -60,4 +68,44 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
+  cargarEspacios(cod_org:number){
+    this.espaciosService.getEspacios(cod_org).subscribe(
+      res=>{
+        this.listaEspacios = res.espacios
+      },
+      err=>{
+
+      }
+    );
+  }
+
+  cargarCops(espacio:EspaciosItem){
+    var esp:EspaciosItem;
+    for(var pos=0;pos<this.listaEspacios.length;pos++){
+
+      if(this.listaEspacios[pos].desc_esp===espacio.desc_esp){
+        esp = this.listaEspacios[pos];
+        break;
+      }
+    }
+
+    this.descargarCops(esp);
+    this.showCops = true;
+  }
+
+  descargarCops(esp:EspaciosItem){
+    this.copsService.getCops(this.organizacion.cod_org,esp.cod_esp,this.usuarioLogado.cod_usuario).subscribe(
+      res=>{
+        this.listaCops = res.cops;
+      },
+      err=>{
+
+      }
+    );
+  }
+  cargarTabla(cop:CopsItem){
+    this.cop = cop;
+    this.showTabla = true;
+    
+  }
 }
