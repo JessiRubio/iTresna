@@ -33,6 +33,7 @@ import { InputFieldComponent } from './modal-admin-cops/input-field/input-field.
 import { FileFieldComponent } from './modal-admin-cops/file-field/file-field.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkbox-field.component';
+import { ModalcomentariosComponent } from './p-cops/modalcomentarios/modalcomentarios/modalcomentarios.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkb
     SelectFieldComponent,
     InputFieldComponent,
     FileFieldComponent,
-    CheckboxFieldComponent
+    CheckboxFieldComponent,
+    ModalcomentariosComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,7 @@ import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkb
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],
-  entryComponents:[ModalSenalComponent,ModalAdminCopsComponent,SelectFieldComponent,InputFieldComponent,CheckboxFieldComponent]
+  entryComponents:[ModalSenalComponent,ModalAdminCopsComponent,ModalcomentariosComponent,SelectFieldComponent,InputFieldComponent,CheckboxFieldComponent]
 })
 export class AppModule { 
 }
