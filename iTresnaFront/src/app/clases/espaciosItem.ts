@@ -6,7 +6,7 @@ export class EspaciosItem{
     cod_org:number=0;
     cod_esp:number=0;
     desc_esp:string="";
-    ind_esp_curacion:boolean;
+    ind_esp_curacion:boolean = false;
     orden:number=0;
     listaCop:CopsItem[];
 
