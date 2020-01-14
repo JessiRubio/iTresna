@@ -106,9 +106,9 @@ export class EspaciosComponent implements OnInit {
         }
       },
       {
-        input:"inputField",
+        input:"numberField",
         controlName:"orden",
-        placeHolder:"Pone el orden en el que aparecera el esapcio",
+        placeHolder:"Pone el orden en el que aparecera el espacio",
         data:{
           desc:espacio.orden
         }
@@ -118,22 +118,20 @@ export class EspaciosComponent implements OnInit {
     const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
     return dialogRef.afterClosed()
   }
-  private addEspacio(){
+  public addEspacio(){
     var espacio=new EspaciosItem();
+    espacio.cod_org=this.cod_org;
     espacio.desc_esp="";
     espacio.orden=0;
     espacio.ind_esp_curacion=false;
     this.openModal(espacio).subscribe(
       data=>{
-        if(data.nomnre!="" && data.orden!=0){
-          var espacio=new EspaciosItem();
+        if(data.nombre.length>0){
           espacio.desc_esp=data.nombre;
           espacio.ind_esp_curacion=data.curacion;
           espacio.orden=data.orden;
-          console.log(espacio);
           this.espaciosService.addEspacio(espacio).subscribe(
             response=>{
-              console.log(response);
               location.reload();
             }
           );

@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-input-field',
-  templateUrl: './input-field.component.html',
-  styleUrls: ['./input-field.component.css']
+  selector: 'app-number-field',
+  templateUrl: './number-field.component.html',
+  styleUrls: ['./number-field.component.css']
 })
-export class InputFieldComponent implements OnInit {
+export class NumberFieldComponent implements OnInit {
   @Input() formGroup:FormGroup;
   @Input() data:any;
   @Input() controlName:string;
@@ -23,5 +23,5 @@ export class InputFieldComponent implements OnInit {
   ngOnInit(){
     this.formGroup.controls[this.controlName]=new FormControl(this.data.desc);
   }
-}
 
+}
