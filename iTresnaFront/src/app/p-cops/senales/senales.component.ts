@@ -6,8 +6,10 @@ import { SenalesService } from '../../servicios/senales.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalSenalComponent } from '../modalsenal/modalsenal.component';
 import { EtiquetaItem } from '../../clases/copsitem';
+import { Comentario } from '../../clases/comentario';
 import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-material-extensions/link-preview';
 import { HttpClient } from '@angular/common/http';
+import { ComentariosService } from 'src/app/servicios/comentarios.service';
 
 @Component({
   selector: 'app-senales',
@@ -21,18 +23,24 @@ export class SenalesComponent implements OnInit {
   private cod_cop:number;
   private admin:boolean=false;
   
+  str: string;
+  cod_coment:number=15;
+  
+  
   @Input() senal:SenalesItem;
+  @Input() comentario:Comentario;
   @Input() etiquetas:EtiquetaItem[];
 
   private titulo:String= "Lorem Ipsum";
   private imagen:string="./../../../assets/cyberSecurityData.jpg";
-  
+  private listaComentarios:Comentario[]=[];
 
   constructor(
     private http:HttpClient,
     private router: Router,
     private route: ActivatedRoute,
     private senalesService:SenalesService,
+    private comentariosService:ComentariosService,
     private dialog:MatDialog
     ) {
 
@@ -43,10 +51,34 @@ export class SenalesComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.cod_cop = params['copSeleccionado'];
       this.cod_esp = params['codEspacio'];
+
     });
 
     this.cargarTituloPagina();
+    this.cargarComentarios();
   }
+
+
+  cargarComentarios(){
+    this.comentariosService.getComentarios(this.senal.cod_senal)
+        .subscribe(
+          res =>{
+            if(res.error == 0){
+              this.listaComentarios=res.comentarios;
+              console.log(res.comentarios);
+              
+            }
+            else{
+              
+            }
+          }, 
+          err =>{ 
+            console.log(err);
+
+          } 
+      );
+  }
+
 
   buscarEtiqueta():string{
     try{
@@ -72,6 +104,24 @@ export class SenalesComponent implements OnInit {
       }
     );
   }
+
+ 
+    
+  nuevoComentario(){
+    this.comentariosService.nuevoComentario(this.cod_coment,this.senal.cod_senal,this.senal.cod_cop,this.senal.cod_esp,this.senal.cod_org,this.usuarioLogeado.cod_usuario,this.str).subscribe(
+      res=>{
+        if(res.error==0){
+          if(res.aniadido==1){
+            
+          }else{
+            
+          }
+        }
+      }
+    );
+  }
+
+
   cargarTituloPagina(){
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
     preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(

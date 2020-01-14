@@ -1,10 +1,11 @@
 <section>
     <table>
         <tr>
-            <th class="nombre">Nombre</th>
-            <th class="borderth">Orden</th>
-            <th class="borderth">Indice curación</th>
-            <th class="borderth">Editar</th>
+            <th>Nombre</th>
+            <th>Orden</th>
+            <th>Indice curación</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
         </tr>
         <tr *ngFor="let item of listaEspacios"  class="fila">
             <td>{{item.desc_esp}}</td>
@@ -13,6 +14,11 @@
             <td>
                 <button (click)="editar(item.cod_org,item.cod_esp)" class="boton">
                     <img class="papelera" src="assets/edit.png" alt="papelera">
+                </button>
+            </td>
+            <td>
+                <button (click)="borrar(item)">
+                    <img class="papelera" src="assets/papelera.png" alt="papelera">
                 </button>
             </td>
         </tr>

@@ -23,7 +23,7 @@ export class MenuOverflowComponent implements OnInit {
   ngOnInit() {
     this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
 
-    if(this.usuarioLogado.tip_usuario==1){
+    if(this.usuarioLogado.tip_usuario<3){
       this.visible();
     }
   }

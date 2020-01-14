@@ -11,6 +11,7 @@
         <table>
             <tr>
                 <th>Nombre</th>
+                <th>Etiquetas</th>
                 <th>Editar</th>
                 <th>Borrar</th>
 
@@ -18,18 +19,23 @@
             <tr *ngFor="let item of cops;let i=index"  class="fila">
                 <td>{{item.desc_cop}}</td>
                 <td>
+                    <button (click)="gestionarEtiquetas">
+                        <img src="./../../../assets/edit-etiquetas.png" alt="etiqueta">
+                    </button>
+                </td>
+                <td>
                     <button (click)="editar(item.cod_org,item.cod_esp,item.cod_cop)">
-                        <img class="papelera" src="assets/edit.png" alt="papelera">
+                        <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
                     </button>
                 </td>
                 <td>
                     <button (click)="borrar(item)">
-                        <img class="papelera" src="assets/papelera.png" alt="papelera">
+                        <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
                     </button>
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <button class="btnAñadir">
                         <p>AÑADIR</p>
                     </button>
