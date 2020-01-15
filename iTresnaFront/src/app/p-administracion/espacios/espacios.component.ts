@@ -118,6 +118,19 @@ export class EspaciosComponent implements OnInit {
     const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
     return dialogRef.afterClosed()
   }
+
+  public borrar(item:EspaciosItem){
+    if(window.confirm("Estas seguro de eliminar el espacio seleccionado")){
+      this.espaciosService.deleteEspacio(item.cod_org,item.cod_esp).subscribe(
+        respose=>{
+          if(respose.error==0){
+            location.reload();
+          }
+        }
+      )
+    }
+  }
+
   public addEspacio(){
     var espacio=new EspaciosItem();
     espacio.cod_org=this.cod_org;

@@ -14,7 +14,8 @@
     if(isset($cod_org) && $cod_org !="" && isset($cod_esp) && $cod_esp!=""){
         $sql= "SELECT cod_esp,cod_org,desc_esp,ind_esp_curacion,orden
         FROM t_espacios
-        WHERE cod_org = ? AND cod_esp = ?";
+        WHERE cod_org = ? AND cod_esp = ?
+        ORDER BY orden";
         $query=$conexion->prepare($sql);
         $query->bind_param("dd",$cod_org,$cod_esp);
         $query->execute();
@@ -32,7 +33,8 @@
     else if(isset($cod_org) && $cod_org !=""){
         $sql= "SELECT cod_esp,cod_org,desc_esp,ind_esp_curacion, orden
                 FROM t_espacios
-                WHERE cod_org = ?";
+                WHERE cod_org = ?
+                ORDER BY orden";
         $query=$conexion->prepare($sql);
         $query->bind_param("d",$cod_org);
         $query->execute();
