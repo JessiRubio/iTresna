@@ -19,7 +19,7 @@
             <tr *ngFor="let item of cops;let i=index"  class="fila">
                 <td>{{item.desc_cop}}</td>
                 <td>
-                    <button (click)="gestionarEtiquetas">
+                    <button (click)="gestionarEtiquetas()">
                         <img src="./../../../assets/edit-etiquetas.png" alt="etiqueta">
                     </button>
                 </td>
@@ -43,4 +43,48 @@
             </tr>
         </table>
     </div>
+    <div class="tablaEtiquetas" *ngIf="showEtiquetas">
+
+        <table>
+
+            <tr>
+                <th>Nombre</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+            </tr>
+
+            <tr *ngFor="let item of etiquetas;let i=index"  class="fila">
+                <td>{{item.desc_etiqueta}}</td>
+                <td>
+                    <button (click)="editar()">
+                        <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
+                    </button>
+                </td>
+                <td>
+                    <button (click)="borrar(item)">
+                        <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4">
+                    <button class="btnAñadir">
+                        <p>AÑADIR</p>
+                    </button>
+                </td>
+            </tr>
+
+
+
+        </table>
+
+
+
+    </div>
+
+
+
+
+
 </section>

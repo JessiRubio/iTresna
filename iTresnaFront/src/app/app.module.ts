@@ -36,6 +36,7 @@ import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkb
 import { ModalcomentariosComponent } from './p-cops/modalcomentarios/modalcomentarios/modalcomentarios.component';
 import { NumberFieldComponent } from './modal-admin-cops/number-field/number-field.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

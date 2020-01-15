@@ -4,6 +4,7 @@ import { EspaciosItem } from './../../clases/espaciosItem';
 import { EspaciosService } from '../../servicios/espacios.service';
 import {CopsService} from './../../servicios/cops.service';
 import { CopsItem } from '../../clases/copsitem';
+import { EtiquetaItem } from '../../clases/copsitem';
 import { ModalAdminCopsComponent } from './../../modal-admin-cops/modal-admin-cops.component';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 @Component({
@@ -15,7 +16,9 @@ export class AdminCopsComponent implements OnInit {
   usuarioLogeado:Usuario;
   espacios:EspaciosItem[]=[];
   cops:CopsItem[]=[];
+  etiquetas:EtiquetaItem[];
   selected=0;
+  public showEtiquetas:boolean = false;
   copsRows:string[]=["nombre","editar","borrar"]
   constructor(
     private espaciosService:EspaciosService,
@@ -39,6 +42,7 @@ export class AdminCopsComponent implements OnInit {
   }
   
   cargarCops(){
+    this.showEtiquetas=false; 
     var cod_org=this.espacios[this.selected].cod_org;
     var cod_esp=this.espacios[this.selected].cod_esp;
     this.copsService.getCops(cod_org,cod_esp,this.usuarioLogeado.cod_usuario).subscribe(
@@ -137,6 +141,13 @@ export class AdminCopsComponent implements OnInit {
     );
   }
   borrar(cop:CopsItem){
+
+  }
+
+  gestionarEtiquetas(){
+
+    this.showEtiquetas =true; 
+    this.copsService
 
   }
 }
