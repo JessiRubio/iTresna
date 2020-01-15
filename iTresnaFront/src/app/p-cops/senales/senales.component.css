@@ -138,6 +138,10 @@ ul{
     font-size: 13px;
     
 }
+.comentariosModal{
+    cursor: pointer
+    
+}
 
 
 
@@ -199,6 +203,10 @@ ul{
     .comentarios{
         margin-top: 1%;
         
+    }
+
+    .botonEnviar{
+        margin-left: -5.5%;
     }
 
     
