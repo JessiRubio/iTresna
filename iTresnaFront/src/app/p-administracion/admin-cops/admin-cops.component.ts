@@ -6,6 +6,7 @@ import {CopsService} from './../../servicios/cops.service';
 import { CopsItem } from '../../clases/copsitem';
 import { ModalAdminCopsComponent } from './../../modal-admin-cops/modal-admin-cops.component';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-admin-cops',
   templateUrl: './admin-cops.component.html',
@@ -59,21 +60,14 @@ export class AdminCopsComponent implements OnInit {
     this.copsService.getCop(cod_org,cod_esp,cod_cop).subscribe(
       respose=>{
         if(respose.error==0)
-          this.editarItem(respose.cop);
+          this.editarCop(respose.cop);
       },
       error=>{
         window.alert("Error de conexion con el servidor");
       }
     );
   }
-  editarItem(cop:CopsItem){
-    var etiquetas:any[]=[];
-    if(cop.etiquetas!=null){
-      cop.etiquetas.forEach(x=>{
-        etiquetas.push({"cod":x.cod_etiqueta,"desc":x.desc_etiqueta});
-      });
-    }
-   
+  openModal(cop:CopsItem):Observable<any>{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus=true;
     dialogConfig.minWidth="50%";
@@ -83,7 +77,6 @@ export class AdminCopsComponent implements OnInit {
         controlName:"nombre",
         placeHolder:"Escribe el nombre de la cop",
         data:{
-          cod:cop.cod_cop,
           desc:cop.desc_cop
         }
       },
@@ -92,19 +85,15 @@ export class AdminCopsComponent implements OnInit {
         controlName:"imagen",
         placeHolder:"Selecciona un archivo",
         data:{
-          cod:0,
           desc:""
         }
       },
-      {
-        input:"selectField",
-        controlName:"etiquetas",
-        placeHolder:"Selecciona una etiqueta",
-        data:etiquetas
-      }
     ];
     const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    dialogRef.afterClosed().subscribe(
+    return dialogRef.afterClosed();
+  }
+  editarCop(cop:CopsItem){
+    this.openModal(cop).subscribe(
       data=>{
         if(data!=null){
           var file="";
@@ -119,12 +108,51 @@ export class AdminCopsComponent implements OnInit {
                             reader.result.toString().split(',')[1]);
             };
             
+          }else{
+            this.modificar(cop.cod_org,cop.cod_esp,cop.cod_cop,data.nombre,"");
           }
         }
       }
     );
   
   }
+  addCop(){
+    var cop:CopsItem=new CopsItem();
+    cop.cod_org=this.espacios[this.selected].cod_org;
+    cop.cod_esp=this.espacios[this.selected].cod_esp;
+    this.openModal(cop).subscribe(
+      data=>{
+        if(data!=null){
+          var file="";
+          if(data.imagen!=null){
+            var reader = new FileReader();
+            reader.readAsDataURL(data.imagen);
+            reader.onload = () =>{
+              this.nuevaCop(cop.cod_org,
+                            cop.cod_esp,
+                            data.nombre,
+                            reader.result.toString().split(',')[1]);
+            };
+            
+          }else{
+            this.nuevaCop(cop.cod_org,cop.cod_esp,data.nombre,"");
+          }
+        }
+      }
+    );
+  }
+
+  nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string){
+    this.copsService.nuevaCop(cod_org,cod_esp,desc,imagen).subscribe(
+      response=>{
+        console.log(response);
+      },
+      error=>{
+        console.log("Error de conexion con el servidor");
+      }
+    )
+  }
+
   modificar(cod_org,cod_esp,cod_cop,desc_cop,file_encoded){
     this.copsService.modificarCop(cod_org,cod_esp,cod_cop,desc_cop,file_encoded)
     .subscribe(

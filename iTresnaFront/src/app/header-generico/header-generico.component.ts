@@ -21,13 +21,7 @@ export class HeaderGenericoComponent implements OnInit {
 
   atras(){
     if(this.usuario.tip_usuario==1){
-      this.usuario.cod_org=null;
-      localStorage.setItem("usuario",JSON.stringify(this.usuario));
-      this.organizacion=null;
-      localStorage.setItem("organizacion",JSON.stringify(this.organizacion));
       this.ruta.navigateByUrl("Organizaciones");
-
-      console.log(JSON.parse(localStorage.getItem("usuario")));
     }
     else{
       this.ruta.navigateByUrl("Principal");
