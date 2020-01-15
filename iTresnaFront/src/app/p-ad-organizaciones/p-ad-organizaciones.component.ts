@@ -51,7 +51,6 @@ export class PAdOrganizacionesComponent implements OnInit {
           res =>{
             if(res.error == 0){
               this.listaOrganizacion=res.organizaciones;
-              
             }
             else{
               
@@ -66,19 +65,13 @@ export class PAdOrganizacionesComponent implements OnInit {
 
   async setItem(item){
     if (this.currentItem === item) return;
-    console.log(this.currentItem);
     this.currentItem = item;
     this.usuarioLogado.cod_org=this.currentItem.cod_org;
     let string=await JSON.stringify(this.usuarioLogado);
     await localStorage.setItem("usuario",string);
-    await this.guardarOrganizacion();
     this.router.navigateByUrl("Administracion");
   }
   
-  guardarOrganizacion(){
-    localStorage.setItem("organizacion", JSON.stringify(this.currentItem));
-  }
-
   cargarOrganizacionesOrdenadas(value:number){
     this.selected=value;
     if(this.selected == 2){

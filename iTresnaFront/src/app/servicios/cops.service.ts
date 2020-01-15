@@ -32,4 +32,13 @@ export class CopsService {
     };  
     return this.httpClient.put(this.url,json);
   }
+  nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string){
+    let json={
+      "cod_org":cod_org,
+      "cod_esp":cod_esp,
+      "desc_cop":desc,
+      "image":imagen
+    };  
+    return this.httpClient.post(this.url,json);
+  }
 }

@@ -10,7 +10,7 @@ export class FileFieldComponent implements OnInit {
   @Input() formGroup:FormGroup;
   @Input() controlName:string;
   @Input() placeHolder:string;
-  private reg:RegExp=new RegExp("[A-Za-z0-1]*.(png|PNG)");
+  private reg:RegExp=new RegExp("[A-Za-z0-1]*.(png|PNG|jpg|JPG|jpeg|JPEG)");
   constructor() { }
   onChange(value){
     let aux:string=value[0].name;
@@ -19,7 +19,7 @@ export class FileFieldComponent implements OnInit {
       this.formGroup.value[this.controlName]=value[0];
     }
     else{
-      window.alert("debe introducir un archivo de tipo .png o .PNG");
+      window.alert("debe introducir un archivo de tipo .png, .jpeg ó .jpg");
       this.formGroup.value[this.controlName]=null;
       this.formGroup.controls[this.controlName].setValue(null);
     }

@@ -28,7 +28,8 @@
             "clasif1"=>$clasif1,
             "clasif2"=>$clasif2,
             "clasif3"=>$clasif3,
-            "categorias"=>cargarCategorias($cod_org)
+            "categorias"=>cargarCategorias($cod_org),
+            "contacto" => cargarContacto($cod_org)
         );
         $result["error"]=0;
 

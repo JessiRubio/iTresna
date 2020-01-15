@@ -16,6 +16,9 @@
                 case 'PUT':
                     include('put.php');
                     break;
+                case 'DELETE':
+                    include('delete.php');
+                    break;
                 default:
                     echo "Método no soportado";
                     break;
