@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Usuario } from '../../clases/usuario';
 import { EspaciosItem } from '../../clases/espaciosItem';
 import { EspaciosService } from '../../servicios/espacios.service';
@@ -123,6 +123,7 @@ export class EspaciosComponent implements OnInit {
     if(window.confirm("Estas seguro de eliminar el espacio seleccionado")){
       this.espaciosService.deleteEspacio(item.cod_org,item.cod_esp).subscribe(
         respose=>{
+          console.log(respose);
           if(respose.error==0){
             location.reload();
           }
