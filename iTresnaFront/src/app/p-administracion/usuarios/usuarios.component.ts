@@ -25,7 +25,12 @@ export class UsuariosComponent implements OnInit {
   show:boolean = false;
   showCops:boolean = false;
   showTabla:boolean = false;
-  cop:CopsItem;
+
+  selected:string;
+  selectedCategoria:Categorias;
+  selectedEspacio:EspaciosItem;
+  selectedCop:CopsItem;
+
 
   constructor( private copsService:CopsService,
               private espaciosService:EspaciosService,
@@ -36,11 +41,9 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
-    this.cargarUsuarios(this.usuarioLogado.cod_org);
     this.organizacionService.getOrganizacionActual(this.usuarioLogado.cod_org).subscribe(
       response=>{
         this.organizacion=response.organizacion;
-        this.listaClasificacion=[];
         this.listaClasificacion[0] =this.organizacion.clasif1;
         this.listaClasificacion[1] =this.organizacion.clasif2;
         this.listaClasificacion[2] =this.organizacion.clasif3;
@@ -55,18 +58,6 @@ export class UsuariosComponent implements OnInit {
     
   }
 
-  cargarUsuarios(cod_org:number){
-    this.usuarioService.getUsuario(cod_org).subscribe(
-      res=>{
-        this.listaUsuarios=res.usuarios;
-      },
-      err =>{
-        console.log(err);
-      }
-    );
-  }
-
-
   filtrarCategorias(clasificacion:string){
     this.show = true;
     this.listaCategorias = [];
@@ -75,6 +66,7 @@ export class UsuariosComponent implements OnInit {
         this.listaCategorias.push(this.organizacion.categorias[pos]);
       }
     }
+
   }
 
   cargarEspacios(cod_org:number){
@@ -83,7 +75,7 @@ export class UsuariosComponent implements OnInit {
         this.listaEspacios = res.espacios
       },
       err=>{
-
+        console.log(err);
       }
     );
   }
@@ -108,13 +100,41 @@ export class UsuariosComponent implements OnInit {
         this.listaCops = res.cops;
       },
       err=>{
-
+        console.log(err);
       }
     );
   }
-  cargarTabla(cop:CopsItem){
-    this.cop = cop;
+  async cargarTabla(cop:CopsItem){
+    this.selectedCop = cop;
+    await this.cargarUsuarios();
     this.showTabla = true;
     
   }
+
+  cargarUsuarios(){
+
+    this.usuarioService.getUsuarios(this.organizacion.cod_org, 
+                                    this.selectedEspacio.cod_esp, 
+                                    this.selectedCop.cod_cop,
+                                    this.selected, 
+                                    this.selectedCategoria.categoria).subscribe(
+      res=>{
+        console.log(res);
+      },
+      err=>{
+
+      }
+    );
+    
+  }
+  /*  cargarUsuarios(cod_org:number){
+    this.usuarioService.getUsuario(cod_org).subscribe(
+      res=>{
+        this.listaUsuarios=res.usuarios;
+      },
+      err =>{
+        console.log(err);
+      }
+    );
+  }*/ 
 }
