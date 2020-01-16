@@ -47,4 +47,10 @@ export class UsuariosService {
   getUsuario(cod_org:number):Observable<any>{
     return this.httpClient.get<any>(this.url+'?cod_org='+cod_org);
   }
+
+  getUsuarios(cod_org:number,cod_esp:number,cod_cop:number,clasif:string, categoria:string):Observable<any>{
+    return this.httpClient.get<any>(this.url +'?cod_org='+ cod_org + 
+                                    'cod_esp=' + cod_esp + 'cod_cop=' + cod_cop +
+                                     'clasif=' + clasif + 'categoria=' + categoria);
+  }
 }
