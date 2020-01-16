@@ -26,6 +26,19 @@
         </div>
 
         <div class="allComentarios">    
+                
+                
+                <div class="comentarios">
+                        <p>Comentarios:</p>
+                        <ul>
+                                <li *ngFor="let item of listaComentarios | slice:0:2; let ind=index;" class="comentario"> 
+                                        {{item.cod_usuario}}: {{item.comentario}}
+                                </li>
+                        </ul>
+                
+                </div>
+                
+
                 <form class="escribeComentario"> 
                         <textarea name="comentarios" placeholder="Comentario" [(ngModel)]="str"  rows=5></textarea>
                         
@@ -34,16 +47,9 @@
                         </button>
                 </form>
 
-                <div class="comentarios">
-                        <p>Comentarios:</p>
-                        <ul>
-                                <li *ngFor="let item of listaComentarios" class="comentario"> 
-                                        {{item.cod_usuario}}: {{item.comentario}}
-                                </li>
-                        </ul>
-                
-                </div>
                 <p (click)="comentarios()" class="comentariosModal">Ver todos los comentarios</p>
+
+               
   
         </div>
 

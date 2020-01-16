@@ -91,14 +91,14 @@ button:hover{
 }
 
 .escribeComentario{
-    width: 100%;
-    margin-top: 3%;
+    width: 40%;
+    margin-top: -13%;
     
 }
 textarea{
     resize: none;
     width: 100%;
-    height: 50px;
+    height: 70px;
 }
 .botonEnviar{
     color: rgba(223, 221, 221, 0.555);
@@ -106,7 +106,7 @@ textarea{
     font-size: 25px;
     outline-width: 0;
     border:none;
-    margin-left: -4.5%;
+    margin-left: -12%;
 }
 
 .botonEnviar img{
@@ -117,6 +117,8 @@ textarea{
     text-decoration: none;
     background-color: #858282;
     height: 150px;
+    width: 50%;
+    margin-left: 50%;
 }
 .comentarios p{
     font-size: 12px;
@@ -205,9 +207,7 @@ ul{
         
     }
 
-    .botonEnviar{
-        margin-left: -5.5%;
-    }
+   
 
     
 
@@ -230,10 +230,7 @@ ul{
         
     }
 
-    .botonEnviar{
-      
-        margin-left: -7.5%;
-    }
+    
 
 
 }
