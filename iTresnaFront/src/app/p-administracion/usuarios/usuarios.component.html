@@ -10,7 +10,7 @@
 
     <mat-form-field class="filtro" *ngIf="show">
         <mat-label>Selecciona una categoria</mat-label>
-        <mat-select [(value)]="selectedCategoria" (selectionChange)="cargarCategorias()" >
+        <mat-select [(value)]="selectedCategoria" >
             <mat-option *ngFor="let item of listaCategorias;let i=index" [value]="item">
                 {{item.categoria}}
             </mat-option>
@@ -58,6 +58,18 @@
         <tr>
             <th>Uso</th>
             <th>Admin</th>
+        </tr>
+
+        <tr *ngFor="let item of listaUsuarios; let i=index">
+            <td>{{item.cod_usuario}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.ape1}}</td>
+            <td>{{item.ape2}}</td>
+            <td>{{item.campo_clasificador1}}</td>
+            <td>{{item.campo_clasificador2}}</td>
+            <td>{{item.campo_clasificador3}}</td>
+            <td></td>
+            <td></td>
         </tr>
         
     </table>

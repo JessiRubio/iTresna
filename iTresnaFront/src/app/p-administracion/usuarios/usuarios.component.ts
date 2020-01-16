@@ -20,6 +20,7 @@ export class UsuariosComponent implements OnInit {
   listaUsuarios:Usuario[] = [];
   listaCategorias:Categorias[] = [];
   listaClasificacion =[] = [];
+
   organizacion:Organizacion;
   usuarioLogado:Usuario;
   show:boolean = false;
@@ -119,6 +120,7 @@ export class UsuariosComponent implements OnInit {
                                     this.selected, 
                                     this.selectedCategoria.categoria).subscribe(
       res=>{
+        this.listaUsuarios= res.usuarios;
         console.log(res);
       },
       err=>{
