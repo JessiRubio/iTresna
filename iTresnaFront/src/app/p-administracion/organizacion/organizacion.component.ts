@@ -42,5 +42,6 @@ export class OrganizacionComponent implements OnInit {
     );
   }
   ngOnInit() {
+    
   }
 }
