@@ -29,21 +29,30 @@ export class UsuariosComponent implements OnInit {
 
   constructor( private copsService:CopsService,
               private espaciosService:EspaciosService,
-              private usuarioService:UsuariosService) 
+              private usuarioService:UsuariosService,
+              private organizacionService:OrganizacionesService) 
   {
   }
 
   ngOnInit() {
     this.usuarioLogado=JSON.parse(localStorage.getItem("usuario"));
     this.cargarUsuarios(this.usuarioLogado.cod_org);
-    this.organizacion=JSON.parse(localStorage.getItem("organizacion"));
-    console.log(this.organizacion);
-    this.listaClasificacion=[];
+    this.organizacionService.getOrganizacionActual(this.usuarioLogado.cod_org).subscribe(
+      response=>{
+        this.organizacion=response.organizacion;
+        this.listaClasificacion=[];
         this.listaClasificacion[0] =this.organizacion.clasif1;
         this.listaClasificacion[1] =this.organizacion.clasif2;
         this.listaClasificacion[2] =this.organizacion.clasif3;
 
-    this.cargarEspacios(this.organizacion.cod_org);
+        this.cargarEspacios(this.organizacion.cod_org);
+      },
+      error=>{
+
+      }
+    )
+    console.log(this.organizacion);
+    
   }
 
   cargarUsuarios(cod_org:number){
