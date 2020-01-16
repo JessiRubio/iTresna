@@ -120,7 +120,7 @@ export class EspaciosComponent implements OnInit {
   }
 
   public borrar(item:EspaciosItem){
-    if(window.confirm("Estas seguro de eliminar el espacio seleccionado")){
+    if(window.confirm("¿Estas seguro de eliminar el espacio seleccionado?")){
       this.espaciosService.deleteEspacio(item.cod_org,item.cod_esp).subscribe(
         respose=>{
           console.log(respose);

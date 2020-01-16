@@ -32,7 +32,7 @@ export class CopsService {
     };  
     return this.httpClient.put(this.url,json);
   }
-  nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string){
+  nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string):Observable<any>{
     let json={
       "cod_org":cod_org,
       "cod_esp":cod_esp,
@@ -40,5 +40,10 @@ export class CopsService {
       "image":imagen
     };  
     return this.httpClient.post(this.url,json);
+  }
+  eliminarCop(cod_org:number, cod_esp:number,cod_cop:number):Observable<any>{
+    return this.httpClient.delete(this.url+"?cod_org="+cod_org
+                                  +"&cod_esp="+cod_esp
+                                  +"&cod_cop="+cod_cop);
   }
 }
