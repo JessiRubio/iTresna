@@ -82,4 +82,20 @@ export class PAdOrganizacionesComponent implements OnInit {
     }
   }
 
+  borrar(item:Organizacion){
+    if(window.confirm("¿Esta seguro de querer eliminar la organizacion?")){
+      if(window.confirm("Esta acción no tiene vuelta atras,¿Seguro que desea eliminarlo?")){
+        this.organizacionesService.eliminarOrganizacion(item.cod_org).subscribe(
+          response=>{
+            console.log(response);
+          },
+          error=>{
+            console.log(error);
+          }
+        );
+      }
+    }
+
+  }
+
 }
