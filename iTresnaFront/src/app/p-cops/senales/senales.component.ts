@@ -66,7 +66,6 @@ export class SenalesComponent implements OnInit {
           res =>{
             if(res.error == 0){
               this.listaComentarios=res.comentarios;
-              console.log(res.comentarios);
               
             }
             else{
@@ -113,7 +112,7 @@ export class SenalesComponent implements OnInit {
       res=>{
         if(res.error==0){
           if(res.aniadido==1){
-            
+            location.reload();
           }else{
             
           }

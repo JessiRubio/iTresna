@@ -19,5 +19,7 @@ export class OrganizacionesService {
   getOrganizacionActual(cod_org:number):Observable<any>{
     return this.httpClient.get<any>(this.url+'?cod_org='+cod_org);
   }
-
+  eliminarOrganizacion(cod_org:number):Observable<any>{
+    return this.httpClient.delete(this.url+"?cod_org="+cod_org);
+  }
 }

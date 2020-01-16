@@ -150,10 +150,15 @@ export class AdminCopsComponent implements OnInit {
   nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string){
     this.copsService.nuevaCop(cod_org,cod_esp,desc,imagen).subscribe(
       response=>{
-        console.log(response);
+        if(response.error==0){
+          location.reload();
+        }else{
+          window.alert("No se ha podido eliminar la cop, espero a otro momento" 
+          +"o contacte con el administrador");
+        }
       },
       error=>{
-        console.log("Error de conexion con el servidor");
+        console.log(error);
       }
     )
   }
@@ -170,7 +175,20 @@ export class AdminCopsComponent implements OnInit {
     );
   }
   borrar(cop:CopsItem){
-
+    if(window.confirm("¿Estas seguro de querer eliminar la cop?")){
+      this.copsService.eliminarCop(cop.cod_org,cop.cod_esp,cop.cod_cop).subscribe(
+        response=>{
+          if(response.error==0){
+            location.reload();
+          }else{
+            window.alert("No se ha podido eliminar la cop")
+          }
+        },
+        error=>{
+          console.log(error);
+        }
+      );
+    }
   }
 
   gestionarEtiquetas(){
