@@ -20,6 +20,7 @@ export class AdminCopsComponent implements OnInit {
   etiquetas:EtiquetaItem[];
   selected=0;
   public showEtiquetas:boolean = false;
+  public showCops:boolean=true;
   copsRows:string[]=["nombre","editar","borrar"]
   constructor(
     private espaciosService:EspaciosService,
@@ -174,8 +175,18 @@ export class AdminCopsComponent implements OnInit {
 
   gestionarEtiquetas(){
 
-    this.showEtiquetas =true; 
-    this.copsService
+    this.showEtiquetas =true;
+    this.showCops =false;
+
+
+
+  }
+
+  atrasEtiquetas(){
+    this.showEtiquetas =false;
+    this.showCops =true;
+   
+
 
   }
 }

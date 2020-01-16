@@ -1,5 +1,5 @@
 <section>
-    <mat-form-field>
+    <mat-form-field *ngIf="showCops">
         <mat-label>Selecciona un espacio</mat-label>
         <mat-select [(value)]="selected" (selectionChange)="cargarCops()" >
             <mat-option *ngFor="let item of espacios;let i=index" [value]="i">
@@ -7,7 +7,7 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <div class="tablaCops">
+    <div class="tablaCops" *ngIf="showCops">
         <table>
             <tr>
                 <th>Nombre</th>
@@ -45,6 +45,11 @@
     </div>
     <div class="tablaEtiquetas" *ngIf="showEtiquetas">
 
+
+        <button (click)="atrasEtiquetas()" >
+            <img class="papelera" src="./../../../assets/atras.svg" alt="atras">
+        </button>
+
         <table>
 
             <tr>
@@ -53,7 +58,7 @@
                 <th>Borrar</th>
             </tr>
 
-            <tr *ngFor="let item of etiquetas;let i=index"  class="fila">
+            <tr *ngFor="let item of etiquetas"  class="fila">
                 <td>{{item.desc_etiqueta}}</td>
                 <td>
                     <button (click)="editar()">
@@ -74,8 +79,6 @@
                     </button>
                 </td>
             </tr>
-
-
 
         </table>
 
