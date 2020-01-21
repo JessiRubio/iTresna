@@ -90,7 +90,11 @@ export class PAdOrganizacionesComponent implements OnInit {
       if(window.confirm("Esta acción no tiene vuelta atras,¿Seguro que desea eliminarlo?")){
         this.organizacionesService.eliminarOrganizacion(item.cod_org).subscribe(
           response=>{
-            console.log(response);
+            if(response.error==0){
+              location.reload();
+            }else{
+              console.error("No se ha podido eliminar la organización.");
+            }
           },
           error=>{
             console.log(error);
