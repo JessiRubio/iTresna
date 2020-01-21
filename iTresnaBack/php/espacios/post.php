@@ -12,7 +12,7 @@
     $result["error"]=1;
     if(isset($cod_org) && isset($orden) && isset($desc_esp)
          && $desc_esp!="" && isset($ind_esp_curacion)){
-        $cantidad=cantidadEspaciosOrg($cod_org);
+        $cantidad=getNuevaCodEspacio($cod_org);
         if($cantidad==0){
             $cod_esp=1;
         }else{
@@ -96,19 +96,17 @@
         return ($result>0);
     }
 
-    function cantidadEspaciosOrg($cod_org):int{
+    function getNuevaCodEspacio($cod_org):int{
         include("./../conexion.php");
-        $cuantos=0;
-        $sql="SELECT COUNT(*)
+        $sql="SELECT MAX(cod_esp)
                 FROM t_espacios
                 WHERE cod_org=?";
         $query=$conexion->prepare($sql);
         $query->bind_param("i",$cod_org);
         $query->execute();
-        $query->bind_result($cuantos);
+        $query->bind_result($cod_esp);
         $query->fetch();
-        $result=$cuantos;
         $query->close();
-        return $result;
+        return ($cod_esp!=null)?$cod_esp+1:1;
     }
 ?>

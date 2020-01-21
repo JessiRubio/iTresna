@@ -84,6 +84,7 @@ export class SenalesComponent implements OnInit {
     try{
       return this.etiquetas.find(x=>x.cod_etiqueta==this.senal.cod_etiqueta).desc_etiqueta;
     }catch(exception){
+      console.log(exception);
       return "";
     }
   }

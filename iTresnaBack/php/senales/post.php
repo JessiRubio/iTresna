@@ -75,13 +75,8 @@
         $query->execute();
         $query->bind_result($cod_senal);
         $query->fetch();
-        if($cod_senal!=null){
-            $result=$cod_senal+1;
-        }else{
-            $result=0;
-        }
         $query->close();
-        return $result;        
+        return ($cod_senal!=null)?$cod_senal+1:1;        
     }
     function haDadoLike($cod_usuario,$cod_org,$cod_esp,$cod_cop,$cod_senal):bool{  
         include("./../conexion.php");
