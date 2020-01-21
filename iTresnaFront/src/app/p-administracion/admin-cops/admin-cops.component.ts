@@ -191,13 +191,26 @@ export class AdminCopsComponent implements OnInit {
     }
   }
 
-  gestionarEtiquetas(){
+  gestionarEtiquetas(cop:CopsItem){
+
+    var cod_org=this.espacios[this.selected].cod_org;
+    var cod_esp=this.espacios[this.selected].cod_esp;
+    console.log(cod_org,cod_esp, cop.cod_cop);
 
     this.showEtiquetas =true;
     this.showCops =false;
-
-
-
+    this.copsService.getCop(cod_org, cod_esp,cop.cod_cop)
+    .subscribe(
+      response=>{
+        if(response.error==0){
+        
+          this.etiquetas=response.cop.etiquetas;
+          console.log(response.cop.etiquetas);
+        }else{
+          window.alert("No se han podido cargar las etiquetas")
+        }
+      }
+    )
   }
 
   atrasEtiquetas(){

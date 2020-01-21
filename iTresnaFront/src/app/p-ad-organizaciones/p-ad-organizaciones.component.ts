@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { OrganizacionesService} from '../servicios/organizaciones.service';
 import { UsuariosService} from '../servicios/usuarios.service';
 import { Usuario, Permiso } from '../clases/usuario';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { ModalAdminCopsComponent } from '../modal-admin-cops/modal-admin-cops.component';
 
 @Component({
   selector: 'app-p-ad-organizaciones',
@@ -21,7 +23,8 @@ export class PAdOrganizacionesComponent implements OnInit {
   organizacion:Organizacion;
   constructor(
     private organizacionesService:OrganizacionesService,
-    private router: Router) 
+    private router: Router,
+    private dialog:MatDialog) 
     {
 
    }
@@ -95,7 +98,68 @@ export class PAdOrganizacionesComponent implements OnInit {
         );
       }
     }
-
   }
 
+  nueva(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus=true;
+    dialogConfig.minWidth="50%";
+    dialogConfig.data=[
+      {
+        input:"inputField",
+        controlName:"nombre",
+        placeHolder:"Escribe el nombre de la org",
+        data:{
+          desc:""
+        }
+      },
+      {
+        input:"inputField",
+        controlName:"descripcion",
+        placeHolder:"Escribe la descripcion de la org",
+        data:{
+          desc:""
+        }
+      },
+      {
+        input:"fileField",
+        controlName:"imagen",
+        placeHolder:"Selecciona un archivo",
+        data:{
+          desc:""
+        }
+      },
+    ];
+    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      data=>{
+        if(data!=null){
+          var file="";
+          if(data.imagen!=null){
+            var reader = new FileReader();
+            reader.readAsDataURL(data.imagen);
+            reader.onload = () =>{
+              this.nuevaOrgnizacion(data.nombre,
+                data.descripcion,
+                reader.result.toString().split(',')[1]);              
+            };
+            
+          }else{
+            this.nuevaOrgnizacion(data.nombre,data.descripcion,"");
+          }
+        }
+      }
+    );
+  }
+  private nuevaOrgnizacion(nombre:string,descripcion:string,imagen:string){
+    this.organizacionesService.nuevaOrganizacion(nombre,descripcion,imagen).subscribe(
+      response=>{
+        if(response.error==0){
+          location.reload();
+        }else{
+          console.error("Hubo un error al crear la organización.")
+        }
+      }
+    );
+  }
 }

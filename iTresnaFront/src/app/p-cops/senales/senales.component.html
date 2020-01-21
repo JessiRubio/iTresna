@@ -13,7 +13,7 @@
                             </button>
                             <p>{{senal.me_gustas}}</p>
                         </div>
-                        <p class="etiqueta" >Etiquetas: {{buscarEtiqueta()}}</p>
+                        <p class="etiqueta" >Etiqueta: {{buscarEtiqueta()}}</p>
                         <button *ngIf="puedeBorrar()" class="boton" (click)="borrar()">
                                 <img class="papelera" src="assets/papelera.png" alt="papelera">
                         </button>
@@ -31,7 +31,7 @@
                 <div class="comentarios">
                         <p>Comentarios:</p>
                         <ul>
-                                <li *ngFor="let item of listaComentarios | slice:0:2; let ind=index;" class="comentario"> 
+                                <li *ngFor="let item of listaComentarios | slice:0:2" class="comentario"> 
                                         {{item.cod_usuario}}: {{item.comentario}}
                                 </li>
                         </ul>

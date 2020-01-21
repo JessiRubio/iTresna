@@ -22,4 +22,12 @@ export class OrganizacionesService {
   eliminarOrganizacion(cod_org:number):Observable<any>{
     return this.httpClient.delete(this.url+"?cod_org="+cod_org);
   }
+  nuevaOrgnizacion(nombre:string,descripcion:string,imagen:string):Observable<any>{
+    let json={
+      desc_org:nombre,
+      eslogan:descripcion,
+      imagen:imagen
+    };
+    return this.httpClient.post(this.url,json);
+  }
 }

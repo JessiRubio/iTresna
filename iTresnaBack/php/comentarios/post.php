@@ -35,7 +35,7 @@
 
     function obtenerUltimoComentario($cod_org,$cod_esp,$cod_cop,$cod_senal):int{
         include("./../conexion.php");
-        $sql="SELECT (COUNT(cod_comentario)+1)
+        $sql="SELECT MAX(cod_comentario)
             FROM t_comentarios
             WHERE cod_org=? AND cod_esp=? AND cod_cop=? AND cod_senal=?";
         $query=$conexion->prepare($sql);
@@ -44,7 +44,7 @@
         $query->bind_result($cod_comentario);
         $query->fetch();
         $query->close();
-        return $cod_comentario;
+        return ($cod_comentario!=null)?$cod_comentario+1:1;
     }
     
 

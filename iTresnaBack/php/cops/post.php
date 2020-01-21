@@ -58,7 +58,7 @@
     }
     function obtenerUltimaCop($cod_org,$cod_esp){
         include("./../conexion.php");
-        $sql="SELECT (MAX(cod_cop)+1)
+        $sql="SELECT MAX(cod_cop)
             FROM t_cops
             WHERE cod_org=? AND cod_esp=?";
         $query=$conexion->prepare($sql);
@@ -66,7 +66,7 @@
         $query->execute();
         $query->bind_result($cod_org);
         $query->fetch();
-        return $cod_org;
+        return ($cod_org!=null)?$cod_org+1:1;
     }
     function insertarCop($cod_org,$cod_esp,$cod_cop,$desc_cop){
         include("./../conexion.php");
