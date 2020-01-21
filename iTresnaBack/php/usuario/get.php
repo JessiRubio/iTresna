@@ -10,18 +10,19 @@
     }
     $result = array();
     $result["error"]=1;
-    $sql="SELECT cod_org,tip_usuario,nombre,ape1,ape2,
+    $sql="SELECT cod_usuario,cod_org,tip_usuario,nombre,ape1,ape2,
                 campo_clasificador1,campo_clasificador2,campo_clasificador3 
         FROM t_usuarios
         WHERE cod_org=?";
     $query=$conexion->prepare($sql);
     $query->bind_param("i",$cod_org);
     $query->execute();
-    $query->bind_result($cod_org, $tip_usuario, $nombre,
+    $query->bind_result($cod_usuario,$cod_org, $tip_usuario, $nombre,
                          $ape1, $ape2, $campo_clasificador1, 
                          $campo_clasificador2,$campo_clasificador3);
     while($query->fetch()){
         $result["usuarios"][]=array(
+            "cod_usuario"=>$cod_usuario,
             "cod_org"=>$cod_org,
             "tip_usuario"=>$tip_usuario,
             "nombre"=>$nombre,

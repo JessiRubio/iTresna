@@ -15,9 +15,18 @@ export class PAdministracionComponent implements OnInit{
   usuarioLogado:Usuario;
   organizacion:Organizacion;
 
+  showespacios:boolean;
+  showcops:boolean;
+  showclasificatorios:boolean;
+  showUsuarios:boolean;
+
   constructor(private organizacionService:OrganizacionesService,
     private router: Router
-  ) { }
+  ) {
+    this.showespacios = false;
+    this.showcops = false;
+    this.showclasificatorios = false;
+    this.showUsuarios= false; }
 
   ngOnInit() {
     if(localStorage.getItem("usuario")!=null){
@@ -43,6 +52,23 @@ export class PAdministracionComponent implements OnInit{
       }
     );
   }
+
+  showEspacios(){
+    this.showespacios = ! this.showespacios;
+  }
+
+  showCops(){
+    this.showcops = !this.showcops;
+  }
+
+  showClasificatorio(){
+    this.showclasificatorios = !this.showclasificatorios;
+  }
+
+  showUsuario(){
+    this.showUsuarios = !this.showUsuarios;
+  }
+
 
 
 }
