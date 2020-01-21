@@ -1,33 +1,28 @@
 <section>
-    <article>
+        
+    <form [formGroup]="form">
         <p>Campo Clasificatorio 1:</p>
-        <form [formGroup]="form1">
-            <mat-form-field id="clasif1">
-                <input matInput
-                    placeholder=" Campo Clasificatorio 1"
-                    formControlName="clasif1">
-            </mat-form-field>
-        </form>
-    </article>
+        <mat-form-field id="clasif1">
+            <input matInput
+                placeholder=" Campo Clasificatorio 1"
+                formControlName="clasif1">
+        </mat-form-field>
 
-    <article>
         <p>Campo Clasificatorio 2:</p>
-        <form [formGroup]="form2">
-            <mat-form-field id="clasif1">
-                <input matInput
-                    placeholder=" Campo Clasificatorio 2"
-                    formControlName="clasif2">
-            </mat-form-field>
-        </form>
-    </article>
-    <article>
+        <mat-form-field id="clasif1">
+            <input matInput
+                placeholder=" Campo Clasificatorio 2"
+                formControlName="clasif2">
+        </mat-form-field>
+
         <p>Campo Clasificatorio 2:</p>
-        <form [formGroup]="form3">
-            <mat-form-field id="clasif3">
-                <input matInput
-                    placeholder=" Campo Clasificatorio 3"
-                    formControlName="clasif3">
-            </mat-form-field>
-        </form>
-    </article>
+        <mat-form-field id="clasif3">
+            <input matInput
+                placeholder=" Campo Clasificatorio 3"
+                formControlName="clasif3">
+        </mat-form-field>
+    </form>
+    <br>
+    <button (click)="editar()"> Editar</button>
+    <button class ="guardar" *ngIf="editando" (click)="guardarCambios()">Guardar cambios</button>
 </section>
