@@ -195,7 +195,6 @@ export class AdminCopsComponent implements OnInit {
 
     var cod_org=this.espacios[this.selected].cod_org;
     var cod_esp=this.espacios[this.selected].cod_esp;
-    var cod_cop=this.cops[this.selected].cod_cop;
     console.log(cod_org,cod_esp, cop.cod_cop);
 
     this.showEtiquetas =true;
@@ -208,22 +207,10 @@ export class AdminCopsComponent implements OnInit {
           this.etiquetas=response.cop.etiquetas;
           console.log(response.cop.etiquetas);
         }else{
-
           window.alert("No se han podido cargar las etiquetas")
         }
-        
-
-
       }
-
-
-
-
     )
-
-
-
-
   }
 
   atrasEtiquetas(){
