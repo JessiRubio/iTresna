@@ -14,6 +14,7 @@ export class OrganizacionComponent implements OnInit {
   private usuarioLogeado:Usuario;
   organizacion:Organizacion;
   img:string="";
+  url:string="";
 
   constructor(private fBuilder: FormBuilder,
     private organizacionesService:OrganizacionesService) {
@@ -30,6 +31,7 @@ export class OrganizacionComponent implements OnInit {
     this.organizacionesService.getOrganizacionActual(this.usuarioLogeado.cod_org).subscribe(
       response=>{
         this.organizacion=response.organizacion;
+        this.url=this.organizacion.enlace_org;
         this.form=this.fBuilder.group({
           orgName:[this.organizacion.desc_org,Validators.required],
           orgDesc:[this.organizacion.eslogan_org,Validators.required],

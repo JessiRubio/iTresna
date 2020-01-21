@@ -17,9 +17,12 @@ class ServicioAPI {
             case 'PUT':
                 include('put.php');
                 break;
-            default:
-                echo "Método no soportado";
+            case 'DELETE':
+                include('delete.php');
                 break;
+            default:
+            echo "Método no soportado";
+            break;
         }
     }
 }

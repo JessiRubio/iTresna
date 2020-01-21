@@ -90,7 +90,11 @@ export class PAdOrganizacionesComponent implements OnInit {
       if(window.confirm("Esta acción no tiene vuelta atras,¿Seguro que desea eliminarlo?")){
         this.organizacionesService.eliminarOrganizacion(item.cod_org).subscribe(
           response=>{
-            console.log(response);
+            if(response.error==0){
+              location.reload();
+            }else{
+              console.error("No se ha podido eliminar la organización.");
+            }
           },
           error=>{
             console.log(error);
@@ -129,6 +133,14 @@ export class PAdOrganizacionesComponent implements OnInit {
           desc:""
         }
       },
+      {
+        input:"inputField",
+        controlName:"enlace",
+        placeHolder:"Escribe en enlace a la org",
+        data:{
+          desc:""
+        }
+      }
     ];
     const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
     dialogRef.afterClosed().subscribe(
@@ -141,18 +153,19 @@ export class PAdOrganizacionesComponent implements OnInit {
             reader.onload = () =>{
               this.nuevaOrgnizacion(data.nombre,
                 data.descripcion,
+                data.enlace,
                 reader.result.toString().split(',')[1]);              
             };
             
           }else{
-            this.nuevaOrgnizacion(data.nombre,data.descripcion,"");
+            this.nuevaOrgnizacion(data.nombre,data.descripcion,data.enlace,"");
           }
         }
       }
     );
   }
-  private nuevaOrgnizacion(nombre:string,descripcion:string,imagen:string){
-    this.organizacionesService.nuevaOrganizacion(nombre,descripcion,imagen).subscribe(
+  private nuevaOrgnizacion(nombre:string,descripcion:string,enlace:string,imagen:string){
+    this.organizacionesService.nuevaOrgnizacion(nombre,descripcion,enlace,imagen).subscribe(
       response=>{
         if(response.error==0){
           location.reload();
