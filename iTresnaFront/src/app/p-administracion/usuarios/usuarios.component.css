@@ -5,6 +5,12 @@ section{
     padding-top: 0;
 }
 
+section div{
+    width: 30%;
+    margin: 0;
+    display: inline-block;
+}
+
 input{
     border-bottom: 1px solid black;
     margin-top: 2%;
@@ -22,6 +28,31 @@ table tr>*{
 
 table tr th{
     border-bottom: 1px solid black;
+}
+
+button{
+    background: transparent;
+    border-radius: 0.75rem;
+}
+
+img{
+    height: 30px;
+    width: 30px;
+    background: transparent;
+}
+img{
+    height: 30px;
+    width: 30px;
+    background: transparent;
+}
+.eleccion{
+    margin-left: 25%;
+    margin-bottom: 0;
+}
+
+.btnAñadir{
+    width: 100%;
+    background-color: var(--colorCopsActivas);
 }
 
 .filtro{
