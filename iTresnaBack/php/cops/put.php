@@ -4,6 +4,26 @@
     $data = json_decode($json);
     $result=array();
     $result["error"]=1;
+    $desc_etiqueta = $data->desc_etiqueta;
+    $cod_etiqueta = $data->cod_etiqueta;
+
+    if($desc_etiqueta!=""){
+
+        $sql="UPDATE t_etiquetas
+                        SET desc_etiqueta=?
+                        WHERE cod_etiqueta=?";
+                    $query=$conexion->prepare($sql);
+                    $query->bind_param("si",$desc_etiqueta,$cod_etiqueta);
+                    $query->execute();
+                    $result["error"]=0;
+
+    }
+
+    else{
+
+    
+
+
     try{
         $cod_cop = $data->cod_cop;
         $cod_esp = $data->cod_esp;
@@ -49,6 +69,9 @@
         $result["error"]=$e->getMessage();
         echo json_encode($result);
     }
+
+
+}
     
     
 
