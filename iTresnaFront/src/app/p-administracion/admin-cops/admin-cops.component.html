@@ -61,12 +61,12 @@
             <tr *ngFor="let item of etiquetas"  class="fila">
                 <td>{{item.desc_etiqueta}}</td>
                 <td>
-                    <button (click)="editar()">
+                    <button (click)="editarEtiqueta(item)">
                         <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
                     </button>
                 </td>
                 <td>
-                    <button (click)="borrar(item)">
+                    <button (click)="borrarEtiqueta(item)">
                         <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
                     </button>
                 </td>
