@@ -3,14 +3,16 @@ section{
 }
 
 a{
+    margin-top: 5%;
     display: inline-block;
     width: 20%;
+    vertical-align: top;
 }
 
 img{
     width: 100%;
 }
-form{
+.contenedor{
     display: inline-block;
     width: 70%;
     margin-left: 2%;
@@ -26,4 +28,10 @@ form{
 
 #contacto{
     width: 30%;
+}
+.mat-raised-button{
+    background: #EDDFFB ;
+}
+#enlace{
+    width: 100%;
 }
