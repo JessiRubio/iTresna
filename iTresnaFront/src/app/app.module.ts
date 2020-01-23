@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PEspaciosComponent } from './p-espacios/p-espacios.component';
 import { PCopsComponent } from './p-cops/p-cops.component';
-import { MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatRippleModule, MatSelectModule, MatMenuModule, MAT_DIALOG_DEFAULT_OPTIONS, MatCheckbox, MatCheckboxModule } from "@angular/material";
+import { MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatRippleModule, MatSelectModule, MatMenuModule, MAT_DIALOG_DEFAULT_OPTIONS, MatCheckbox, MatCheckboxModule} from "@angular/material";
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SenalesComponent } from './p-cops/senales/senales.component';

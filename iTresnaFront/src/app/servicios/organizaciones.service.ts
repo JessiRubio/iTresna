@@ -24,10 +24,32 @@ export class OrganizacionesService {
   }
   nuevaOrgnizacion(nombre:string,descripcion:string,enlace:string,imagen:string):Observable<any>{
     let json={
-      desc_org:nombre,
-      eslogan:descripcion,
-      imagen:imagen,
-      enlace:enlace
+      "desc_org":nombre,
+      "eslogan":descripcion,
+      "imagen":imagen,
+      "enlace":enlace
+    };
+    return this.httpClient.post<any>(this.url,json);
+  }
+  modificarOrganizacion(cod_org,desc_org,eslogan,contacto,enlace,imagen):Observable<any>{
+    let json={
+      "cod_org":cod_org,
+      "desc_org":desc_org,
+      "eslogan":eslogan,
+      "imagen":imagen,
+      "contacto":contacto,
+      "enlace":enlace
+    };
+    return this.httpClient.put<any>(this.url,json);
+  }
+
+  actualizarCamposClasifOrg(org:Organizacion):Observable<any>{
+    let json={
+        cod_org:org.cod_org,
+        clasif1:org.clasif1,
+        clasif2:org.clasif2,
+        clasif3:org.clasif3,
+        contacto:org.contacto
     };
     return this.httpClient.post(this.url,json);
   }

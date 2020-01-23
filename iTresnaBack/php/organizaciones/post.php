@@ -7,6 +7,11 @@
     $image=$data->imagen;
     $eslogan=$data->eslogan;
     $enlace=$data->enlace;
+    $cod_org = $data->cod_org;
+    $clasif1 = $data->clasif1;
+    $clasif2 = $data->clasif2;
+    $clasif3 = $data->clasif3;
+    
     $result=array(
         "error"=>1,
     );
@@ -22,6 +27,14 @@
             updateImagen($cod_org,$image);
         }
 
+    }
+    else{
+        $sql="INSERT INTO t_org(clasif1,clasif2,clasif3) values(?,?,?) WHERE cod_org=?";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("sssi", $cod_org, $clasif1, $clasif2, $clasif3);
+        $query->execute();
+        $affected_rows=$query->affected_rows;
+        $result["error"]=($affected_rows>0)?0:1;
     }
     echo json_encode($result);
     function updateImagen($cod_org,$image){
