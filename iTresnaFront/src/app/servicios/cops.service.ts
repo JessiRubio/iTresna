@@ -50,10 +50,22 @@ export class CopsService {
                                   +"&desc_etiqueta="+desc_etiqueta);
   }
 
+  nuevaEtiqueta(cod_cop:number,cod_esp:number,cod_org:number,desc_etiqueta:string):Observable<any>{
+    let json={
+      "accion":"nueva_etiqueta",
+      "cod_cop":cod_cop,
+      "cod_esp":cod_esp,
+      "cod_org":cod_org,
+      "desc_etiqueta":desc_etiqueta
+    };  
+    return this.httpClient.post(this.url,json);
+  }
+
 
 
   nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string):Observable<any>{
     let json={
+      "accion":"nueva_cop",
       "cod_org":cod_org,
       "cod_esp":cod_esp,
       "desc_cop":desc,
