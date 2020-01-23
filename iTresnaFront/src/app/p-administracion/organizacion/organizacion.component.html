@@ -2,7 +2,7 @@
     <a [href]="url">
         <img [src]="img" alt="">
     </a>
-    <form [formGroup]="form">
+    <form class="contenedor" [formGroup]="form">
         <mat-form-field id="nombreOrg">
             <input matInput
                 placeholder="Nombre Organizacion"
@@ -15,14 +15,29 @@
                 formControlName="orgDesc">
         </mat-form-field>
         <br>
-        <mat-form-field id="contacto">
-            <input matInput
+        <mat-form-field class="expand" id="contacto" >
+            <mat-select mat input
                 placeholder="Contacto"
                 formControlName="contacto">
+                <mat-option *ngFor="let item of usuarios;let i = index" [value]="i">
+                    {{item}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <br>
-        <input
-            type="file"
-            formControlName="orgIcon">
+        <mat-form-field class="expand" id="enlace">
+            <input matInput
+                placeholder="Enlace a la página"
+                formControlName="enlace">
+        </mat-form-field>
+        <br>
+        <mat-form-field #input class="expand" [class]="placeHolder">
+            <ngx-mat-file-input
+                placeholder="Selecciona una imagen"
+                formControlName='imagen'>
+            </ngx-mat-file-input>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button (click)="editarOrganizacion()">Editar</button>
     </form>
 </section>
