@@ -31,4 +31,15 @@ export class OrganizacionesService {
     };
     return this.httpClient.post(this.url,json);
   }
+
+  actualizarCamposClasifOrg(org:Organizacion):Observable<any>{
+    let json={
+        cod_org:org.cod_org,
+        clasif1:org.clasif1,
+        clasif2:org.clasif2,
+        clasif3:org.clasif3,
+        contacto:org.contacto
+    };
+    return this.httpClient.post(this.url,json);
+  }
 }
