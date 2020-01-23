@@ -19,7 +19,7 @@
             <tr *ngFor="let item of cops;let i=index"  class="fila">
                 <td>{{item.desc_cop}}</td>
                 <td>
-                    <button (click)="gestionarEtiquetas(item)">
+                    <button (click)="gestionarEtiquetas(i)">
                         <img src="./../../../assets/edit-etiquetas.png" alt="etiqueta">
                     </button>
                 </td>
@@ -74,7 +74,7 @@
 
             <tr>
                 <td colspan="4">
-                    <button class="btnAñadir">
+                    <button (click)="addEtiqueta()"class="btnAñadir">
                         <p>AÑADIR</p>
                     </button>
                 </td>

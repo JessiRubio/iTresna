@@ -19,6 +19,7 @@ export class AdminCopsComponent implements OnInit {
   cops:CopsItem[]=[];
   etiquetas:EtiquetaItem[];
   selected=0;
+  copSelected=0;
   public showEtiquetas:boolean = false;
   public showCops:boolean=true;
   copsRows:string[]=["nombre","editar","borrar"]
@@ -193,15 +194,13 @@ export class AdminCopsComponent implements OnInit {
     }
   }
 
-  gestionarEtiquetas(cop:CopsItem){
+  gestionarEtiquetas(index:number){
 
-    var cod_org=this.espacios[this.selected].cod_org;
-    var cod_esp=this.espacios[this.selected].cod_esp;
-    console.log(cod_org,cod_esp, cop.cod_cop);
-
+    var cop=this.cops[index];
+    this.copSelected=index;
     this.showEtiquetas =true;
     this.showCops =false;
-    this.copsService.getCop(cod_org, cod_esp,cop.cod_cop)
+    this.copsService.getCop(cop.cod_org, cop.cod_esp,cop.cod_cop)
     .subscribe(
       response=>{
         if(response.error==0){
@@ -280,6 +279,54 @@ borrarEtiqueta(etiquetas:EtiquetaItem){
     );
   }
 }
+
+addEtiqueta(){
+  var cop:CopsItem=new CopsItem();
+  
+  var etiquetas:EtiquetaItem=new EtiquetaItem();
+  cop.cod_org=this.cops[this.copSelected].cod_org;
+  cop.cod_esp=this.cops[this.copSelected].cod_esp;
+  cop.cod_cop=this.cops[this.copSelected].cod_cop;
+  
+  etiquetas.cod_etiqueta=40;
+  this.openModalEtiqueta(etiquetas).subscribe(
+    data=>{
+      if(data!=null){
+            this.nuevaEtiqueta(
+                          cop.cod_cop,
+                          cop.cod_esp,
+                          cop.cod_org,
+                          data.etiqueta,
+                          );
+            
+
+                        
+          
+          
+        }else{
+          this.nuevaEtiqueta(
+            cop.cod_cop,
+            cop.cod_esp,
+            cop.cod_org,
+            data.etiqueta,
+            );
+          }
+        });
+      }
+
+
+      nuevaEtiqueta(cod_cop:number,cod_esp:number,cod_org:number,desc_etiqueta:string){
+        this.copsService.nuevaEtiqueta(cod_cop,cod_esp,cod_org,desc_etiqueta).subscribe(
+          response=>{
+            location.reload();
+            
+            
+          },
+          error=>{
+            console.log(error);
+          }
+        )
+      }
 
   atrasEtiquetas(){
     this.showEtiquetas =false;
