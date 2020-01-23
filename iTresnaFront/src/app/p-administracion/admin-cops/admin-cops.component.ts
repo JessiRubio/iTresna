@@ -97,6 +97,8 @@ export class AdminCopsComponent implements OnInit {
     const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
     return dialogRef.afterClosed();
   }
+
+  
   editarCop(cop:CopsItem){
     this.openModal(cop).subscribe(
       data=>{
@@ -213,11 +215,74 @@ export class AdminCopsComponent implements OnInit {
     )
   }
 
+
+  private openModalEtiqueta(etiquetas:EtiquetaItem):Observable<any>{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus=true;
+    dialogConfig.minWidth="50%";
+    dialogConfig.data=[
+      {
+        input:"inputField",
+        controlName:"etiqueta",
+        placeHolder:"Escribe el nombre de la etiqueta",
+        data:{
+          desc:etiquetas.desc_etiqueta
+        },
+      }
+    ];
+
+    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
+    return dialogRef.afterClosed()
+  }
+
+  editarEtiqueta(etiquetas:EtiquetaItem){
+
+    this.openModalEtiqueta(etiquetas).subscribe(
+      data=>{
+        if(data!=null){
+        
+            this.modificarEtiquetas(data.etiqueta,etiquetas.cod_etiqueta);
+            console.log(data.etiqueta);
+           
+          }else{
+            this.modificarEtiquetas(data.etiqueta,etiquetas.cod_etiqueta);
+            
+          }
+        }
+      
+    );
+
+}
+
+modificarEtiquetas(desc_etiqueta, cod_etiqueta){
+  this.copsService.modificarEtiqueta(desc_etiqueta, cod_etiqueta)
+  .subscribe(
+    response=>{
+      location.reload();
+    },
+    error=>{
+      console.log(error);
+    }
+  );
+}
+
+
+borrarEtiqueta(etiquetas:EtiquetaItem){
+  if(window.confirm("¿Estas seguro de querer eliminar la Etiqueta?")){
+    this.copsService.eliminarEtiqueta(etiquetas.cod_etiqueta,etiquetas.desc_etiqueta).subscribe(
+      response=>{
+        location.reload();
+        
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+}
+
   atrasEtiquetas(){
     this.showEtiquetas =false;
     this.showCops =true;
-   
-
-
   }
 }

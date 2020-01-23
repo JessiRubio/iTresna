@@ -27,10 +27,13 @@ export class UsuariosComponent implements OnInit {
   showCops:boolean = false;
   showTabla:boolean = false;
 
-  selected:string;
-  selectedCategoria:Categorias;
-  selectedEspacio:EspaciosItem;
-  selectedCop:CopsItem;
+  selected:string = "";
+  selectedCategoria:Categorias = null;
+  selectedEspacio:EspaciosItem = null;
+  selectedCop:CopsItem = null;
+
+  permisos:boolean;
+  usuarios:boolean;
 
 
   constructor( private copsService:CopsService,
@@ -38,6 +41,8 @@ export class UsuariosComponent implements OnInit {
               private usuarioService:UsuariosService,
               private organizacionService:OrganizacionesService) 
   {
+    this.permisos=false;
+    this.usuarios=false;
   }
 
   ngOnInit() {
@@ -129,14 +134,25 @@ export class UsuariosComponent implements OnInit {
     );
     
   }
-  /*  cargarUsuarios(cod_org:number){
-    this.usuarioService.getUsuario(cod_org).subscribe(
+  
+  permiso(){
+    this.permisos=true;
+    this.usuarios=false;
+  }
+
+  usuario(){
+    this.usuarioService.getUsuario(this.organizacion.cod_org).subscribe(
       res=>{
-        this.listaUsuarios=res.usuarios;
+        this.listaUsuarios= res.usuarios;
+        console.log(res);
       },
-      err =>{
-        console.log(err);
+        err=>{
+
       }
     );
-  }*/ 
+    this.permisos=false;
+    this.usuarios=true;
+
+    
+  }
 }

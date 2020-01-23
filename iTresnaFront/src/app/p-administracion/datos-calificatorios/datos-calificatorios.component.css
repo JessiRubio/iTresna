@@ -4,18 +4,25 @@ section{
     padding-top: 0;
 }
 
-article{
-    width: 100%;
-}
-
-article p{
+p{
     width: 45%;
     display: inline-block;
     text-align: right;
     margin-right: 5%;
 }
 
-article form{
+form{
     width: auto;
     display: inline-block;
 }
+
+button{
+    width: auto;
+    margin-left: 70%;
+    background-color: transparent;
+}
+
+.guardar{
+    margin-left: 5%;
+}
+

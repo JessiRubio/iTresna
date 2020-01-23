@@ -10,7 +10,20 @@
 
     $result = array();
     $result["error"]=1;
-    if(isset($cod_cop) && $cod_cop!="" && isset($cod_org) && $cod_org!=""
+
+    if(isset($cod_etiqueta) && $cod_etiqueta!="" && isset($desc_etiqueta) && $desc_etiqueta!=""){
+        $sql="DELETE FROM t_etiquetas
+        WHERE cod_etiqueta=? AND desc_etiqueta=?";
+    $query=$conexion->prepare($sql);
+    $query->bind_param("is",$cod_etiqueta,$desc_etiqueta);
+    $query->execute();
+    $affected_rows=$query->affected_rows;
+    $query->close();
+    $result["error"]=($affected_rows>0)?0:1;
+
+
+    }else{
+        if(isset($cod_cop) && $cod_cop!="" && isset($cod_org) && $cod_org!=""
         && isset($cod_esp) && $cod_esp!=""){
         
         if(existeCop($cod_org,$cod_esp,$cod_cop)){
@@ -27,7 +40,9 @@
         }
     }
     echo json_encode($result);
-    function existeCop($cod_org,$cod_esp,$cod_cop){
+    
+    }
+function existeCop($cod_org,$cod_esp,$cod_cop){
         include("./../conexion.php");
         $sql="SELECT COUNT(*)
             FROM t_cops
@@ -40,4 +55,7 @@
         $query->close();
         return ($cantidad==1);
     }
+
+
+    
 ?>
