@@ -24,6 +24,7 @@ export class OrganizacionesService {
   }
   nuevaOrgnizacion(nombre:string,descripcion:string,enlace:string,imagen:string):Observable<any>{
     let json={
+      "accion":"nuevaOrganizacion",
       "desc_org":nombre,
       "eslogan":descripcion,
       "imagen":imagen,
@@ -45,11 +46,11 @@ export class OrganizacionesService {
 
   actualizarCamposClasifOrg(org:Organizacion):Observable<any>{
     let json={
-        cod_org:org.cod_org,
-        clasif1:org.clasif1,
-        clasif2:org.clasif2,
-        clasif3:org.clasif3,
-        contacto:org.contacto
+      "accion":"CamposClasif",
+        "cod_org":org.cod_org,
+        "clasif1":org.clasif1,
+        "clasif2":org.clasif2,
+        "clasif3":org.clasif3
     };
     return this.httpClient.post(this.url,json);
   }

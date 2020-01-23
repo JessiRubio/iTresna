@@ -57,6 +57,14 @@ export class DatosCalificatoriosComponent implements OnInit {
     this.organizacion.clasif2 = this.form.controls["clasif2"].value;
     this.organizacion.clasif3 = this.form.controls["clasif3"].value;
 
-    this.organizacionesService.actualizarCamposClasifOrg(this.organizacion);
+    this.organizacionesService.actualizarCamposClasifOrg(this.organizacion).subscribe(
+      res=>{
+        console.log(res)
+      },
+      err=>{
+        console.log(err);
+      }
+      
+    );
   }
 }

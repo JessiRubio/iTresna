@@ -3,39 +3,44 @@
     include("./../conexion.php");
     $json = file_get_contents('php://input');
     $data = json_decode($json);
-    $desc_cop=$data->desc_org;
-    $image=$data->imagen;
-    $eslogan=$data->eslogan;
-    $enlace=$data->enlace;
-    $cod_org = $data->cod_org;
-    $clasif1 = $data->clasif1;
-    $clasif2 = $data->clasif2;
-    $clasif3 = $data->clasif3;
+
+    $accion=$data->accion;
     
     $result=array(
         "error"=>1,
     );
-    if($desc_cop!="" && $eslogan!=""){
-        $cod_org=getCodOrg();
-        $sql="INSERT INTO t_org(cod_org,desc_org,enlace_org,eslogan_org) values(?,?,?,?)";
-        $query=$conexion->prepare($sql);
-        $query->bind_param("isss",$cod_org,$desc_cop,$enlace,$eslogan);
-        $query->execute();
-        $affected_rows=$query->affected_rows;
-        $result["error"]=($affected_rows>0)?0:1;
-        if($affected_rows>0 && $image!=""){
-            updateImagen($cod_org,$image);
-        }
 
+    if($accion=="nuevaOrganizacion"){
+        $desc_org=$data->desc_org;
+        $image=$data->imagen;
+        $eslogan=$data->eslogan;
+        $enlace=$data->enlace;
+        if(isset($desc_cop) && $desc_cop!="" && $eslogan!=""){
+            $cod_org=getCodOrg();
+            $sql="INSERT INTO t_org(cod_org,desc_org,enlace_org,eslogan_org) values(?,?,?,?)";
+            $query=$conexion->prepare($sql);
+            $query->bind_param("isss",$cod_org,$desc_cop,$enlace,$eslogan);
+            $query->execute();
+            $affected_rows=$query->affected_rows;
+            $result["error"]=($affected_rows>0)?0:1;
+            if($affected_rows>0 && $image!=""){
+                updateImagen($cod_org,$image);
+            }
+        }
     }
-    else{
-        $sql="INSERT INTO t_org(clasif1,clasif2,clasif3) values(?,?,?) WHERE cod_org=?";
+    else if($accion=="camposClasif"){
+        $cod_org = $data->cod_org;
+        $clasif1 = $data->clasif1;
+        $clasif2 = $data->clasif2;
+        $clasif3 = $data->clasif3;
+        $sql="UPDATE t_org SET clasif1=?, clasif2=?, clasif3=? WHERE cod_org=?";
         $query=$conexion->prepare($sql);
-        $query->bind_param("sssi", $cod_org, $clasif1, $clasif2, $clasif3);
+        $query->bind_param("sssi", $clasif1, $clasif2, $clasif3,$cod_org);
         $query->execute();
         $affected_rows=$query->affected_rows;
         $result["error"]=($affected_rows>0)?0:1;
     }
+
     echo json_encode($result);
     function updateImagen($cod_org,$image){
         include("./../conexion.php");
