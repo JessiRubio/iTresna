@@ -288,7 +288,6 @@ addEtiqueta(){
   cop.cod_esp=this.cops[this.copSelected].cod_esp;
   cop.cod_cop=this.cops[this.copSelected].cod_cop;
   
-  etiquetas.cod_etiqueta=40;
   this.openModalEtiqueta(etiquetas).subscribe(
     data=>{
       if(data!=null){
