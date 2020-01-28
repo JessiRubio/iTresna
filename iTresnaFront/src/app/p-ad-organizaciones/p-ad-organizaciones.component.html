@@ -2,23 +2,34 @@
 
 <section  class="filtro">
     <mat-form-field>
-        <mat-label> Filtrar por: </mat-label>
-        <mat-select [(value)]="selected" (selectionChange)="cargarOrganizacionesOrdenadas($event.value)" >
-            <mat-option value=0>
+        <mat-label> Ordenar por: </mat-label>
+        <mat-select [(ngModel)]="seleccionOrden" (selectionChange)="ordenarOrganizaciones()" >
+            <mat-option [value]=1>
                 Ascendente
             </mat-option>
-            <mat-option value=1>
+            <mat-option [value]=2>
                 Descendente
             </mat-option>
-            <mat-option value=2>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label> Filtrar por: </mat-label>
+        <mat-select [(ngModel)]="seleccionFiltro" (selectionChange)="filtrarOrganizaciones()" >
+            <mat-option [value]=1>
+                Ninguno
+            </mat-option>
+            <mat-option [value]=2>
                 Contacto
+            </mat-option>
+            <mat-option [value]=3>
+                Organizacion
             </mat-option>
         </mat-select>
     </mat-form-field>
 
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Contacto" name="filtroContacto" *ngIf="show">
+    
 </section>
-
 <section class="organizaciones">
     <table>
         <tr>
@@ -32,10 +43,13 @@
                 MODIFICAR
             </th>
             <th>
+                ADMINISTRAR
+            </th>
+            <th>
                 ELIMINAR
             </th>
         </tr>
-        <tr *ngFor="let item of listaOrganizacion">
+        <tr *ngFor="let item of listaOrgMostradas">
             <td class="clickable" >
                 {{item.desc_org}}
             </td>
@@ -43,8 +57,13 @@
                 {{item.contacto}}
             </td>
             <td>
-                <button (click)="setItem(item)">
+                <button (click)="editar(item)">
                     <img src="assets/edit.png" alt="img">
+                </button>
+            </td>
+            <td>
+                <button (click)="administrar(item)">
+                    <img src="assets/edit-etiquetas.png" alt="img">
                 </button>
             </td>
             <td>
@@ -54,7 +73,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 <button (click)="nueva()" class="btnAñadir">
                     <p>AÑADIR</p>
                 </button>
