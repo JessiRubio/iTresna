@@ -21,23 +21,20 @@ export class UsuariosService {
   }
   /* Llamada al servicio php con los atributos del login */
   login(usuario:string,password:string):Observable<any>{
-    var json={'usuario':usuario,'password':password};
+    console.log("login");
+    var json={'accion':'login','usuario':usuario,'password':password};
     var observable:Observable<any> = this.httpClient.post(this.url,json);
-    observable.toPromise()
-      .then(
-        response=>{
-          if(response.error==0){
-            localStorage.setItem("usuario",JSON.stringify(response.usuario));
-            this.loginState.next(response.error==0);
+    observable.subscribe(
+      response=>{
+        console.log(response);
+        if(response.error==0){
+          localStorage.setItem("usuario",JSON.stringify(response.usuario));
+          this.loginState.next(response.error==0);
 
-          }
         }
-      )
-      .catch(
-        x=>{
-        }
-      );
-      return observable;
+      }
+    );
+    return observable;
   }
   logout(){
     localStorage.clear();
