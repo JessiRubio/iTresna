@@ -5,28 +5,67 @@
     $result=array();
     $result["error"]=1;
     
+    $accion = $data->accion;
     $cod_esp = $data->cod_esp;
     $cod_org = $data->cod_org;
-    $desc_cop = $data->desc_cop;
-    $image = $data->image;
-    if($desc_cop!="" && $cod_esp!="" && $cod_org!=""){
-        if(existeOrganizacion($cod_org)){
-            if(existeEspacio($cod_org,$cod_esp)){
-                $cod_cop=obtenerUltimaCop($cod_org,$cod_esp);
-                insertarCop($cod_org,$cod_esp,$cod_cop,$desc_cop);
-                if($image!=""){
-                    updateImagen($cod_org,$cod_esp,$cod_cop,$image);
+
+    if($accion!="" && $accion=="nueva_etiqueta"){
+
+        $desc_etiqueta = $data->desc_etiqueta;
+
+        if(isset($desc_etiqueta) && $desc_etiqueta!=""){
+            $cod_cop = $data->cod_cop;
+            $cod_etiqueta = obtenerUltimaEtiqueta($cod_cop,$cod_esp,$cod_org);
+            include("./../conexion.php");
+            $sql="INSERT INTO t_etiquetas(cod_etiqueta,cod_cop,cod_esp,cod_org,desc_etiqueta)
+                VALUES(?,?,?,?,?)";
+            $query=$conexion->prepare($sql);
+            $query->bind_param("iiiis",$cod_etiqueta,$cod_cop,$cod_esp,$cod_org,$desc_etiqueta);
+            $query->execute();
+            $query->close();
+            return;
+    
+        }
+    }else if($accion!="" && $accion=="nueva_cop"){
+        
+        $desc_cop = $data->desc_cop;
+
+        if (isset($desc_cop)){
+            $image = $data->image;
+            if($desc_cop!="" && $cod_esp!="" && $cod_org!=""){
+                if(existeOrganizacion($cod_org)){
+                    if(existeEspacio($cod_org,$cod_esp)){
+                        $cod_cop=obtenerUltimaCop($cod_org,$cod_esp);
+                        insertarCop($cod_org,$cod_esp,$cod_cop,$desc_cop);
+                        if($image!=""){
+                            updateImagen($cod_org,$cod_esp,$cod_cop,$image);
+                        }else{
+                            $result["error"]=0;
+                        }
+                    }else{
+                        $result["error"]="No se encuentra o no existe el espacio";
+                    }
                 }else{
-                    $result["error"]=0;
+                    $result["error"]="No se encuentra o no exister la organización";
                 }
-            }else{
-                $result["error"]="No se encuentra o no existe el espacio";
             }
-        }else{
-            $result["error"]="No se encuentra o no exister la organización";
         }
     }
+   
     echo json_encode($result);
+
+    function obtenerUltimaEtiqueta($cod_cop,$cod_esp,$cod_org){
+        include("./../conexion.php");
+        $sql="SELECT MAX(cod_etiqueta)
+            FROM t_etiquetas
+            WHERE cod_org=? AND cod_esp=? AND cod_cop=?";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("iii",$cod_org,$cod_esp,$cod_cop);
+        $query->execute();
+        $query->bind_result($cod_etiqueta);
+        $query->fetch();
+        return ($cod_etiqueta!=null)?$cod_etiqueta+1:1;
+    }
 
     function updateImagen($cod_org,$cod_esp,$cod_cop,$image){
         include("./../conexion.php");

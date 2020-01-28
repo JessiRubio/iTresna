@@ -31,26 +31,40 @@ export class DatosCalificatoriosComponent implements OnInit {
 
   ngOnInit() {
     this.cargarOrg();
+    this.form.disable();
   }
 
   cargarOrg(){
     this.organizacionesService.getOrganizacionActual(this.usuarioLogeado.cod_org).subscribe(
       response=>{
         this.organizacion=response.organizacion;
-        this.form=this.fBuilder.group({
-          clasif1:[this.organizacion.clasif1,Validators.required],
-          clasif2:[this.organizacion.clasif2,Validators.required],
-          clasif3:[this.organizacion.clasif3,Validators.required],
-        });
+        this.form.controls["clasif1"].setValue(this.organizacion.clasif1,Validators.required);
+        this.form.controls["clasif2"].setValue(this.organizacion.clasif2,Validators.required);
+        this.form.controls["clasif3"].setValue(this.organizacion.clasif3,Validators.required);
       }
     );
   }
 
   editar(){
     this.editando = true;
+    this.form.enable();
   }
 
   guardarCambios(){
     this.editando = false;
+    this.form.disable();
+    this.organizacion.clasif1 = this.form.controls["clasif1"].value;
+    this.organizacion.clasif2 = this.form.controls["clasif2"].value;
+    this.organizacion.clasif3 = this.form.controls["clasif3"].value;
+
+    this.organizacionesService.actualizarCamposClasifOrg(this.organizacion).subscribe(
+      res=>{
+        console.log(res)
+      },
+      err=>{
+        console.log(err);
+      }
+      
+    );
   }
 }
