@@ -3,6 +3,7 @@
     include("./../conexion.php");
     $json = file_get_contents('php://input');
     $data = json_decode($json);
+    $contacto="";
     $desc_cop=$data->desc_org;
     $image=$data->imagen;
     $eslogan=$data->eslogan;
@@ -15,9 +16,7 @@
     if(existeOrg($cod_org)){
         if(existeUsuario($contacto)){
             $cod_usuario=getAdministradorActual($cod_org);
-            if(!cambiarUsuario($cod_usuario,$contacto)){
-                $result["error"]=1;
-            }else{
+            if(cambiarUsuario($cod_usuario,$contacto)){
                 if(!actualizarOrganizacion($cod_org,$desc_cop,$eslogan,$enlace)){
                     $result["error"]=1;
                 }else{
@@ -98,7 +97,7 @@
             FROM t_usuarios
             WHERE cod_usuario=?";
         $query=$conexion->prepare($sql);
-        $query->bind_param("i",$contacto);
+        $query->bind_param("s",$contacto);
         $query->execute();
         $query->bind_result($cod_usuario);
         $query->fetch();

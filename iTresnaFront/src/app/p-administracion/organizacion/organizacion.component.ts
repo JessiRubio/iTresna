@@ -14,7 +14,7 @@ import { of } from 'rxjs';
 export class OrganizacionComponent implements OnInit {
   private form:FormGroup;
   private usuarioLogeado:Usuario;
-  
+  private editar:boolean=true;
   organizacion:Organizacion;
   usuarios:string[]=[];
   img:string="";
@@ -26,7 +26,6 @@ export class OrganizacionComponent implements OnInit {
       this.form=this.fBuilder.group({
         orgName:["",Validators.required],
         orgDesc:["",Validators.required],
-        contacto:["",Validators.required],
         enlace:["",Validators.required],
         imagen:new FormControl()
       });
@@ -43,7 +42,6 @@ export class OrganizacionComponent implements OnInit {
           this.form.controls["orgName"].setValue(this.organizacion.desc_org);
           this.form.controls["orgDesc"].setValue(this.organizacion.eslogan_org);
           this.form.controls["enlace"].setValue(this.organizacion.enlace_org);
-          this.form.controls["contacto"].setValue(this.usuarios.indexOf(this.organizacion.contacto));
       }
     );
   }
@@ -57,14 +55,14 @@ export class OrganizacionComponent implements OnInit {
     if(this.deshabilitado){
       this.organizacion.desc_org=this.form.value.orgName;
       this.organizacion.eslogan_org=this.form.value.orgDesc;
-      this.organizacion.contacto=this.usuarios[this.form.value.contacto];
       var imagen = this.form.value["imagen"];
       if(imagen!=null){
         var reader = new FileReader();
         reader.readAsDataURL(imagen.files[0]);
         reader.onload = () =>{
           this.modificar(this.organizacion.cod_org,this.organizacion.desc_org,
-                        this.organizacion.eslogan_org,this.organizacion.contacto,
+                        this.organizacion.eslogan_org,
+                        this.organizacion.contacto,
                         this.organizacion.enlace_org,
                         reader.result.toString().split(',')[1]);
         };
@@ -77,8 +75,6 @@ export class OrganizacionComponent implements OnInit {
       this.form.disable();
     }else{
       this.form.enable();
-      if(this.usuarioLogeado.tip_usuario==2)
-        this.form.controls["contacto"].disable();
     }
   }
   private modificar(cod_org:number,desc_org:string,eslogan:string,contacto:string,enlace:string,imagen:string){

@@ -15,16 +15,6 @@
                 formControlName="orgDesc">
         </mat-form-field>
         <br>
-        <mat-form-field class="expand" id="contacto" >
-            <mat-select mat input
-                placeholder="Contacto"
-                formControlName="contacto">
-                <mat-option *ngFor="let item of usuarios;let i = index" [value]="i">
-                    {{item}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <br>
         <mat-form-field class="expand" id="enlace">
             <input matInput
                 placeholder="Enlace a la página"
@@ -33,11 +23,13 @@
         <br>
         <mat-form-field #input class="expand" [class]="placeHolder">
             <ngx-mat-file-input
-                placeholder="Selecciona una imagen"
+                placeholder="Seleccione una imagen"
                 formControlName='imagen'>
             </ngx-mat-file-input>
         </mat-form-field>
         <br>
-        <button mat-raised-button (click)="editarOrganizacion()">Editar</button>
+        <button *ngIf="deshabilitado" mat-raised-button (click)="editarOrganizacion()">Editar</button>
+        <button *ngIf="!deshabilitado" mat-raised-button (click)="editarOrganizacion()">Guardar</button>
+        
     </form>
 </section>
