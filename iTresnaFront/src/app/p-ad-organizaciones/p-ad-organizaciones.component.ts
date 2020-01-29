@@ -17,9 +17,11 @@ export class PAdOrganizacionesComponent implements OnInit {
   show:boolean=false;
 
   usuarioLogado:Usuario;
+  listaOrgMostradas:Organizacion[]=[];
   listaOrganizacion:Organizacion[]=[];
   currentItem;
-  selected=0;
+  seleccionFiltro:number=1;
+  seleccionOrden:number=1;
   organizacion:Organizacion;
   constructor(
     private organizacionesService:OrganizacionesService,
@@ -54,6 +56,7 @@ export class PAdOrganizacionesComponent implements OnInit {
           res =>{
             if(res.error == 0){
               this.listaOrganizacion=res.organizaciones;
+              this.listaOrgMostradas=this.listaOrganizacion;
             }
             else{
               
@@ -66,7 +69,7 @@ export class PAdOrganizacionesComponent implements OnInit {
       );
   }
 
-  async setItem(item){
+  async administrar(item){
     if (this.currentItem === item) return;
     this.currentItem = item;
     this.usuarioLogado.cod_org=this.currentItem.cod_org;
@@ -74,17 +77,36 @@ export class PAdOrganizacionesComponent implements OnInit {
     await localStorage.setItem("usuario",string);
     this.router.navigateByUrl("Administracion");
   }
-  
-  cargarOrganizacionesOrdenadas(value:number){
-    this.selected=value;
-    if(this.selected == 2){
-      this.show=true;
-    }
-    else{
-      this.show=false;
+  filtrarOrganizaciones(){
+    this.show=this.seleccionFiltro!=1;
+  }
+  ordenarOrganizaciones(){
+    switch(this.seleccionOrden){
+      case 1:
+        this.listaOrgMostradas=this.listaOrgMostradas.sort((a,b)=>{
+          return a.desc_org.localeCompare(b.desc_org);
+        });
+        break;
+      case 2:
+          this.listaOrgMostradas=this.listaOrgMostradas.sort((a,b)=>{
+            return a.desc_org.localeCompare(b.desc_org)*-1;
+          });
+        break;
+        default:
+          break;
     }
   }
+  applyFilter(filter:string){
+    switch(this.seleccionFiltro){
+      case 2:
+        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>x.desc_org.indexOf(filter)!=-1);
+        break;
+      case 3:
+        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>x.contacto.indexOf(filter)!=-1);
 
+    }
+    this.ordenarOrganizaciones();
+  }
   borrar(item:Organizacion){
     if(window.confirm("¿Esta seguro de querer eliminar la organizacion?")){
       if(window.confirm("Esta acción no tiene vuelta atras,¿Seguro que desea eliminarlo?")){
@@ -172,6 +194,96 @@ export class PAdOrganizacionesComponent implements OnInit {
         }else{
           console.error("Hubo un error al crear la organización.")
         }
+      }
+    );
+  }
+
+  private editar(item:Organizacion){
+    this.organizacionesService.getOrganizacionActual(item.cod_org).subscribe(
+      response=>{
+        let usuarios:any[]=[];
+        for(var i=0;i<response.organizacion.usuarios.length;i++){
+          usuarios.push({"id":i,"desc":response.organizacion.usuarios[i]});
+        }
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.autoFocus=true;
+        dialogConfig.minWidth="50%";
+        dialogConfig.data=[
+          {
+            input:"inputField",
+            controlName:"nombre",
+            placeHolder:"Escribe el nombre de la org",
+            data:{
+              desc:item.desc_org
+            }
+          },
+          {
+            input:"inputField",
+            controlName:"descripcion",
+            placeHolder:"Escribe la descripcion de la org",
+            data:{
+              desc:item.eslogan_org
+            }
+          },
+          {
+            input:"fileField",
+            controlName:"imagen",
+            placeHolder:"Selecciona un archivo",
+            data:{
+              desc:""
+            }
+          },
+          {
+            input:"inputField",
+            controlName:"enlace",
+            placeHolder:"Escribe en enlace a la org",
+            data:{
+              desc:item.enlace_org
+            }
+          },
+          {
+            input:"selectField",
+            controlName:"contacto",
+            placeHolder:"Selecciona un contacto",
+            data:usuarios
+          }
+        ];
+        const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
+        dialogRef.afterClosed().subscribe(
+          data=>{
+            if(data!=null){
+            let contacto=usuarios[data.contacto];
+              var file="";
+              if(data.imagen!=null){
+                var reader = new FileReader();
+                reader.readAsDataURL(data.imagen);
+                reader.onload = () =>{
+                  this.modificar(item.cod_org,data.nombre,
+                    data.descripcion,
+                    contacto.desc,
+                    data.enlace,
+                    reader.result.toString().split(',')[1]);              
+                };
+                
+              }else{
+                this.modificar(item.cod_org,data.nombre,data.descripcion,contacto.desc,data.enlace,"");
+              }
+            }
+          }
+        );
+      }
+    );
+  }
+  private modificar(cod_org:number,desc_org:string,eslogan:string,contacto:string,enlace:string,imagen:string){
+    this.organizacionesService.modificarOrganizacion(cod_org,desc_org,eslogan,contacto,enlace,imagen).subscribe(
+      response=>{
+        console.log(response);
+        if(response.error==0){
+          location.reload();
+        }
+      },
+      error=>{
+        console.log(error);
       }
     );
   }

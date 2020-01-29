@@ -32,7 +32,8 @@ export class OrganizacionesService {
     };
     return this.httpClient.post<any>(this.url,json);
   }
-  modificarOrganizacion(cod_org,desc_org,eslogan,contacto,enlace,imagen):Observable<any>{
+  modificarOrganizacion(cod_org:number,desc_org:string,eslogan:string,contacto:string,enlace:string,imagen:string):Observable<any>{
+    
     let json={
       "cod_org":cod_org,
       "desc_org":desc_org,
