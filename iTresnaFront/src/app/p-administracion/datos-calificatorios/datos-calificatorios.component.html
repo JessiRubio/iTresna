@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="datosprevios">
         
     <form [formGroup]="form">
         <p>Campo Clasificatorio 1:</p>
@@ -12,7 +12,7 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <button (click)="editar()"> 
+        <button (click)="editar(1)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
         </button>
 
@@ -26,7 +26,7 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <button (click)="editar()"> 
+        <button (click)="editar(2)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
         </button>
 
@@ -40,8 +40,44 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <button (click)="editar()"> 
+        <button (click)="editar(3)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
         </button>
     </form>
+</section>
+<section *ngIf="editarClasificacion" >
+
+    <button (click)="atrasClasificacion()" >
+        <img src="./../../../assets/atras.svg" alt="atras">
+    </button>
+
+    <table class="edicionTabla">
+        <tr>
+            <th> Nombre </th>
+            <th> Editar </th>
+            <th> Eliminar </th>
+        </tr>
+
+        <tr *ngFor="let item of listaClasif;let i=index">
+            <td>{{item}}</td>
+            <td>
+                <button (click)="editar(item.cod_org,item.cod_esp,item.cod_cop)">
+                    <img  src="./../../../assets/edit.png" alt="papelera">
+                </button>
+            </td>
+            <td>
+                <button (click)="borrar(item)">
+                    <img src="./../../../assets/papelera.png" alt="papelera">
+                </button>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button (click)="addCategoria()"class="btnAñadir">
+                    <p>AÑADIR</p>
+                </button>
+            </td>
+        </tr>
+    </table>
 </section>

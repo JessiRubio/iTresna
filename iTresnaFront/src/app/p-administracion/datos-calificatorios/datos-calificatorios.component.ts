@@ -15,11 +15,15 @@ export class DatosCalificatoriosComponent implements OnInit{
   private organizacion: Organizacion;
   private usuarioLogeado: Usuario;
 
+  private datosprevios:Boolean;
+  private editarClasificacion:Boolean;
+
+  private listaClasif:string[];
+
   private listaClasif1:string[];
   private listaClasif2:string[];
   private listaClasif3:string[];
 
-  editando:boolean;
 
   constructor(private fBuilder: FormBuilder,
     private organizacionesService: OrganizacionesService) 
@@ -30,13 +34,13 @@ export class DatosCalificatoriosComponent implements OnInit{
         clasif3:["",Validators.required],
       });
       this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
-      this.editando = false;
+      this.datosprevios = true;
+      this.editarClasificacion = false;
    }
 
   ngOnInit() {
     this.cargarOrg();
-    this.form.disable();
-  
+    
   }
 
   cargarOrg(){
@@ -46,19 +50,29 @@ export class DatosCalificatoriosComponent implements OnInit{
         this.form.controls["clasif1"].setValue(this.organizacion.clasif1,Validators.required);
         this.form.controls["clasif2"].setValue(this.organizacion.clasif2,Validators.required);
         this.form.controls["clasif3"].setValue(this.organizacion.clasif3,Validators.required); 
-
+        this.cargarlistas();
       }
     );
+    
   }
 
-  editar(){
-    this.editando = true;
-    this.form.enable();
-    this.cargarlistas();
+  editar(num:number){
+      this.editarClasificacion = true;
+      this.datosprevios = false;
+
+      if (num == 1){
+        this.listaClasif = this.listaClasif1;
+      }
+      else if(num == 2){
+        this.listaClasif = this.listaClasif2;
+      } 
+      else if (num == 3){
+        this.listaClasif = this.listaClasif3;
+      }
+    
   }
 
   guardarCambios(){
-    this.editando = false;
     this.form.disable();
     this.organizacion.clasif1 = this.form.controls["clasif1"].value;
     this.organizacion.clasif2 = this.form.controls["clasif2"].value;
@@ -90,5 +104,10 @@ export class DatosCalificatoriosComponent implements OnInit{
     }
 
 
+  }
+
+  atrasClasificacion(){
+    this.editarClasificacion = false;
+    this.datosprevios = true;
   }
 }
