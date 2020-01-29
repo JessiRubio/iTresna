@@ -4,25 +4,44 @@
         <p>Campo Clasificatorio 1:</p>
         <mat-form-field id="clasif1">
             <input matInput
-                placeholder=" Campo Clasificatorio 1"
-                formControlName="clasif1">
+                formControlName="clasif1"/>
+            <mat-select [(value)]="selected" >
+                <mat-option [value]="0"></mat-option>
+                <mat-option *ngFor="let item of listaClasif1;let i=index" [value]="i">
+                    {{item}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
+        <button (click)="editar()"> 
+            <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
+        </button>
 
         <p>Campo Clasificatorio 2:</p>
         <mat-form-field id="clasif1">
             <input matInput
-                placeholder=" Campo Clasificatorio 2"
                 formControlName="clasif2">
+            <mat-select [(value)]="selected" >
+                <mat-option *ngFor="let item of listaClasif2;let i=index" [value]="i">
+                    {{item}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
+        <button (click)="editar()"> 
+            <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
+        </button>
 
         <p>Campo Clasificatorio 2:</p>
         <mat-form-field id="clasif3">
             <input matInput
-                placeholder=" Campo Clasificatorio 3"
                 formControlName="clasif3">
+            <mat-select [(value)]="selected">
+                <mat-option *ngFor="let item of listaClasif3;let i=index" [value]="i">
+                    {{item}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
+        <button (click)="editar()"> 
+            <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
+        </button>
     </form>
-    <br>
-    <button (click)="editar()"> Editar</button>
-    <button class ="guardar" *ngIf="editando" (click)="guardarCambios()">Guardar cambios</button>
 </section>

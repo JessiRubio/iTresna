@@ -16,12 +16,22 @@ form{
     display: inline-block;
 }
 
-button{
-    width: auto;
-    margin-left: 70%;
-    background-color: transparent;
+input{
+    display: inline-block;
 }
 
+button{
+    width: auto;
+    margin-left: 5%;
+    background-color: transparent;
+    display: inline-block;
+}
+
+img{
+    height: 30px;
+    width: 30px;
+    background: transparent;
+}
 .guardar{
     margin-left: 5%;
 }
