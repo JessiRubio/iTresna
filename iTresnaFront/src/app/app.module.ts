@@ -36,7 +36,7 @@ import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkb
 import { ModalcomentariosComponent } from './p-cops/modalcomentarios/modalcomentarios/modalcomentarios.component';
 import { NumberFieldComponent } from './modal-admin-cops/number-field/number-field.component';
 import { DatosCalificatoriosComponent } from './p-administracion/datos-calificatorios/datos-calificatorios.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -78,8 +78,8 @@ import { DatosCalificatoriosComponent } from './p-administracion/datos-calificat
     MatLinkPreviewModule.forRoot(),
     MatTableModule,
     MaterialFileInputModule,
-    MatCheckboxModule
-
+    MatCheckboxModule,
+    NgbModule,
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],

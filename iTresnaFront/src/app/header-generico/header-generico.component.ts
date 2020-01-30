@@ -2,6 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Usuario } from '../clases/usuario';
 import { Route, Router } from '@angular/router';
 import { Organizacion } from '../clases/Organizacion';
+import {UsuariosService}from '../servicios/usuarios.service';
 
 @Component({
   selector: 'app-header-generico',
@@ -12,11 +13,29 @@ export class HeaderGenericoComponent implements OnInit {
 
   usuario:Usuario;
   organizacion:Organizacion;
-  constructor(private ruta:Router) { 
-    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+  logged:boolean=false;
+  constructor(private ruta:Router,private userService:UsuariosService) { 
+    
+   
   }
 
   ngOnInit() {
+    this.userService.logged().subscribe(
+      response=>{
+        this.logged=response;
+        if(response){
+          this.usuario=JSON.parse(localStorage.getItem("usuario"));
+        }
+        else{
+          if(localStorage.length>0){
+            this.usuario=JSON.parse(localStorage.getItem("usuario"));
+            this.logged=true;
+          }else{
+            this.usuario=new Usuario();
+          }
+        }
+      }
+    );
   }
 
   atras(){

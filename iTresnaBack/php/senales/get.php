@@ -16,17 +16,20 @@
     if(isset($cod_usuario) && $cod_usuario!="" &&isset($cod_org) 
         && $cod_org !="" && isset($cod_esp) && $cod_esp!="" && isset($cod_cop) 
         && $cod_cop!=""){
-        $sql= "SELECT cod_senal,cod_org,cod_esp,cod_cop,cod_etiqueta,
-                      desc_senal,enlace,fecha_hora, cod_usuario,ind_fich_gest
-                FROM t_senales
-                WHERE cod_org = ? AND cod_esp = ? AND cod_cop = ?
+        $sql= "SELECT sen.cod_senal,sen.cod_org,sen.cod_esp,sen.cod_cop,sen.cod_etiqueta,
+                      sen.desc_senal,sen.enlace,sen.fecha_hora,sen.cod_usuario,sen.ind_fich_gest,usu.nombre,
+                      usu.ape1,usu.ape2
+                FROM t_senales sen
+                JOIN t_usuarios usu
+                ON sen.cod_usuario=usu.cod_usuario
+                WHERE sen.cod_org = ? AND sen.cod_esp = ? AND sen.cod_cop = ?
                 ORDER BY ind_fich_gest DESC,fecha_hora DESC";
         $query=$conexion->prepare($sql);
         $query->bind_param("iii",$cod_org,$cod_esp,$cod_cop);
         $query->execute();
         $query->bind_result($cod_senal,$cod_org,$cod_esp,$cod_cop,
                             $cod_etiqueta,$desc_senal,$enlace,$fecha_hora,
-                            $cod_usuario_senal,$ind_fich_gest);
+                            $cod_usuario_senal, $ind_fich_gest,$nombre,$ape1,$ape2);
         while ($query->fetch()){
             $result["senales"][]=array(
                 "cod_senal" => $cod_senal,
@@ -37,7 +40,8 @@
                 "desc_senal" => $desc_senal,
                 "enlace" => $enlace,
                 "fecha_hora" => $fecha_hora,
-                "cod_usuario" => $cod_usuario_senal,
+                "nombre_completo" => $nombre." ".$ape1." ".$ape2,
+                "cod_usuario"=>$cod_usuario_senal,
                 "ind_fech_gest" => ($ind_fich_gest==1),
                 "cantidad_comentarios" => cantidadComentarios($cod_org,$cod_esp,$cod_cop,$cod_senal),
                 "me_gustas" => meGustas($cod_org,$cod_esp,$cod_cop,$cod_senal),
