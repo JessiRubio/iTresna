@@ -12,6 +12,9 @@
                     break;
                 case 'POST':
                     include('post.php');
+                case 'PUT':
+                    include('put.php');
+                    break;
                     break;
                 case 'DELETE':
                     include('delete.php');

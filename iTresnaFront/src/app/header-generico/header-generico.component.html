@@ -4,6 +4,6 @@
             <p>{{usuario.nombre}}</p>
     </div>
 
-    <app-menu-overflow></app-menu-overflow>
+    <app-menu-overflow *ngIf="logged==true"></app-menu-overflow>
 
 </header>

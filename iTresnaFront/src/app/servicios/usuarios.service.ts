@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
 import { Usuario } from '../clases/usuario';
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
   private url="http://localhost:8080/usuario/";
-  private loginState:Subject<boolean>;
+  private loginState:ReplaySubject<boolean>;
   constructor(
     private httpClient:HttpClient
   ) {
-    this.loginState=new Subject<boolean>();
+    this.loginState=new ReplaySubject<boolean>(1);
     this.loginState.next(false);
   
   }
@@ -26,11 +26,9 @@ export class UsuariosService {
     var observable:Observable<any> = this.httpClient.post(this.url,json);
     observable.subscribe(
       response=>{
-        console.log(response);
         if(response.error==0){
           localStorage.setItem("usuario",JSON.stringify(response.usuario));
           this.loginState.next(response.error==0);
-
         }
       }
     );
@@ -40,15 +38,11 @@ export class UsuariosService {
     localStorage.clear();
     this.loginState.next(false);
   }
-
+  getUsuarioPorCodUsuario(cod_usuario:string):Observable<any>{
+    return this.httpClient.get<any>(this.url+'?cod_usuario='+cod_usuario);
+  }
   getUsuario(cod_org:number):Observable<any>{
     return this.httpClient.get<any>(this.url+'?cod_org='+cod_org);
-  }
-
-  getUsuarios(cod_org:number,cod_esp:number,cod_cop:number,clasif:string, categoria:string):Observable<any>{
-    return this.httpClient.get<any>(this.url +'?cod_org='+ cod_org + 
-                                    'cod_esp=' + cod_esp + 'cod_cop=' + cod_cop +
-                                     'clasif=' + clasif + 'categoria=' + categoria);
   }
 
   modificarUsuario(nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string,cod_usuario:string):Observable<any>{

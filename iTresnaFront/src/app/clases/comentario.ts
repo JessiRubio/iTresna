@@ -7,5 +7,5 @@ export class Comentario{
     cod_org:number=0;
     cod_usuario:string="";
     comentario:string="";
-
+    nombre_completo:string="";
 }
