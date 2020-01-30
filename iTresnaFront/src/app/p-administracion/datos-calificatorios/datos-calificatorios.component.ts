@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrganizacionesService } from '../../servicios/organizaciones.service';
-import { Organizacion } from '../../clases/organizacion';
+import { Organizacion, Categorias } from '../../clases/organizacion';
 import { Usuario } from '../../clases/usuario';
 
 @Component({
@@ -9,13 +9,21 @@ import { Usuario } from '../../clases/usuario';
   templateUrl: './datos-calificatorios.component.html',
   styleUrls: ['./datos-calificatorios.component.css']
 })
-export class DatosCalificatoriosComponent implements OnInit {
+export class DatosCalificatoriosComponent implements OnInit{
 
   private form:FormGroup;
   private organizacion: Organizacion;
   private usuarioLogeado: Usuario;
 
-  editando:boolean;
+  private datosprevios:Boolean;
+  private editarClasificacion:Boolean;
+
+  private listaClasif:string[];
+
+  private listaClasif1:string[];
+  private listaClasif2:string[];
+  private listaClasif3:string[];
+
 
   constructor(private fBuilder: FormBuilder,
     private organizacionesService: OrganizacionesService) 
@@ -26,32 +34,45 @@ export class DatosCalificatoriosComponent implements OnInit {
         clasif3:["",Validators.required],
       });
       this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
-      this.editando = false;
+      this.datosprevios = true;
+      this.editarClasificacion = false;
    }
 
   ngOnInit() {
     this.cargarOrg();
-    this.form.disable();
+    
   }
 
   cargarOrg(){
     this.organizacionesService.getOrganizacionActual(this.usuarioLogeado.cod_org).subscribe(
-      response=>{
-        this.organizacion=response.organizacion;
+      res=>{
+        this.organizacion=res.organizacion;
         this.form.controls["clasif1"].setValue(this.organizacion.clasif1,Validators.required);
         this.form.controls["clasif2"].setValue(this.organizacion.clasif2,Validators.required);
-        this.form.controls["clasif3"].setValue(this.organizacion.clasif3,Validators.required);
+        this.form.controls["clasif3"].setValue(this.organizacion.clasif3,Validators.required); 
+        this.cargarlistas();
       }
     );
+    
   }
 
-  editar(){
-    this.editando = true;
-    this.form.enable();
+  editar(num:number){
+      this.editarClasificacion = true;
+      this.datosprevios = false;
+
+      if (num == 1){
+        this.listaClasif = this.listaClasif1;
+      }
+      else if(num == 2){
+        this.listaClasif = this.listaClasif2;
+      } 
+      else if (num == 3){
+        this.listaClasif = this.listaClasif3;
+      }
+    
   }
 
   guardarCambios(){
-    this.editando = false;
     this.form.disable();
     this.organizacion.clasif1 = this.form.controls["clasif1"].value;
     this.organizacion.clasif2 = this.form.controls["clasif2"].value;
@@ -66,5 +87,27 @@ export class DatosCalificatoriosComponent implements OnInit {
       }
       
     );
+  }
+
+  cargarlistas(){
+    this.listaClasif1 = [];
+    this.listaClasif2 = [];
+    this.listaClasif3 = [];
+    for(var pos=0;pos<this.organizacion.categorias.length;pos++){
+      if (this.organizacion.categorias[pos].tip_clasificacion === this.organizacion.clasif1){
+        this.listaClasif1.push(this.organizacion.categorias[pos].categoria);
+      }else if(this.organizacion.categorias[pos].tip_clasificacion === this.organizacion.clasif2){
+        this.listaClasif2.push(this.organizacion.categorias[pos].categoria);
+      }else if(this.organizacion.categorias[pos].tip_clasificacion === this.organizacion.clasif3){
+        this.listaClasif3.push(this.organizacion.categorias[pos].categoria);
+      }
+    }
+
+
+  }
+
+  atrasClasificacion(){
+    this.editarClasificacion = false;
+    this.datosprevios = true;
   }
 }
