@@ -41,7 +41,7 @@ export class UsuariosService {
   getUsuarioPorCodUsuario(cod_usuario:string):Observable<any>{
     return this.httpClient.get<any>(this.url+'?cod_usuario='+cod_usuario);
   }
-  getUsuario(cod_org:number):Observable<any>{
+  getUsuarios(cod_org:number):Observable<any>{
     return this.httpClient.get<any>(this.url+'?cod_org='+cod_org);
   }
 
