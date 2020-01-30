@@ -61,12 +61,12 @@
         <tr *ngFor="let item of listaClasif;let i=index">
             <td>{{item}}</td>
             <td>
-                <button (click)="editar(item.cod_org,item.cod_esp,item.cod_cop)">
+                <button (click)="editarCampo(item)">
                     <img  src="./../../../assets/edit.png" alt="papelera">
                 </button>
             </td>
             <td>
-                <button (click)="borrar(item)">
+                <button (click)="borrarCampo(item)">
                     <img src="./../../../assets/papelera.png" alt="papelera">
                 </button>
             </td>
