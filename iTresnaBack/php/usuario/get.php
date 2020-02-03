@@ -31,7 +31,7 @@
                 "ape2"=>$ape2,
                 "campo_clasificador1"=>$campo_clasificador1,
                 "campo_clasificador2"=>$campo_clasificador2,
-                "campo_clasificador3"=>$campo_clasificador1
+                "campo_clasificador3"=>$campo_clasificador3
             );
         }
     

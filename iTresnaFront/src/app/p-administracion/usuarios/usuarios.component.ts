@@ -125,7 +125,7 @@ export class UsuariosComponent implements OnInit {
 
   cargarUsuarios(){
 
-    this.usuarioService.getUsuario(this.organizacion.cod_org).subscribe(
+    this.usuarioService.getUsuarios(this.organizacion.cod_org).subscribe(
       res=>{
         this.listaUsuarios= res.usuarios;
         console.log(res);
@@ -143,7 +143,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   usuario(){
-    this.usuarioService.getUsuario(this.organizacion.cod_org).subscribe(
+    this.usuarioService.getUsuarios(this.organizacion.cod_org).subscribe(
       res=>{
         this.listaUsuarios= res.usuarios;
         console.log(res);
