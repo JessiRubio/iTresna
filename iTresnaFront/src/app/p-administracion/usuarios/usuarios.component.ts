@@ -125,11 +125,7 @@ export class UsuariosComponent implements OnInit {
 
   cargarUsuarios(){
 
-    this.usuarioService.getUsuarios(this.organizacion.cod_org, 
-                                    this.selectedEspacio.cod_esp, 
-                                    this.selectedCop.cod_cop,
-                                    this.selected, 
-                                    this.selectedCategoria.categoria).subscribe(
+    this.usuarioService.getUsuario(this.organizacion.cod_org).subscribe(
       res=>{
         this.listaUsuarios= res.usuarios;
         console.log(res);

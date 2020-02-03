@@ -8,7 +8,7 @@ import { Organizacion } from '../clases/organizacion';
 })
 export class OrganizacionesService {
 
-  private url="http://localhost:8080/organizaciones/";
+  private url="http://192.168.230.132:8080/organizaciones/";
 
   constructor(private httpClient:HttpClient) { }
 
