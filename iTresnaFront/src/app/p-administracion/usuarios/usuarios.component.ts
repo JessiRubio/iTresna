@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CopsItem } from '../../clases/copsitem';
 import { CopsService } from '../../servicios/cops.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
-import { Usuario } from '../../clases/usuario';
+import { Usuario, Permiso } from '../../clases/usuario';
 import { Organizacion, Categorias } from '../../clases/organizacion';
 import { OrganizacionesService } from '../../servicios/organizaciones.service';
 import { EspaciosService } from '../../servicios/espacios.service';
@@ -23,8 +23,9 @@ export class UsuariosComponent implements OnInit {
   listaUsuarios:Usuario[];
   listaCategorias:Categorias[] = [];
   listaClasificacion =[] = [];
-  listaUsuario:Usuario[];
+  listaPermisos:Permiso[];
   cops:CopsItem[]=[];
+ 
 
   organizacion:Organizacion;
   usuarioLogado:Usuario;
@@ -32,13 +33,18 @@ export class UsuariosComponent implements OnInit {
   showCops:boolean = false;
   showTabla:boolean = false;
 
+  ind_admin:number;
   selected:string = "";
   selectedCategoria:Categorias = null;
   selectedEspacio:EspaciosItem = null;
   selectedCop:CopsItem = null;
 
+
   permisos:boolean;
   usuarios:boolean;
+  checked:boolean =false;
+  esUsuario:boolean;
+  marked = false;
 
 
   constructor( private copsService:CopsService,
@@ -92,6 +98,8 @@ export class UsuariosComponent implements OnInit {
     );
   }
 
+  
+
   cargarCops(espacio:EspaciosItem){
     var esp:EspaciosItem;
     for(var pos=0;pos<this.listaEspacios.length;pos++){
@@ -116,12 +124,7 @@ export class UsuariosComponent implements OnInit {
       }
     );
   }
-  async cargarTabla(cop:CopsItem){
-    this.selectedCop = cop;
-    await this.cargarUsuarios();
-    this.showTabla = true;
-    
-  }
+
 
   cargarUsuarios(){
 
@@ -132,12 +135,70 @@ export class UsuariosComponent implements OnInit {
                                     this.selectedCategoria.categoria).subscribe(
       res=>{
         this.listaUsuarios= res.usuarios;
+      
+        
         console.log(res);
+      
+        console.log(this.listaUsuarios);
       },
       err=>{
 
       }
     );
+    
+  }
+
+  
+  cargarTabla(cop:CopsItem){
+    this.selectedCop = cop;
+    this.cargarUsuarios();
+    this.showTabla = true;
+    
+    
+    
+  }
+
+  checkedAdmin(e,listaUsuarios:Usuario){
+
+    this.ind_admin=0;
+    console.log(listaUsuarios.cod_usuario);
+
+    this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
+    .subscribe(
+      response=>{
+        console.log(response);
+        location.reload();
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+
+  uncheckedAdmin(e,listaUsuarios:Usuario){
+
+    this.ind_admin=1;
+    console.log(listaUsuarios.cod_usuario);
+
+    this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
+    .subscribe(
+      response=>{
+        console.log(response);
+        location.reload();
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+  checkedUsuario(e,listaUsuarios:Usuario){
+    
+
+  }
+
+  uncheckedUsuario(e,listaUsuarios:Usuario){
     
   }
   
@@ -152,6 +213,10 @@ export class UsuariosComponent implements OnInit {
         this.listaUsuarios= res.usuarios;
         console.log(res);
         console.log(this.listaUsuarios);
+        
+        
+        
+        
       },
         err=>{
 
@@ -162,6 +227,9 @@ export class UsuariosComponent implements OnInit {
 
     
   }
+
+
+  
 
 
   openModalUsuario(listaUsuarios:Usuario):Observable<any>{
@@ -304,6 +372,11 @@ export class UsuariosComponent implements OnInit {
       data=>{
         if(data!=null){
         
+            console.log(listaUsuarios.cod_usuario);
+            console.log(listaUsuarios.permisos[0].ind_admin);
+            for( var pos=0; pos<this.listaUsuarios.length; pos++){
+              console.log("hola");
+            }
             this.modificarUsuarios(data.nombre,data.ape1,data.ape2,data.departamento,data.edad,data.horas,listaUsuarios.cod_usuario);
           }else{
             this.modificarUsuarios(data.nombre,data.ape1,data.ape2,data.departamento,data.edad,data.horas,listaUsuarios.cod_usuario);
@@ -318,6 +391,7 @@ modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo
       this.usuarioService.modificarUsuario(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario)
       .subscribe(
         response=>{
+          console.log(response);
           location.reload();
         },
         error=>{
@@ -385,6 +459,7 @@ modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo
             if(window.confirm("¿Estas seguro de querer eliminar el usuario?")){
               this.usuarioService.eliminarUsuario(listaUsuarios.cod_usuario,this.organizacion.cod_org,).subscribe(
                 response=>{
+
                   location.reload();
                   
                 },
