@@ -104,7 +104,7 @@ export class UsuariosService {
   nuevoPermisos(cod_usuario:string,cod_cop:number,cod_esp:number,cod_org:number,ind_admin:number):Observable<any>{
     
     let json={
-      "accion":"nuevo_permisos",
+      "accion":"nuevo_permiso",
       "cod_usuario":cod_usuario,
       "cod_cop":cod_cop,
       "cod_esp":cod_esp,
@@ -112,6 +112,15 @@ export class UsuariosService {
       "ind_admin":ind_admin
     };  
     return this.httpClient.post(this.url,json);
+  }
+
+
+  borrarPermisos(cod_usuario:string,cod_cop:number,cod_esp:number,cod_org:number,ind_admin:number):Observable<any>{
+    return this.httpClient.delete(this.url+"?cod_usuario="+cod_usuario
+                                  +"&cod_cop="+cod_cop
+                                  +"&cod_esp="+cod_esp
+                                  +"&cod_org="+cod_org
+                                  +"&ind_admin="+ind_admin);
   }
 
 

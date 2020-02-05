@@ -38,6 +38,8 @@ export class UsuariosComponent implements OnInit {
   selectedCategoria:Categorias = null;
   selectedEspacio:EspaciosItem = null;
   selectedCop:CopsItem = null;
+  cod_espPermiso:number;
+  cod_copPermiso:number;
 
 
   permisos:boolean;
@@ -109,6 +111,8 @@ export class UsuariosComponent implements OnInit {
         break;
       }
     }
+    console.log(espacio.cod_esp);
+    this.cod_espPermiso=espacio.cod_esp;
 
     this.descargarCops(esp);
     this.showCops = true;
@@ -153,10 +157,79 @@ export class UsuariosComponent implements OnInit {
     this.selectedCop = cop;
     this.cargarUsuarios();
     this.showTabla = true;
-    
+    this.cod_copPermiso=cop.cod_cop;
     
     
   }
+
+  pruebaUso(listaUsuarios:Usuario){
+
+    console.log("Entro en pruebaUso");
+    console.log(listaUsuarios.cod_usuario);
+    console.log(listaUsuarios.permisos);
+  
+
+
+    if(listaUsuarios.permisos.length===0){
+
+      console.log("es nulo");
+     
+      return false;
+    
+
+    }else{
+      console.log("no soy nulo");
+      return true;
+      
+    } 
+    
+    /*else{
+        if(listaUsuarios.permisos[0].ind_admin==true){
+        
+        this.checked=true;
+      
+    
+      }else{
+        this.checked=false;
+      }
+    }*/
+  
+  }
+
+
+  pruebaAdmin(listaUsuarios:Usuario){
+
+    console.log("Entro en pruebaUso");
+    console.log(listaUsuarios.cod_usuario);
+    console.log(listaUsuarios.permisos);
+  
+
+
+    if(listaUsuarios.permisos.length===0){
+
+      console.log("es nulo");
+     
+      return false;
+    
+
+    }else{
+      console.log("no soy nulo");
+     if(listaUsuarios.permisos[0].ind_admin==true){
+      
+      return true;
+      
+    }else{
+      return false;
+      }
+    } 
+    
+    /*else{
+        
+    }*/
+  
+  }
+
+
 
   checkedAdmin(e,listaUsuarios:Usuario){
 
@@ -181,7 +254,9 @@ export class UsuariosComponent implements OnInit {
     this.ind_admin=1;
     console.log(listaUsuarios.cod_usuario);
 
-    this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
+    if(listaUsuarios.permisos.length===0){
+
+      this.usuarioService.nuevoPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso, this.cod_espPermiso,listaUsuarios.cod_org,this.ind_admin)
     .subscribe(
       response=>{
         console.log(response);
@@ -191,16 +266,69 @@ export class UsuariosComponent implements OnInit {
         console.log(error);
       }
     );
-  }
+    }else{
+      
+      this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
+          .subscribe(
+            response=>{
+              console.log(response);
+              location.reload();
+            },
+            error=>{
+              console.log(error);
+            }
+          );
+        }
 
-  checkedUsuario(e,listaUsuarios:Usuario){
+
     
 
-  }
 
-  uncheckedUsuario(e,listaUsuarios:Usuario){
     
   }
+
+  checkedUso(e,listaUsuarios:Usuario){
+
+    this.usuarioService.borrarPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso, this.cod_espPermiso,listaUsuarios.cod_org,this.ind_admin)
+    .subscribe(
+      response=>{
+        console.log(response);
+        location.reload();
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+
+  }
+
+  uncheckedUso(e,listaUsuarios:Usuario){
+
+    this.ind_admin=0;
+
+    this.usuarioService.nuevoPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso, this.cod_espPermiso,listaUsuarios.cod_org,this.ind_admin)
+    .subscribe(
+      response=>{
+        console.log(response);
+        location.reload();
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+
+    
+  }
+
+uso(listaUsuarios:Usuario){
+
+console.log(listaUsuarios.cod_usuario);
+
+
+}
+
+
+
   
   permiso(){
     this.permisos=true;

@@ -42,7 +42,31 @@
 
 
 
-        }else{
+        }else if($accion!="" && $accion=="nuevo_permiso"){
+            $cod_org=$data->cod_org;
+            $cod_usuario=$data->cod_usuario;
+            $cod_cop=$data->cod_cop;
+            $ind_admin=$data->ind_admin;
+            $cod_esp=$data->cod_esp;
+
+
+            include("./../conexion.php");
+                $sql="INSERT INTO t_permisos(cod_usuario,cod_cop,cod_esp,cod_org,ind_admin)
+                    VALUES(?,?,?,?,?)";
+                $query=$conexion->prepare($sql);
+                $query->bind_param("siiii",$cod_usuario,$cod_cop,$cod_esp,$cod_org,$ind_admin);
+                $query->execute();
+                $query->close();
+                return;
+
+
+
+
+        }
+        
+        
+        
+        else{
 
             $password=$data->password;
             $usuario=$data->usuario;

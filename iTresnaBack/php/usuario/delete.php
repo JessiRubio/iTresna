@@ -12,8 +12,10 @@
     $result["error"]=1;
 
 
-    if(isset($cod_usuario) && $cod_usuario!="" && isset($cod_org) && $cod_org!=""){
-        $sql="DELETE FROM t_usuarios
+    if (isset($cod_usuario) && $cod_usuario!="" && isset($ind_admin) && $ind_admin!="" ){
+
+
+        $sql="DELETE FROM t_permisos
         WHERE cod_usuario=? AND cod_org=?";
     $query=$conexion->prepare($sql);
     $query->bind_param("si",$cod_usuario,$cod_org);
@@ -24,6 +26,23 @@
 
 
     }
+
+
+    else {
+        $sql="DELETE FROM t_usuarios
+        WHERE cod_usuario=? AND cod_org=?";
+    $query=$conexion->prepare($sql);
+    $query->bind_param("si",$cod_usuario,$cod_org);
+    $query->execute();
+    $affected_rows=$query->affected_rows;
+    $query->close();
+    $result["error"]=($affected_rows>0)?0:1;
+
+
+    } 
+
+
+
 
 
     
