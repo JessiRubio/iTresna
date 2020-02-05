@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CopsService {
 
-  private url="http://192.168.230.132:8080/cops/";
+  private url="http://127.0.0.1:8080/cops/";
 
   constructor(private httpClient:HttpClient) {}
 

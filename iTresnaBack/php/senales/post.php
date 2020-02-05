@@ -26,6 +26,7 @@
                 cod_usuario,desc_senal,enlace) VALUES(?,?,?,?,?,?,?,?)";
             $query=$conexion->prepare($sql);
             $cod_senal=obtCodSenal($cod_cop, $cod_esp, $cod_org);
+            
             $query->bind_param("iiiiisss",$cod_senal, $cod_cop, $cod_esp, $cod_org,
             $cod_etiqueta, $cod_usuario, $desc_senal,$enlace);
             $query->execute();
@@ -35,6 +36,7 @@
         }
 
     } else if($accion==="like"){
+    die();
         
         $cod_senal=$data->cod_senal;
         if($cod_usuario!=="" && $cod_org!=="" 
@@ -65,6 +67,7 @@
         $result["metodo"]="Metodo no soportado";
     }
     echo json_encode($result);
+
     function obtCodSenal($cod_cop,$cod_esp,$cod_org):int{
         include("./../conexion.php");
         $sql = "SELECT MAX(cod_senal)

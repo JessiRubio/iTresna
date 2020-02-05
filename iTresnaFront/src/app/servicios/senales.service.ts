@@ -7,7 +7,7 @@ import { SenalesItem } from '../clases/senales-item';
   providedIn: 'root'
 })
 export class SenalesService {
-  private URL = "http://192.168.230.132:8080/senales/"
+  private URL = "http://127.0.0.1:8080/senales/"
   constructor(private http:HttpClient) { }
 
   getSenales(cod_org:number,cod_espacio:number,cod_cop:number,cod_usuario:string):Observable<any>{
