@@ -10,7 +10,8 @@ import { EtiquetaItem } from '../../clases/copsitem';
 import { Comentario } from '../../clases/comentario';
 import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-material-extensions/link-preview';
 import { HttpClient } from '@angular/common/http';
-import { ComentariosService } from 'src/app/servicios/comentarios.service';
+import { ComentariosService } from './../../servicios/comentarios.service';
+import {UsuariosService} from './../../servicios/usuarios.service';
 
 @Component({
   selector: 'app-senales',
@@ -26,7 +27,7 @@ export class SenalesComponent implements OnInit {
   
   str: string;
   cod_coment:number=15;
-  
+  mostrarEnvio:boolean=false;
   
   @Input() senal:SenalesItem;
   @Input() comentario:Comentario;
@@ -35,6 +36,7 @@ export class SenalesComponent implements OnInit {
   private titulo:String= "Lorem Ipsum";
   private imagen:string="./../../../assets/cyberSecurityData.jpg";
   private listaComentarios:Comentario[]=[];
+  private acortado:boolean=true; 
 
   constructor(
     private http:HttpClient,
@@ -42,9 +44,9 @@ export class SenalesComponent implements OnInit {
     private route: ActivatedRoute,
     private senalesService:SenalesService,
     private comentariosService:ComentariosService,
+    private usuarioService:UsuariosService,
     private dialog:MatDialog
     ) {
-
    }
 
   ngOnInit() {
@@ -59,17 +61,13 @@ export class SenalesComponent implements OnInit {
     this.cargarComentarios();
   }
 
-
+  
   cargarComentarios(){
     this.comentariosService.getComentarios(this.senal.cod_senal)
         .subscribe(
           res =>{
             if(res.error == 0){
               this.listaComentarios=res.comentarios;
-              
-            }
-            else{
-              
             }
           }, 
           err =>{ 
@@ -84,7 +82,6 @@ export class SenalesComponent implements OnInit {
     try{
       return this.etiquetas.find(x=>x.cod_etiqueta==this.senal.cod_etiqueta).desc_etiqueta;
     }catch(exception){
-      console.log(exception);
       return "";
     }
   }
@@ -109,17 +106,20 @@ export class SenalesComponent implements OnInit {
  
     
   nuevoComentario(){
-    this.comentariosService.nuevoComentario(this.cod_coment,this.senal.cod_senal,this.senal.cod_cop,this.senal.cod_esp,this.senal.cod_org,this.usuarioLogeado.cod_usuario,this.str).subscribe(
-      res=>{
-        if(res.error==0){
-          if(res.aniadido==1){
-            location.reload();
-          }else{
-            
+    if(this.str!==""){
+      this.comentariosService.nuevoComentario(this.cod_coment,this.senal.cod_senal,this.senal.cod_cop,this.senal.cod_esp,this.senal.cod_org,this.usuarioLogeado.cod_usuario,this.str).subscribe(
+        res=>{
+          if(res.error==0){
+            if(res.aniadido==1){
+              location.reload();
+            }else{
+              
+            }
           }
         }
-      }
-    );
+      );
+    }
+    this.mostrarEnvioComentarios();
   }
 
 
@@ -182,6 +182,7 @@ export class SenalesComponent implements OnInit {
                 }
               },
               error=>{
+                console.error(error);
                 window.alert("Error de conexion o fallo en servidor");
               }
             );
@@ -221,5 +222,13 @@ export class SenalesComponent implements OnInit {
       }
     );
   }
+  mostrarEnvioComentarios(){
+    this.mostrarEnvio=!this.mostrarEnvio
+  }
 
+  mostrarSenalCompleta(){
+    this.acortado=!this.acortado;
+  }
 }
+
+

@@ -1,4 +1,4 @@
-<app-header-generico></app-header-generico>
+
 
 <!-- Menu-->
 <nav id="menu">
@@ -30,12 +30,12 @@
     </div>
 
     
-<div class="contenedorSeñales">
-    <ul>
-        <li *ngFor="let item of listSenalesMostradas">
-            <app-senales [senal]="item" [etiquetas]="cop.etiquetas"></app-senales>
-        </li>
-    </ul>
+<div class="outlet container container-fluid">
+    <div class="row w-100" style="background: transparent;border: none">
+        <div class="col-md-6 col-lg-4 col-xl-4 mb-4" *ngFor="let item of listSenalesMostradas">
+            <app-senales style="margin: 0%; padding: 0%;" [senal]="item" [etiquetas]="cop.etiquetas"></app-senales>
+        </div>
+    </div>
 </div>
 
 <a (click)="nuevaSenal()" class="float"><p>+</p></a>

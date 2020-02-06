@@ -1,11 +1,7 @@
-
-<app-header-generico></app-header-generico>
-
 <div class="cabecera">
     <section>
-        <img src="./../../assets/logo2.png" alt="">
-        <pre>Gaurko eta biharko profesionalak prestatzen
-Formamos profesionales de hoy y de mañana
+        <a [href]="organizacion.enlace_org"><img [src]="organizacion.img_org" alt=""></a>
+        <pre>{{organizacion.eslogan_org}}
         </pre>
     </section>
     <!-- Menu-->

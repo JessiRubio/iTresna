@@ -88,6 +88,7 @@ export class PCopsComponent implements OnInit {
         }
       },
       err=>{
+        console.log(err);
 
       }
     );

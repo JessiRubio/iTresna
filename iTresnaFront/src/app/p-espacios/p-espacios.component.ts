@@ -8,7 +8,8 @@ import { EspaciosItem } from '../clases/espaciosItem';
 import { NavigationExtras } from '@angular/router'
 import { Usuario, Permiso } from '../clases/usuario';
 import { UsuariosService } from '../servicios/usuarios.service';
-
+import { OrganizacionesService } from '../servicios/organizaciones.service';
+import { Organizacion } from '../clases/organizacion';
 
 @Component({
   selector: 'app-p-espacios',
@@ -20,11 +21,13 @@ export class PEspaciosComponent implements OnInit {
   usuarioLogado:Usuario;
   listaEspacios:EspaciosItem[];
   selected:number = 0;
+  organizacion:Organizacion= new Organizacion();
   constructor(
     private espaciosService:EspaciosService,
     private copService:CopsService,
     private router: Router,
-    private usuarioService:UsuariosService
+    private usuarioService:UsuariosService,
+    private organizacionService:OrganizacionesService
   ) { 
     this.listaEspacios=[];
   }
@@ -37,13 +40,23 @@ export class PEspaciosComponent implements OnInit {
       if(this.usuarioLogado.tip_usuario==1){
         this.router.navigateByUrl("Organizaciones");
       }else{
-      this.espaciosPorCod(this.usuarioLogado.cod_org);
+        this.espaciosPorCod(this.usuarioLogado.cod_org);
+        this.cargarOrganizacion(this.usuarioLogado.cod_org);
       }
       
      
     }else{
       this.router.navigateByUrl("");
     }
+  }
+  cargarOrganizacion(cod_org:number){
+    this.organizacionService.getOrganizacionActual(this.usuarioLogado.cod_org)
+      .subscribe(
+        response=>{
+          this.organizacion=response.organizacion;
+          
+        }
+      );
   }
   espaciosPorCod(cod_org:number){
     this.espaciosService.getEspacios(cod_org)

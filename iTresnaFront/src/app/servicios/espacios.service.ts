@@ -9,7 +9,7 @@ import { EspaciosItem } from '../clases/espaciosItem';
 })
 export class EspaciosService {
 
-  private url="http://localhost:8080/espacios/";
+  private url="http://127.0.0.1:8080/espacios/";
 
   constructor(private httpClient:HttpClient) { }
 

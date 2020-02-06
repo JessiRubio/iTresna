@@ -16,10 +16,45 @@ form{
     display: inline-block;
 }
 
+input{
+    display: inline-block;
+}
+
 button{
     width: auto;
-    margin-left: 70%;
+    margin-left: 5%;
     background-color: transparent;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2px;
+}
+
+table{
+    width: 70%;
+    display: inline-block;
+    margin: 0;
+    margin-right: 5%;
+}
+
+table tr{
+    width: 100%;
+}
+
+table tr td,th{
+    text-align: center;
+    width: 50%;
+}
+
+img{
+    height: 30px;
+    width: 30px;
+    background: transparent;
+}
+
+.btnAñadir{
+    width: 100%;
+    text-align: left;
+    background-color: var(--colorCopsActivas);
 }
 
 .guardar{
