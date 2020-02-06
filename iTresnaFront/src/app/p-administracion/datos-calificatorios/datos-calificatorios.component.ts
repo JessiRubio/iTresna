@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrganizacionesService } from '../../servicios/organizaciones.service';
 import { Organizacion, Categorias } from '../../clases/organizacion';
 import { Usuario } from '../../clases/usuario';
+import { ClasificacionService } from '../../servicios/clasificacion.service';
 
 @Component({
   selector: 'app-datos-calificatorios',
@@ -24,9 +25,12 @@ export class DatosCalificatoriosComponent implements OnInit{
   private listaClasif2:string[];
   private listaClasif3:string[];
 
+  private listaCargada:number =0;
+
 
   constructor(private fBuilder: FormBuilder,
-    private organizacionesService: OrganizacionesService) 
+    private organizacionesService: OrganizacionesService,
+    private clasificacionService: ClasificacionService) 
     {
       this.form=this.fBuilder.group({
         clasif1:["",Validators.required],
@@ -62,12 +66,15 @@ export class DatosCalificatoriosComponent implements OnInit{
 
       if (num == 1){
         this.listaClasif = this.listaClasif1;
+        this.listaCargasda = 1;
       }
       else if(num == 2){
         this.listaClasif = this.listaClasif2;
+        this.listaCargasda = 2;
       } 
       else if (num == 3){
         this.listaClasif = this.listaClasif3;
+        this.listaCargasda = 3;
       }
     
   }
@@ -109,5 +116,19 @@ export class DatosCalificatoriosComponent implements OnInit{
   atrasClasificacion(){
     this.editarClasificacion = false;
     this.datosprevios = true;
+  }
+
+  borrarCampo(categoria:string){
+    if(window.confirm("¿Estas seguro de eliminar el espacio seleccionado?")){
+      this.clasificacionService.deleteCategoria(this.organizacion.cod_org,this.listaCargada, categoria).subscribe(
+        respose=>{
+          console.log(respose);
+          if(respose.error==0){
+            location.reload();
+          }
+        }
+      )
+    }
+    
   }
 }
