@@ -155,8 +155,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   pruebaUso(listaUsuarios:Usuario){
-    console.log("entro a pruebaUso")
-    console.log(listaUsuarios);
     if(listaUsuarios.permisos.length===0){
 
       return false;
@@ -201,8 +199,6 @@ export class UsuariosComponent implements OnInit {
   checkedAdmin(e,listaUsuarios:Usuario){
 
     this.ind_admin=0;
-   
-
     this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
     .subscribe(
       response=>{
@@ -478,11 +474,11 @@ console.log(listaUsuarios.cod_usuario);
 }
 modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario){
       
-  console.log(cod_usuario,nombre, ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3)
   if(cod_usuario=="" || nombre=="" || ape1=="" || ape2=="" || campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""){
     window.alert("Rellena los campos");
 
   }else{
+    
     this.usuarioService.modificarUsuario(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario)
       .subscribe(
         response=>{
@@ -493,13 +489,10 @@ modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo
           console.log(error);
         }
       );
+  
+    
+    } 
   }
-  
-  
-    }
-
-
-
 
     addUsuario(){
       var cop:CopsItem=new CopsItem();
