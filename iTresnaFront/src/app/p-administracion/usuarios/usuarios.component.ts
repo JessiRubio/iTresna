@@ -155,7 +155,8 @@ export class UsuariosComponent implements OnInit {
   }
 
   pruebaUso(listaUsuarios:Usuario){
-
+    console.log("entro a pruebaUso")
+    console.log(listaUsuarios);
     if(listaUsuarios.permisos.length===0){
 
       return false;
