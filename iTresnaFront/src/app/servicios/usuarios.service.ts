@@ -48,6 +48,7 @@ export class UsuariosService {
   modificarUsuario(nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string,cod_usuario:string):Observable<any>{
     
     let json={
+      "accion":"modificar_usuario",
       "nombre":nombre,
       "ape1":ape1,
       "ape2":ape2,
@@ -80,6 +81,41 @@ export class UsuariosService {
   eliminarUsuario(cod_usuario:string, cod_org:number):Observable<any>{
     return this.httpClient.delete(this.url+"?cod_usuario="+cod_usuario
                                   +"&cod_org="+cod_org);
+  }
+
+
+
+  modificarPermisos(cod_usuario:string,cod_org:number,ind_admin:number):Observable<any>{
+    
+    let json={
+      "accion":"modificar_permisos",
+      "cod_usuario":cod_usuario,
+      "cod_org":cod_org,
+      "ind_admin":ind_admin
+    };  
+    return this.httpClient.put(this.url,json);
+  }
+
+  nuevoPermisos(cod_usuario:string,cod_cop:number,cod_esp:number,cod_org:number,ind_admin:number):Observable<any>{
+    
+    let json={
+      "accion":"nuevo_permiso",
+      "cod_usuario":cod_usuario,
+      "cod_cop":cod_cop,
+      "cod_esp":cod_esp,
+      "cod_org":cod_org,
+      "ind_admin":ind_admin
+    };  
+    return this.httpClient.post(this.url,json);
+  }
+
+
+  borrarPermisos(cod_usuario:string,cod_cop:number,cod_esp:number,cod_org:number,ind_admin:number):Observable<any>{
+    return this.httpClient.delete(this.url+"?cod_usuario="+cod_usuario
+                                  +"&cod_cop="+cod_cop
+                                  +"&cod_esp="+cod_esp
+                                  +"&cod_org="+cod_org
+                                  +"&ind_admin="+ind_admin);
   }
 
 

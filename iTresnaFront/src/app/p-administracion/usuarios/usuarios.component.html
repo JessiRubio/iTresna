@@ -82,12 +82,37 @@
             <td>{{item.campo_clasificador1}}</td>
             <td>{{item.campo_clasificador2}}</td>
             <td>{{item.campo_clasificador3}}</td>
-            <td><input type="checkbox" name="uso" value=""></td>
-            <td><input type="checkbox" name="admin" value=""></td>
+            <td>
+                <input type="checkbox" name="uso" *ngIf="pruebaUso(item); else noEsUso"  (change)="checkedUso($event.target.value, item)" value="checked" checked >
+                
+                <ng-template #noEsUso>
+                    
+                   <input type="checkbox" name="uso"  (change)="uncheckedUso($event.target.value, item)" value="checked" >
+                  
+                </ng-template>
+
+            </td>
+
+
+
+            <td>
+                <input type="checkbox" name="admin" value="checked" *ngIf="pruebaAdmin(item); else noEsAdmin" (change)="checkedAdmin($event.target.value, item)" checked >
+                
+                <ng-template #noEsAdmin>
+                    <input type="checkbox" name="admin" value="unchecked" (change)="uncheckedAdmin($event.target.value, item)">
+                </ng-template>
+            </td>
+            
+            
         </tr>
         
     </table>
 </section>
+
+
+
+  
+
 
 <section class="usuarios" *ngIf="usuarios">
 

@@ -31,7 +31,8 @@
                 "ape2"=>$ape2,
                 "campo_clasificador1"=>$campo_clasificador1,
                 "campo_clasificador2"=>$campo_clasificador2,
-                "campo_clasificador3"=>$campo_clasificador3
+                "campo_clasificador3"=>$campo_clasificador3,
+                "permisos"=>obtenerPermisos($cod_usuario)
             );
         }
     
@@ -60,11 +61,38 @@
             "ape2"=>$ape2,
             "campo_clasificador1"=>$campo_clasificador1,
             "campo_clasificador2"=>$campo_clasificador2,
-            "campo_clasificador3"=>$campo_clasificador1
+            "campo_clasificador3"=>$campo_clasificador1,
+            "permisos"=>obtenerPermisos($cod_usuario)
         );
     
     }
     
     
     echo json_encode($result);
+
+
+    function obtenerPermisos($cod_usuario){
+        include("./../conexion.php");
+        $result=array();
+            if(isset($cod_usuario) && $cod_usuario!=""){
+                $sql="SELECT cod_org,cod_esp,cod_cop,ind_admin
+                    FROM t_permisos
+                    WHERE cod_usuario=?
+                    ORDER BY cod_org,cod_esp,cod_cop";
+                $query=$conexion->prepare($sql);
+                $query->bind_param("s",$cod_usuario);
+                $query->execute();
+                $query->bind_result($cod_org,$cod_esp,$cod_cop,$ind_admin);
+                while($query->fetch()){
+                    
+                    $result[]=array(
+                        "cod_org"=>$cod_org,
+                        "cod_esp"=>$cod_esp,
+                        "cod_cop"=>$cod_cop,
+                        "ind_admin"=>$ind_admin==1
+                    );    
+                }                 
+            }
+        return $result;
+    }
 ?>
