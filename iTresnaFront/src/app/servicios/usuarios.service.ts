@@ -54,6 +54,7 @@ export class UsuariosService {
   modificarUsuario(nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string,cod_usuario:string):Observable<any>{
     
     let json={
+      "accion":"modificar_usuario",
       "nombre":nombre,
       "ape1":ape1,
       "ape2":ape2,

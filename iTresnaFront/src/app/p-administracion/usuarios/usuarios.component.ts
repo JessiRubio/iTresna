@@ -111,7 +111,7 @@ export class UsuariosComponent implements OnInit {
         break;
       }
     }
-    console.log(espacio.cod_esp);
+
     this.cod_espPermiso=espacio.cod_esp;
 
     this.descargarCops(esp);
@@ -140,10 +140,6 @@ export class UsuariosComponent implements OnInit {
       res=>{
         this.listaUsuarios= res.usuarios;
       
-        
-        console.log(res);
-      
-        console.log(this.listaUsuarios);
       },
       err=>{
 
@@ -164,56 +160,32 @@ export class UsuariosComponent implements OnInit {
 
   pruebaUso(listaUsuarios:Usuario){
 
-    console.log("Entro en pruebaUso");
-    console.log(listaUsuarios.cod_usuario);
-    console.log(listaUsuarios.permisos);
-  
-
-
     if(listaUsuarios.permisos.length===0){
 
-      console.log("es nulo");
-     
       return false;
     
 
     }else{
-      console.log("no soy nulo");
+     
       return true;
       
     } 
-    
-    /*else{
-        if(listaUsuarios.permisos[0].ind_admin==true){
-        
-        this.checked=true;
-      
-    
-      }else{
-        this.checked=false;
-      }
-    }*/
+  
   
   }
 
 
   pruebaAdmin(listaUsuarios:Usuario){
 
-    console.log("Entro en pruebaUso");
-    console.log(listaUsuarios.cod_usuario);
-    console.log(listaUsuarios.permisos);
-  
-
-
     if(listaUsuarios.permisos.length===0){
 
-      console.log("es nulo");
+     
      
       return false;
     
 
     }else{
-      console.log("no soy nulo");
+      
      if(listaUsuarios.permisos[0].ind_admin==true){
       
       return true;
@@ -223,9 +195,7 @@ export class UsuariosComponent implements OnInit {
       }
     } 
     
-    /*else{
-        
-    }*/
+   
   
   }
 
@@ -234,16 +204,16 @@ export class UsuariosComponent implements OnInit {
   checkedAdmin(e,listaUsuarios:Usuario){
 
     this.ind_admin=0;
-    console.log(listaUsuarios.cod_usuario);
+   
 
     this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
     .subscribe(
       response=>{
-        console.log(response);
+        
         location.reload();
       },
       error=>{
-        console.log(error);
+        
       }
     );
   }
@@ -252,18 +222,17 @@ export class UsuariosComponent implements OnInit {
   uncheckedAdmin(e,listaUsuarios:Usuario){
 
     this.ind_admin=1;
-    console.log(listaUsuarios.cod_usuario);
 
     if(listaUsuarios.permisos.length===0){
 
       this.usuarioService.nuevoPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso, this.cod_espPermiso,listaUsuarios.cod_org,this.ind_admin)
     .subscribe(
       response=>{
-        console.log(response);
+        
         location.reload();
       },
       error=>{
-        console.log(error);
+        
       }
     );
     }else{
@@ -271,11 +240,11 @@ export class UsuariosComponent implements OnInit {
       this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
           .subscribe(
             response=>{
-              console.log(response);
+              
               location.reload();
             },
             error=>{
-              console.log(error);
+              
             }
           );
         }
@@ -499,12 +468,7 @@ console.log(listaUsuarios.cod_usuario);
     this.openModalUsuario(listaUsuarios).subscribe(
       data=>{
         if(data!=null){
-        
-            console.log(listaUsuarios.cod_usuario);
-            console.log(listaUsuarios.permisos[0].ind_admin);
-            for( var pos=0; pos<this.listaUsuarios.length; pos++){
-              console.log("hola");
-            }
+
             this.modificarUsuarios(data.nombre,data.ape1,data.ape2,data.departamento,data.edad,data.horas,listaUsuarios.cod_usuario);
           }else{
             this.modificarUsuarios(data.nombre,data.ape1,data.ape2,data.departamento,data.edad,data.horas,listaUsuarios.cod_usuario);
@@ -516,7 +480,13 @@ console.log(listaUsuarios.cod_usuario);
 
 }
 modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario){
-      this.usuarioService.modificarUsuario(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario)
+      
+  console.log(cod_usuario,nombre, ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3)
+  if(cod_usuario=="" || nombre=="" || ape1=="" || ape2=="" || campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""){
+    window.alert("Rellena los campos");
+
+  }else{
+    this.usuarioService.modificarUsuario(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario)
       .subscribe(
         response=>{
           console.log(response);
@@ -526,6 +496,9 @@ modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo
           console.log(error);
         }
       );
+  }
+  
+  
     }
 
 
@@ -569,7 +542,14 @@ modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo
 
 
           nuevoUsuario(cod_usuario:string,tip_usuario:number,cod_org:number,sarbidea:string,nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string){
-            this.usuarioService.nuevoUsuario(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3).subscribe(
+
+            
+            if(cod_usuario=="" || tip_usuario==null || cod_org==null || sarbidea=="" || nombre=="" || ape1=="" || ape2=="" || campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""){
+              window.alert("Rellena los campos");
+
+            }else{
+              
+              this.usuarioService.nuevoUsuario(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3).subscribe(
               response=>{
                 location.reload();
                 
@@ -579,6 +559,11 @@ modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo
                 console.log(error);
               }
             )
+              
+              
+              
+            }
+            
           }
 
 

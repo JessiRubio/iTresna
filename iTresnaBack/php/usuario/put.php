@@ -24,7 +24,7 @@
 
 
 
-    }else{
+    }else if($accion!="" && $accion=="modificar_usuario"){
 
         if($cod_usuario!=""){
 
