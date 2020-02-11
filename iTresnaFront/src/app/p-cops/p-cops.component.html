@@ -25,19 +25,18 @@
             </mat-select>
         </mat-label>
         <a *ngIf="tienePermisos()">
-                <button class="botonCurar"  type="submit">Curar</button>
+            <button class="botonCurar btn btn-primary"  type="submit">Curar</button>
         </a>
     </div>
 
     
 <div class="outlet container container-fluid">
     <div class="row w-100" style="background: transparent;border: none">
-        <div class="col-md-6 col-lg-4 col-xl-4 mb-4" *ngFor="let item of listSenalesMostradas">
+        <div class="col-md-6 col-lg-4 col-xl-4 mb-4 d-flex" *ngFor="let item of listSenalesMostradas">
             <app-senales style="margin: 0%; padding: 0%;" [senal]="item" [etiquetas]="cop.etiquetas"></app-senales>
         </div>
     </div>
 </div>
 
 <a (click)="nuevaSenal()" class="float"><p>+</p></a>
-
 

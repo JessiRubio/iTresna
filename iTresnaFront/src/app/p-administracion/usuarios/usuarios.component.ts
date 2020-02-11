@@ -135,7 +135,6 @@ export class UsuariosComponent implements OnInit {
     this.usuarioService.getUsuarios(this.organizacion.cod_org).subscribe(
       res=>{
         this.listaUsuarios= res.usuarios;
-      
       },
       err=>{
 

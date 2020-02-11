@@ -66,15 +66,15 @@ export class DatosCalificatoriosComponent implements OnInit{
 
       if (num == 1){
         this.listaClasif = this.listaClasif1;
-        this.listaCargasda = 1;
+        this.listaCargada = 1;
       }
       else if(num == 2){
         this.listaClasif = this.listaClasif2;
-        this.listaCargasda = 2;
+        this.listaCargada = 2;
       } 
       else if (num == 3){
         this.listaClasif = this.listaClasif3;
-        this.listaCargasda = 3;
+        this.listaCargada = 3;
       }
     
   }
