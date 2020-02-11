@@ -17,8 +17,8 @@
 </div>
 
 <div>
-    <ul class="listaCops">
-        <li *ngFor="let item of obtCops(); let i = index" >
+    <ul class="listaCops" >
+        <li *ngFor="let item of obtCops(); let i = index" class="col-xl-3 col-lg-4 col-md-6 col-dm-12 mb-3">
             <a *ngIf="estaEnPermisos(item); else elsePermisos" routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}">
                 <cop-component [ind_admin]="(estaEnPermisos(item))?true:false"  [desc_cop] ="item.desc_cop" [cantidad_senales]="item.cantidad_senales" [img]="item.img_cop"></cop-component> 
             </a>

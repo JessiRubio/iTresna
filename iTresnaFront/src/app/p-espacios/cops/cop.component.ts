@@ -22,4 +22,9 @@ export class CopComponent implements OnInit {
   ngOnInit() {
   }
 
+  getUrl(){
+    console.log(this.img);
+    return "url('"+this.img+"')";
+  }
+
 }

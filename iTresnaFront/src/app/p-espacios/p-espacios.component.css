@@ -44,11 +44,6 @@
     cursor: pointer;
 }
 /*Cops*/
-.listaCops{
-    list-style: none;
-    overflow: hidden;
-    margin-left: 2em;
-}  
 
 .seleccionado{
     background: #888;   
