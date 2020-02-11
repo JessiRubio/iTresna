@@ -62,6 +62,8 @@ export class AdminCopsComponent implements OnInit {
   nuevo(){
 
   }
+
+
   editar(cod_org,cod_esp,cod_cop){
     this.copsService.getCop(cod_org,cod_esp,cod_cop).subscribe(
       respose=>{
@@ -73,6 +75,7 @@ export class AdminCopsComponent implements OnInit {
       }
     );
   }
+
   openModal(cop:CopsItem):Observable<any>{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus=true;
@@ -242,13 +245,8 @@ export class AdminCopsComponent implements OnInit {
         
             this.modificarEtiquetas(data.etiqueta,etiquetas.cod_etiqueta);
             console.log(data.etiqueta);
-           
-          }else{
-            this.modificarEtiquetas(data.etiqueta,etiquetas.cod_etiqueta);
-            
-          }
         }
-      
+      }
     );
 
 }

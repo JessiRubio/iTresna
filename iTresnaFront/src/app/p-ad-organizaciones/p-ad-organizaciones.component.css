@@ -21,13 +21,6 @@ img{
     background: transparent;
 }
 
-input{
-    width: auto;
-    margin-left: 5%;
-    margin-bottom: 1.8%;
-    border-bottom: 1px solid black;
-}
-
 .clickable:hover{
     cursor: pointer;
 }
@@ -50,5 +43,11 @@ input{
     padding: 0%;
     display: inline-block;
     text-align: center;
+}
+
+.filtro input{
+
+    margin-bottom: 2.5%;
+    border-bottom: 1px solid black;
 }
 /*clases libreria mat*/

@@ -4,6 +4,9 @@ import { OrganizacionesService } from '../../servicios/organizaciones.service';
 import { Organizacion, Categorias } from '../../clases/organizacion';
 import { Usuario } from '../../clases/usuario';
 import { ClasificacionService } from '../../servicios/clasificacion.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { Observable } from 'rxjs';
+import { ModalAdminCopsComponent } from 'src/app/modal-admin-cops/modal-admin-cops.component';
 
 @Component({
   selector: 'app-datos-calificatorios',
@@ -30,7 +33,8 @@ export class DatosCalificatoriosComponent implements OnInit{
 
   constructor(private fBuilder: FormBuilder,
     private organizacionesService: OrganizacionesService,
-    private clasificacionService: ClasificacionService) 
+    private clasificacionService: ClasificacionService,
+    private dialog:MatDialog) 
     {
       this.form=this.fBuilder.group({
         clasif1:["",Validators.required],
@@ -40,6 +44,7 @@ export class DatosCalificatoriosComponent implements OnInit{
       this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
       this.datosprevios = true;
       this.editarClasificacion = false;
+      
    }
 
   ngOnInit() {
@@ -95,6 +100,47 @@ export class DatosCalificatoriosComponent implements OnInit{
       
     );
   }
+
+  editarCampo(campo:string){
+
+    this.openModalCampo(campo).subscribe(
+      data=>{
+        if(data!=null){
+        
+          this.clasificacionService.modificarCategoria(this.organizacion.cod_org,this.listaCargada, data.campo).subscribe(
+            respose=>{
+              console.log(respose);
+              if(respose.error==0){
+                location.reload();
+              }
+            }
+          )
+            
+            console.log(data);
+        }
+      }
+    );
+
+}
+
+private openModalCampo(campo:string):Observable<any>{
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.autoFocus=true;
+  dialogConfig.minWidth="50%";
+  dialogConfig.data=[
+    {
+      input:"inputField",
+      controlName:"campo",
+      placeHolder:"Escribe el nombre del campo",
+      data:{
+        desc:campo
+      },
+    }
+  ];
+
+  const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
+  return dialogRef.afterClosed()
+}
 
   cargarlistas(){
     this.listaClasif1 = [];

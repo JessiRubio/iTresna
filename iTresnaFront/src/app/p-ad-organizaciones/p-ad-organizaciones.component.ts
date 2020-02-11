@@ -287,4 +287,15 @@ export class PAdOrganizacionesComponent implements OnInit {
       }
     );
   }
+
+  private filtroSeleccionado():String{
+    if (this.seleccionFiltro==1){
+      return "Ninguno";
+    }else if (this.seleccionFiltro==2){
+      return "Contacto";
+    }
+    else if(this.seleccionFiltro==3){
+      return "Organizacion";
+    }
+  }
 }

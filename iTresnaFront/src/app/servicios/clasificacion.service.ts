@@ -15,4 +15,10 @@ export class ClasificacionService {
                                   +"&cod_tip="+cod_tip
                                   +"&categoria="+categoria);
   }
+
+  modificarCategoria(cod_org:number,cod_tip:number,categoria:string):Observable<any>{
+    return this.httpClient.post(this.url+"?cod_org="+cod_org
+                                  +"&cod_tip="+cod_tip
+                                  +"&categoria="+categoria);
+  }
 }
