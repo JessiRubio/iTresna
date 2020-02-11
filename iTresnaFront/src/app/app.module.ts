@@ -36,7 +36,8 @@ import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkb
 import { ModalcomentariosComponent } from './p-cops/modalcomentarios/modalcomentarios/modalcomentarios.component';
 import { NumberFieldComponent } from './modal-admin-cops/number-field/number-field.component';
 import { DatosCalificatoriosComponent } from './p-administracion/datos-calificatorios/datos-calificatorios.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertGenericoComponent } from './alert-generico/alert-generico.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CheckboxFieldComponent,
     NumberFieldComponent,
     ModalcomentariosComponent,
-    DatosCalificatoriosComponent
+    DatosCalificatoriosComponent,
+    AlertGenericoComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -79,11 +82,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTableModule,
     MaterialFileInputModule,
     MatCheckboxModule,
-    NgbModule,
+    NgbModule
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],
-  entryComponents:[ModalSenalComponent,ModalAdminCopsComponent,ModalcomentariosComponent,SelectFieldComponent,InputFieldComponent,CheckboxFieldComponent]
+  entryComponents:[
+    ModalSenalComponent,
+    ModalAdminCopsComponent,
+    ModalcomentariosComponent,
+    SelectFieldComponent,
+    InputFieldComponent,
+    CheckboxFieldComponent,
+    AlertGenericoComponent
+  ]
 })
 export class AppModule { 
 }

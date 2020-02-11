@@ -11,6 +11,10 @@ import { Observable } from 'rxjs';
 import { EtiquetaItem } from './../clases/copsitem';
 import { ModalSenalComponent } from './modalsenal/modalsenal.component';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { Alerta } from '../clases/alerta'
+import { NgbModal, NgbModalOptions, NgbModalRef, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AlertGenericoComponent } from '../alert-generico/alert-generico.component';
+
 
 @Component({
   selector: 'app-p-cops',
@@ -22,7 +26,6 @@ export class PCopsComponent implements OnInit {
   private usuarioLogeado:Usuario;
   private cod_esp:number;
   private cod_cop:number;
-
   private listaSenales:SenalesItem[]=[];
   private listSenalesMostradas:SenalesItem[]=[];
   private cop:CopsItem=new CopsItem();
@@ -37,7 +40,8 @@ export class PCopsComponent implements OnInit {
     private espaciosService:EspaciosService,
     private copsService:CopsService,
     private senalesService:SenalesService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private modalService:NgbModal
     ) {}
 
   ngOnInit() {
@@ -241,21 +245,37 @@ export class PCopsComponent implements OnInit {
           data.etiqueta, data.descripcion, data.url).subscribe(
             response=>{
               if(response.error!=0 && response.aniadido==0){
-                window.alert("No se ha podido añadir la senñal");
+                let alert:Alerta = {
+                  message:"No se ha podido añadir la señal", 
+                  type:'success'
+                };
+                this.abrirAlerta(alert);
               }
               else if(response.error==0 && response.aniadido==1){
-                location.reload();
-                window.alert("Señal añadida correctamente");
+                let alert:Alerta = {
+                  message:"Señal añadida correctamente", 
+                  type:'success'
+                };
+              this.abrirAlerta(alert);
               }
             },
             err=>{
-              console.log(err);
-              window.alert("Error de conexion o fallo en servidor");
+              let alert:Alerta = {
+                message:"Error con el servidor",
+                type:'danger'
+              };
+              this.abrirAlerta(alert);
             }
           );
         }
       }
     );
     
+  }
+  abrirAlerta(alerta:Alerta){
+    let modalRef:NgbModalRef;
+    modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
+    (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
+    console.log(modalRef.componentInstance);
   }
 }
