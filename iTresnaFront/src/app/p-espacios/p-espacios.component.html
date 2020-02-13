@@ -16,7 +16,7 @@
     </nav>
 </div>
 
-<div>
+<div style="padding: 1em;">
     <ul class="listaCops" >
         <li *ngFor="let item of obtCops(); let i = index" >
             <a *ngIf="estaEnPermisos(item); else elsePermisos" routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}">
