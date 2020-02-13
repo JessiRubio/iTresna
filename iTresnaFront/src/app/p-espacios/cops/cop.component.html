@@ -1,11 +1,16 @@
-<div class="contenedor">
-   
-    <section [ngClass]="(ind_admin)?'seleccionable':'noSeleccionable'" class="contenido" >
-            <img class="imgprueba"  [src]="img" alt="prueba">
-            
-            <h3>{{desc_cop}}</h3>
-
-            <p class="numeroSenales">{{cantidad_senales}} Señales</p>
-    </section>
-    
+<div class="contenedor" >
+        <div class="card card-flip">
+            <div class="card-front text-white bg-dark">
+                <div class="card-body">
+                    <i class="fa fa-search fa-5x float-right"></i>
+                    <img [src]="img" alt="prueba">
+                </div>
+            </div>
+            <div class="card-back" [ngClass]="(ind_admin)?'seleccionable':'noSeleccionable'">
+                <div class="card-body">
+                    <h3 class="card-title">{{desc_cop}}</h3>
+                    <p class="card-text">{{cantidad_senales}} Señales</p>
+                </div>
+            </div>
+        </div>
 </div>

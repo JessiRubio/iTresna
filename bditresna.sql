@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-01-2020 a las 10:33:49
+-- Tiempo de generación: 12-02-2020 a las 16:06:57
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -12,7 +12,7 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-/* */
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -22,9 +22,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `bditresna`
 --
 
-DROP DATABASE bditresna;
-CREATE DATABASE bditresna;
-USE bditresna;
 -- --------------------------------------------------------
 
 --
@@ -69,19 +66,19 @@ CREATE TABLE `t_cops` (
 --
 
 INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
-(1, 1, 1, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\prueba.png', NULL),
-(2, 1, 1, 'Informatica', 'http:\\\\localhost:8080\\media\\Cops\\informatica.png', NULL),
-(3, 1, 1, 'Integración Social', 'http:\\\\localhost:8080\\media\\Cops\\integracion_social.png', NULL),
-(4, 1, 1, 'Administración y Finanzas', 'http:\\\\localhost:8080\\media\\Cops\\administracion_y_finanzas.svg', NULL),
-(5, 1, 1, 'F.O.L.', 'http:\\\\localhost:8080\\media\\Cops\\fol.jpg', NULL),
-(6, 2, 1, 'Pre-proyecto', 'http:\\\\localhost:8080\\media\\Cops\\pre_proyecto.png', NULL),
-(7, 2, 1, 'Proyecto en curso', 'http:\\\\localhost:8080\\media\\Cops\\proyectos.png', NULL),
-(8, 3, 1, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion.jpg', NULL),
-(11, 4, 2, 'Señales Relevantes', 'http:\\\\localhost:8080\\media\\Cops\\senales_relevantes_2.png', NULL),
-(12, 4, 2, 'Ibermatica Digital', 'http:\\\\localhost:8080\\media\\Cops\\ibermatica_digital.png', NULL),
-(13, 5, 2, 'Pre-proyectos', 'http:\\\\localhost:8080\\media\\Cops\\pre-proyecto2.png', NULL),
-(14, 5, 2, 'Proyecto en curso', 'http:\\\\localhost:8080\\media\\Cops\\proyectos2.png', NULL),
-(15, 6, 2, 'Plan de Explotación', 'http:\\\\localhost:8080\\media\\Cops\\plan_explotacion2.png', NULL);
+(1, 1, 1, 'Señales Relevantes', 'http://localhost:8080/media/Cops/prueba.png', NULL),
+(2, 1, 1, 'Informatica', 'http://localhost:8080/media/Cops/informatica.png', NULL),
+(3, 1, 1, 'Integración Social', 'http://localhost:8080/media/Cops/integracion_social.png', NULL),
+(4, 1, 1, 'Administración y Finanzas', 'http://localhost:8080/media/Cops/administracion_y_finanzas.svg', NULL),
+(5, 1, 1, 'F.O.L.', 'http://localhost:8080/media/Cops/fol.jpg', NULL),
+(6, 2, 1, 'Pre-proyecto', 'http://localhost:8080/media/Cops/pre_proyecto.png', NULL),
+(7, 2, 1, 'Proyecto en curso', 'http://localhost:8080/media/Cops/proyectos.png', NULL),
+(8, 3, 1, 'Plan de Explotación', 'http://localhost:8080/media/Cops/plan_explotacion.jpg', NULL),
+(11, 4, 2, 'Señales Relevantes', 'http://localhost:8080/media/Cops/senales_relevantes_2.png', NULL),
+(12, 4, 2, 'Ibermatica Digital', 'http://localhost:8080/media/Cops/ibermatica_digital.png', NULL),
+(13, 5, 2, 'Pre-proyectos', 'http://localhost:8080/media/Cops/pre-proyecto2.png', NULL),
+(14, 5, 2, 'Proyecto en curso', 'http://localhost:8080/media/Cops/proyectos2.png', NULL),
+(15, 6, 2, 'Plan de Explotación', 'http://localhost:8080/media/Cops/plan_explotacion2.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -164,7 +161,6 @@ CREATE TABLE `t_megusta` (
 
 INSERT INTO `t_megusta` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usuario`) VALUES
 (3, 5, 1, 1, 'usuario@usuario.com'),
-(4, 2, 1, 1, 'rubiovargas.jessica@gmail.com'),
 (13, 11, 4, 2, 'jaime.corrales@gmail.com'),
 (13, 11, 4, 2, 'usuario@usuario.com');
 
@@ -190,8 +186,8 @@ CREATE TABLE `t_org` (
 --
 
 INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`, `clasif1`, `clasif2`, `clasif3`) VALUES
-(1, 'FP Txurdinaga', '', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen', 'Departamento', 'Edad', 'horas semanas'),
-(2, 'Ibermatica', '', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización', 'Puesto', 'Salario', 'fecha_ingreso');
+(1, 'FP Txurdinaga', 'http://localhost:8080/media/Org/LogoTxurdinaga.png', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen', 'Departamento', 'Edad', 'horas semanas'),
+(2, 'Ibermatica', 'http://localhost:8080/media/Org/LogoIbermatica.png', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización', 'Puesto', 'Salario', 'fecha_ingreso');
 
 -- --------------------------------------------------------
 
@@ -241,7 +237,6 @@ CREATE TABLE `t_senales` (
 
 INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiqueta`, `cod_usuario`, `desc_senal`, `enlace`, `fecha_hora`, `ind_fich_gest`, `img_senal`) VALUES
 (3, 5, 1, 1, 3, 'jaime.corrales@gmail.com', 'noticia', 'enlace', '2019-12-10', NULL, ''),
-(4, 2, 1, 1, 2, 'jonanderdecastro@gmail.com', 'noticia', 'enlace', '2019-11-20', NULL, ''),
 (5, 1, 1, 1, 1, 'usuario@usuario.com', 'noticia', 'enlace', '2019-12-21', NULL, ''),
 (6, 5, 1, 1, 3, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-11-11', NULL, ''),
 (7, 12, 4, 2, 24, 'unaimarg@gmail.com', 'noticia', 'enlace', '2020-01-14', NULL, ''),
@@ -250,7 +245,9 @@ INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiq
 (10, 2, 1, 1, 1, 'jonanderdecastro@gmail.com', 'noticias', 'enlace', '2019-12-01', NULL, ''),
 (11, 3, 1, 1, 16, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2020-02-13', NULL, ''),
 (12, 8, 3, 1, 4, 'usuario@usuario.com', 'noticia', 'enalce', '2019-12-13', NULL, ''),
-(13, 11, 4, 2, 24, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-30', NULL, '');
+(13, 11, 4, 2, 24, 'rubiovargas.jessica@gmail.com', 'noticia', 'enlace', '2019-12-30', NULL, ''),
+(15, 2, 1, 1, 1, 'rubiovargas.jessica@gmail.com', 'Nueva', 'https://elpais.com/deportes/2020/01/31/es_laliga/1580475604_563489.html', NULL, NULL, NULL),
+(19, 2, 1, 1, 2, 'rubiovargas.jessica@gmail.com', 'dfaszgfvas', 'https://elpais.com/tecnologia/2020/02/04/actualidad/1580842165_270752.html', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,24 +267,14 @@ CREATE TABLE `t_tip_clasificacion` (
 --
 
 INSERT INTO `t_tip_clasificacion` (`cod_org`, `cod_tip`, `tip_clasificacion`, `categoria`) VALUES
-(1, 1, 'Departamento', 'Matematicas'),
+(1, 1, 'Departamento', 'F.O.L'),
 (1, 1, 'Departamento', 'Informatica'),
 (1, 1, 'Departamento', 'Kimika'),
-(1, 2, 'Edad', '18<x<25'),
-(1, 1, 'Departamento', 'F.O.L'),
-(1, 2, 'Edad', '25<x<30'),
-(1, 2, 'Edad', '30<x<45'),
-(1, 2, 'Edad', '45<x'),
+(1, 1, 'Departamento', 'Matematicas'),
 (2, 1, 'Puesto', 'Analista'),
-(2, 1, 'Puesto', 'Programador junior'),
-(2, 1, 'Puesto', 'Programador señor'),
 (2, 1, 'Puesto', 'Jefe de equipo'),
-(2, 2, 'Sueldo', 'x<1000'),
-(2, 2, 'Sueldo', '1000<x<1500'),
-(2, 2, 'Sueldo', '1500<x<2000'),
-(2, 2, 'Sueldo', '2000<x<3000'),
-(2, 2, 'Sueldo', '3000<x<5000'),
-(2, 2, 'Sueldo', '5000<x');
+(2, 1, 'Puesto', 'Programador junior'),
+(2, 1, 'Puesto', 'Programador señor');
 
 -- --------------------------------------------------------
 
@@ -381,7 +368,6 @@ CREATE TABLE `t_variable` (
 --
 
 INSERT INTO `t_variable` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `tip_variable`, `val_variable`) VALUES
-(4, 2, 1, 1, 3, 23),
 (6, 5, 1, 1, 5, 66),
 (13, 11, 4, 2, 1, 50);
 
@@ -448,6 +434,12 @@ ALTER TABLE `t_senales`
   ADD KEY `fk_t_senales_etiqueta` (`cod_etiqueta`);
 
 --
+-- Indices de la tabla `t_tip_clasificacion`
+--
+ALTER TABLE `t_tip_clasificacion`
+  ADD PRIMARY KEY (`cod_org`,`cod_tip`,`tip_clasificacion`,`categoria`);
+
+--
 -- Indices de la tabla `t_tip_usuario`
 --
 ALTER TABLE `t_tip_usuario`
@@ -512,7 +504,7 @@ ALTER TABLE `t_org`
 -- AUTO_INCREMENT de la tabla `t_senales`
 --
 ALTER TABLE `t_senales`
-  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `t_tip_usuario`
@@ -534,8 +526,8 @@ ALTER TABLE `t_tip_variable`
 -- Filtros para la tabla `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
-  ADD CONSTRAINT `fk_t_comentario_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_comentario_usuario` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_comentario_usuario` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_t_comentario_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `t_cops`
