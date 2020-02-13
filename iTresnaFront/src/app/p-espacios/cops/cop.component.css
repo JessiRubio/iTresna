@@ -19,7 +19,6 @@
     border-radius: 20px;
 }
 
-
 .card-flip > div {
     backface-visibility: hidden;
     transition: transform 300ms;
