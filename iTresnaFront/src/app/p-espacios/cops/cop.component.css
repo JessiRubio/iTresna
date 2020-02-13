@@ -11,23 +11,11 @@
 .card {
     background-color: transparent;
     width: 15em;
-<<<<<<< HEAD
-    border-radius: 20px;
-}
-
-.card-flip > div {
-    backface-visibility: hidden;
-    transition: transform 300ms;
-    transition-timing-function: linear;
-    margin: 0;
-}
-=======
     height: 15em;
     padding: 0%;
     border: none;
     
   }
->>>>>>> 97ddc4cea6942af5a8e1e14abed314a35a7ea4ef
   
   /* This container is needed to position the front and back side */
   .card-body {
