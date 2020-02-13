@@ -38,6 +38,7 @@ import { NumberFieldComponent } from './modal-admin-cops/number-field/number-fie
 import { DatosCalificatoriosComponent } from './p-administracion/datos-calificatorios/datos-calificatorios.component';
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertGenericoComponent } from './alert-generico/alert-generico.component';
+import { PCuracionComponent } from './p-curacion/p-curacion.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { AlertGenericoComponent } from './alert-generico/alert-generico.componen
     ModalcomentariosComponent,
     DatosCalificatoriosComponent,
     AlertGenericoComponent,
+    PCuracionComponent,
 
   ],
   imports: [
