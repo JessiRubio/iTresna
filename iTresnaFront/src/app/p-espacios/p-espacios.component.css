@@ -51,11 +51,13 @@
 
 .listaCops{
     list-style: none;
-    overflow: hidden;
-    margin-left: 2em;
+    padding: 0;
+    text-align: center;
 }  
 
 .listaCops li{
+    vertical-align: top;
     display: inline-block;
-    margin: 1%;
+    margin: 2%;
 }
+

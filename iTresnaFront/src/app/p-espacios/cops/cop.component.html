@@ -1,16 +1,11 @@
-<div class="contenedor" >
-        <div class="card card-flip">
-            <div class="card-front text-white bg-dark">
-                <div class="card-body">
-                    <i class="fa fa-search fa-5x float-right"></i>
-                    <img [src]="img" alt="prueba">
-                </div>
-            </div>
-            <div class="card-back" [ngClass]="(ind_admin)?'seleccionable':'noSeleccionable'">
-                <div class="card-body">
-                    <h3 class="card-title">{{desc_cop}}</h3>
-                    <p class="card-text">{{cantidad_senales}} Señales</p>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-body">
+        <div class="card-front text-white bg-dark">
+            <img [src]="img" alt="prueba">
         </div>
+        <div class="card-back" [ngClass]="(ind_admin)?'seleccionable':'noSeleccionable'">
+            <h3 class="">{{desc_cop}}</h3>
+            <p class="">{{cantidad_senales}} Señales</p>
+        </div>
+    </div>
 </div>
