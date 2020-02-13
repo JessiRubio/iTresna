@@ -12,13 +12,14 @@ import { of } from 'rxjs';
   styleUrls: ['./organizacion.component.css']
 })
 export class OrganizacionComponent implements OnInit {
-  private form:FormGroup;
+  form:FormGroup;
   private usuarioLogeado:Usuario;
   private editar:boolean=true;
   organizacion:Organizacion;
   usuarios:string[]=[];
   img:string="";
   url:string="";
+  placeHolder:string;
 
   deshabilitado:boolean=true;
   constructor(private fBuilder: FormBuilder,

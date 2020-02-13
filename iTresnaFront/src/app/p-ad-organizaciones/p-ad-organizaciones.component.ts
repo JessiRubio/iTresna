@@ -198,7 +198,7 @@ export class PAdOrganizacionesComponent implements OnInit {
     );
   }
 
-  private editar(item:Organizacion){
+  editar(item:Organizacion){
     this.organizacionesService.getOrganizacionActual(item.cod_org).subscribe(
       response=>{
         let usuarios:any[]=[];
@@ -288,7 +288,7 @@ export class PAdOrganizacionesComponent implements OnInit {
     );
   }
 
-  private filtroSeleccionado():String{
+  filtroSeleccionado():String{
     if (this.seleccionFiltro==1){
       return "Ninguno";
     }else if (this.seleccionFiltro==2){

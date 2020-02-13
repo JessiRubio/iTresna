@@ -11,7 +11,7 @@ export class SelectFieldComponent implements OnInit {
   @Input() data:any[];
   @Input() controlName:string="";
   @Input() placeHolder:string="";
-  private selected:number=0;
+  selected:number=0;
   constructor() {
   }
   changeValue(value:number){

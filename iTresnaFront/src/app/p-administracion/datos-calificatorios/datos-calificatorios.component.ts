@@ -15,18 +15,18 @@ import { ModalAdminCopsComponent } from 'src/app/modal-admin-cops/modal-admin-co
 })
 export class DatosCalificatoriosComponent implements OnInit{
 
-  private form:FormGroup;
+  form:FormGroup;
   private organizacion: Organizacion;
   private usuarioLogeado: Usuario;
 
-  private datosprevios:Boolean;
-  private editarClasificacion:Boolean;
+  datosprevios:Boolean;
+  editarClasificacion:Boolean;
+  selected:string
+  listaClasif:string[];
 
-  private listaClasif:string[];
-
-  private listaClasif1:string[];
-  private listaClasif2:string[];
-  private listaClasif3:string[];
+  listaClasif1:string[];
+  listaClasif2:string[];
+  listaClasif3:string[];
 
   private listaCargada:number =0;
 

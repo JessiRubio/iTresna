@@ -27,9 +27,9 @@ export class PCopsComponent implements OnInit {
   private cod_esp:number;
   private cod_cop:number;
   private listaSenales:SenalesItem[]=[];
-  private listSenalesMostradas:SenalesItem[]=[];
-  private cop:CopsItem=new CopsItem();
-  private espacio:EspaciosItem = new EspaciosItem();
+  listSenalesMostradas:SenalesItem[]=[];
+  cop:CopsItem=new CopsItem();
+  espacio:EspaciosItem = new EspaciosItem();
   selected: string = '';
   private filtroEtiqueta:number=-1;
   private filtroUsuario:number=-1;
