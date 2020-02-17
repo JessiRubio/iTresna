@@ -21,10 +21,10 @@
 				<form class="escribeComentario w-100" *ngIf="mostrarEnvio==true"> 
 					<div class="input-group h-5">
 						<textarea class="form-control custom-control" style="resize:none" name="comentarios" placeholder="Comentario" [(ngModel)]="str"  rows=2></textarea>
-						<button class="input-group-addon btn btn-primary" type="submit"  (click)=nuevoComentario()>
+						<button class="input-group-addon btn btn-primary" (click)=nuevoComentario()>
 							<img  src="assets/enviar2.png" alt="enviar">
 						</button>
-						<button class="input-group-addon btn btn-danger" type="submit"  (click)=nuevoComentario()>
+						<button class="input-group-addon btn btn-danger"  (click)="this.mostrarEnvio=false;">
 							X
 						</button>
 					</div>
@@ -58,7 +58,7 @@
 				</button>
 			</div>
 		</div>
-		<button class="btn center" (click)="mostrarSenalCompleta()" >
+		<button class="btn center ampliar" (click)="mostrarSenalCompleta()" >
 			<img [ngClass]="acortado==true ? 'derecho':'delReves'" src="assets/arrow.png">
 		</button>
 	</div>

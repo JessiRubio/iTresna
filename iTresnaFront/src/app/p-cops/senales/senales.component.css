@@ -39,9 +39,15 @@
     background: #AAA;
     border-radius: .5rem;
 }
+.ampliar{
+    width: 50%;
+}
 .derecho{
     transform: scale(1);
 }
 .delReves{
     transform: scale(-1);
+}
+.card{
+    box-shadow: 2px 3px lightslategray;
 }
