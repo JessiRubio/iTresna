@@ -90,6 +90,7 @@ export class SenalesComponent implements OnInit {
     var codUser=this.usuarioLogeado.cod_usuario;
     this.senalesService.like(codUser,this.senal.cod_org,this.senal.cod_esp,this.senal.cod_cop,this.senal.cod_senal).subscribe(
       res=>{
+        console.log(res);
         if(res.error==0){
           if(res.aniadido==1){
             this.senal.me_ha_gustado=true;

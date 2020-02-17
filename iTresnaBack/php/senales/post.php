@@ -36,8 +36,6 @@
         }
 
     } else if($accion==="like"){
-    die();
-        
         $cod_senal=$data->cod_senal;
         if($cod_usuario!=="" && $cod_org!=="" 
             && $cod_esp!=="" && $cod_cop!=="" && $cod_senal!==""){

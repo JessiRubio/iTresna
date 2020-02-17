@@ -278,4 +278,9 @@ export class PCopsComponent implements OnInit {
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
     console.log(modalRef.componentInstance);
   }
+
+  curar(){
+   
+  }
+
 }

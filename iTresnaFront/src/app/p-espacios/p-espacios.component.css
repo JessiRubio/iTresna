@@ -1,18 +1,18 @@
 .cabecera{
-    background-color: #000000d7;
+    background-color: #760f82;
     width: 100%;
     margin:0;
+    margin-top: 5em;
 }
 
 .cabecera section img{
-    width: 20%;
+    width: 10%;
     display: inline-block;
-    margin:2%;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 2%;
+    margin-left: 5%;
 }
 
-.cabecera section p{
+.cabecera p{
     width: 60%;
     margin:2%;
     margin-left: 8%;
@@ -20,33 +20,50 @@
     margin-bottom: 0;
     font-size: 2em;
     font-style: italic ;
-    color:white;
+    color:black;
     display: inline-block;
     text-align:center;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 #menu ul {
     list-style-type: none;
     padding: 0;
     /*background-color: #555453;*/
-    border-radius: 1em;
+    border-radius: 1rem;
     text-align: center;
     margin-top: 0;
 }
-#menu>ul>li {
+#menu li {
     display: inline-block;
     padding: 1em;
     color: white;
-    border-radius: 1em;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+
 }
-#menu>ul>li:hover{
+#menu li:hover{
     cursor: pointer;
+    background: #540b5d;
 }
 /*Cops*/
 
 .seleccionado{
-    background: #888;   
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: #540b5d;
+    
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: #540b5d;
+
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #540b5d;
 }
 
 .listaCops{
