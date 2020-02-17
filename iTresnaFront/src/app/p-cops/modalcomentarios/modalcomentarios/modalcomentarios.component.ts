@@ -18,7 +18,7 @@ export class ModalcomentariosComponent implements OnInit {
 
   @Input() senal:SenalesItem;
   @Input() comentario:Comentario;
-  private listaComentarios:Comentario[]=[];
+  listaComentarios:Comentario[]=[];
 
   constructor(private http:HttpClient,
     private comentariosService:ComentariosService,

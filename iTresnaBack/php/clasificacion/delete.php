@@ -16,7 +16,7 @@
         $sql="DELETE FROM t_tip_clasificacion
         WHERE cod_org=? AND cod_tip=? AND categoria=?";
     $query=$conexion->prepare($sql);
-    $query->bind_param("iis",$cod_org,$cod_tip.$categoria);
+    $query->bind_param("iis",$cod_org,$cod_tip,$categoria);
     $query->execute();
     $affected_rows=$query->affected_rows;
     $query->close();

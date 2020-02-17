@@ -10,8 +10,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class ModalAdminCopsComponent implements OnInit {
   private controllerNames:string[]=[];
-  private intData;
-  private formGroup:FormGroup;
+  intData;
+  formGroup:FormGroup;
   
   constructor(
     private http:HttpClient,

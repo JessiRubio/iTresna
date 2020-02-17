@@ -33,10 +33,10 @@ export class SenalesComponent implements OnInit {
   @Input() comentario:Comentario;
   @Input() etiquetas:EtiquetaItem[];
 
-  private titulo:String= "Lorem Ipsum";
-  private imagen:string="./../../../assets/cyberSecurityData.jpg";
-  private listaComentarios:Comentario[]=[];
-  private acortado:boolean=true; 
+  titulo:String= "Lorem Ipsum";
+  imagen:string="./../../../assets/cyberSecurityData.jpg";
+  listaComentarios:Comentario[]=[];
+  acortado:boolean=true; 
 
   constructor(
     private http:HttpClient,
