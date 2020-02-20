@@ -1,5 +1,18 @@
+.atras{
+    margin-top: 6em;
+    margin-left: 10%;
+}
+.atras img{
+    width: 25px;
+    height: 25px;
+    transform: rotateZ(-90deg);
+}
 h2{
     text-align: center;
     background-image:linear-gradient(to left, #C79BF2, #B0A7F1, #8EB4E6, #7BCAE1);
     margin-bottom: 5%;
+}
+.organizar{
+    width: 100%;
+    height: auto;
 }

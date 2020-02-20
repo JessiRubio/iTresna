@@ -1,11 +1,22 @@
 
 
 <!-- Menu-->
-<nav id="menu">
-    <div class="espacio"><p>{{espacio.desc_esp}}</p></div>
-    <div class="cop"><p>{{cop.desc_cop}}</p></div>
-</nav>
-<div class="opciones">
+<div id="menu">
+    <div class="atras" ><img routerLink="/Principal" src="assets/outline_arrow.png"></div>
+    <div class="localizacion">
+        <p>{{espacio.desc_esp}}</p>
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn selectorCop" id="dropdownBasic1" ngbDropdownToggle>{{cop.desc_cop}}</button>
+            <div class="dropDownItem"ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}" ngbDropdownItem *ngFor="let item of listaCops">{{item.desc_cop}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="opciones" *ngIf="curando==false">
         <mat-label class = "ordenar">Ordenar por:
             <mat-select value="0" class="matSelect" name="filtro" class="filtrar" (selectionChange)="ordenar($event.value)">
                 <mat-option value="0"> Por fecha descendente</mat-option>
@@ -27,10 +38,16 @@
         <a *ngIf="tienePermisos()">
             <button class="botonCurar btn btn-primary" (click)="curar()">Curar</button>
         </a>
-    </div>
+</div>
+<div class="opciones" *ngIf="curando==true">
+    <button class="descurar btn btn-primary" (click)="curar()">Parar Curacion</button>
+</div>
+<div *ngIf="curando==true">
+    <app-p-curacion [senales]="listaSenales"></app-p-curacion>
+</div>
 
     
-<div class="outlet container container-fluid">
+<div class="outlet container container-fluid" *ngIf="curando==false">
     <div class="row w-100" style="background: transparent;border: none">
         <div class="col-md-6 col-lg-4 col-xl-4 mb-4 d-flex" *ngFor="let item of listSenalesMostradas">
             <app-senales style="margin: 0%; padding: 0%;" [senal]="item" [etiquetas]="cop.etiquetas"></app-senales>

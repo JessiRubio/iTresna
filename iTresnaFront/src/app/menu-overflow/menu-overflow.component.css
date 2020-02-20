@@ -1,52 +1,166 @@
-#administracion  ul {
-    list-style-type: none;
-    top: 0em;
-    right: 2em;
+.nav ul{
+    opacity: 0;
+    list-style: none;
+    -webkit-animation: fadeout 1s; 
+       -moz-animation: fadeout 1s; 
+        -ms-animation: fadeout 1s; 
+         -o-animation: fadeout 1s; 
+            animation: fadeout 1s;
+
+}
+.nav ul.active{
     position: absolute;
-} 
-
-#administracion  ul  a {
-    text-decoration: none;
+    top: 100%;
+    left: 33%;
+    font-size: 30px;
     color: white;
-} 
-
-#administracion ul ul {
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0; 
-    margin-top: 1.5em;
-    padding:0;
-    overflow: hidden;
-    height: 7em;
-    width:7.2em;
-    background-color: #555453;
+    margin: auto;
+    opacity: 1;
+    -webkit-animation: fadein 1s; 
+       -moz-animation: fadein 1s; 
+        -ms-animation: fadein 1s; 
+         -o-animation: fadein 1s; 
+            animation: fadein 1s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-#administracion ul li:hover > ul {
-    display:block;
-    padding: 1em;
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-#administracion ul li {
-    position:relative;
-}   
-
-#administracion li ul{
-    display:none;
-    position:absolute;
-    top:1em;
-    left: -6em;
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-#administracion ul li ul li{
-    margin-top: 0.5em;
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-.imgMenu{
-    height: 3em;
-    width: 3em;
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
-.clickable:hover{
+@keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+.nav-tgl {
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    z-index: 100;
+    right: 30px;
+    width: 70px;
+    top:5px;
+    height: 70px;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.24);
+    line-height: 0.6;
+    text-align: center;
+}
+.nav-tgl > span {
+    display: inline-block;
+    position: relative;
+    height: 2px;
+    width: 34px;
+    border-radius: 1px;
+    background: #293335;
+    vertical-align: middle;
+}
+.nav-tgl > span:before, .nav-tgl > span:after {
+    display: inline-block;
+    position: absolute;
+    content: "";
+    height: 2px;
+    border-radius: 1px;
+    background: #293335;
+    transition: all 200ms;
+}
+.nav-tgl > span:before {
+    top: -11px;
+    left: 3px;
+    width: 28px;
+}
+.nav-tgl > span:after {
+    top: 11px;
+    left: 6px;
+    width: 22px;
+}
+.nav-tgl:focus {
+    outline: none;
+}
+.nav-tgl:hover > span:after, .nav-tgl:hover > span:before {
+    width: 34px;
+    left: 0;
+}
+.nav:before {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    transition: all 500ms ease-in-out;
+    clip-path: circle(30px at calc(100% - 65px) 65px);
+    visibility: hidden;
+}
+.menu.active .nav:before {
+    visibility: visible;
+    clip-path: circle(100%);
+}
+.menu.active .nav-tgl > span {
+    height: 0;
+}
+.menu.active .nav-tgl > span:after, .menu.active .nav-tgl > span:before {
+    top: 0px;
+    left: 0;
+    width: 34px;
+}
+.menu.active .nav-tgl > span:after {
+    transform: rotate(-45deg);
+}
+.menu.active .nav-tgl > span:before {
+    transform: rotate(45deg);
+}
+.clickable{
     cursor: pointer;
 }

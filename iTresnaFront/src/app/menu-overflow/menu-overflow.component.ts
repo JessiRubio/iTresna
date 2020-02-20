@@ -11,6 +11,7 @@ import { UsuariosService } from '../servicios/usuarios.service';
 })
 export class MenuOverflowComponent implements OnInit {
 
+  open:boolean=false;
   public show:boolean = false;
  
   usuarioLogado:Usuario;
@@ -29,6 +30,7 @@ export class MenuOverflowComponent implements OnInit {
   }
 
   onClick(e){
+    this.toggleMenu();
     if(e.target.innerHTML==='Cerrar sesión'){
       this.usuarioService.logout();
     }
@@ -41,4 +43,8 @@ export class MenuOverflowComponent implements OnInit {
     this.show = !this.show;
   }
 
+  toggleMenu(){
+    console.log(this.open);
+    this.open=!this.open;
+  }
 }

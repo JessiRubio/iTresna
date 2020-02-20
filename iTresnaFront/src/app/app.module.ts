@@ -39,8 +39,11 @@ import { DatosCalificatoriosComponent } from './p-administracion/datos-calificat
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertGenericoComponent } from './alert-generico/alert-generico.component';
 import { PCuracionComponent } from './p-curacion/p-curacion.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropListComponent } from './p-curacion/drag-drop-list/drag-drop-list.component';
 
 @NgModule({
+
   declarations: [
     AppComponent,
     LoginComponent,
@@ -67,6 +70,7 @@ import { PCuracionComponent } from './p-curacion/p-curacion.component';
     DatosCalificatoriosComponent,
     AlertGenericoComponent,
     PCuracionComponent,
+    DragDropListComponent,
 
   ],
   imports: [
@@ -84,7 +88,8 @@ import { PCuracionComponent } from './p-curacion/p-curacion.component';
     MatTableModule,
     MaterialFileInputModule,
     MatCheckboxModule,
-    NgbModule
+    NgbModule,
+    DragDropModule,
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],

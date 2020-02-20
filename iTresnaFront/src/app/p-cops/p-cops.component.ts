@@ -34,6 +34,8 @@ export class PCopsComponent implements OnInit {
   private filtroEtiqueta:number=-1;
   private filtroUsuario:number=-1;
   
+  private listaCops:CopsItem[]=[];
+  private curando=false;
   constructor(
     private route: ActivatedRoute,
     private router:Router,
@@ -55,7 +57,18 @@ export class PCopsComponent implements OnInit {
       this.cargarEsp();
       this.cargarCop();
       this.cargarSenales();
+      this.cargarCopsDeEsp();
     });
+  }
+  cargarCopsDeEsp(){
+    this.copsService.getCops(this.usuarioLogeado.cod_org,this.cod_esp,this.usuarioLogeado.cod_usuario)
+      .subscribe(
+        response=>{
+          if(response.error==0){
+            this.listaCops=response.cops;
+          }
+        }
+      );
   }
   cargarEsp(){
     this.espaciosService.getEspacio(this.usuarioLogeado.cod_org,this.cod_esp)
@@ -101,6 +114,9 @@ export class PCopsComponent implements OnInit {
     if(this.cod_cop=i){
       this.cod_cop=i;
     }
+  }
+  cambiarCop(cod_cop:number){
+    console.log(cod_cop);
   }
   tienePermisos():boolean{
     var cod_org_actual=this.cop.cod_org;
@@ -280,7 +296,7 @@ export class PCopsComponent implements OnInit {
   }
 
   curar(){
-   
+   this.curando=!this.curando;
   }
 
 }

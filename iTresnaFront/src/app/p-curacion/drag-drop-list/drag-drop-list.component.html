@@ -1,0 +1,10 @@
+<div 
+    id="{{senales.nombre}}"
+    class="example-list senal-container"
+    [cdkDropListData]="senales.senales"
+    [cdkDropListConnectedTo]="allDropList"
+    (cdkDropListDropped)="drop($event)"
+    cdkDropList>
+    <h2>{{senales.nombre}}</h2>
+    <div class="example-box" *ngFor="let senal of senales.senales" cdkDrag>{{senal.desc_senal}}</div>
+</div>
