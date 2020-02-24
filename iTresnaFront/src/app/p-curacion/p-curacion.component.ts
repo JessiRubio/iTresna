@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import {DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { SenalesItem } from '../clases/senales-item';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { ModalAdminCopsComponent } from './../modal-admin-cops/modal-admin-cops.component';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,12 +13,14 @@ import { SenalesItem } from '../clases/senales-item';
 })
 export class PCuracionComponent implements OnInit {
   @Input() senales:SenalesItem[];
+
+  nombreLista:string;
   
 
 
   private listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   allDropList:string[]=[];
-  constructor() { 
+  constructor(private dialog:MatDialog) { 
   }
 
   ngOnInit() {
@@ -45,9 +50,42 @@ export class PCuracionComponent implements OnInit {
     }
   }
   
-  nuevaLista(){
-    console.warn("que habra un modal donde escoger el nombre de la lista, por ahora genera uno de prueba");
-    this.allDropList.push("prueba");
-    this.listaSenales.push({nombre:"prueba",senales:[]});
+  openModalNuevaLista():Observable<any>{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus=true;
+    dialogConfig.minWidth="50%";
+    dialogConfig.data=[
+      
+      {
+        input:"inputField",
+        controlName:"nombreLista",
+        placeHolder:"Nombre",
+        data:{
+          desc:this.nombreLista
+        }
+      },
+      
+    ];
+    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
+    return dialogRef.afterClosed();
+    
   }
+
+  nuevaLista(){
+      this.openModalNuevaLista().subscribe(
+        data=>{
+          if(data!=null){
+            this.allDropList.push(data.nombreLista);
+            this.listaSenales.push({nombre:data.nombreLista,senales:[]});
+         
+            }else{
+              this.allDropList.push(data.nombreLista); 
+              this.listaSenales.push({nombre:data.nombreLista,senales:[]});
+              
+              }
+            });
+            
+    }
+
+
 }
