@@ -3,6 +3,7 @@
   margin: auto;
   width: 100%;
   text-align: center;
+
 }
 .opciones>*{
   margin: 3%;
@@ -12,6 +13,7 @@
 }
 .senal-container{
   min-width: 20px;
+  max-width: 30px;
   min-height: 20px;
   box-shadow: 5px 1px black;
   width: auto;

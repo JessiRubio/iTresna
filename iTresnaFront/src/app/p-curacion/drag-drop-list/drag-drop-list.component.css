@@ -9,11 +9,13 @@
   .example-list {
     border: solid 1px #ccc;
     min-height: 100px;
-    max-width: 20%;
-    background: white;
+    max-width: 50%;
+    min-width: 30%;
+    background:mediumpurple;
     border-radius: 4px;
     overflow: hidden;
     display: block;
+    text-align: center;
   }
   
   .example-box {

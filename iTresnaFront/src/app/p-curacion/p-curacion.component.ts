@@ -25,13 +25,16 @@ export class PCuracionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.listaSenales.push({nombre:"todasSenales",senales:this.senales});
-    this.allDropList.push("todasSenales");
-
+    this.listaSenales.push({nombre:"Señales",senales:this.senales});
+    this.allDropList.push("Señales");
 
     var list:SenalesItem[]=[];
-    this.listaSenales.push({nombre:"eliminar",senales:list});
-    this.allDropList.push("eliminar");
+    this.listaSenales.push({nombre:"Relevante",senales:list});
+    this.allDropList.push("Relevante");
+
+    var eliminarList:SenalesItem[]=[];
+    this.listaSenales.push({nombre:"Eliminar",senales:eliminarList});
+    this.allDropList.push("Eliminar");
 
   }
   
