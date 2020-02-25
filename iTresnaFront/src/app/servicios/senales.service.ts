@@ -30,7 +30,7 @@ export class SenalesService {
   }
 
   nuevaSenal(cod_org:number,cod_esp:number,cod_cop:number,cod_usuario:string,
-    cod_etiqueta:number, desc_sen:string, url:string):Observable<any>
+    cod_etiqueta:number, desc_sen:string, url:string, titulo:String, imagen:string):Observable<any>
   {
     var senal={
       "accion":"nueva_senal",
@@ -40,7 +40,9 @@ export class SenalesService {
       "cod_usuario":cod_usuario,
       "cod_etiqueta":cod_etiqueta,
       "desc_senal":desc_sen,
-      "enlace":url
+      "enlace":url,
+      "titulo":titulo,
+      "imagen":imagen
     };
     return this.http.post(this.URL,senal);
   }
