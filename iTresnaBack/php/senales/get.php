@@ -17,8 +17,8 @@
         && $cod_org !="" && isset($cod_esp) && $cod_esp!="" && isset($cod_cop) 
         && $cod_cop!=""){
         $sql= "SELECT sen.cod_senal,sen.cod_org,sen.cod_esp,sen.cod_cop,sen.cod_etiqueta,
-                      sen.desc_senal,sen.enlace,sen.fecha_hora,sen.cod_usuario,sen.ind_fich_gest,usu.nombre,
-                      usu.ape1,usu.ape2
+                      sen.desc_senal,sen.enlace,sen.fecha_hora,sen.cod_usuario,sen.ind_fich_gest,
+                      sen.titulo,sen.img_senal,usu.nombre,usu.ape1,usu.ape2
                 FROM t_senales sen
                 JOIN t_usuarios usu
                 ON sen.cod_usuario=usu.cod_usuario
@@ -29,7 +29,7 @@
         $query->execute();
         $query->bind_result($cod_senal,$cod_org,$cod_esp,$cod_cop,
                             $cod_etiqueta,$desc_senal,$enlace,$fecha_hora,
-                            $cod_usuario_senal, $ind_fich_gest,$nombre,$ape1,$ape2);
+                            $cod_usuario_senal, $ind_fich_gest,$titulo,$imagen,$nombre,$ape1,$ape2);
         while ($query->fetch()){
             $result["senales"][]=array(
                 "cod_senal" => $cod_senal,
@@ -43,6 +43,8 @@
                 "nombre_completo" => $nombre." ".$ape1." ".$ape2,
                 "cod_usuario"=>$cod_usuario_senal,
                 "ind_fech_gest" => ($ind_fich_gest==1),
+                "titulo"=>$titulo,
+                "imagen"=>$imagen,
                 "cantidad_comentarios" => cantidadComentarios($cod_org,$cod_esp,$cod_cop,$cod_senal),
                 "me_gustas" => meGustas($cod_org,$cod_esp,$cod_cop,$cod_senal),
                 "me_ha_gustado" => meHaGustado($cod_org,$cod_esp,$cod_cop,$cod_senal,$cod_usuario),
