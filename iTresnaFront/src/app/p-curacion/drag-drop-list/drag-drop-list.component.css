@@ -9,8 +9,7 @@
   .example-list {
     border: solid 1px #ccc;
     min-height: 100px;
-    max-width: 50%;
-    min-width: 30%;
+    width: 100%;
     background:mediumpurple;
     border-radius: 4px;
     overflow: hidden;
@@ -20,9 +19,9 @@
   
   .example-box {
     padding: 20px 10px;
-    border-bottom: solid 1px #ccc;
+    border: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
-    display: flex;
+    display: inline-block;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -30,6 +29,7 @@
     cursor: move;
     background: white;
     font-size: 14px;
+    width: 20%;
   }
   
   .cdk-drag-preview {
