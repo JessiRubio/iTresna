@@ -2,14 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import {DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { SenalesItem } from '../clases/senales-item';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
-<<<<<<< HEAD
-import { ModalAdminCopsComponent } from '../modal-admin-cops/modal-admin-cops.component';
-import { Observable } from 'rxjs';
-=======
 import { ModalAdminCopsComponent } from './../modal-admin-cops/modal-admin-cops.component';
 import { Observable } from 'rxjs';
 
->>>>>>> 80446f76bf91f40e005b062475266712bd3f7882
 
 @Component({
   selector: 'app-p-curacion',
