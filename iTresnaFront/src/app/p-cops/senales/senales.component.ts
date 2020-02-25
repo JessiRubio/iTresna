@@ -9,7 +9,7 @@ import { ModalcomentariosComponent } from '../modalcomentarios/modalcomentarios/
 import { EtiquetaItem } from '../../clases/copsitem';
 import { Comentario } from '../../clases/comentario';
 import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-material-extensions/link-preview';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ComentariosService } from './../../servicios/comentarios.service';
 import {UsuariosService} from './../../servicios/usuarios.service';
 
@@ -126,10 +126,16 @@ export class SenalesComponent implements OnInit {
 
   cargarTituloPagina(){
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
-    preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(
+preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(
       response=>{
+        console.log(response);
         this.titulo=response.title;
         this.imagen=response.image;
+      },
+      error=>{
+        if(this.senal.enlace.indexOf("git")!=0){
+          console.log(error.headers);
+        }
       }
     );
   }

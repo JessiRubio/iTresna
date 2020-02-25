@@ -3,7 +3,7 @@
         <button class="nav-tgl" type="button" aria-label="toggle menu" (click)="toggleMenu()">
             <span aria-hidden="true"></span>
         </button>
-        <nav class="nav" >
+        <nav class="nav" *ngIf="open==true">
             <ul [ngClass]="open==true?'active':''" (click)="onClick($event)">
                 <li><a>Perfil</a></li>
                 <li><a class="clickable" *ngIf="show">Administración</a></li>

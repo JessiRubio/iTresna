@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import {DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { SenalesItem } from '../clases/senales-item';
-
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { ModalAdminCopsComponent } from '../modal-admin-cops/modal-admin-cops.component';
 
 @Component({
   selector: 'app-p-curacion',
@@ -15,7 +16,9 @@ export class PCuracionComponent implements OnInit {
 
   private listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   allDropList:string[]=[];
-  constructor() { 
+  constructor(
+    private dialog:MatDialog
+  ) { 
   }
 
   ngOnInit() {
@@ -46,8 +49,31 @@ export class PCuracionComponent implements OnInit {
   }
   
   nuevaLista(){
-    console.warn("que habra un modal donde escoger el nombre de la lista, por ahora genera uno de prueba");
-    this.allDropList.push("prueba");
-    this.listaSenales.push({nombre:"prueba",senales:[]});
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus=true;
+    dialogConfig.minWidth="50%";
+    dialogConfig.data=[
+      {
+        input:"inputField",
+        controlName:"nombreSenalCurada",
+        placeHolder:"Escribe el nombre de la nueva señal",
+        data:{
+          desc:""
+        }
+      },
+    ];
+    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      data=>{
+        if(data!=null){
+          if(data.nombreSenalCurada!=""){
+            var tituloSenal:string=data.nombreSenalCurada;
+            this.allDropList.push(tituloSenal);
+            let list:SenalesItem[]=[];
+            this.listaSenales.push({nombre:tituloSenal,senales:list});
+          }
+        }
+      }
+    );
   }
 }

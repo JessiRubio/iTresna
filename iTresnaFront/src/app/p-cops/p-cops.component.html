@@ -5,12 +5,8 @@
     <div class="atras" ><img routerLink="/Principal" src="assets/outline_arrow.png"></div>
     <div class="localizacion">
         <p>{{espacio.desc_esp}}</p>
-        <div ngbDropdown class="d-inline-block">
-            <button class="btn selectorCop" id="dropdownBasic1" ngbDropdownToggle>{{cop.desc_cop}}</button>
-            <div class="dropDownItem"ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button routerLink="/Cops" [queryParams]="{copSeleccionado:item.cod_cop,codEspacio:item.cod_esp}" ngbDropdownItem *ngFor="let item of listaCops">{{item.desc_cop}}</button>
-            </div>
-        </div>
+        <p>></p>
+        <p>{{cop.desc_cop}}</p>
     </div>
 </div>
 
