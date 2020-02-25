@@ -5,7 +5,7 @@
         </button>
         <nav class="nav" *ngIf="open==true">
             <ul [ngClass]="open==true?'active':''" (click)="onClick($event)">
-                <li><a>Perfil</a></li>
+                <li><a class="clickable">Perfil</a></li>
                 <li><a class="clickable" *ngIf="show">Administración</a></li>
                 <li><a class="clickable">Cerrar sesión</a></li>
             </ul>

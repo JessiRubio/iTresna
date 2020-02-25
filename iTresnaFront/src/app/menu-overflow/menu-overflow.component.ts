@@ -37,6 +37,9 @@ export class MenuOverflowComponent implements OnInit {
     else if(e.target.innerHTML==='Administración'){
       this.ruta.navigateByUrl('Administracion');
     }
+    else if(e.target.innerHTML==='Perfil'){
+      this.ruta.navigateByUrl('Perfil');
+    }
   }
 
   visible(){

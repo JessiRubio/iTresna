@@ -1,0 +1,31 @@
+
+<section>
+    <form class="contenedor" [formGroup]="form">
+        <mat-form-field id="nombreUsu">
+            <input matInput
+                placeholder="Nombre"
+                formControlName="usuName">
+        </mat-form-field>
+        <br>
+        <mat-form-field id="ape1Usu">
+            <input matInput
+                placeholder="Primer apellido"
+                formControlName="ape1Usu">
+        </mat-form-field>
+        <br>
+        <mat-form-field  id="ape2Usu">
+            <input matInput
+                placeholder="Segundo apellido"
+                formControlName="ape2Usu">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="expand" id="emailUsu">
+            <input matInput
+                placeholder="E-mail"
+                formControlName="emailUsu">
+        </mat-form-field>
+        <br>
+        <button  mat-raised-button (click)="modificarContrasena()">Modificar contraseña</button>
+        
+    </form>
+</section>

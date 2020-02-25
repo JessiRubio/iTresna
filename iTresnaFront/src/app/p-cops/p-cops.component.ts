@@ -108,7 +108,9 @@ export class PCopsComponent implements OnInit {
         console.log(err);
 
       }
-    );
+    );   
+
+    
   }
   cambiarCopSeleccion(i:number){
     if(this.cod_cop=i){

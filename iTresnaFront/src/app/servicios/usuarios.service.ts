@@ -120,4 +120,20 @@ export class UsuariosService {
 
 
 
+  modificarContrasena(sarbidea:string,cod_org:number, cod_usuario:string):Observable<any>{
+    
+    let json={
+      "accion":"modificar_contrasena",
+      "sarbidea":sarbidea,
+      "cod_org":cod_org,
+      "cod_usuario":cod_usuario
+    };  
+    return this.httpClient.put(this.url,json);
+  }
+
+
+
+
+
+
 }
