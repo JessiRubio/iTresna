@@ -2,7 +2,14 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import {DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { SenalesItem } from '../clases/senales-item';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+<<<<<<< HEAD
 import { ModalAdminCopsComponent } from '../modal-admin-cops/modal-admin-cops.component';
+import { Observable } from 'rxjs';
+=======
+import { ModalAdminCopsComponent } from './../modal-admin-cops/modal-admin-cops.component';
+import { Observable } from 'rxjs';
+
+>>>>>>> 80446f76bf91f40e005b062475266712bd3f7882
 
 @Component({
   selector: 'app-p-curacion',
@@ -11,25 +18,28 @@ import { ModalAdminCopsComponent } from '../modal-admin-cops/modal-admin-cops.co
 })
 export class PCuracionComponent implements OnInit {
   @Input() senales:SenalesItem[];
+
+  nombreLista:string;
   
 
 
   private listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   allDropList:string[]=[];
-  constructor(
-    private dialog:MatDialog
-  ) { 
+  constructor(private dialog:MatDialog) { 
   }
 
   ngOnInit() {
 
-    this.listaSenales.push({nombre:"todasSenales",senales:this.senales});
-    this.allDropList.push("todasSenales");
-
+    this.listaSenales.push({nombre:"Señales",senales:this.senales});
+    this.allDropList.push("Señales");
 
     var list:SenalesItem[]=[];
-    this.listaSenales.push({nombre:"eliminar",senales:list});
-    this.allDropList.push("eliminar");
+    this.listaSenales.push({nombre:"Relevante",senales:list});
+    this.allDropList.push("Relevante");
+
+    var eliminarList:SenalesItem[]=[];
+    this.listaSenales.push({nombre:"Eliminar",senales:eliminarList});
+    this.allDropList.push("Eliminar");
 
   }
   
@@ -48,32 +58,43 @@ export class PCuracionComponent implements OnInit {
     }
   }
   
-  nuevaLista(){
+  openModalNuevaLista():Observable<any>{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus=true;
     dialogConfig.minWidth="50%";
     dialogConfig.data=[
+      
       {
         input:"inputField",
-        controlName:"nombreSenalCurada",
-        placeHolder:"Escribe el nombre de la nueva señal",
+        controlName:"nombreLista",
+        placeHolder:"Nombre",
         data:{
-          desc:""
+          desc:this.nombreLista
         }
       },
+      
     ];
     const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    dialogRef.afterClosed().subscribe(
+    return dialogRef.afterClosed();
+    
+  }
+
+  nuevaLista(){
+    this.openModalNuevaLista().subscribe(
       data=>{
         if(data!=null){
-          if(data.nombreSenalCurada!=""){
-            var tituloSenal:string=data.nombreSenalCurada;
-            this.allDropList.push(tituloSenal);
-            let list:SenalesItem[]=[];
-            this.listaSenales.push({nombre:tituloSenal,senales:list});
-          }
+          this.allDropList.push(data.nombreLista);
+          this.listaSenales.push({nombre:data.nombreLista,senales:[]});
+        }
+        else{
+          this.allDropList.push(data.nombreLista); 
+          this.listaSenales.push({nombre:data.nombreLista,senales:[]});
+          
         }
       }
     );
+            
   }
+
+
 }
