@@ -66,6 +66,27 @@
 
             }
 
+    }else if($accion!="" && $accion=="modificar_perfil"){
+
+        if($cod_usuario!=""){
+
+
+                $nombre = $data->nombre;
+                $ape1=$data->ape1;
+                $ape2=$data->ape2;
+                $cod_org=$data->cod_org;
+                $cod_usuarioAnterior=$data->cod_usuarioAnterior;
+   
+                $sql="UPDATE t_usuarios
+                                SET nombre=?, ape1=?,ape2=?, cod_usuario=?
+                                WHERE cod_usuario=? AND cod_org=?";
+                            $query=$conexion->prepare($sql);
+                            $query->bind_param("sssssi",$nombre,$ape1,$ape2,$cod_usuario, $cod_usuarioAnterior,$cod_org);
+                            $query->execute();
+                            $result["error"]=0;
+
+            }
+
     }
 
 

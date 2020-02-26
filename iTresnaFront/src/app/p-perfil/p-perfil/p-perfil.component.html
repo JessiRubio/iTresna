@@ -4,7 +4,7 @@
         <mat-form-field id="nombreUsu">
             <input matInput
                 placeholder="Nombre"
-                formControlName="usuName">
+                formControlName="nombreUsu">
         </mat-form-field>
         <br>
         <mat-form-field id="ape1Usu">
@@ -25,6 +25,8 @@
                 formControlName="emailUsu">
         </mat-form-field>
         <br>
+        <button *ngIf="deshabilitado" mat-raised-button (click)="editarPerfil()">Editar</button>
+        <button *ngIf="!deshabilitado" mat-raised-button (click)="editarPerfil()">Guardar</button>
         <button  mat-raised-button (click)="modificarContrasena()">Modificar contraseña</button>
         
     </form>
