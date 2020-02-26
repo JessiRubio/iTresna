@@ -6,6 +6,8 @@ import { MatDialogConfig, MatDialog } from '@angular/material';
 import { ModalAdminCopsComponent } from 'src/app/modal-admin-cops/modal-admin-cops.component';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Alerta } from '../../clases/alerta'
+import { NgbModal, NgbModalOptions, NgbModalRef, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AlertGenericoComponent } from '../../alert-generico/alert-generico.component';
 
 @Component({
   selector: 'app-p-perfil',
@@ -15,27 +17,25 @@ import { Alerta } from '../../clases/alerta'
 export class PPerfilComponent implements OnInit {
 
   form:FormGroup;
-  private usuarioLogeado:Usuario;
+  usuarioLogeado:Usuario;
   placeHolder:string;
   sarbideActual:string;
   sarbideNueva:string;
 
+  
   constructor(private fBuilder: FormBuilder,
     private dialog:MatDialog,
+    private modalService:NgbModal,
     private usuarioService:UsuariosService
     ) {
-
-    this.form=this.fBuilder.group({
-      usuName:["",Validators.required],
-      ape1Usu:["",Validators.required],
-      ape2Usu:["",Validators.required],
-      emailUsu:["",Validators.required]
-    });
-    this.form.disable();
-
-
-
-   }
+      this.form=this.fBuilder.group({
+        usuName:["",Validators.required],
+        ape1Usu:["",Validators.required],
+        ape2Usu:["",Validators.required],
+        emailUsu:["",Validators.required]
+      });
+      this.form.disable();
+    }
 
   ngOnInit() {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
@@ -86,20 +86,25 @@ export class PPerfilComponent implements OnInit {
           if(data.sarbideActual===this.usuarioLogeado.sarbidea){
             this.modificarContrasenas(data.sarbideNueva,this.usuarioLogeado.cod_org, this.usuarioLogeado.cod_usuario);
             
-
           }else{
-            window.alert("Datos erroneos");
+            let alert:Alerta = {
+              message:"Datos erroneos", 
+              type:'danger'
+            };
+            this.abrirAlerta(alert);
           }
 
         }else{
             if(data.sarbideActual===this.usuarioLogeado.sarbidea){
               this.modificarContrasenas(data.sarbideNueva,this.usuarioLogeado.cod_org, this.usuarioLogeado.cod_usuario);
   
-  
             }else{
-              window.alert("Datos erroneos");
+              let alert:Alerta = {
+                message:"Datos erroneos", 
+                type:'danger'
+              };
+              this.abrirAlerta(alert);
             }
-            
             
           }
         }
@@ -110,25 +115,42 @@ export class PPerfilComponent implements OnInit {
 
 modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
       
-  if(sarbideNueva==""){
-    window.alert("Rellena los campos");
-
-  }else{
-    console.log(sarbideNueva);
-    
     this.usuarioService.modificarContrasena(sarbideNueva,cod_org,cod_usuario)
       .subscribe(
         response=>{
           console.log(response);
+          let alert:Alerta = {
+              message:"Contraseña modificada, redirigiendo", 
+              type:'success'
+            };
+          this.abrirAlerta(alert);
+
+          setTimeout(() => { 
           this.usuarioService.logout();
+          this.cerrarAlerta(alert);
+          
+          }, 3000);
+          
         },
         error=>{
           console.log(error);
         }
       );
   
-    
-    } 
+  }
+
+  abrirAlerta(alerta:Alerta){
+    let modalRef:NgbModalRef;
+    modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
+    (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
+    console.log(modalRef.componentInstance);
+  }
+
+  cerrarAlerta(alerta:Alerta){
+    let modalRef:NgbModalRef;
+    this.modalService.dismissAll(AlertGenericoComponent);
+    (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
+    console.log(modalRef.componentInstance);
   }
 
 
