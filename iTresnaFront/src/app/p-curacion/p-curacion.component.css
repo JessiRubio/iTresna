@@ -1,3 +1,17 @@
+.list-group {
+  width: 100%;
+  display: inline-block;
+
+}
+.list-group-item {
+  margin: 0;
+  padding: 0.1%;
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+
+}
+
 .opciones{
   bottom: 5%;
   margin: auto;
@@ -7,17 +21,4 @@
 }
 .opciones>*{
   margin: 3%;
-}
-.contenedor-general{
-  width: 100%;
-}
-.senal-container{
-  min-width: 20px;
-  max-width: 30px;
-  min-height: 20px;
-  box-shadow: 5px 1px black;
-  width: auto;
-}
-.inline{
-  display: inline-block;
 }

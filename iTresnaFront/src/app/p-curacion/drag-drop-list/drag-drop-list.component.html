@@ -6,5 +6,7 @@
     (cdkDropListDropped)="drop($event)"
     cdkDropList>
     <h2>{{senales.nombre}}</h2>
-    <div class="example-box" *ngFor="let senal of senales.senales" cdkDrag>{{senal.fecha_hora}} {{senal.desc_senal}} </div>
+    <div class="example-box" *ngFor="let senal of senales.senales" cdkDrag>
+        <app-p-objeto-curacion style="margin: 0%; padding: 0%;" [senal]="senal"></app-p-objeto-curacion>
+    </div>
 </div>

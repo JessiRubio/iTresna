@@ -43,6 +43,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DragDropListComponent } from './p-curacion/drag-drop-list/drag-drop-list.component';
 import { PPerfilComponent } from './p-perfil/p-perfil/p-perfil.component';
 import { PasswordFieldComponent } from './modal-admin-cops/password-field/password-field/password-field.component';
+import { PObjetoCuracionComponent } from './p-curacion/p-objeto-curacion/p-objeto-curacion.component';
 
 @NgModule({
 
@@ -75,6 +76,7 @@ import { PasswordFieldComponent } from './modal-admin-cops/password-field/passwo
     DragDropListComponent,
     PPerfilComponent,
     PasswordFieldComponent,
+    PObjetoCuracionComponent,
 
   ],
   imports: [
