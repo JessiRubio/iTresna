@@ -6,6 +6,7 @@ section{
 .list-group {
   width: 100%;
   display: inline-block;
+  margin: auto;
 
 }
 .list-group-item {

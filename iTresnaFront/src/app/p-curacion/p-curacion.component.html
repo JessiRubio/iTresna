@@ -5,8 +5,9 @@
         <button class="btn btn-success">Curar</button>
         <button class="btn btn-success">Guardar y Salir</button>
     </div>
-    <div class="clasificacion "  style="width: 100%;">
+    <div class="clasificacion "  style="width: 100%; margin: auto;">
         <div class="list-group">
+            
             <div class="list-group-item" *ngFor="let listaSenal of listaSenales">
                 <app-drag-drop-list [senales]="listaSenal" [allDropList]="allDropList"></app-drag-drop-list>
             </div>
