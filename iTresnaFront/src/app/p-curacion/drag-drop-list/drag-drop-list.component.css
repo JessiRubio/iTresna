@@ -8,7 +8,7 @@
   
   .example-list {
     border: solid 1px #ccc;
-    height: 100px;
+    min-height: 100px;
     width: 100%;
     background:mediumpurple;
     border-radius: 4px;
