@@ -17,8 +17,8 @@
         && $cod_org !="" && isset($cod_esp) && $cod_esp!="" && isset($cod_cop) 
         && $cod_cop!=""){
         $sql= "SELECT sen.cod_senal,sen.cod_org,sen.cod_esp,sen.cod_cop,sen.cod_etiqueta,
-                      sen.desc_senal,sen.enlace,sen.fecha_hora,sen.cod_usuario,sen.ind_fich_gest,usu.nombre,
-                      usu.ape1,usu.ape2
+                      sen.desc_senal,sen.enlace,sen.fecha_hora,sen.cod_usuario,sen.ind_fich_gest,
+                      usu.nombre,usu.ape1,usu.ape2
                 FROM t_senales sen
                 JOIN t_usuarios usu
                 ON sen.cod_usuario=usu.cod_usuario

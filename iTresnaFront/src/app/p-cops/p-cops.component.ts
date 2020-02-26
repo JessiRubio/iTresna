@@ -14,6 +14,8 @@ import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { Alerta } from '../clases/alerta'
 import { NgbModal, NgbModalOptions, NgbModalRef, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AlertGenericoComponent } from '../alert-generico/alert-generico.component';
+import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-material-extensions/link-preview';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -43,7 +45,8 @@ export class PCopsComponent implements OnInit {
     private copsService:CopsService,
     private senalesService:SenalesService,
     private dialog:MatDialog,
-    private modalService:NgbModal
+    private modalService:NgbModal,
+    private http:HttpClient
     ) {}
 
   ngOnInit() {
@@ -246,6 +249,11 @@ export class PCopsComponent implements OnInit {
     }
   }
 
+  private cargarLink(url){
+    var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
+    return preview.linkPreviewService.fetchLink(url);
+  }
+
   nuevaSenal(){
     const dialofConfig = new MatDialogConfig();
     dialofConfig.autoFocus=true;
@@ -258,33 +266,40 @@ export class PCopsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data=>{
         if(data!=null){
-          this.senalesService.nuevaSenal(this.cop.cod_org,this.cop.cod_esp,
-          this.cop.cod_cop,this.usuarioLogeado.cod_usuario,
-          data.etiqueta, data.descripcion, data.url).subscribe(
+          this.cargarLink(data.url).subscribe(
             response=>{
-              if(response.error!=0 && response.aniadido==0){
-                let alert:Alerta = {
-                  message:"No se ha podido añadir la señal", 
-                  type:'danger'
-                };
-                this.abrirAlerta(alert);
-              }
-              else if(response.error==0 && response.aniadido==1){
-                let alert:Alerta = {
-                  message:"Señal añadida correctamente", 
-                  type:'success'
-                };
-              this.abrirAlerta(alert);
-              }
-            },
-            err=>{
-              let alert:Alerta = {
-                message:"Error con el servidor",
-                type:'danger'
-              };
-              this.abrirAlerta(alert);
+              var titulo=response.title;
+              var imagen=response.image;
+              this.senalesService.nuevaSenal(this.cop.cod_org,this.cop.cod_esp,
+                this.cop.cod_cop,this.usuarioLogeado.cod_usuario,
+                data.etiqueta, data.descripcion, data.url,titulo,imagen).subscribe(
+                  response=>{
+                    if(response.error!=0 && response.aniadido==0){
+                      let alert:Alerta = {
+                        message:"No se ha podido añadir la señal", 
+                        type:'success'
+                      };
+                      this.abrirAlerta(alert);
+                    }
+                    else if(response.error==0 && response.aniadido==1){
+                      let alert:Alerta = {
+                        message:"Señal añadida correctamente", 
+                        type:'success'
+                      };
+                    this.abrirAlerta(alert);
+                    }
+                  },
+                  err=>{
+                    let alert:Alerta = {
+                      message:"Error con el servidor",
+                      type:'danger'
+                    };
+                    this.abrirAlerta(alert);
+                  }
+                );
             }
           );
+          
         }
       }
     );

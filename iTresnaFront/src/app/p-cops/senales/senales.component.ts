@@ -126,16 +126,11 @@ export class SenalesComponent implements OnInit {
 
   cargarTituloPagina(){
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
-preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(
+    preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(
       response=>{
         console.log(response);
         this.titulo=response.title;
         this.imagen=response.image;
-      },
-      error=>{
-        if(this.senal.enlace.indexOf("git")!=0){
-          console.log(error.headers);
-        }
       }
     );
   }
