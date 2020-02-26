@@ -1,3 +1,15 @@
+.list-group {
+  width: 100%;
+
+}
+.list-group-item {
+  margin: 0;
+  padding: 0.1%;
+  width: 20%;
+  display: inline-block;
+
+}
+
 .opciones{
   bottom: 5%;
   margin: auto;
@@ -12,8 +24,7 @@
   width: 100%;
 }
 .senal-container{
-  min-width: 20px;
-  max-width: 30px;
+  width: 100%;
   min-height: 20px;
   box-shadow: 5px 1px black;
   width: auto;
