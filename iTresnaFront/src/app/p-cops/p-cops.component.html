@@ -35,9 +35,6 @@
             <button class="botonCurar btn btn-primary" (click)="curar()">Curar</button>
         </a>
 </div>
-<div class="opciones" *ngIf="curando==true">
-    <button class="descurar btn btn-primary" (click)="curar()">Parar Curacion</button>
-</div>
 <div *ngIf="curando==true">
     <app-p-curacion [senales]="listaSenales"></app-p-curacion>
 </div>
