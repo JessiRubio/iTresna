@@ -277,7 +277,7 @@ export class PCopsComponent implements OnInit {
                     if(response.error!=0 && response.aniadido==0){
                       let alert:Alerta = {
                         message:"No se ha podido añadir la señal", 
-                        type:'success'
+                        type:'danger'
                       };
                       this.abrirAlerta(alert);
                     }

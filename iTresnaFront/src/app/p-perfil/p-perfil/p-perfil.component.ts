@@ -21,6 +21,8 @@ export class PPerfilComponent implements OnInit {
   placeHolder:string;
   sarbideActual:string;
   sarbideNueva:string;
+  deshabilitado:boolean=true;
+  cod_usuarioAnterior:string;
 
   
   constructor(private fBuilder: FormBuilder,
@@ -29,7 +31,7 @@ export class PPerfilComponent implements OnInit {
     private usuarioService:UsuariosService
     ) {
       this.form=this.fBuilder.group({
-        usuName:["",Validators.required],
+        nombreUsu:["",Validators.required],
         ape1Usu:["",Validators.required],
         ape2Usu:["",Validators.required],
         emailUsu:["",Validators.required]
@@ -40,10 +42,12 @@ export class PPerfilComponent implements OnInit {
   ngOnInit() {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
 
-    this.form.controls["usuName"].setValue(this.usuarioLogeado.nombre);
+    this.form.controls["nombreUsu"].setValue(this.usuarioLogeado.nombre);
     this.form.controls["ape1Usu"].setValue(this.usuarioLogeado.ape1);
     this.form.controls["ape2Usu"].setValue(this.usuarioLogeado.ape2);
     this.form.controls["emailUsu"].setValue(this.usuarioLogeado.cod_usuario);
+    this.cod_usuarioAnterior=this.usuarioLogeado.cod_usuario;
+
   }
 
 
@@ -139,6 +143,7 @@ modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
   
   }
 
+
   abrirAlerta(alerta:Alerta){
     let modalRef:NgbModalRef;
     modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
@@ -152,6 +157,44 @@ modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
     console.log(modalRef.componentInstance);
   }
+
+
+
+  editarPerfil(){
+    this.deshabilitado=!this.deshabilitado;
+    if(this.deshabilitado){
+      this.usuarioLogeado.nombre=this.form.value.nombreUsu;
+      this.usuarioLogeado.ape1=this.form.value.ape1Usu;
+      this.usuarioLogeado.ape2=this.form.value.ape2Usu;
+      this.usuarioLogeado.cod_usuario=this.form.value.emailUsu;
+     
+      this.modificarPerfil(this.usuarioLogeado.nombre,this.usuarioLogeado.ape1,
+        this.usuarioLogeado.ape2,this.usuarioLogeado.cod_usuario,this.cod_usuarioAnterior, this.usuarioLogeado.cod_org );
+      
+      
+      this.form.disable();
+    }else{
+      this.form.enable();
+    }
+  }
+
+  private modificarPerfil(nombre,ape1,ape2,cod_usuario,cod_usuarioAnterior,cod_org){
+    this.usuarioService.modificarPerfil(nombre,ape1,ape2,cod_usuario,cod_usuarioAnterior,cod_org).subscribe(
+      response=>{
+        this.usuarioLogeado.nombre=nombre;
+        this.usuarioLogeado.ape1=ape1;
+        this.usuarioLogeado.ape2=ape2;
+        this.usuarioLogeado.cod_usuario=cod_usuario;
+        localStorage.setItem("usuario",JSON.stringify(this.usuarioLogeado));
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+
+
 
 
 

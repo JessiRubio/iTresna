@@ -132,6 +132,21 @@ export class UsuariosService {
   }
 
 
+  modificarPerfil(nombre:string,ape1:string,ape2:string,cod_usuario:string,cod_usuarioAnterior:string, cod_org:number):Observable<any>{
+    
+    let json={
+      "accion":"modificar_perfil",
+      "nombre":nombre,
+      "ape1":ape1,
+      "ape2":ape2,
+      "cod_usuario":cod_usuario,
+      "cod_usuarioAnterior":cod_usuarioAnterior,
+      "cod_org":cod_org
+    };  
+    return this.httpClient.put(this.url,json);
+  }
+
+
 
 
 
