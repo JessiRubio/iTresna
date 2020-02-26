@@ -1,0 +1,44 @@
+section{
+    margin-top: 2%;
+}
+
+form{
+    margin-top: 10%;
+}
+
+a{
+    margin-top: 5%;
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;
+}
+
+img{
+    width: 100%;
+}
+.contenedor{
+    display: inline-block;
+    width: 70%;
+    margin-left: 2%;
+}
+
+#nombreUsu{
+    width: 30%;
+}
+
+#ape1Usu{
+    width: 30%;
+}
+
+#ape2Usu{
+    width: 30%;
+}
+
+#emailUsu{
+    width: 30%;
+}
+
+
+.mat-raised-button{
+    background: #EDDFFB ;
+}

@@ -7,6 +7,14 @@
                         [placeHolder]="item.placeHolder" 
                         *ngIf="item.input==='inputField'">
         </app-input-field>
+
+
+        <app-password-field [(formGroup)]="formGroup"
+                        [data]="item.data"
+                        [controlName]="item.controlName" 
+                        [placeHolder]="item.placeHolder" 
+                        *ngIf="item.input==='passwordField'">
+        </app-password-field>
         
         <app-file-field [(formGroup)]="formGroup"
                     [controlName]="item.controlName" 

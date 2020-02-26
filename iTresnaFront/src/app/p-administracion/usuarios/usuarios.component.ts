@@ -394,7 +394,7 @@ console.log(listaUsuarios.cod_usuario);
         }
       },
       {
-        input:"inputField",
+        input:"passwordField",
         controlName:"sarbidea",
         placeHolder:"Contraseña",
         data:{

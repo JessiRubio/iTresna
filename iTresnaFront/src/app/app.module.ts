@@ -41,6 +41,8 @@ import { AlertGenericoComponent } from './alert-generico/alert-generico.componen
 import { PCuracionComponent } from './p-curacion/p-curacion.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DragDropListComponent } from './p-curacion/drag-drop-list/drag-drop-list.component';
+import { PPerfilComponent } from './p-perfil/p-perfil/p-perfil.component';
+import { PasswordFieldComponent } from './modal-admin-cops/password-field/password-field/password-field.component';
 
 @NgModule({
 
@@ -71,6 +73,8 @@ import { DragDropListComponent } from './p-curacion/drag-drop-list/drag-drop-lis
     AlertGenericoComponent,
     PCuracionComponent,
     DragDropListComponent,
+    PPerfilComponent,
+    PasswordFieldComponent,
 
   ],
   imports: [

@@ -6,6 +6,7 @@ import {PCopsComponent} from './p-cops/p-cops.component'
 import { UsuariosService } from './servicios/usuarios.service';
 import { PAdministracionComponent } from './p-administracion/p-administracion.component';
 import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizaciones.component';
+import { PPerfilComponent } from './p-perfil/p-perfil/p-perfil.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
   path: 'Organizaciones',
     component:PAdOrganizacionesComponent
+  },
+  {
+  path: 'Perfil',
+    component:PPerfilComponent
   }
 ];
 

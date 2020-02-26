@@ -48,6 +48,24 @@
 
             }
 
+    }else if($accion!="" && $accion=="modificar_contrasena"){
+
+        if($cod_usuario!=""){
+
+            
+            $cod_org=$data->cod_org;
+            $sarbidea=$data->sarbidea;
+        
+            $sql="UPDATE t_usuarios
+                            SET sarbidea=?
+                            WHERE cod_usuario=? AND cod_org=?";
+                        $query=$conexion->prepare($sql);
+                        $query->bind_param("ssi",$sarbidea,$cod_usuario,$cod_org);
+                        $query->execute();
+                        $result["error"]=0;
+
+            }
+
     }
 
 

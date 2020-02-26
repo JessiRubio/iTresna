@@ -1,5 +1,6 @@
 
 <div class="menu" [ngClass]="open==true?'active':''">
+<<<<<<< HEAD
     <button class="nav-tgl" type="button" aria-label="toggle menu" (click)="toggleMenu()">
         <span aria-hidden="true"></span>
     </button>
@@ -11,3 +12,16 @@
         </ul>
     </nav>
 </div>
+=======
+        <button class="nav-tgl" type="button" aria-label="toggle menu" (click)="toggleMenu()">
+            <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav" *ngIf="open==true">
+            <ul [ngClass]="open==true?'active':''" (click)="onClick($event)">
+                <li><a class="clickable">Perfil</a></li>
+                <li><a class="clickable" *ngIf="show">Administración</a></li>
+                <li><a class="clickable">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </div>
+>>>>>>> bf4220d14828d3c6bdda70c3f896e8917fbfb6ed
