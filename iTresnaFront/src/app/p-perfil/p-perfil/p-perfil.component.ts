@@ -186,8 +186,6 @@ modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
         this.usuarioLogeado.ape2=ape2;
         this.usuarioLogeado.cod_usuario=cod_usuario;
         localStorage.setItem("usuario",JSON.stringify(this.usuarioLogeado));
-        
-        
       },
       error=>{
         console.log(error);
