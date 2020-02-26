@@ -1,6 +1,5 @@
 .example-container {
-    width: 400px;
-    max-width: 20%;
+    width: 20%;
     margin: 0 25px 25px 0;
     display: inline-block;
     vertical-align: top;
@@ -8,12 +7,10 @@
   
   .example-list {
     border: solid 1px #ccc;
-    min-height: 100px;
     width: 100%;
     background:mediumpurple;
     border-radius: 4px;
-    overflow: hidden;
-    display: block;
+    display: inline-block;
     text-align: center;
   }
   
