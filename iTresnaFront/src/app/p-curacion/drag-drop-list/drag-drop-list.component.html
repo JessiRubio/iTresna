@@ -6,11 +6,11 @@
     (cdkDropListDropped)="drop($event)"
     cdkDropList>
     <h2>{{senales.nombre}}</h2>
-    <div>
-        <button>
+    <div *ngIf="comprobarSiNoRelevanteOEliminar(senales.nombre)">
+        <button (click)="eliminarLista()">
             <img src="assets/papelera.png" alt="">
         </button>
-        <button>
+        <button (click)="generarSenalRelevante()">
             <img src="./../../assets/edit-etiquetas.png">
         </button>
     </div>

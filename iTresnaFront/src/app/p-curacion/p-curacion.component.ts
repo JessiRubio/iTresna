@@ -28,10 +28,6 @@ export class PCuracionComponent implements OnInit {
     this.listaSenales.push({nombre:"Señales",senales:this.senales});
     this.allDropList.push("Señales");
 
-    var list:SenalesItem[]=[];
-    this.listaSenales.push({nombre:"Relevante",senales:list});
-    this.allDropList.push("Relevante");
-
     var eliminarList:SenalesItem[]=[];
     this.listaSenales.push({nombre:"Eliminar",senales:eliminarList});
     this.allDropList.push("Eliminar");

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { transferArrayItem, moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -6,12 +6,14 @@ import { transferArrayItem, moveItemInArray, CdkDragDrop } from '@angular/cdk/dr
   templateUrl: './drag-drop-list.component.html',
   styleUrls: ['./drag-drop-list.component.css']
 })
-export class DragDropListComponent implements OnInit {
+export class DragDropListComponent implements OnInit{
   @Input() senales;
   @Input() allDropList;
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -24,5 +26,24 @@ export class DragDropListComponent implements OnInit {
                         event.previousIndex,
                         event.currentIndex);
     }
+  }
+
+  comprobarSiNoRelevanteOEliminar( nombreSenal:string):boolean{
+    if(nombreSenal=="Señales"||nombreSenal=="Eliminar"){
+      return false;
+    }
+    else return true;
+  }
+
+  generarSenalRelevante(){
+
+  }
+
+  eliminarLista(){
+
+  }
+
+  borrarSenal(){
+
   }
 }
