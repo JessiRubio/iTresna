@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { transferArrayItem, moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-drag-drop-list',
@@ -36,7 +37,11 @@ export class DragDropListComponent implements OnInit{
   }
 
   generarSenalRelevante(){
+      var doc = new jsPDF();
 
+      doc.text('Hello world',10,10);
+      doc.save('a4.pdf')
+      console.log(doc);
   }
 
   eliminarLista(){
