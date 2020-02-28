@@ -1,0 +1,22 @@
+.btn>img{
+    width: 20px;
+    height: 20px;
+}
+.inline-block{
+    display: inline-block;
+}
+.center{
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+.etiqueta{
+    font-size: 22px;
+}
+.likes{
+    margin:0;
+    top:25%;
+}
+.card{
+    box-shadow: 2px 3px lightslategray;
+}
