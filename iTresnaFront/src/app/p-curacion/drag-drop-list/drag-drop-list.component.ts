@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { transferArrayItem, moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import jsPDF from 'jspdf';
+import { SenalesItem } from '../../clases/senales-item';
+import { SenalesService } from '../../servicios/senales.service';
 
 @Component({
   selector: 'app-drag-drop-list',
@@ -11,7 +13,7 @@ export class DragDropListComponent implements OnInit{
   @Input() senales;
   @Input() allDropList;
 
-  constructor() { }
+  constructor(private senalesService:SenalesService) { }
 
   ngOnInit() {
 
@@ -50,9 +52,11 @@ export class DragDropListComponent implements OnInit{
 
   generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links:string[]){
     var doc = new jsPDF();
+
     doc.text(titulo,10,10);
     doc.text(departamento,10,20);
     doc.text(departamento,10,30);
+
     var posicion = 40;
     for(var i=0; i<links.length; i++){
       doc.text(links[i],10,posicion);
@@ -62,10 +66,23 @@ export class DragDropListComponent implements OnInit{
   }
 
   eliminarLista(){
+    var i=0;
+    for(i; i<this.allDropList.length; i++){
+      this.borrarSenal(this.allDropList[i]);
+    }
 
+    if(i==this.senales.length){
+      this.allDropList=[];
+    }
   }
 
-  borrarSenal(){
-
+  borrarSenal(senal:SenalesItem){
+    this.senalesService.deleteSenal(senal).subscribe(
+      response =>{
+      },
+      error =>{
+        window.alert("Error de conexion o fallo en servidor");
+      }
+    );
   }
 }
