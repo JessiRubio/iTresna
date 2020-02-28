@@ -37,11 +37,28 @@ export class DragDropListComponent implements OnInit{
   }
 
   generarSenalRelevante(){
-      var doc = new jsPDF();
+    var nombreDoc,titulo,departamento, descripcion,links;
 
-      doc.text('Hello world',10,10);
-      doc.save('a4.pdf')
-      console.log(doc);
+    nombreDoc = "hola";
+    titulo = "Documento Señales relevantes";
+    departamento = "Informatica";
+    descripcion = "Prueba";
+    links = ["link1","link2"];
+
+    this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
+  }
+
+  generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links:string[]){
+    var doc = new jsPDF();
+    doc.text(titulo,10,10);
+    doc.text(departamento,10,20);
+    doc.text(departamento,10,30);
+    var posicion = 40;
+    for(var i=0; i<links.length; i++){
+      doc.text(links[i],10,posicion);
+      posicion = posicion +10;
+    }
+    doc.save(nombre + '.pdf')
   }
 
   eliminarLista(){
