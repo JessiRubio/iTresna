@@ -53,4 +53,10 @@ export class SenalesService {
     return this.http.delete(this.URL+"?cod_org="+senal.cod_org+"&cod_esp="+
         senal.cod_esp+"&cod_cop="+senal.cod_cop+"&cod_senal="+senal.cod_senal);
   }
+
+  deleteSenalCuracion(cod_org:number, cod_esp:number, cod_cop:number, cod_senal:number):Observable<any>{
+    return this.http.delete(this.URL+"?cod_org="+cod_org+"&cod_esp="+
+        cod_esp+"&cod_cop="+cod_cop+"&cod_senal="+cod_senal);
+  }
+
 }

@@ -15,11 +15,10 @@ export class PCuracionComponent implements OnInit {
   @Input() senales:SenalesItem[];
 
   nombreLista:string;
-  
 
-
-  private listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
+  listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   allDropList:string[]=[];
+  pruebaLista:SenalesItem[]=[];
   constructor(private dialog:MatDialog) { 
   }
 
@@ -31,6 +30,8 @@ export class PCuracionComponent implements OnInit {
     var eliminarList:SenalesItem[]=[];
     this.listaSenales.push({nombre:"Eliminar",senales:eliminarList});
     this.allDropList.push("Eliminar");
+    //this.listaSenales.splice(0,1);
+    console.log(this.listaSenales);
 
   }
   
@@ -74,18 +75,19 @@ export class PCuracionComponent implements OnInit {
     this.openModalNuevaLista().subscribe(
       data=>{
         if(data!=null){
+          var pruebaLista:SenalesItem[]=[];
           this.allDropList.push(data.nombreLista);
-          this.listaSenales.push({nombre:data.nombreLista,senales:[]});
+          this.listaSenales.push({nombre:data.nombreLista,senales:pruebaLista});
         }
         else{
-          this.allDropList.push(data.nombreLista); 
-          this.listaSenales.push({nombre:data.nombreLista,senales:[]});
+          var pruebaLista:SenalesItem[]=[];
+          this.allDropList.push(data.nombreLista);
+          this.listaSenales.push({nombre:data.nombreLista,senales:pruebaLista});
           
         }
       }
     );
             
   }
-
 
 }

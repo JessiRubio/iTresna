@@ -13,6 +13,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ComentariosService } from './../../servicios/comentarios.service';
 import {UsuariosService} from './../../servicios/usuarios.service';
 
+
 @Component({
   selector: 'app-senales',
   templateUrl: './senales.component.html',
@@ -125,6 +126,7 @@ export class SenalesComponent implements OnInit {
 
 
   cargarTituloPagina(){
+
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
     preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(
       response=>{
@@ -204,9 +206,6 @@ export class SenalesComponent implements OnInit {
         cod_senal:this.senal.cod_senal,
         
       }
-
-     
-
       const dialogRef=this.dialog.open(ModalcomentariosComponent,dialogConfig);
 
   }

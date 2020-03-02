@@ -97,7 +97,7 @@ import { PObjetoCuracionComponent } from './p-curacion/p-objeto-curacion/p-objet
     NgbModule,
     DragDropModule,
   ],
-  providers: [UsuariosService,EspaciosService,SenalesService],
+  providers: [UsuariosService,EspaciosService,SenalesService,PCuracionComponent],
   bootstrap: [AppComponent],
   entryComponents:[
     ModalSenalComponent,
