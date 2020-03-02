@@ -26,7 +26,7 @@ import { UsuariosComponent } from './p-administracion/usuarios/usuarios.componen
 import { PAdministracionComponent } from './p-administracion/p-administracion.component';
 import { CopComponent } from './p-espacios/cops/cop.component';
 import { AdminCopsComponent } from './p-administracion/admin-cops/admin-cops.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule} from '@angular/material/table';
 import { ModalAdminCopsComponent } from './modal-admin-cops/modal-admin-cops.component';
 import { SelectFieldComponent } from './modal-admin-cops/select-field/select-field.component';
 import { InputFieldComponent } from './modal-admin-cops/input-field/input-field.component';
@@ -39,11 +39,12 @@ import { DatosCalificatoriosComponent } from './p-administracion/datos-calificat
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertGenericoComponent } from './alert-generico/alert-generico.component';
 import { PCuracionComponent } from './p-curacion/p-curacion.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule} from '@angular/cdk/drag-drop';
 import { DragDropListComponent } from './p-curacion/drag-drop-list/drag-drop-list.component';
 import { PPerfilComponent } from './p-perfil/p-perfil/p-perfil.component';
 import { PasswordFieldComponent } from './modal-admin-cops/password-field/password-field/password-field.component';
 import { PObjetoCuracionComponent } from './p-curacion/p-objeto-curacion/p-objeto-curacion.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
 
@@ -77,7 +78,7 @@ import { PObjetoCuracionComponent } from './p-curacion/p-objeto-curacion/p-objet
     PPerfilComponent,
     PasswordFieldComponent,
     PObjetoCuracionComponent,
-
+    
   ],
   imports: [
     BrowserModule,
@@ -96,6 +97,7 @@ import { PObjetoCuracionComponent } from './p-curacion/p-objeto-curacion/p-objet
     MatCheckboxModule,
     NgbModule,
     DragDropModule,
+    FontAwesomeModule,
   ],
   providers: [UsuariosService,EspaciosService,SenalesService],
   bootstrap: [AppComponent],
