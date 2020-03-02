@@ -99,19 +99,19 @@ li{
 	position:fixed;
 	width:60px;
 	height:60px;
-	top:85%;
-	right:5%;
+	bottom:40px;
+	right:40px;
 	background-color:#000;
 	color:#FFF;
-	border-radius:50%;
+	border-radius:50px;
 	text-align:center;
-    font-size: 20px;
-    padding: 0;
+	box-shadow: 2px 2px 3px #999;
     
-}
-.float p{
-    margin: auto;
 }
 .float:hover{
     cursor: pointer;
+}
+
+.my-float{
+	margin-top:22px;
 }
