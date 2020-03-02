@@ -62,7 +62,7 @@ export class DragDropListComponent implements OnInit{
 
       console.log(this.pCuracionComponent.listaSenales[i]);
 
-      //Angular detecta que la siguientes lineas hay errores y no compila
+      //Angular detecta que en las siguientes lineas hay errores y no compila
       // El codigo funciona, por el momento se ignora el error
 
       // @ts-ignore
