@@ -73,6 +73,7 @@ export class PCopsComponent implements OnInit {
         }
       );
   }
+
   cargarEsp(){
     this.espaciosService.getEspacio(this.usuarioLogeado.cod_org,this.cod_esp)
         .subscribe(
@@ -86,6 +87,7 @@ export class PCopsComponent implements OnInit {
           }
         );
   }
+
   cargarCop(){
     this.copsService.getCop(this.usuarioLogeado.cod_org,this.cod_esp,this.cod_cop)
       .subscribe(
@@ -115,14 +117,17 @@ export class PCopsComponent implements OnInit {
 
     
   }
+
   cambiarCopSeleccion(i:number){
     if(this.cod_cop=i){
       this.cod_cop=i;
     }
   }
+
   cambiarCop(cod_cop:number){
     console.log(cod_cop);
   }
+
   tienePermisos():boolean{
     var cod_org_actual=this.cop.cod_org;
     var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
@@ -133,6 +138,7 @@ export class PCopsComponent implements OnInit {
     return this.usuarioLogeado.tip_usuario==1||
       cod_org_actual==this.usuarioLogeado.cod_org;
   }
+
   ordenar(valorSelect:String){
     switch(valorSelect){
       case "0":
@@ -199,16 +205,19 @@ export class PCopsComponent implements OnInit {
     }
 
   }
+
   filtrarEtiquetas(valorSelect:string){
     this.filtroEtiqueta = Number.parseInt(valorSelect);
     this.filtroEtiqueta--;
     this.filtrar();    
   }
+
   filtrarUsuarios(valorSelect:string){
     this.filtroUsuario = Number.parseInt(valorSelect);
     this.filtroUsuario--;
     this.filtrar();
   }
+
   filtrar(){
     var etiqueta:EtiquetaItem;
     var usuario:string;
@@ -249,6 +258,7 @@ export class PCopsComponent implements OnInit {
     }
   }
 
+  
   private cargarLink(url){
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
     return preview.linkPreviewService.fetchLink(url);
