@@ -7,6 +7,11 @@ import {PCuracionComponent} from './../p-curacion.component'
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ModalAdminCopsComponent } from './../../modal-admin-cops/modal-admin-cops.component';
 import { Observable } from 'rxjs';
+import { CopsItem } from 'src/app/clases/copsitem';
+import { Usuario } from 'src/app/clases/usuario';
+import { Alerta } from '../../clases/alerta'
+import { AlertGenericoComponent } from '../../alert-generico/alert-generico.component';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-drag-drop-list',
@@ -25,25 +30,24 @@ export class DragDropListComponent implements OnInit{
   cod_cop:number;
   cod_senal:number;
   nombreLista:string;
+  cop:CopsItem=new CopsItem();
+  private usuarioLogeado:Usuario;
   
-
   modalTitulo:string;
   modalDescripcion:string;
   modalDepartamento:string;
 
-
-
- 
-
   constructor(
     private senalesService:SenalesService,
     private pCuracionComponent:PCuracionComponent,
+    private modalService:NgbModal,
     private dialog:MatDialog
     ) { 
     //
   }
 
   ngOnInit() {
+    this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
    
   }
 
@@ -119,7 +123,6 @@ export class DragDropListComponent implements OnInit{
     else return true;
   }
 
-
   openModalSenalRelevante():Observable<any>{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus=true;
@@ -157,10 +160,7 @@ export class DragDropListComponent implements OnInit{
   }
 
 
-
   generarSenalRelevante(){
-
-    
 
     var nombreDoc,titulo,departamento, descripcion;
     var links="";
@@ -195,6 +195,7 @@ export class DragDropListComponent implements OnInit{
                 console.log(titulo);
 
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
+                this.nuevaSenal(titulo,descripcion);
                 
               }
               else{
@@ -206,6 +207,7 @@ export class DragDropListComponent implements OnInit{
                 console.log(titulo);
 
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
+                this.nuevaSenal(titulo,descripcion);
                 
                 
               }
@@ -226,8 +228,7 @@ export class DragDropListComponent implements OnInit{
   generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links:string){
     var doc = new jsPDF();
     var link, desc;
-    //var margin = {top: 10, right: 20, bottom: 10, left: 20};
-    
+  
     link=doc.splitTextToSize(links, 180);
     desc=doc.splitTextToSize(descripcion, 180);
     doc.text(titulo,10,20);
@@ -237,10 +238,57 @@ export class DragDropListComponent implements OnInit{
     doc.setTextColor(70, 130, 180);
     doc.text(link, 10, 65);
   
+    doc.save(nombre + '.pdf');
 
-doc.save(nombre + '.pdf');
+  }
 
+  nuevaSenal(titulo:string,descripcion:string){
+  
+    var etiqueta_relevante=4;
+    var url_relevante="https";
+    var img_relevante="https";
+    var cod_relevante=1;
+    var esp_relevante=1;
+
+    console.log(this.usuarioLogeado.cod_org,esp_relevante,
+  cod_relevante,this.usuarioLogeado.cod_usuario,
+  etiqueta_relevante, descripcion, url_relevante,titulo,img_relevante);
+
+    this.senalesService.nuevaSenal(this.usuarioLogeado.cod_org,esp_relevante,
+      cod_relevante,this.usuarioLogeado.cod_usuario,
+      etiqueta_relevante, descripcion, url_relevante,titulo,img_relevante).subscribe(
+        response=>{
+          if(response.error!=0 && response.aniadido==0){
+            let alert:Alerta = {
+              message:"No se ha podido añadir la señal", 
+              type:'danger'
+            };
+            this.abrirAlerta(alert);
+          }
+          else if(response.error==0 && response.aniadido==1){
+            let alert:Alerta = {
+              message:"Señal añadida correctamente", 
+              type:'success'
+            };
+          this.abrirAlerta(alert);
+          }
+        },
+        err=>{
+          let alert:Alerta = {
+            message:"Error con el servidor",
+            type:'danger'
+          };
+          this.abrirAlerta(alert);
+        }
+      );
     
+  }
+
+  abrirAlerta(alerta:Alerta){
+    let modalRef:NgbModalRef;
+    modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
+    (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
+    console.log(modalRef.componentInstance);
   }
 
   
