@@ -27,4 +27,13 @@ export class ClasificacionService {
     */
    return;
   }
+
+  anadirCategoria(cod_org:number,cod_tip:number,categoria:string):Observable<any>{
+    var clasificacion ={
+      "cod_org":cod_org,
+      "cod_tip":cod_tip,
+      "categoria":categoria
+    }
+    return this.httpClient.post(this.url,categoria);
+  }
 }

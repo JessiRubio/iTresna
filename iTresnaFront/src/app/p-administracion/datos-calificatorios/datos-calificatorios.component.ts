@@ -120,8 +120,27 @@ export class DatosCalificatoriosComponent implements OnInit{
         }
       }
     );
+  }
 
-}
+  anadircampo(){
+    var campo = "";
+    this.openModalCampo(campo).subscribe(
+      data=>{
+        if(data!=null){
+        
+          this.clasificacionService.anadirCategoria(this.organizacion.cod_org,this.listaCargada, data.campo).subscribe(
+            respose=>{
+              console.log(respose);
+              if(respose.error==0){
+                location.reload();
+              }
+            }
+          )
+            console.log(data);
+        }
+      }
+    );
+  }
 
 private openModalCampo(campo:string):Observable<any>{
   const dialogConfig = new MatDialogConfig();
