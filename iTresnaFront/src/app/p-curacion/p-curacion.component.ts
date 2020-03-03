@@ -30,19 +30,17 @@ export class PCuracionComponent implements OnInit {
     var eliminarList:SenalesItem[]=[];
     this.listaSenales.push({nombre:"Eliminar",senales:eliminarList});
     this.allDropList.push("Eliminar");
-    //this.listaSenales.splice(0,1);
-    console.log(this.listaSenales);
+    
+  
 
   }
   
   drop(event: CdkDragDrop<string[]>) {
-    //console.log(event);
+ 
     if (event.previousContainer === event.container) {
-      console.log("interior")
-      console.log(event.container);
+  
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      console.log("exterior");
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,

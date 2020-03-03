@@ -31,7 +31,7 @@ export class DragDropListComponent implements OnInit{
   cod_senal:number;
   nombreLista:string;
   cop:CopsItem=new CopsItem();
-  private usuarioLogeado:Usuario;
+  usuarioLogeado:Usuario;
   
   modalTitulo:string;
   modalDescripcion:string;
@@ -43,7 +43,7 @@ export class DragDropListComponent implements OnInit{
     private modalService:NgbModal,
     private dialog:MatDialog
     ) { 
-    //
+    
   }
 
   ngOnInit() {
@@ -76,8 +76,6 @@ export class DragDropListComponent implements OnInit{
       // @ts-ignore
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
 
-
-        
         this.pCuracionComponent.listaSenales.splice(i,i-1);
 
         // @ts-ignore
@@ -106,7 +104,7 @@ export class DragDropListComponent implements OnInit{
   }
 
   borrarSenal(cod_org:number, cod_esp:number, cod_cop:number, cod_senal:number){
-    console.log("entro a borrar");
+
     this.senalesService.deleteSenalCuracion(this.cod_org, this.cod_esp, this.cod_cop, this.cod_senal).subscribe(
       response =>{
       },
@@ -159,14 +157,12 @@ export class DragDropListComponent implements OnInit{
     
   }
 
-
   generarSenalRelevante(){
 
     var nombreDoc,titulo,departamento, descripcion;
     var links="";
 
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
-
 
       // @ts-ignore
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
@@ -175,14 +171,10 @@ export class DragDropListComponent implements OnInit{
 
         // @ts-ignore
         for (var j =0; j<this.senales.senales.length; j++){
+         
           // @ts-ignore
-          console.log(this.senales.senales[j].enlace);
-          // @ts-ignore
-          links=links+" \n"+this.senales.senales[j].enlace;
+          links=links+" \n\n"+this.senales.senales[j].enlace;
 
-          console.log(links);
-
-        
         }
         
         this.openModalSenalRelevante().subscribe(
@@ -192,7 +184,7 @@ export class DragDropListComponent implements OnInit{
                 titulo = data.titulo;
                 departamento = data.departamento;
                 descripcion = data.descripcion;
-                console.log(titulo);
+                
 
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
                 this.nuevaSenal(titulo,descripcion);
@@ -204,8 +196,6 @@ export class DragDropListComponent implements OnInit{
                 departamento = data.departamento;
                 descripcion = data.descripcion;
 
-                console.log(titulo);
-
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
                 this.nuevaSenal(titulo,descripcion);
                 
@@ -214,14 +204,10 @@ export class DragDropListComponent implements OnInit{
             }
           );
         
-        console.log(links);
 
       }
 
-
-
     }
-
 
   }
 
@@ -249,10 +235,6 @@ export class DragDropListComponent implements OnInit{
     var img_relevante="https";
     var cod_relevante=1;
     var esp_relevante=1;
-
-    console.log(this.usuarioLogeado.cod_org,esp_relevante,
-  cod_relevante,this.usuarioLogeado.cod_usuario,
-  etiqueta_relevante, descripcion, url_relevante,titulo,img_relevante);
 
     this.senalesService.nuevaSenal(this.usuarioLogeado.cod_org,esp_relevante,
       cod_relevante,this.usuarioLogeado.cod_usuario,
@@ -288,7 +270,7 @@ export class DragDropListComponent implements OnInit{
     let modalRef:NgbModalRef;
     modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
-    console.log(modalRef.componentInstance);
+
   }
 
   
