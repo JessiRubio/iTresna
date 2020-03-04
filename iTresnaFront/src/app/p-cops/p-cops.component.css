@@ -110,6 +110,8 @@ li{
 }
 .float:hover{
     cursor: pointer;
+    color:#000;
+    background-color:yellowgreen;
 }
 
 .my-float{

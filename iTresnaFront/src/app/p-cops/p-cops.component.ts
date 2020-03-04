@@ -25,19 +25,19 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class PCopsComponent implements OnInit {
-  private usuarioLogeado:Usuario;
-  private cod_esp:number;
-  private cod_cop:number;
-  private listaSenales:SenalesItem[]=[];
+  usuarioLogeado:Usuario;
+  cod_esp:number;
+  cod_cop:number;
+  listaSenales:SenalesItem[]=[];
   listSenalesMostradas:SenalesItem[]=[];
   cop:CopsItem=new CopsItem();
   espacio:EspaciosItem = new EspaciosItem();
   selected: string = '';
-  private filtroEtiqueta:number=-1;
-  private filtroUsuario:number=-1;
+  filtroEtiqueta:number=-1;
+  filtroUsuario:number=-1;
   
-  private listaCops:CopsItem[]=[];
-  private curando=false;
+  listaCops:CopsItem[]=[];
+  curando=false;
   constructor(
     private route: ActivatedRoute,
     private router:Router,
