@@ -185,7 +185,6 @@ export class DragDropListComponent implements OnInit{
                 departamento = data.departamento;
                 descripcion = data.descripcion;
                 
-
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
                 this.nuevaSenal(titulo,descripcion);
                 

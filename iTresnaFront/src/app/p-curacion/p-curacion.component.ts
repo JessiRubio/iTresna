@@ -4,7 +4,7 @@ import { SenalesItem } from '../clases/senales-item';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalAdminCopsComponent } from './../modal-admin-cops/modal-admin-cops.component';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-p-curacion',
@@ -15,11 +15,12 @@ export class PCuracionComponent implements OnInit {
   @Input() senales:SenalesItem[];
 
   nombreLista:string;
-
+  prueba1:number=0;
   listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   allDropList:string[]=[];
   pruebaLista:SenalesItem[]=[];
-  constructor(private dialog:MatDialog) { 
+  constructor(private dialog:MatDialog,
+    private router:Router) { 
   }
 
   ngOnInit() {
@@ -30,9 +31,6 @@ export class PCuracionComponent implements OnInit {
     var eliminarList:SenalesItem[]=[];
     this.listaSenales.push({nombre:"Eliminar",senales:eliminarList});
     this.allDropList.push("Eliminar");
-    
-  
-
   }
   
   drop(event: CdkDragDrop<string[]>) {
@@ -87,5 +85,12 @@ export class PCuracionComponent implements OnInit {
     );
             
   }
+
+  finalizarCuracion(){
+
+    this.router.navigateByUrl("Principal");
+
+  }
+
 
 }
