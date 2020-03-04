@@ -18,17 +18,20 @@
         $desc_senal = $data->desc_senal;
         $enlace = $data->enlace;
         $cod_etiqueta = $data->cod_etiqueta;
+        $img_senal = $data->img_senal;
+        $titulo = $data->titulo;
+
         if($cod_usuario!="" && $cod_org!="" && $cod_esp!="" && $cod_cop!="" 
-            && $desc_senal!="" && $enlace!="" && $cod_etiqueta!="")
+            && $desc_senal!="" && $enlace!="" && $cod_etiqueta!="" && $titulo!="")
         {
             
             $sql = "INSERT INTO t_senales(cod_senal,cod_cop,cod_esp,cod_org,cod_etiqueta,
-                cod_usuario,desc_senal,enlace) VALUES(?,?,?,?,?,?,?,?)";
+                cod_usuario,desc_senal,enlace,img,titulo) VALUES(?,?,?,?,?,?,?,?,?,?)";
             $query=$conexion->prepare($sql);
             $cod_senal=obtCodSenal($cod_cop, $cod_esp, $cod_org);
             
             $query->bind_param("iiiiisss",$cod_senal, $cod_cop, $cod_esp, $cod_org,
-            $cod_etiqueta, $cod_usuario, $desc_senal,$enlace);
+            $cod_etiqueta, $cod_usuario, $desc_senal,$enlace, $img_senal, $titulo);
             $query->execute();
             $result["error"]=(($query->affected_rows)>0)?0:1;
             $result["aniadido"]=$query->affected_rows;
