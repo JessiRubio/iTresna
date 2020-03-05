@@ -100,8 +100,6 @@ export class SenalesComponent implements OnInit {
       }
     );
   }
-
- 
     
   nuevoComentario(){
     if(this.str!==""){
@@ -131,6 +129,7 @@ export class SenalesComponent implements OnInit {
       return false;
     }
   }
+
   puedeBorrar():boolean{
     if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario 
       || this.usuarioLogeado.tip_usuario<=2){
@@ -143,6 +142,7 @@ export class SenalesComponent implements OnInit {
       return false;
     }
   }
+
   editar(){
       const dialofConfig = new MatDialogConfig();
       dialofConfig.autoFocus=true;
@@ -179,8 +179,6 @@ export class SenalesComponent implements OnInit {
       );
   }
 
-
-
   comentarios(){
     const dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus=true;
@@ -207,6 +205,7 @@ export class SenalesComponent implements OnInit {
       }
     );
   }
+  
   mostrarEnvioComentarios(){
     this.mostrarEnvio=!this.mostrarEnvio
   }

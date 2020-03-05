@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-03-2020 a las 13:49:37
+-- Tiempo de generación: 05-03-2020 a las 13:01:51
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -210,11 +210,18 @@ CREATE TABLE `t_senales` (
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `desc_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `enlace` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha_hora` date DEFAULT NULL,
+  `fecha_hora` timestamp NULL DEFAULT current_timestamp(),
   `ind_fich_gest` tinyint(4) DEFAULT NULL,
   `img_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `titulo` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_senales`
+--
+
+INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiqueta`, `cod_usuario`, `desc_senal`, `enlace`, `fecha_hora`, `ind_fich_gest`, `img_senal`, `titulo`) VALUES
+(1, 3, 1, 1, 16, 'rubiovargas.jessica@gmail.com', 'p1', 'https://cadenaser.com/ser/2020/03/05/television/1583403446_539273.html', '2020-03-05 12:00:00', NULL, 'https://cadenaser00.epimg.net/ser/imagenes/2020/03/05/television/1583403446_539273_1583403670_rrss_normal.jpg', 'La última de \'Sálvame\': frivoliza con el coronavirus y le llueven las críticas');
 
 -- --------------------------------------------------------
 
