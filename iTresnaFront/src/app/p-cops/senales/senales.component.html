@@ -1,11 +1,11 @@
 
 <div class="card w-100">
 	<a [href]="senal.enlace" class="card-img-top">
-			<img [src]="imagen" class="card-img-top" alt="prueba">
+			<img src="senal.imagen" class="card-img-top" alt="prueba">
 	</a>
 	<div class="card-body">
 		<div class="row">
-		<h5 class="card-title col-8 center">{{titulo}}</h5>
+		<h5 class="card-title col-8 center">{{senal.titulo}}</h5>
 		<div class="zonaLike inline-block" class="col-4">
 			<button class="btn btnLike" (click) = like() type="submit">
 				<img class="like" src="assets/like.png" alt="like" >
