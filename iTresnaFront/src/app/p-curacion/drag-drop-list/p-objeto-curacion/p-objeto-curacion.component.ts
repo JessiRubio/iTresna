@@ -27,8 +27,6 @@ export class PObjetoCuracionComponent implements OnInit {
   
   @Input() senal:SenalesItem;
 
-  titulo:String= "Lorem Ipsum";
-  imagen:string="./../../../assets/cyberSecurityData.jpg";
   acortado:boolean=true; 
 
   constructor(
