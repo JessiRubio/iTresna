@@ -58,7 +58,6 @@ export class SenalesComponent implements OnInit {
     this.cargarComentarios();
   }
 
-  
   cargarComentarios(){
     this.comentariosService.getComentarios(this.senal.cod_senal)
         .subscribe(

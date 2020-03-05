@@ -161,6 +161,7 @@ export class DragDropListComponent implements OnInit{
 
     var nombreDoc,titulo,departamento, descripcion;
     var links="";
+    var tituloRelevante="";
 
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
@@ -186,7 +187,8 @@ export class DragDropListComponent implements OnInit{
                 descripcion = data.descripcion;
                 
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
-                this.nuevaSenal(titulo,descripcion);
+                tituloRelevante= departamento+": "+titulo;
+                this.nuevaSenal(tituloRelevante,descripcion);
                 
               }
               else{
@@ -195,8 +197,9 @@ export class DragDropListComponent implements OnInit{
                 departamento = data.departamento;
                 descripcion = data.descripcion;
 
+                tituloRelevante= departamento+": "+titulo;
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
-                this.nuevaSenal(titulo,descripcion);
+                this.nuevaSenal(tituloRelevante,descripcion);
                 
                 
               }
@@ -227,7 +230,7 @@ export class DragDropListComponent implements OnInit{
 
   }
 
-  nuevaSenal(titulo:string,descripcion:string){
+  nuevaSenal(tituloRelevante:string,descripcion:string){
   
     var etiqueta_relevante=4;
     var url_relevante="https";
@@ -237,7 +240,7 @@ export class DragDropListComponent implements OnInit{
 
     this.senalesService.nuevaSenal(this.usuarioLogeado.cod_org,esp_relevante,
       cod_relevante,this.usuarioLogeado.cod_usuario,
-      etiqueta_relevante, descripcion, url_relevante,titulo,img_relevante).subscribe(
+      etiqueta_relevante, descripcion, url_relevante,tituloRelevante,img_relevante).subscribe(
         response=>{
           if(response.error!=0 && response.aniadido==0){
             let alert:Alerta = {

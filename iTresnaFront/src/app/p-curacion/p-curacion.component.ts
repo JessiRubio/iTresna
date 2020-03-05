@@ -89,7 +89,6 @@ export class PCuracionComponent implements OnInit {
   finalizarCuracion(){
 
     this.router.navigateByUrl("Principal");
-
   }
 
 
