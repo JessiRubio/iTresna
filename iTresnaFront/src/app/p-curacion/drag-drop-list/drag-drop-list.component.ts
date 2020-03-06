@@ -13,6 +13,7 @@ import { Alerta } from '../../clases/alerta'
 import { AlertGenericoComponent } from '../../alert-generico/alert-generico.component';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-drag-drop-list',
   templateUrl: './drag-drop-list.component.html',
@@ -20,7 +21,7 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DragDropListComponent implements OnInit{
  
-  @Input() senales:SenalesItem[];
+  @Input() senales:any;
   @Input() allDropList:string[]=[];
   @Input() pruebaLista:SenalesItem[]; 
   @Input() nombre:string; 
@@ -32,6 +33,7 @@ export class DragDropListComponent implements OnInit{
   nombreLista:string;
   cop:CopsItem=new CopsItem();
   usuarioLogeado:Usuario;
+  item:any;
   
   modalTitulo:string;
   modalDescripcion:string;
@@ -48,7 +50,6 @@ export class DragDropListComponent implements OnInit{
 
   ngOnInit() {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
-   
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -64,30 +65,25 @@ export class DragDropListComponent implements OnInit{
     }
   }
   
-  eliminarLista(listaSenales:PCuracionComponent,senales:SenalesItem){
+  eliminarLista(){
+
+    
   
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
-      //console.log(this.pCuracionComponent.listaSenales[i]);
-
-      //Angular detecta que en las siguientes lineas hay errores y no compila
-      // El codigo funciona, por el momento se ignora el error
-
-      // @ts-ignore
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
 
         this.pCuracionComponent.listaSenales.splice(i,i-1);
 
-        // @ts-ignore
+        
         for (var j =0; j<this.senales.senales.length; j++){
-    
-          // @ts-ignore
+
           this.cod_org=this.senales.senales[j].cod_org;
-          // @ts-ignore
+          
           this.cod_esp=this.senales.senales[j].cod_esp;
-          // @ts-ignore
+          
           this.cod_cop=this.senales.senales[j].cod_cop;
-          // @ts-ignore
+          
           this.cod_senal=this.senales.senales[j].cod_senal;
 
           this.borrarSenal(this.cod_org, this.cod_esp, this.cod_cop,this.cod_senal );
@@ -165,15 +161,15 @@ export class DragDropListComponent implements OnInit{
 
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
-      // @ts-ignore
+
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
 
         this.nombreLista=this.pCuracionComponent.listaSenales[i].nombre;
 
-        // @ts-ignore
+        
         for (var j =0; j<this.senales.senales.length; j++){
          
-          // @ts-ignore
+          
           links=links+" \n\n"+this.senales.senales[j].enlace;
 
         }

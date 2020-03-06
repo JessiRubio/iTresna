@@ -23,6 +23,7 @@ export class PPerfilComponent implements OnInit {
   sarbideNueva:string;
   deshabilitado:boolean=true;
   cod_usuarioAnterior:string;
+  item:any;
 
   
   constructor(private fBuilder: FormBuilder,
