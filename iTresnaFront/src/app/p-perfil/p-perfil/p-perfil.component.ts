@@ -80,9 +80,9 @@ export class PPerfilComponent implements OnInit {
   }
 
 
-  modificarContrasena(usuarioLogeado:Usuario){
+  modificarContrasena(){
 
-    this.openModalModificarContrasena(usuarioLogeado).subscribe(
+    this.openModalModificarContrasena(this.usuarioLogeado).subscribe(
       data=>{
         if(data!=null){
 

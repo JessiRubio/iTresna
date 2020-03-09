@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ComentariosService {
 
-  private url="http://127.0.0.1:8080/comentarios/";
+  private url="http://itresna.fptxurdinaga.in/comentarios/";
   //private url="http://iegfgtrn1.epizy.com/comentarios/";
   constructor(private httpClient:HttpClient,private http:HttpClient) { }
 

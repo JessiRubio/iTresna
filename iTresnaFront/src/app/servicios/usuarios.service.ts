@@ -6,7 +6,7 @@ import { Usuario } from '../clases/usuario';
   providedIn: 'root'
 })
 export class UsuariosService {
-  private url="http://127.0.0.1:8080/usuario/";
+  private url="http://itresna.fptxurdinaga.in/usuario/";
   private loginState:ReplaySubject<boolean>;
   constructor(
     private httpClient:HttpClient
