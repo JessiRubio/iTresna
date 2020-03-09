@@ -27,7 +27,7 @@
         <br>
         <button *ngIf="deshabilitado" mat-raised-button (click)="editarPerfil()">Editar</button>
         <button *ngIf="!deshabilitado" mat-raised-button (click)="editarPerfil()">Guardar</button>
-        <button  mat-raised-button (click)="modificarContrasena()">Modificar contraseña</button>
+        <button  mat-raised-button (click)="modificarContrasena(item)">Modificar contraseña</button>
         
     </form>
 </section>
