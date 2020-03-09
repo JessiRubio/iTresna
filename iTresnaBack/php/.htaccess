@@ -5,6 +5,6 @@
   #Reglas de acceso a espacios
   #Factura detallada de un usuario
   RewriteRule ^facturas/usuario/([a-zA-Z0-9_-]+)/factura/([a-zA-Z0-9_-]+)/tipo/([a-zA-Z0-9_-]+)$ facturas/?idUsuario=$1&idFactura=$2&tipo=$3 [L]
-  DirectoryIndex /Principal.html
+  DirectoryIndex http://itresna.fptxurdinaga.in/ /Principal.html
 
 </IfModule>
