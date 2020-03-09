@@ -73,19 +73,13 @@ export class DragDropListComponent implements OnInit{
 
         this.pCuracionComponent.listaSenales.splice(i,i-1);
 
-        
         for (var j =0; j<this.senales.senales.length; j++){
 
           this.cod_org=this.senales.senales[j].cod_org;
-          
           this.cod_esp=this.senales.senales[j].cod_esp;
-          
           this.cod_cop=this.senales.senales[j].cod_cop;
-          
           this.cod_senal=this.senales.senales[j].cod_senal;
-
           this.borrarSenal(this.cod_org, this.cod_esp, this.cod_cop,this.cod_senal );
-
         }
         i=this.pCuracionComponent.listaSenales.length;
       }
@@ -163,7 +157,6 @@ export class DragDropListComponent implements OnInit{
         for (var j =0; j<this.senales.senales.length; j++){
          
           links=links+" \n\n"+this.senales.senales[j].enlace;
-
         }
         
         this.openModalSenalRelevante().subscribe(
