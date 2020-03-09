@@ -67,8 +67,6 @@ export class DragDropListComponent implements OnInit{
   
   eliminarLista(){
 
-    
-  
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
@@ -90,12 +88,9 @@ export class DragDropListComponent implements OnInit{
 
         }
         i=this.pCuracionComponent.listaSenales.length;
-
       }
 
-
     }
-
 
   }
 
@@ -161,15 +156,12 @@ export class DragDropListComponent implements OnInit{
 
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
-
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
 
         this.nombreLista=this.pCuracionComponent.listaSenales[i].nombre;
 
-        
         for (var j =0; j<this.senales.senales.length; j++){
          
-          
           links=links+" \n\n"+this.senales.senales[j].enlace;
 
         }
@@ -196,7 +188,6 @@ export class DragDropListComponent implements OnInit{
                 tituloRelevante= departamento+": "+titulo;
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
                 this.nuevaSenal(tituloRelevante,descripcion);
-                
                 
               }
             }

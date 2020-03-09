@@ -23,9 +23,7 @@ export class PPerfilComponent implements OnInit {
   sarbideNueva:string;
   deshabilitado:boolean=true;
   cod_usuarioAnterior:string;
-  item:any;
 
-  
   constructor(private fBuilder: FormBuilder,
     private dialog:MatDialog,
     private modalService:NgbModal,
@@ -54,7 +52,7 @@ export class PPerfilComponent implements OnInit {
 
 
 
-  openModalModificarContrasena(usuarioLogeado:Usuario):Observable<any>{
+  openModalModificarContrasena(usuarioLogeado):Observable<any>{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus=true;
     dialogConfig.minWidth="50%";
