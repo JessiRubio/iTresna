@@ -12,6 +12,7 @@
     $result = array();
     $result["error"]=1;
     if(isset($cod_org) && $cod_org !="" && isset($cod_esp) && $cod_esp!=""){
+        $result = array("espacio"=>array(),"error"=>1);
         $sql= "SELECT cod_esp,cod_org,desc_esp,ind_esp_curacion,orden
         FROM t_espacios
         WHERE cod_org = ? AND cod_esp = ?
@@ -31,6 +32,8 @@
         $result["error"]=0;
     }
     else if(isset($cod_org) && $cod_org !=""){
+        
+        $result = array("espacios"=>array(),"error"=>1);
         $sql= "SELECT cod_esp,cod_org,desc_esp,ind_esp_curacion, orden
                 FROM t_espacios
                 WHERE cod_org = ?
@@ -39,6 +42,7 @@
         $query->bind_param("d",$cod_org);
         $query->execute();
         $query->bind_result($cod_esp,$cod_org_bd,$desc_esp,$ind_esp_curacion,$orden);
+        
         while ($query->fetch()){
             $result["espacios"][]=array(
                 "cod_org" => $cod_org_bd,
@@ -49,7 +53,10 @@
 
             );
         }
+        $query->close();
         $result["error"]=0;        
     }
-    echo json_encode($result);
+
+    $encoded_result = json_encode($result);
+    echo $encoded_result;
 ?>
