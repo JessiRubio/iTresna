@@ -51,3 +51,14 @@
 .card{
     box-shadow: 2px 3px lightslategray;
 }
+
+.tituloCorto{
+    width: 200px; 
+    overflow: hidden; 
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.titulolargo{
+    font-size: 20px;
+}

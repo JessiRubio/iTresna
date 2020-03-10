@@ -100,10 +100,12 @@ export class PAdOrganizacionesComponent implements OnInit {
   applyFilter(filter:string){
     switch(this.seleccionFiltro){
       case 2:
-        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>x.desc_org.indexOf(filter)!=-1);
+        
+        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>x.contacto.indexOf(filter)!=-1);
         break;
       case 3:
-        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>x.contacto.indexOf(filter)!=-1);
+    
+        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>x.desc_org.indexOf(filter)!=-1);
 
     }
     this.ordenarOrganizaciones();

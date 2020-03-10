@@ -200,7 +200,7 @@ export class DragDropListComponent implements OnInit{
     link=doc.splitTextToSize(links, 180);
     desc=doc.splitTextToSize(descripcion, 180);
     doc.text(titulo,10,20);
-    doc.text("Departamento: "+departamento,10,30);
+    doc.text("Departamento: " + departamento,10,30);
     doc.text(desc,10,40);
     doc.text("Enlaces relacionados:",10,60)
     doc.setTextColor(70, 130, 180);
@@ -254,6 +254,5 @@ export class DragDropListComponent implements OnInit{
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
 
   }
-
   
 }
