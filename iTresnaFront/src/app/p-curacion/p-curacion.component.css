@@ -29,3 +29,20 @@ section{
   margin: 3%;
   margin-top: 0;
 }
+.clasificacion{
+  vertical-align: top;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 60%;
+  min-width: 60%;
+  min-height: 100px;
+}
+div.todasSenales, div.eliminarSenales{
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  display: inline-block;
+  height: 100%;
+}
