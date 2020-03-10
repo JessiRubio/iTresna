@@ -9,23 +9,25 @@
     $result=array(
         "error"=>1,
     );
-
     if($accion=="nuevaOrganizacion"){
         $desc_org=$data->desc_org;
         $image=$data->imagen;
         $eslogan=$data->eslogan;
         $enlace=$data->enlace;
-        if(isset($desc_cop) && $desc_cop!="" && $eslogan!=""){
+        if(isset($desc_org) && $desc_org!="" && $eslogan!=""){
             $cod_org=getCodOrg();
             $sql="INSERT INTO t_org(cod_org,desc_org,enlace_org,eslogan_org) values(?,?,?,?)";
             $query=$conexion->prepare($sql);
-            $query->bind_param("isss",$cod_org,$desc_cop,$enlace,$eslogan);
+            $query->bind_param("isss",$cod_org,$desc_org,$enlace,$eslogan);
             $query->execute();
             $affected_rows=$query->affected_rows;
+            echo var_dump($query);
+            die();
             $result["error"]=($affected_rows>0)?0:1;
             if($affected_rows>0 && $image!=""){
                 updateImagen($cod_org,$image);
             }
+            $query->close();
         }
     }
     else if($accion=="camposClasif"){
@@ -42,6 +44,7 @@
     }
 
     echo json_encode($result);
+
     function updateImagen($cod_org,$image){
         include("./../conexion.php");
         try{
@@ -52,7 +55,7 @@
             }
             file_put_contents("../media/".$cod_org."/logo_".$cod_org.".png",$file);
             if(file_exists("../media/".$cod_org."/logo_".$cod_org.".png")){
-                $pathToFile="http://localhost:8080/media/".$cod_org."/logo_".$cod_org.".png";
+                $pathToFile="http://itresna.fptxurdinaga.in/media/".$cod_org."/logo_".$cod_org.".png";
                 $sql="UPDATE t_org
                     SET img_org=?
                     WHERE cod_org=?";

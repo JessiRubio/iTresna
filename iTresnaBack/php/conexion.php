@@ -1,5 +1,5 @@
 <?php
-	$conexion = new mysqli('localhost', 'itresna_itresna', 'Abcd_1234', 'itresna_itresna');
+	$conexion = new mysqli('localhost', 'root', '', 'bditresna');
 	
 	if(mysqli_connect_error())
 	{

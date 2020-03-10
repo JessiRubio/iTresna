@@ -21,11 +21,12 @@ export class UsuariosService {
   }
   /* Llamada al servicio php con los atributos del login */
   login(usuario:string,password:string):Observable<any>{
-    console.log("login");
     var json={'accion':'login','usuario':usuario,'password':password};
     var observable:Observable<any> = this.httpClient.post(this.url,json);
     observable.subscribe(
       response=>{
+        console.log(json);
+        console.log(response);
         if(response.error==0){
           localStorage.setItem("usuario",JSON.stringify(response.usuario));
           this.loginState.next(response.error==0);
