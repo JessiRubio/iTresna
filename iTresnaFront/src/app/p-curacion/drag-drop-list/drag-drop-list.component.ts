@@ -25,6 +25,7 @@ export class DragDropListComponent implements OnInit{
   @Input() pruebaLista:SenalesItem[]; 
   @Input() nombre:string; 
   @Input() listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
+  @Input() type:string;
   cod_org:number;
   cod_esp:number;
   cod_cop:number;

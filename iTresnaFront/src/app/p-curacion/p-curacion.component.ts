@@ -14,8 +14,9 @@ import { Router } from '@angular/router';
 export class PCuracionComponent implements OnInit {
   @Input() senales:SenalesItem[];
 
+  listaPrincipal:{nombre:string,senales:Array<SenalesItem>};
+  eliminar:{nombre:string,senales:Array<SenalesItem>};
   nombreLista:string;
-  prueba1:number=0;
   listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   allDropList:string[]=[];
   pruebaLista:SenalesItem[]=[];
@@ -25,11 +26,11 @@ export class PCuracionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.listaSenales.push({nombre:"Señales",senales:this.senales});
+    this.listaPrincipal=({nombre:"Señales",senales:this.senales});
     this.allDropList.push("Señales");
 
     var eliminarList:SenalesItem[]=[];
-    this.listaSenales.push({nombre:"Eliminar",senales:eliminarList});
+    this.eliminar={nombre:"Eliminar",senales:eliminarList};
     this.allDropList.push("Eliminar");
   }
   

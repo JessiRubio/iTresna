@@ -3,12 +3,20 @@
         <button class="btn btn-primary"(click)="nuevaLista()">Nueva Lista</button>
         <button class="btn btn-success"(click)="finalizarCuracion()">Finalizar Curación</button>
     </div>
-    <div class="clasificacion "  style="width: 100%; margin: auto;">
-        <div class="list-group">
-            
-            <div class="list-group-item" *ngFor="let listaSenal of listaSenales">
-                <app-drag-drop-list [senales]="listaSenal" [allDropList]="allDropList"></app-drag-drop-list>
+    <div class="curacion">
+        <div class="todasSenales">
+            <app-drag-drop-list [senales]="listaPrincipal" [allDropList]="allDropList" [type]="'multiple'"></app-drag-drop-list>
+        </div>
+        
+        <div class="clasificacion">
+            <div class="list-group-vertical">
+                <div class="list-group-item" *ngFor="let listaSenal of listaSenales">
+                    <app-drag-drop-list [senales]="listaSenal" [allDropList]="allDropList" [type]="'single'"></app-drag-drop-list>
+                </div>
             </div>
+        </div>
+        <div class="eliminarSenales">
+            <app-drag-drop-list [senales]="eliminar" [allDropList]="allDropList" [type]="'multiple'"></app-drag-drop-list>
         </div>
     </div>
 </section>
