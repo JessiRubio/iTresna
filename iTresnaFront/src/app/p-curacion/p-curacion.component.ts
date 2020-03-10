@@ -5,6 +5,7 @@ import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalAdminCopsComponent } from './../modal-admin-cops/modal-admin-cops.component';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { SenalesService } from '../servicios/senales.service';
 
 @Component({
   selector: 'app-p-curacion',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./p-curacion.component.css']
 })
 export class PCuracionComponent implements OnInit {
+
   @Input() senales:SenalesItem[];
 
   listaPrincipal:{nombre:string,senales:Array<SenalesItem>};
@@ -21,6 +23,7 @@ export class PCuracionComponent implements OnInit {
   allDropList:string[]=[];
   pruebaLista:SenalesItem[]=[];
   constructor(private dialog:MatDialog,
+    private senalesService:SenalesService,
     private router:Router) { 
   }
 
@@ -28,7 +31,7 @@ export class PCuracionComponent implements OnInit {
 
     this.listaPrincipal=({nombre:"Señales",senales:this.senales});
     this.allDropList.push("Señales");
-
+    
     var eliminarList:SenalesItem[]=[];
     this.eliminar={nombre:"Eliminar",senales:eliminarList};
     this.allDropList.push("Eliminar");
@@ -88,9 +91,28 @@ export class PCuracionComponent implements OnInit {
   }
 
   finalizarCuracion(){
+    for (var i=0; i<this.listaSenales.length;i++){
+      if(this.listaSenales[i].nombre==="Eliminar"){
+        for(var j=0;j<this.listaSenales[i].senales.length;j++){
+          var cod_org = this.listaSenales[i].senales[j].cod_org;
+          var cod_esp = this.listaSenales[i].senales[j].cod_esp;
+          var cod_cop = this.listaSenales[i].senales[j].cod_cop;
+          var cod_senal = this.listaSenales[i].senales[j].cod_senal;
+          this.senalesService.deleteSenalCuracion(cod_org, cod_esp, cod_cop, cod_senal).subscribe(
+            response =>{
+            },
+            error =>{
+              window.alert("Error de conexion o fallo en servidor");
+            }
+          );
+        }
 
-    this.router.navigateByUrl("Principal");
-
+        if (j>=this.listaSenales[i].senales.length){
+          location.reload();
+        }
+      }
+    }
+    
   }
 
 

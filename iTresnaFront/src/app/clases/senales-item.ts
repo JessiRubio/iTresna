@@ -10,7 +10,7 @@ export class SenalesItem {
     nombre_completo:string;
     ind_fech_gest:boolean;
     titulo:string;
-    imagen:string;
+    img_senal:string;
     cantidad_comentarios:number;
     me_gustas:number;
     me_ha_gustado:boolean;

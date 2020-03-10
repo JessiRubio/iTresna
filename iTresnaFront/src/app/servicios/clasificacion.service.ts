@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ClasificacionService {
 
-  private url="http://127.0.0.1:8080/clasificacion/";
+  private url="http://itresna.fptxurdinaga.in/clasificacion/";
   constructor(private httpClient:HttpClient,private http:HttpClient) { }
 
   deleteCategoria(cod_org:number,cod_tip:number,categoria:string):Observable<any>{

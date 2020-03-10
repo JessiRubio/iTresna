@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CopsService {
 
-  private url="http://127.0.0.1:8080/cops/";
+  private url="http://itresna.fptxurdinaga.in/cops/";
 
   constructor(private httpClient:HttpClient) {}
 

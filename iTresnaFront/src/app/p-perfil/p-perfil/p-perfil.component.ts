@@ -24,7 +24,6 @@ export class PPerfilComponent implements OnInit {
   deshabilitado:boolean=true;
   cod_usuarioAnterior:string;
 
-  
   constructor(private fBuilder: FormBuilder,
     private dialog:MatDialog,
     private modalService:NgbModal,
@@ -53,7 +52,7 @@ export class PPerfilComponent implements OnInit {
 
 
 
-  openModalModificarContrasena(usuarioLogeado:Usuario):Observable<any>{
+  openModalModificarContrasena(usuarioLogeado):Observable<any>{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus=true;
     dialogConfig.minWidth="50%";
@@ -81,9 +80,9 @@ export class PPerfilComponent implements OnInit {
   }
 
 
-  modificarContrasena(usuarioLogeado:Usuario){
+  modificarContrasena(){
 
-    this.openModalModificarContrasena(usuarioLogeado).subscribe(
+    this.openModalModificarContrasena(this.usuarioLogeado).subscribe(
       data=>{
         if(data!=null){
 

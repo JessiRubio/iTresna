@@ -34,8 +34,6 @@ export class SenalesComponent implements OnInit {
   @Input() comentario:Comentario;
   @Input() etiquetas:EtiquetaItem[];
 
-  titulo:String= "Lorem Ipsum";
-  imagen:string="./../../../assets/cyberSecurityData.jpg";
   listaComentarios:Comentario[]=[];
   acortado:boolean=true; 
 
@@ -57,12 +55,9 @@ export class SenalesComponent implements OnInit {
       this.cod_esp = params['codEspacio'];
 
     });
-
-    this.cargarTituloPagina();
     this.cargarComentarios();
   }
 
-  
   cargarComentarios(){
     this.comentariosService.getComentarios(this.senal.cod_senal)
         .subscribe(
@@ -104,8 +99,6 @@ export class SenalesComponent implements OnInit {
       }
     );
   }
-
- 
     
   nuevoComentario(){
     if(this.str!==""){
@@ -124,18 +117,6 @@ export class SenalesComponent implements OnInit {
     this.mostrarEnvioComentarios();
   }
 
-
-  cargarTituloPagina(){
-
-    var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
-    preview.linkPreviewService.fetchLink(this.senal.enlace).subscribe(
-      response=>{
-        console.log(response);
-        this.titulo=response.title;
-        this.imagen=response.image;
-      }
-    );
-  }
   puedeEditar():boolean{
     if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario||this.usuarioLogeado.tip_usuario<=2){
       return true;
@@ -147,6 +128,7 @@ export class SenalesComponent implements OnInit {
       return false;
     }
   }
+
   puedeBorrar():boolean{
     if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario 
       || this.usuarioLogeado.tip_usuario<=2){
@@ -159,6 +141,7 @@ export class SenalesComponent implements OnInit {
       return false;
     }
   }
+
   editar(){
       const dialofConfig = new MatDialogConfig();
       dialofConfig.autoFocus=true;
@@ -195,8 +178,6 @@ export class SenalesComponent implements OnInit {
       );
   }
 
-
-
   comentarios(){
     const dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus=true;
@@ -223,6 +204,7 @@ export class SenalesComponent implements OnInit {
       }
     );
   }
+  
   mostrarEnvioComentarios(){
     this.mostrarEnvio=!this.mostrarEnvio
   }

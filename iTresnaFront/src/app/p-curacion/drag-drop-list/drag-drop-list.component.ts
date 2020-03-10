@@ -13,6 +13,7 @@ import { Alerta } from '../../clases/alerta'
 import { AlertGenericoComponent } from '../../alert-generico/alert-generico.component';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-drag-drop-list',
   templateUrl: './drag-drop-list.component.html',
@@ -20,7 +21,7 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DragDropListComponent implements OnInit{
  
-  @Input() senales:SenalesItem[];
+  @Input() senales:any;
   @Input() allDropList:string[]=[];
   @Input() pruebaLista:SenalesItem[]; 
   @Input() nombre:string; 
@@ -33,6 +34,7 @@ export class DragDropListComponent implements OnInit{
   nombreLista:string;
   cop:CopsItem=new CopsItem();
   usuarioLogeado:Usuario;
+  item:any;
   
   modalTitulo:string;
   modalDescripcion:string;
@@ -49,7 +51,6 @@ export class DragDropListComponent implements OnInit{
 
   ngOnInit() {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
-   
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -65,42 +66,26 @@ export class DragDropListComponent implements OnInit{
     }
   }
   
-  eliminarLista(listaSenales:PCuracionComponent,senales:SenalesItem){
-  
+  eliminarLista(){
+
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
-      //console.log(this.pCuracionComponent.listaSenales[i]);
-
-      //Angular detecta que en las siguientes lineas hay errores y no compila
-      // El codigo funciona, por el momento se ignora el error
-
-      // @ts-ignore
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
 
         this.pCuracionComponent.listaSenales.splice(i,i-1);
 
-        // @ts-ignore
         for (var j =0; j<this.senales.senales.length; j++){
-    
-          // @ts-ignore
+
           this.cod_org=this.senales.senales[j].cod_org;
-          // @ts-ignore
           this.cod_esp=this.senales.senales[j].cod_esp;
-          // @ts-ignore
           this.cod_cop=this.senales.senales[j].cod_cop;
-          // @ts-ignore
           this.cod_senal=this.senales.senales[j].cod_senal;
-
           this.borrarSenal(this.cod_org, this.cod_esp, this.cod_cop,this.cod_senal );
-
         }
         i=this.pCuracionComponent.listaSenales.length;
-
       }
 
-
     }
-
 
   }
 
@@ -162,20 +147,17 @@ export class DragDropListComponent implements OnInit{
 
     var nombreDoc,titulo,departamento, descripcion;
     var links="";
+    var tituloRelevante="";
 
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
-      // @ts-ignore
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
 
         this.nombreLista=this.pCuracionComponent.listaSenales[i].nombre;
 
-        // @ts-ignore
         for (var j =0; j<this.senales.senales.length; j++){
          
-          // @ts-ignore
           links=links+" \n\n"+this.senales.senales[j].enlace;
-
         }
         
         this.openModalSenalRelevante().subscribe(
@@ -187,7 +169,8 @@ export class DragDropListComponent implements OnInit{
                 descripcion = data.descripcion;
                 
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
-                this.nuevaSenal(titulo,descripcion);
+                tituloRelevante= departamento+": "+titulo;
+                this.nuevaSenal(tituloRelevante,descripcion);
                 
               }
               else{
@@ -196,9 +179,9 @@ export class DragDropListComponent implements OnInit{
                 departamento = data.departamento;
                 descripcion = data.descripcion;
 
+                tituloRelevante= departamento+": "+titulo;
                 this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
-                this.nuevaSenal(titulo,descripcion);
-                
+                this.nuevaSenal(tituloRelevante,descripcion);
                 
               }
             }
@@ -228,7 +211,7 @@ export class DragDropListComponent implements OnInit{
 
   }
 
-  nuevaSenal(titulo:string,descripcion:string){
+  nuevaSenal(tituloRelevante:string,descripcion:string){
   
     var etiqueta_relevante=4;
     var url_relevante="https";
@@ -238,7 +221,7 @@ export class DragDropListComponent implements OnInit{
 
     this.senalesService.nuevaSenal(this.usuarioLogeado.cod_org,esp_relevante,
       cod_relevante,this.usuarioLogeado.cod_usuario,
-      etiqueta_relevante, descripcion, url_relevante,titulo,img_relevante).subscribe(
+      etiqueta_relevante, descripcion, url_relevante,tituloRelevante,img_relevante).subscribe(
         response=>{
           if(response.error!=0 && response.aniadido==0){
             let alert:Alerta = {

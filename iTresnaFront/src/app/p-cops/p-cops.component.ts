@@ -257,7 +257,6 @@ export class PCopsComponent implements OnInit {
       this.listSenalesMostradas=this.listaSenales;
     }
   }
-
   
   private cargarLink(url){
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
@@ -279,7 +278,10 @@ export class PCopsComponent implements OnInit {
           this.cargarLink(data.url).subscribe(
             response=>{
               var titulo=response.title;
+              console.log(titulo);
+              
               var imagen=response.image;
+              console.log(imagen);
               this.senalesService.nuevaSenal(this.cop.cod_org,this.cop.cod_esp,
                 this.cop.cod_cop,this.usuarioLogeado.cod_usuario,
                 data.etiqueta, data.descripcion, data.url,titulo,imagen).subscribe(
@@ -315,6 +317,8 @@ export class PCopsComponent implements OnInit {
     );
     
   }
+
+
   abrirAlerta(alerta:Alerta){
     let modalRef:NgbModalRef;
     modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
