@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as data from '../server-config.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CopsService {
 
-  private url="http://itresna.fptxurdinaga.in/cops/";
+  private url=data.domain+"cops/";
 
   constructor(private httpClient:HttpClient) {}
 
