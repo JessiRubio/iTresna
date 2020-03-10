@@ -21,8 +21,6 @@
             $query->bind_param("isss",$cod_org,$desc_org,$enlace,$eslogan);
             $query->execute();
             $affected_rows=$query->affected_rows;
-            echo var_dump($query);
-            die();
             $result["error"]=($affected_rows>0)?0:1;
             if($affected_rows>0 && $image!=""){
                 updateImagen($cod_org,$image);

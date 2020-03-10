@@ -21,9 +21,9 @@ export class OrganizacionComponent implements OnInit {
   url:string="";
   placeHolder:string;
 
-  deshabilitado:boolean=true;
   constructor(private fBuilder: FormBuilder,
     private organizacionesService:OrganizacionesService) {
+      this.organizacion=new Organizacion();
       this.form=this.fBuilder.group({
         orgName:["",Validators.required],
         orgDesc:["",Validators.required],
@@ -50,44 +50,5 @@ export class OrganizacionComponent implements OnInit {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
     this.cargarOrg(this.usuarioLogeado.cod_org);
     
-  }
-  editarOrganizacion(){
-    this.deshabilitado=!this.deshabilitado;
-    if(this.deshabilitado){
-      this.organizacion.desc_org=this.form.value.orgName;
-      this.organizacion.eslogan_org=this.form.value.orgDesc;
-      var imagen = this.form.value["imagen"];
-      if(imagen!=null){
-        var reader = new FileReader();
-        reader.readAsDataURL(imagen.files[0]);
-        reader.onload = () =>{
-          this.modificar(this.organizacion.cod_org,this.organizacion.desc_org,
-                        this.organizacion.eslogan_org,
-                        this.organizacion.contacto,
-                        this.organizacion.enlace_org,
-                        reader.result.toString().split(',')[1]);
-        };
-      }else{
-        this.modificar(this.organizacion.cod_org,this.organizacion.desc_org,
-          this.organizacion.eslogan_org,this.organizacion.contacto,
-          this.organizacion.enlace_org,"");
-      }
-      
-      this.form.disable();
-    }else{
-      this.form.enable();
-    }
-  }
-  private modificar(cod_org:number,desc_org:string,eslogan:string,contacto:string,enlace:string,imagen:string){
-    this.organizacionesService.modificarOrganizacion(cod_org,desc_org,eslogan,contacto,enlace,imagen).subscribe(
-      response=>{
-        if(response.error==0){
-          location.reload();
-        }
-      },
-      error=>{
-        console.log(error);
-      }
-    );
   }
 }

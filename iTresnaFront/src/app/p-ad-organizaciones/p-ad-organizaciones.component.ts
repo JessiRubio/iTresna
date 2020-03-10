@@ -2,10 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Organizacion } from '../clases/Organizacion';
 import { Router } from '@angular/router';
 import { OrganizacionesService} from '../servicios/organizaciones.service';
-import { UsuariosService} from '../servicios/usuarios.service';
-import { Usuario, Permiso } from '../clases/usuario';
-import { MatDialogConfig, MatDialog } from '@angular/material';
-import { ModalAdminCopsComponent } from '../modal-admin-cops/modal-admin-cops.component';
+import { Usuario } from '../clases/usuario';
+import { ModalServiceService } from '../servicios/modal-service.service';
+import {AlertService} from '../servicios/alert.service';
+import { Alerta } from '../clases/alerta';
 
 @Component({
   selector: 'app-p-ad-organizaciones',
@@ -26,7 +26,8 @@ export class PAdOrganizacionesComponent implements OnInit {
   constructor(
     private organizacionesService:OrganizacionesService,
     private router: Router,
-    private dialog:MatDialog) 
+    private modalService:ModalServiceService,
+    private alertaService:AlertService) 
     {
 
    }
@@ -112,14 +113,26 @@ export class PAdOrganizacionesComponent implements OnInit {
       if(window.confirm("Esta acción no tiene vuelta atras,¿Seguro que desea eliminarlo?")){
         this.organizacionesService.eliminarOrganizacion(item.cod_org).subscribe(
           response=>{
+            var alert:Alerta;
             if(response.error==0){
-              location.reload();
+              alert = {
+                message:"Organización borrada correctamente", 
+                type:'success'
+              };
             }else{
-              console.error("No se ha podido eliminar la organización.");
+              alert = {
+                message:"No se pudo eliminar la Organización", 
+                type:'danger'
+              };
             }
+            this.alertaService.abrirAlerta(alert);
           },
           error=>{
-            console.log(error);
+            let alert:Alerta = {
+              message:"Error con el servidor",
+              type:'danger'
+            };
+            this.alertaService.abrirAlerta(alert);
           }
         );
       }
@@ -127,16 +140,127 @@ export class PAdOrganizacionesComponent implements OnInit {
   }
 
   nueva(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
+    var organizacion=new Organizacion();
+    organizacion.usuarios=[];
+    this.abrirModal(organizacion,"Alta Organizacion","Alta",organizacion.contacto).then(
+      data=>{
+        if(data!=null){
+          var file="";
+          if(data.imagen!=""||data.imagen==null){
+            var reader = new FileReader();
+            reader.readAsDataURL(data.imagen);
+            reader.onload = () =>{
+              this.nuevaOrgnizacion(data.nombre,
+                data.descripcion,
+                data.enlace,
+                reader.result.toString().split(',')[1]);              
+            };
+            
+          }else{
+            this.nuevaOrgnizacion(data.nombre,data.descripcion,data.enlace,"");
+          }
+        }
+      },
+      error=>{
+        //Nos da igal que se cierre el modal 
+      }
+    );
+  }
+  private nuevaOrgnizacion(nombre:string,descripcion:string,enlace:string,imagen:string){
+    this.organizacionesService.nuevaOrgnizacion(nombre,descripcion,enlace,imagen).subscribe(
+      response=>{
+        var alert:Alerta
+        if(response.error==0){
+          alert = {
+            message:"Organización creada correctamente", 
+            type:'success'
+          };
+        }else{
+          alert = {
+            message:"Fallo al crear la Organización", 
+            type:'danger'
+          };
+        }
+        this.alertaService.abrirAlerta(alert);
+      },
+      error=>{
+        let alert:Alerta = {
+          message:"Error con el servidor",
+          type:'danger'
+        };
+        this.alertaService.abrirAlerta(alert);
+      }
+    );
+  }
+
+  editar(item:Organizacion){
+    this.organizacionesService.getOrganizacionActual(item.cod_org).subscribe(
+      response=>{
+        item.usuarios=response.organizacion.usuarios
+        this.abrirModal(item,"Modificar Organización","Modificar",item.contacto).then(
+          data=>{
+            if(data!=null){
+              var contacto=data.contacto;
+              console.log(contacto);
+              if(data.imagen!=""||data.imagen==null){
+                var reader = new FileReader();
+                reader.readAsDataURL(data.imagen);
+                reader.onload = () =>{
+                  this.modificar(item.cod_org,
+                    data.nombre,
+                    data.descripcion,
+                    contacto,
+                    data.enlace,
+                    reader.result.toString().split(',')[1]);              
+                };
+              }else{
+                this.modificar(item.cod_org,data.nombre,data.descripcion,contacto,data.enlace,"");
+              }
+            }
+          }
+        );
+      },
+      error=>{
+        //Nos da igual que se cierre sin datos (por dismiss)
+      }
+    );
+  }
+  private modificar(cod_org:number,desc_org:string,eslogan:string,contacto:string,enlace:string,imagen:string){
+    this.organizacionesService.modificarOrganizacion(cod_org,desc_org,eslogan,contacto,enlace,imagen).subscribe(
+      response=>{
+        var alert:Alerta;
+        if(response.error==0){
+          alert = {
+            message:"Organización modificada correctamente", 
+            type:'success'
+          };
+        }else{
+          alert = {
+            message:"Fallo al modificar la Organización", 
+            type:'danger'
+          };
+        }
+        this.alertaService.abrirAlerta(alert);
+      },
+      error=>{
+        let alert:Alerta = {
+          message:"Error con el servidor",
+          type:'danger'
+        };
+        console.log(error);
+        this.alertaService.abrirAlerta(alert);
+      }
+    );
+  }
+
+  private abrirModal(item:Organizacion,titulo:string,textoBotonFin:string,selected:any):Promise<any>{
+    var data=[
       {
         input:"inputField",
         controlName:"nombre",
         placeHolder:"Escribe el nombre de la org",
         data:{
-          desc:""
+          desc:item.desc_org
         }
       },
       {
@@ -144,7 +268,7 @@ export class PAdOrganizacionesComponent implements OnInit {
         controlName:"descripcion",
         placeHolder:"Escribe la descripcion de la org",
         data:{
-          desc:""
+          desc:item.eslogan_org
         }
       },
       {
@@ -160,135 +284,28 @@ export class PAdOrganizacionesComponent implements OnInit {
         controlName:"enlace",
         placeHolder:"Escribe en enlace a la org",
         data:{
-          desc:""
+          desc:item.enlace_org
+        }
+      },
+      {
+        input:"selectField",
+        controlName:"contacto",
+        placeHolder:"Selecciona un contacto",
+        data:{
+          data:item.usuarios,
+          seleccionado:selected
         }
       }
     ];
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    dialogRef.afterClosed().subscribe(
-      data=>{
-        if(data!=null){
-          var file="";
-          if(data.imagen!=null){
-            var reader = new FileReader();
-            reader.readAsDataURL(data.imagen);
-            reader.onload = () =>{
-              this.nuevaOrgnizacion(data.nombre,
-                data.descripcion,
-                data.enlace,
-                reader.result.toString().split(',')[1]);              
-            };
-            
-          }else{
-            this.nuevaOrgnizacion(data.nombre,data.descripcion,data.enlace,"");
-          }
-        }
-      }
-    );
-  }
-  private nuevaOrgnizacion(nombre:string,descripcion:string,enlace:string,imagen:string){
-    this.organizacionesService.nuevaOrgnizacion(nombre,descripcion,enlace,imagen).subscribe(
-      response=>{
-        if(response.error==0){
-          location.reload();
-        }else{
-          console.error("Hubo un error al crear la organización.");
-        }
-      }
-    );
+    var config={
+      titulo:titulo,
+      data:data,
+      botonFin:textoBotonFin
+    };
+    return this.modalService.abrirModal(config);
   }
 
-  editar(item:Organizacion){
-    this.organizacionesService.getOrganizacionActual(item.cod_org).subscribe(
-      response=>{
-        let usuarios:any[]=[];
-        for(var i=0;i<response.organizacion.usuarios.length;i++){
-          usuarios.push({"id":i,"desc":response.organizacion.usuarios[i]});
-        }
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.autoFocus=true;
-        dialogConfig.minWidth="50%";
-        dialogConfig.data=[
-          {
-            input:"inputField",
-            controlName:"nombre",
-            placeHolder:"Escribe el nombre de la org",
-            data:{
-              desc:item.desc_org
-            }
-          },
-          {
-            input:"inputField",
-            controlName:"descripcion",
-            placeHolder:"Escribe la descripcion de la org",
-            data:{
-              desc:item.eslogan_org
-            }
-          },
-          {
-            input:"fileField",
-            controlName:"imagen",
-            placeHolder:"Selecciona un archivo",
-            data:{
-              desc:""
-            }
-          },
-          {
-            input:"inputField",
-            controlName:"enlace",
-            placeHolder:"Escribe en enlace a la org",
-            data:{
-              desc:item.enlace_org
-            }
-          },
-          {
-            input:"selectField",
-            controlName:"contacto",
-            placeHolder:"Selecciona un contacto",
-            data:usuarios
-          }
-        ];
-        const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-        dialogRef.afterClosed().subscribe(
-          data=>{
-            if(data!=null){
-            let contacto=usuarios[data.contacto];
-              var file="";
-              if(data.imagen!=null){
-                var reader = new FileReader();
-                reader.readAsDataURL(data.imagen);
-                reader.onload = () =>{
-                  this.modificar(item.cod_org,data.nombre,
-                    data.descripcion,
-                    contacto.desc,
-                    data.enlace,
-                    reader.result.toString().split(',')[1]);              
-                };
-                
-              }else{
-                this.modificar(item.cod_org,data.nombre,data.descripcion,contacto.desc,data.enlace,"");
-              }
-            }
-          }
-        );
-      }
-    );
-  }
-  private modificar(cod_org:number,desc_org:string,eslogan:string,contacto:string,enlace:string,imagen:string){
-    this.organizacionesService.modificarOrganizacion(cod_org,desc_org,eslogan,contacto,enlace,imagen).subscribe(
-      response=>{
-        console.log(response);
-        if(response.error==0){
-          location.reload();
-        }
-      },
-      error=>{
-        console.log(error);
-      }
-    );
-  }
-
-  filtroSeleccionado():String{
+  filtroSeleccionado():string{
     if (this.seleccionFiltro==1){
       return "Ninguno";
     }else if (this.seleccionFiltro==2){
