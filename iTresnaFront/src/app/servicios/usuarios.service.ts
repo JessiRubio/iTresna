@@ -2,18 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
 import { Usuario } from '../clases/usuario';
+import * as data from '../server-config.json';
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
-
-  //Servidor
-  //private url="http://itresna.fptxurdinaga.in/usuario/";
-
-  //Local
-  private url="http://127.0.0.1:8080/usuario/";
-
-
+  private url=data.domain+"/usuario/";
   private loginState:ReplaySubject<boolean>;
   constructor(
     private httpClient:HttpClient
@@ -28,7 +22,6 @@ export class UsuariosService {
   }
   /* Llamada al servicio php con los atributos del login */
   login(usuario:string,password:string):Observable<any>{
-    console.log("login");
     var json={'accion':'login','usuario':usuario,'password':password};
     var observable:Observable<any> = this.httpClient.post(this.url,json);
     observable.subscribe(

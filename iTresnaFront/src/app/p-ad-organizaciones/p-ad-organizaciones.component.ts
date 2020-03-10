@@ -194,7 +194,7 @@ export class PAdOrganizacionesComponent implements OnInit {
         if(response.error==0){
           location.reload();
         }else{
-          console.error("Hubo un error al crear la organización.")
+          console.error("Hubo un error al crear la organización.");
         }
       }
     );

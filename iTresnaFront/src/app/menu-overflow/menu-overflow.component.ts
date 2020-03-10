@@ -47,7 +47,6 @@ export class MenuOverflowComponent implements OnInit {
   }
 
   toggleMenu(){
-    console.log(this.open);
     this.open=!this.open;
   }
 }

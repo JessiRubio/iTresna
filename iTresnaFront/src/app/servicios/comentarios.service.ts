@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as data from '../server-config.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComentariosService {
 
-  //Servidor
-  //private url="http://itresna.fptxurdinaga.in/comentarios/";
-
-  //Local
-  private url="http://127.0.0.1:8080/comentarios/";
-  
+  private url=data.domain+"comentarios/";
+  //private url="http://iegfgtrn1.epizy.com/comentarios/";
   constructor(private httpClient:HttpClient,private http:HttpClient) { }
 
 

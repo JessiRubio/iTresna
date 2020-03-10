@@ -23,7 +23,6 @@ export class CopComponent implements OnInit {
   }
 
   getUrl(){
-    console.log(this.img);
     return "url('"+this.img+"')";
   }
 

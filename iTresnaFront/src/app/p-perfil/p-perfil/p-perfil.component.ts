@@ -147,14 +147,12 @@ modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
     let modalRef:NgbModalRef;
     modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
-    console.log(modalRef.componentInstance);
   }
 
   cerrarAlerta(alerta:Alerta){
     let modalRef:NgbModalRef;
     this.modalService.dismissAll(AlertGenericoComponent);
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
-    console.log(modalRef.componentInstance);
   }
 
 

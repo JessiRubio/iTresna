@@ -2,18 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SenalesItem } from '../clases/senales-item';
+import * as data from '../server-config.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SenalesService {
-
-  //Servidor
-  //private URL = "http://itresna.fptxurdinaga.in/senales/"
-
-  //Local
-  private URL = "http://127.0.0.1:8080/senales/"
-
+  private URL = data.domain+"senales/"
   constructor(private http:HttpClient) { }
 
   getSenales(cod_org:number,cod_espacio:number,cod_cop:number,cod_usuario:string):Observable<any>{

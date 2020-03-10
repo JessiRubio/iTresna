@@ -2,18 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Organizacion } from '../clases/organizacion';
+import * as data from '../server-config.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrganizacionesService {
 
-  //Servidor
-  //private url="http://itresna.fptxurdinaga.in/organizaciones/";
-
-  //Local
-  private url="http://127.0.0.1:8080/organizaciones/";
-
+  private url=data.domain+"organizaciones/";
 
   constructor(private httpClient:HttpClient) { }
 
