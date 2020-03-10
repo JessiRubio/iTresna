@@ -109,14 +109,11 @@ export class DatosCalificatoriosComponent implements OnInit{
         
           this.clasificacionService.modificarCategoria(this.organizacion.cod_org,this.listaCargada, data.campo).subscribe(
             respose=>{
-              console.log(respose);
               if(respose.error==0){
                 location.reload();
               }
             }
-          )
-            
-            console.log(data);
+          );
         }
       }
     );
@@ -130,13 +127,11 @@ export class DatosCalificatoriosComponent implements OnInit{
         
           this.clasificacionService.anadirCategoria(this.organizacion.cod_org,this.listaCargada, data.campo).subscribe(
             respose=>{
-              console.log(respose);
               if(respose.error==0){
                 location.reload();
               }
             }
-          )
-            console.log(data);
+          );
         }
       }
     );

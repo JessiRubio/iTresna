@@ -20,7 +20,7 @@ export class AlertGenericoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("modal cargado");
+
   }
   close(){
     this.modal.close();

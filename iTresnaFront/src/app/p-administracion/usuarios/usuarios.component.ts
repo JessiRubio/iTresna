@@ -74,7 +74,6 @@ export class UsuariosComponent implements OnInit {
 
       }
     )
-    console.log(this.organizacion);
     
   }
 
@@ -280,16 +279,6 @@ export class UsuariosComponent implements OnInit {
 
     
   }
-
-uso(listaUsuarios:Usuario){
-
-console.log(listaUsuarios.cod_usuario);
-
-
-}
-
-
-
   
   permiso(){
     this.permisos=true;
@@ -300,15 +289,10 @@ console.log(listaUsuarios.cod_usuario);
     this.usuarioService.getUsuarios(this.organizacion.cod_org).subscribe(
       res=>{
         this.listaUsuarios= res.usuarios;
-        console.log(res);
-        console.log(this.listaUsuarios);
-        
-        
-        
-        
+      
       },
         err=>{
-
+          console.log(err);
       }
     );
     this.permisos=false;

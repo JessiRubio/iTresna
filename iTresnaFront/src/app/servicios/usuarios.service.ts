@@ -26,8 +26,6 @@ export class UsuariosService {
     var observable:Observable<any> = this.httpClient.post(this.url,json);
     observable.subscribe(
       response=>{
-        console.log(json);
-        console.log(response);
         if(response.error==0){
           localStorage.setItem("usuario",JSON.stringify(response.usuario));
           this.loginState.next(response.error==0);
