@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EspaciosItem } from '../clases/espaciosItem';
+import * as data from '../server-config.json';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { EspaciosItem } from '../clases/espaciosItem';
 })
 export class EspaciosService {
 
-  private url="http://itresna.fptxurdinaga.in/espacios/";
+  private url=data.domain+"espacios/";
 
   constructor(private httpClient:HttpClient) { }
 
