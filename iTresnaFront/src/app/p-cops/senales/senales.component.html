@@ -5,13 +5,15 @@
 	</a>
 	<div class="card-body">
 		<div class="row">
-		<h5 class="card-title col-8 center">{{senal.titulo}}</h5>
-		<div class="zonaLike inline-block" class="col-4">
-			<button class="btn btnLike" (click) = like() type="submit">
-				<img class="like" src="assets/like.png" alt="like" >
-			</button>
-			<p class="inline-block likes">{{senal.me_gustas}}</p>
-		</div>
+			<h5 class="card-title col-8 center" [ngClass]="acortado==true ? 'tituloCorto':'titulolargo'">
+				{{senal.titulo}}
+			</h5>
+			<div class="zonaLike inline-block" class="col-4">
+				<button class="btn btnLike" (click) = like() type="submit">
+					<img class="like" src="assets/like.png" alt="like" >
+				</button>
+				<p class="inline-block likes">{{senal.me_gustas}}</p>
+			</div>
 		</div>
 		<div [ngClass]="acortado==true ? 'acortado':'extender'" style="z-index: 0;">
 			<p class="card-text">{{senal.desc_senal}}</p>
