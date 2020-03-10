@@ -9,7 +9,12 @@ import { EspaciosItem } from '../clases/espaciosItem';
 })
 export class EspaciosService {
 
-  private url="http://itresna.fptxurdinaga.in/espacios/";
+  //Servidor
+  //private url="http://itresna.fptxurdinaga.in/espacios/";
+
+  //Local
+  private url="http://127.0.0.1:8080/espacios/";
+
 
   constructor(private httpClient:HttpClient) { }
 
