@@ -209,7 +209,6 @@ export class AdminCopsComponent implements OnInit {
         if(response.error==0){
         
           this.etiquetas=response.cop.etiquetas;
-          console.log(response.cop.etiquetas);
         }else{
           window.alert("No se han podido cargar las etiquetas")
         }
@@ -244,7 +243,6 @@ export class AdminCopsComponent implements OnInit {
         if(data!=null){
         
             this.modificarEtiquetas(data.etiqueta,etiquetas.cod_etiqueta);
-            console.log(data.etiqueta);
         }
       }
     );

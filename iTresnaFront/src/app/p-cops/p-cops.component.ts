@@ -123,11 +123,7 @@ export class PCopsComponent implements OnInit {
       this.cod_cop=i;
     }
   }
-
-  cambiarCop(cod_cop:number){
-    console.log(cod_cop);
-  }
-
+  
   tienePermisos():boolean{
     var cod_org_actual=this.cop.cod_org;
     var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
@@ -278,10 +274,8 @@ export class PCopsComponent implements OnInit {
           this.cargarLink(data.url).subscribe(
             response=>{
               var titulo=response.title;
-              console.log(titulo);
               
               var imagen=response.image;
-              console.log(imagen);
               this.senalesService.nuevaSenal(this.cop.cod_org,this.cop.cod_esp,
                 this.cop.cod_cop,this.usuarioLogeado.cod_usuario,
                 data.etiqueta, data.descripcion, data.url,titulo,imagen).subscribe(
@@ -323,7 +317,6 @@ export class PCopsComponent implements OnInit {
     let modalRef:NgbModalRef;
     modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
-    console.log(modalRef.componentInstance);
   }
 
   curar(){

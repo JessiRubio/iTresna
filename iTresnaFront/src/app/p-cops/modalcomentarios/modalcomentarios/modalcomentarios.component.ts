@@ -42,8 +42,6 @@ export class ModalcomentariosComponent implements OnInit {
           res =>{
             if(res.error == 0){
               this.listaComentarios=res.comentarios;
-              console.log(res.comentarios);
-              
             }
             else{
               
