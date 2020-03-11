@@ -8,9 +8,6 @@ export class Usuario{
     permisos:Permiso[];
     sarbidea:string;
     tip_usuario:number;
-    campo_clasificador1:string;
-    campo_clasificador2:string;
-    campo_clasificador3:string;
 }
 export class Permiso{
     cod_org:number;
