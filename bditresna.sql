@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.6.6deb4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2020 a las 13:01:51
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Servidor: localhost:3306
+-- Tiempo de generación: 11-03-2020 a las 12:44:42
+-- Versión del servidor: 10.1.44-MariaDB-0+deb9u1
+-- Versión de PHP: 7.0.33-25+0~20200225.32+debian9~1.gbpa11893
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bditresna`
+-- Base de datos: `itresna_itresna`
 --
 
 -- --------------------------------------------------------
@@ -27,6 +25,10 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `t_comentarios`
 --
+
+drop database bditresna;
+create database bditresna;
+use bditresna;
 
 CREATE TABLE `t_comentarios` (
   `cod_comentario` int(11) NOT NULL,
@@ -37,6 +39,13 @@ CREATE TABLE `t_comentarios` (
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `comentario` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_comentarios`
+--
+
+INSERT INTO `t_comentarios` (`cod_comentario`, `cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usuario`, `comentario`) VALUES
+(1, 2, 1, 1, 1, 'rubiovargas.jessica@gmail.com', 'wow');
 
 -- --------------------------------------------------------
 
@@ -58,19 +67,20 @@ CREATE TABLE `t_cops` (
 --
 
 INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
-(1, 1, 1, 'Señales Relevantes', 'http://localhost:8080/media/Cops/prueba.png', NULL),
-(2, 1, 1, 'Informatica', 'http://localhost:8080/media/Cops/informatica.png', NULL),
-(3, 1, 1, 'Integración Social', 'http://localhost:8080/media/Cops/integracion_social.png', NULL),
-(4, 1, 1, 'Administración y Finanzas', 'http://localhost:8080/media/Cops/administracion_y_finanzas.svg', NULL),
-(5, 1, 1, 'F.O.L.', 'http://localhost:8080/media/Cops/fol.jpg', NULL),
-(6, 2, 1, 'Pre-proyecto', 'http://localhost:8080/media/Cops/pre_proyecto.png', NULL),
-(7, 2, 1, 'Proyecto en curso', 'http://localhost:8080/media/Cops/proyectos.png', NULL),
-(8, 3, 1, 'Plan de Explotación', 'http://localhost:8080/media/Cops/plan_explotacion.jpg', NULL),
-(11, 4, 2, 'Señales Relevantes', 'http://localhost:8080/media/Cops/senales_relevantes_2.png', NULL),
-(12, 4, 2, 'Ibermatica Digital', 'http://localhost:8080/media/Cops/ibermatica_digital.png', NULL),
-(13, 5, 2, 'Pre-proyectos', 'http://localhost:8080/media/Cops/pre-proyecto2.png', NULL),
-(14, 5, 2, 'Proyecto en curso', 'http://localhost:8080/media/Cops/proyectos2.png', NULL),
-(15, 6, 2, 'Plan de Explotación', 'http://localhost:8080/media/Cops/plan_explotacion2.png', NULL);
+(1, 1, 1, 'Señales Relevantes', 'http://localhost:8080/media/1/1/logo_1.png', NULL),
+(1, 5, 1, 'Cop de pruebas', NULL, NULL),
+(2, 1, 1, 'Informatica', 'http://itresna.fptxurdinaga.in/media/Cops/informatica.png', NULL),
+(3, 1, 1, 'Integración Social', 'http://itresna.fptxurdinaga.in/media/Cops/integracion_social.png', NULL),
+(3, 5, 1, 'qwqqqqqqqqqqqqqqqqqq', NULL, NULL),
+(4, 1, 1, 'Administración y Finanzas', 'http://itresna.fptxurdinaga.in/media/Cops/administracion_y_finanzas.svg', NULL),
+(5, 1, 1, 'F.O.L.', 'http://itresna.fptxurdinaga.in/media/Cops/fol.jpg', NULL),
+(6, 2, 1, 'Pre-proyecto', 'http://itresna.fptxurdinaga.in/media/Cops/pre_proyecto.png', NULL),
+(7, 2, 1, 'Proyecto en curso', 'http://itresna.fptxurdinaga.in/media/Cops/proyectos.png', NULL),
+(11, 4, 2, 'Señales Relevantes', 'http://itresna.fptxurdinaga.in/media/Cops/senales_relevantes_2.png', NULL),
+(12, 4, 2, 'Ibermatica Digital', 'http://itresna.fptxurdinaga.in/media/Cops/ibermatica_digital.png', NULL),
+(13, 5, 2, 'Pre-proyectos', 'http://itresna.fptxurdinaga.in/media/Cops/pre-proyecto2.png', NULL),
+(14, 5, 2, 'Proyecto en curso', 'http://itresna.fptxurdinaga.in/media/Cops/proyectos2.png', NULL),
+(15, 6, 2, 'Plan de Explotación', 'http://itresna.fptxurdinaga.in/media/Cops/plan_explotacion2.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -95,6 +105,7 @@ INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`, 
 (2, 1, 'Rutina de Portafolio', 0, 2),
 (3, 1, 'Rutina de Explotación', 0, 3),
 (4, 2, 'Rutina de Innovación', 1, 1),
+(5, 1, 'Espacio para pruebas', 1, 5),
 (5, 2, 'Rutina de Portafolio', 0, 2),
 (6, 2, 'Rutina de Explotación', 0, 3);
 
@@ -117,6 +128,7 @@ CREATE TABLE `t_etiquetas` (
 --
 
 INSERT INTO `t_etiquetas` (`cod_etiqueta`, `cod_cop`, `cod_esp`, `cod_org`, `desc_etiqueta`) VALUES
+(1, 1, 5, 1, 'Etiqueta 1'),
 (1, 2, 1, 1, 'Hardware'),
 (2, 2, 1, 1, 'Software'),
 (3, 5, 1, 1, 'Nominas'),
@@ -125,13 +137,11 @@ INSERT INTO `t_etiquetas` (`cod_etiqueta`, `cod_cop`, `cod_esp`, `cod_org`, `des
 (6, 1, 1, 1, 'Informática'),
 (7, 1, 1, 1, 'Cocina'),
 (8, 1, 1, 1, 'FOL'),
-(9, 1, 1, 1, 'xgn '),
 (16, 3, 1, 1, 'Sociedad'),
 (17, 4, 1, 1, 'Finanzas'),
 (18, 4, 1, 1, 'Administración'),
 (21, 6, 2, 1, 'Información'),
 (22, 7, 2, 1, 'Recursos'),
-(23, 8, 3, 1, 'Útil'),
 (24, 12, 4, 2, 'Software');
 
 -- --------------------------------------------------------
@@ -147,6 +157,13 @@ CREATE TABLE `t_megusta` (
   `cod_org` int(11) NOT NULL,
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `t_megusta`
+--
+
+INSERT INTO `t_megusta` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usuario`) VALUES
+(7, 2, 1, 1, 'innovacion@fptxurdinaga.com');
 
 -- --------------------------------------------------------
 
@@ -170,8 +187,8 @@ CREATE TABLE `t_org` (
 --
 
 INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`, `clasif1`, `clasif2`, `clasif3`) VALUES
-(1, 'FP Txurdinaga', 'http://localhost:8080/media/Org/LogoTxurdinaga.png', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen', 'Departamento', 'Edad', 'horas semanas'),
-(2, 'Ibermatica', 'http://localhost:8080/media/Org/LogoIbermatica.png', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización', 'Puesto', 'Salario', 'fecha_ingreso');
+(1, 'FP Txurdinaga', 'http://localhost:8080/media/1/logo_1.png', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen', 'Departamento', 'Edad', 'horas semanas'),
+(2, 'Ibermatica S.A.', 'http://itresna.fptxurdinaga.in/media/Org/LogoIbermatica.png', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización', 'Puesto', 'Salario', 'fecha_ingreso');
 
 -- --------------------------------------------------------
 
@@ -192,7 +209,10 @@ CREATE TABLE `t_permisos` (
 --
 
 INSERT INTO `t_permisos` (`cod_usuario`, `cod_cop`, `cod_esp`, `cod_org`, `ind_admin`) VALUES
-('jaime.corrales@gmail.com', 1, 1, 1, NULL),
+('innovacion@fptxurdinaga.com', 2, 1, 1, 1),
+('jaime.corrales@fptxurdinaga.com', 1, 1, 1, NULL),
+('jcp1@gmail.com', 2, 1, 1, 1),
+('jonanderdecastro@gmail.com', 4, 1, 1, 0),
 ('usuario@usuario.com', 11, 4, 2, 0);
 
 -- --------------------------------------------------------
@@ -210,7 +230,7 @@ CREATE TABLE `t_senales` (
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `desc_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `enlace` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha_hora` timestamp NULL DEFAULT current_timestamp(),
+  `fecha_hora` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ind_fich_gest` tinyint(4) DEFAULT NULL,
   `img_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `titulo` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
@@ -221,7 +241,13 @@ CREATE TABLE `t_senales` (
 --
 
 INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiqueta`, `cod_usuario`, `desc_senal`, `enlace`, `fecha_hora`, `ind_fich_gest`, `img_senal`, `titulo`) VALUES
-(1, 3, 1, 1, 16, 'rubiovargas.jessica@gmail.com', 'p1', 'https://cadenaser.com/ser/2020/03/05/television/1583403446_539273.html', '2020-03-05 12:00:00', NULL, 'https://cadenaser00.epimg.net/ser/imagenes/2020/03/05/television/1583403446_539273_1583403670_rrss_normal.jpg', 'La última de \'Sálvame\': frivoliza con el coronavirus y le llueven las críticas');
+(1, 1, 1, 1, 4, 'jonanderdecastro@gmail.com', 'es muy fdf', 'https', '2020-03-05 12:32:12', NULL, 'https', 'infor: Mola'),
+(1, 3, 1, 1, 16, 'rubiovargas.jessica@gmail.com', 'p1', 'https://cadenaser.com/ser/2020/03/05/television/1583403446_539273.html', '2020-03-05 12:00:00', NULL, 'https://cadenaser00.epimg.net/ser/imagenes/2020/03/05/television/1583403446_539273_1583403670_rrss_normal.jpg', 'La última de \'Sálvame\': frivoliza con el coronavirus y le llueven las críticas'),
+(2, 1, 1, 1, 4, 'rubiovargas.jessica@gmail.com', 'es deddedf', 'https', '2020-03-10 07:15:28', NULL, 'https', 'infor: relevante'),
+(2, 2, 1, 1, 1, 'jonanderdecastro@gmail.com', 'murcia ddasda', 'https://www.xataka.com/medicina-y-salud/murciano-que-invento-psicotecnico-carne-conducir-hace-su-agosto-coronavirus', '2020-03-06 12:24:27', NULL, 'https://i.blogs.es/7e507b/cleancall-d/840_560.jpg', 'El murciano que inventó el psicotécnico del carné de conducir hace su agosto con la prevención del coronavirus'),
+(3, 2, 1, 1, 2, 'jonanderdecastro@gmail.com', 'google', 'https://www.xataka.com/analisis/google-titan-security-key-analisis-anadir-capa-extra-seguridad-a-nuestras-cuentas-sencillo-como-', '2020-03-06 12:25:15', NULL, 'https://i.blogs.es/ee5ab8/llaves-seguridad-titan-6-/840_560.jpg', 'Google Titan Security Key, análisis: añadir una capa extra de seguridad a nuestras cuentas es tan sencillo como parece'),
+(4, 2, 1, 1, 1, 'jonanderdecastro@gmail.com', 'coches', 'https://www.xataka.com/vehiculos/estamos-regulando-coches-electricos-hagan-ruido-nada-impide-que-peatones-usen-auriculares-cance', '2020-03-06 12:26:00', NULL, 'https://i.blogs.es/18f90c/tesla/840_560.jpg', 'Estamos regulando los coches eléctricos para que hagan ruido, pero nada impide que los peatones usen auriculares con cancelación'),
+(7, 2, 1, 1, 1, 'innovacion@fptxurdinaga.com', 'Descripción de la Señal II', 'https://www.flimper.com/blog/es/que-es-open-graph-y-como-se-hace', '2020-03-09 19:47:29', NULL, 'https://www.flimper.com/hubfs/BLOG/3.png#keepProtocol', '¿Qué es Open Graph y Cómo se hace?');
 
 -- --------------------------------------------------------
 
@@ -316,9 +342,11 @@ CREATE TABLE `t_usuarios` (
 --
 
 INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `nombre`, `ape1`, `ape2`, `campo_clasificador1`, `campo_clasificador2`, `campo_clasificador3`) VALUES
-('jaime.corrales@gmail.com', 1, NULL, 'jaime123', 'Jaime', 'Corrales', 'Petralanda', '', '', ''),
+('innovacion@fptxurdinaga.com', 3, 1, '1234', 'Innovación', 'Corrales', 'Pet', 'Informática', '51', NULL),
+('jaime.corrales@fptxurdinaga.com', 1, NULL, 'jaime123', 'Jaime', 'Corrales', 'Petralanda', '', '', ''),
+('jcp1@gmail.com', 2, 1, '1111', 'Jaime1', '111111', '222222222', 'prueba', '12', '1'),
 ('jonanderdecastro@gmail.com', 3, 1, '12345678', 'Jon Ander', 'De Castro', 'Da Silva', 'Matematicas', '19', ''),
-('rubiovargas.jessica@gmail.com', 2, 1, '12345678', 'Jessica', 'Rubio', 'Vargas', 'Informatica', '22', ''),
+('rubiovargas.jessica@gmail.com', 3, 1, '12345678', 'Jessica', 'Rubio', 'Vargas', 'Informatica', '22', ''),
 ('unaimarg@gmail.com', 2, 2, '12345678', 'Unai', 'Martin', 'Gonzalez', 'Jefe de Equipo', '2000', ''),
 ('usuario@usuario.com', 3, 2, '12345678', 'Usuario', '', '', 'Programador', '1000', '');
 
@@ -440,50 +468,42 @@ ALTER TABLE `t_variable`
 -- AUTO_INCREMENT de la tabla `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
-  MODIFY `cod_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `cod_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `t_cops`
 --
 ALTER TABLE `t_cops`
   MODIFY `cod_cop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
 --
 -- AUTO_INCREMENT de la tabla `t_espacios`
 --
 ALTER TABLE `t_espacios`
-  MODIFY `cod_esp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `cod_esp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `t_etiquetas`
 --
 ALTER TABLE `t_etiquetas`
   MODIFY `cod_etiqueta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
 --
 -- AUTO_INCREMENT de la tabla `t_org`
 --
 ALTER TABLE `t_org`
-  MODIFY `cod_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `cod_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `t_senales`
 --
 ALTER TABLE `t_senales`
-  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
+  MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `t_tip_usuario`
 --
 ALTER TABLE `t_tip_usuario`
   MODIFY `tip_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `t_tip_variable`
 --
 ALTER TABLE `t_tip_variable`
   MODIFY `tip_variable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -548,7 +568,6 @@ ALTER TABLE `t_usuarios`
 ALTER TABLE `t_variable`
   ADD CONSTRAINT `fk_t_variable_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_variable_tipo` FOREIGN KEY (`tip_variable`) REFERENCES `t_tip_variable` (`tip_variable`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -91,29 +91,22 @@ export class PCuracionComponent implements OnInit {
   }
 
   finalizarCuracion(){
-    for (var i=0; i<this.listaSenales.length;i++){
-      if(this.listaSenales[i].nombre==="Eliminar"){
-        for(var j=0;j<this.listaSenales[i].senales.length;j++){
-          var cod_org = this.listaSenales[i].senales[j].cod_org;
-          var cod_esp = this.listaSenales[i].senales[j].cod_esp;
-          var cod_cop = this.listaSenales[i].senales[j].cod_cop;
-          var cod_senal = this.listaSenales[i].senales[j].cod_senal;
-          this.senalesService.deleteSenalCuracion(cod_org, cod_esp, cod_cop, cod_senal).subscribe(
-            response =>{
-            },
-            error =>{
-              window.alert("Error de conexion o fallo en servidor");
-            }
-          );
-        }
-
-        if (j>=this.listaSenales[i].senales.length){
-          location.reload();
-        }
+    console.log("Finalizar Curación");
+    var texto = "¿Esta seguro de que quiere eliminar las " + this.eliminar.senales.length + " que contiene la lista Eliminar?";
+    if(window.confirm(texto)){
+      for(var j=0;j<this.eliminar.senales.length;j++){
+        var cod_org = this.eliminar.senales[j].cod_org;
+        var cod_esp = this.eliminar.senales[j].cod_esp;
+        var cod_cop = this.eliminar.senales[j].cod_cop;
+        var cod_senal = this.eliminar.senales[j].cod_senal;
+        this.senalesService.deleteSenalCuracion(cod_org, cod_esp, cod_cop, cod_senal).subscribe(
+          response =>{
+          },
+          error =>{
+            window.alert("Error de conexion o fallo en servidor");
+          }
+        );
       }
     }
-    
   }
-
-
 }
