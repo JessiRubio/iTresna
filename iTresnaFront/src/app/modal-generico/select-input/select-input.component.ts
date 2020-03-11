@@ -19,6 +19,8 @@ export class SelectInputComponent implements OnInit {
 
   constructor() { }
 
+
+
   ngOnInit() {
     this.formGroup.addControl(this.controlName,new FormControl(this.data.seleccionado));
   }

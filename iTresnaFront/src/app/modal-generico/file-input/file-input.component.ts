@@ -19,6 +19,18 @@ export class FileInputComponent implements OnInit {
 
   constructor() { }
 
+  onFileChange(event){
+    const reader = new FileReader();
+    const name=this.controlName;
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+  
+      reader.onload = () => {
+        this.formGroup.value[name]=reader.result;
+      };
+    }
+  }
   ngOnInit() {
     this.formGroup.addControl(this.controlName,new FormControl(this.data.desc));
   }

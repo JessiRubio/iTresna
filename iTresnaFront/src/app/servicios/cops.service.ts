@@ -30,7 +30,7 @@ export class CopsService {
       "cod_cop":cod_cop,
       "desc_cop":desc,
       "image":imagen
-    };  
+    };
     return this.httpClient.put(this.url,json);
   }
 

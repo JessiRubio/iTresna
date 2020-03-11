@@ -2,5 +2,6 @@
     <label class="form-label">{{placeHolder}}</label>
     <input type="file"
         [formControlName]='controlName'
-        class="form-control">
+        class="form-control"
+        (change)="onFileChange($event)">
 </div>

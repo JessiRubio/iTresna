@@ -4,8 +4,8 @@
     $json = file_get_contents('php://input');
     $data = json_decode($json);
     $contacto="";
-    $desc_cop=$data->desc_org;
-    $image=$data->imagen;
+    $desc_org=$data->desc_org;
+    $imagen=$data->imagen;
     $eslogan=$data->eslogan;
     $enlace=$data->enlace;
     $cod_org=$data->cod_org;
@@ -17,12 +17,12 @@
         if(existeUsuario($contacto)){
             $cod_usuario=getAdministradorActual($cod_org);
             if(cambiarUsuario($cod_usuario,$contacto)){
-                if(!actualizarOrganizacion($cod_org,$desc_cop,$eslogan,$enlace)){
+                if(!actualizarOrganizacion($cod_org,$desc_org,$eslogan,$enlace)){
                     $result["error"]=1;
                 }else{
                     $result["error"]=0;
-                    if($image!=""){
-                        actualizarImagen($cod_org,$image);
+                    if($imagen!=""){
+                        actualizarImagen($cod_org,$imagen);
                     }
                 }
             }
@@ -38,9 +38,28 @@
             if(!file_exists('../media/'.$cod_org)){
                 mkdir("../media/".$cod_org);
             }
-            file_put_contents("../media/".$cod_org."/logo_".$cod_org.".png",$file);
-            if(file_exists("../media/".$cod_org."/logo_".$cod_org.".png")){
-                $pathToFile="http://localhost:8080/media/".$cod_org."/logo_".$cod_org.".png";
+            
+            if (preg_match('/^data:image\/(\w+);base64,/', $image, $type)) {
+                $image = substr($image, strpos($image, ',') + 1);
+                $type = strtolower($type[1]); // jpg, png, gif
+            
+                if (!in_array($type, [ 'jpg', 'jpeg', 'gif', 'png' ])) {
+                    throw new \Exception('invalid image type');
+                }
+            
+                $image_decoded = base64_decode($image);
+            
+                if ($image_decoded === false) {
+                    throw new \Exception('base64_decode failed');
+                }
+            } else {
+                throw new \Exception('did not match data URI with image data');
+            }
+            
+
+            file_put_contents("../media/".$cod_org."/logo_".$cod_org.".{$type}",$image_decoded);
+            if(file_exists("../media/".$cod_org."/logo_".$cod_org.".{$type}")){
+                $pathToFile="http://localhost:8080/media/".$cod_org."/logo_".$cod_org.".{$type}";
                 $sql="UPDATE t_org
                     SET img_org=?
                     WHERE cod_org=?";

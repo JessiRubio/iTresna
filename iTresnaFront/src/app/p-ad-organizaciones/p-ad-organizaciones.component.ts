@@ -203,18 +203,15 @@ export class PAdOrganizacionesComponent implements OnInit {
           data=>{
             if(data!=null){
               var contacto=data.contacto;
-              console.log(contacto);
+              console.log(data.imagen);
               if(data.imagen!=""||data.imagen==null){
-                var reader = new FileReader();
-                reader.readAsDataURL(data.imagen);
-                reader.onload = () =>{
-                  this.modificar(item.cod_org,
-                    data.nombre,
-                    data.descripcion,
-                    contacto,
-                    data.enlace,
-                    reader.result.toString().split(',')[1]);              
-                };
+                var file:File=data.imagen;
+                this.modificar(item.cod_org,
+                  data.nombre,
+                  data.descripcion,
+                  contacto,
+                  data.enlace,
+                  data.imagen);         
               }else{
                 this.modificar(item.cod_org,data.nombre,data.descripcion,contacto,data.enlace,"");
               }
@@ -231,11 +228,13 @@ export class PAdOrganizacionesComponent implements OnInit {
     this.organizacionesService.modificarOrganizacion(cod_org,desc_org,eslogan,contacto,enlace,imagen).subscribe(
       response=>{
         var alert:Alerta;
+        console.log(response);
         if(response.error==0){
           alert = {
             message:"Organización modificada correctamente", 
             type:'success'
           };
+          
         }else{
           alert = {
             message:"Fallo al modificar la Organización", 
@@ -261,33 +260,25 @@ export class PAdOrganizacionesComponent implements OnInit {
         input:"inputField",
         controlName:"nombre",
         placeHolder:"Escribe el nombre de la org",
-        data:{
-          desc:item.desc_org
-        }
+        data:item.desc_org
       },
       {
         input:"inputField",
         controlName:"descripcion",
         placeHolder:"Escribe la descripcion de la org",
-        data:{
-          desc:item.eslogan_org
-        }
+        data:item.eslogan_org
       },
       {
         input:"fileField",
         controlName:"imagen",
         placeHolder:"Selecciona un archivo",
-        data:{
-          desc:""
-        }
+        data:""
       },
       {
         input:"inputField",
         controlName:"enlace",
         placeHolder:"Escribe en enlace a la org",
-        data:{
-          desc:item.enlace_org
-        }
+        data: item.enlace_org
       },
       {
         input:"selectField",

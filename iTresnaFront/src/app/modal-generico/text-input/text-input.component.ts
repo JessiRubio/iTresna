@@ -19,7 +19,7 @@ export class TextInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.formGroup.addControl(this.controlName,new FormControl(this.data.desc));
+    this.formGroup.addControl(this.controlName,new FormControl(this.data));
   }
 
   //TODO Quizas hay que hacer el onchnage del input

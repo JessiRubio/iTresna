@@ -97,26 +97,20 @@ export class EspaciosComponent implements OnInit {
         input:"inputField",
         controlName:"nombre",
         placeHolder:"Escribe el nombre de la cop",
-        data:{
-          desc:espacio.desc_esp
-        },
+        data:espacio.desc_esp,
         
       },
       {
         input:"checkboxField",
         controlName:"curacion",
         placeHolder:"Se puede curar",
-        data:{
-          desc:espacio.ind_esp_curacion
-        }
+        data:espacio.ind_esp_curacion
       },
       {
         input:"numberField",
         controlName:"orden",
         placeHolder:"Pone el orden en el que aparecera el espacio",
-        data:{
-          desc:espacio.orden
-        }
+        data:espacio.orden
       }
     ];
     var config={

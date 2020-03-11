@@ -21,7 +21,6 @@ export class ClasificacionService {
     return this.httpClient.get(this.url+"?cod_org="+cod_org
                                   +"&cod_tip="+cod_tip
                                   +"&categoria="+categoria);
-   return;
   }
 
   anadirCategoria(cod_org:number,cod_tip:number,categoria:string):Observable<any>{
