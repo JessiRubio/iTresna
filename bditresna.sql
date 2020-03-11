@@ -21,9 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `bditresna`
 --
-DROP database bditresna;
-CREATE database bditresna;
-use bditresna;
+DROP database itresna_itresna;
+CREATE database itresna_itresna;
+use itresna_itresna;
 -- --------------------------------------------------------
 
 --
@@ -378,23 +378,20 @@ CREATE TABLE `t_usuarios` (
   `nombre` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ape1` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ape2` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `campo_clasificador1` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `campo_clasificador2` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `campo_clasificador3` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Dumping data for table `t_usuarios`
 --
 
-INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `nombre`, `ape1`, `ape2`, `campo_clasificador1`, `campo_clasificador2`, `campo_clasificador3`) VALUES
-('innovacion@fptxurdinaga.com', 3, 1, '1234', 'Innovación', 'Corrales', 'Pet', 'Informática', '51', NULL),
-('jaime.corrales@fptxurdinaga.com', 1, NULL, 'jaime123', 'Jaime', 'Corrales', 'Petralanda', '', '', ''),
-('jcp1@gmail.com', 2, 1, '1111', 'Jaime1', '111111', '222222222', 'prueba', '12', '1'),
-('jonanderdecastro@gmail.com', 3, 1, '12345678', 'Jon Ander', 'De Castro', 'Da Silva', 'Matematicas', '19', ''),
-('rubiovargas.jessica@gmail.com', 3, 1, '12345678', 'Jessica', 'Rubio', 'Vargas', 'Informatica', '22', ''),
-('unaimarg@gmail.com', 2, 2, '12345678', 'Unai', 'Martin', 'Gonzalez', 'Jefe de Equipo', '2000', ''),
-('usuario@usuario.com', 3, 2, '12345678', 'Usuario', '', '', 'Programador', '1000', '');
+INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `nombre`, `ape1`, `ape2`) VALUES
+('innovacion@fptxurdinaga.com', 3, 1, '1234', 'Innovación', 'Corrales', 'Pet'),
+('jaime.corrales@fptxurdinaga.com', 1, NULL, 'jaime123', 'Jaime', 'Corrales', 'Petralanda'),
+('jcp1@gmail.com', 2, 1, '1111', 'Jaime1', '111111', '222222222'),
+('jonanderdecastro@gmail.com', 3, 1, '12345678', 'Jon Ander', 'De Castro', 'Da Silva'),
+('rubiovargas.jessica@gmail.com', 3, 1, '12345678', 'Jessica', 'Rubio', 'Vargas'),
+('unaimarg@gmail.com', 2, 2, '12345678', 'Unai', 'Martin', 'Gonzalez'),
+('usuario@usuario.com', 3, 2, '12345678', 'Usuario', '', '');
 
 -- --------------------------------------------------------
 
