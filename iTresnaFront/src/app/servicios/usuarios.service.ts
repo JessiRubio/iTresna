@@ -45,23 +45,23 @@ export class UsuariosService {
     return this.httpClient.get<any>(this.url+'?cod_org='+cod_org);
   }
 
-  modificarUsuario(nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string,cod_usuario:string):Observable<any>{
+  modificarUsuario(nombre:string,ape1:string,ape2:string/*,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string*/,cod_usuario:string):Observable<any>{
     
     let json={
       "accion":"modificar_usuario",
       "nombre":nombre,
       "ape1":ape1,
       "ape2":ape2,
-      "campo_clasificador1":campo_clasificador1,
+      /*"campo_clasificador1":campo_clasificador1,
       "campo_clasificador2":campo_clasificador2,
-      "campo_clasificador3":campo_clasificador3,
+      "campo_clasificador3":campo_clasificador3,*/
       "cod_usuario":cod_usuario
     };  
     return this.httpClient.put(this.url,json);
   }
 
 
-  nuevoUsuario(cod_usuario:string,tip_usuario:number,cod_org:number,sarbidea:string,nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string):Observable<any>{
+  nuevoUsuario(cod_usuario:string,tip_usuario:number,cod_org:number,sarbidea:string,nombre:string,ape1:string,ape2:string/*,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string*/):Observable<any>{
     let json={
       "accion":"nuevo_usuario",
       "cod_usuario":cod_usuario,
@@ -71,9 +71,9 @@ export class UsuariosService {
       "nombre":nombre,
       "ape1":ape1,
       "ape2":ape2,
-      "campo_clasificador1":campo_clasificador1,
+      /*"campo_clasificador1":campo_clasificador1,
       "campo_clasificador2":campo_clasificador2,
-      "campo_clasificador3":campo_clasificador3
+      "campo_clasificador3":campo_clasificador3*/
     };  
     return this.httpClient.post(this.url,json);
   }

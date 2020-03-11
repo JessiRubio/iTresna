@@ -8,13 +8,15 @@ export class Usuario{
     permisos:Permiso[];
     sarbidea:string;
     tip_usuario:number;
-    campo_clasificador1:string;
-    campo_clasificador2:string;
-    campo_clasificador3:string;
+    clasificacion:ClasificacionUsuario[]=[];
 }
 export class Permiso{
     cod_org:number;
     cod_esp:number;
     cod_cop:number;
     ind_admin:boolean;
+}
+class ClasificacionUsuario{
+    tip_clasificacion:string;
+    categoria:string;
 }

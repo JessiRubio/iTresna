@@ -20,7 +20,7 @@ export class AlertGenericoComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    setTimeout(()=>this.modal.dismiss("Se ha agotado el tiempo"),5000);
   }
   close(){
     this.modal.close();

@@ -15,12 +15,12 @@
         $cod_org=$data->cod_org;
         $ind_admin=$data->ind_admin;
         $sql="UPDATE t_permisos
-                                SET ind_admin=?
-                                WHERE cod_usuario=? AND cod_org=?";
-                            $query=$conexion->prepare($sql);
-                            $query->bind_param("isi",$ind_admin,$cod_usuario,$cod_org);
-                            $query->execute();
-                            $result["error"]=0;
+            SET ind_admin=?
+            WHERE cod_usuario=? AND cod_org=?";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("isi",$ind_admin,$cod_usuario,$cod_org);
+        $query->execute();
+        $result["error"]=0;
 
 
 
