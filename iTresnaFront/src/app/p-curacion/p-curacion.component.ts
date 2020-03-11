@@ -6,6 +6,7 @@ import { ModalAdminCopsComponent } from './../modal-admin-cops/modal-admin-cops.
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { SenalesService } from '../servicios/senales.service';
+import { ModalServiceService } from '../servicios/modal-service.service';
 
 @Component({
   selector: 'app-p-curacion',
@@ -22,8 +23,10 @@ export class PCuracionComponent implements OnInit {
   listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   allDropList:string[]=[];
   pruebaLista:SenalesItem[]=[];
+  
   constructor(private dialog:MatDialog,
     private senalesService:SenalesService,
+    private modalService:ModalServiceService,
     private router:Router) { 
   }
 
@@ -93,8 +96,10 @@ export class PCuracionComponent implements OnInit {
   finalizarCuracion(){
     console.log("Finalizar Curación");
     var texto = "¿Esta seguro de que quiere eliminar las " + this.eliminar.senales.length + " que contiene la lista Eliminar?";
-    if(window.confirm(texto)){
-      for(var j=0;j<this.eliminar.senales.length;j++){
+    this.abrirModalFinalizar("Finalizar curación",texto,"Si", "No").then(
+      data=>{
+        
+        for(var j=0;j<this.eliminar.senales.length;j++){
         var cod_org = this.eliminar.senales[j].cod_org;
         var cod_esp = this.eliminar.senales[j].cod_esp;
         var cod_cop = this.eliminar.senales[j].cod_cop;
@@ -107,7 +112,31 @@ export class PCuracionComponent implements OnInit {
           }
         );
       }
-    }
-    location.reload();
+      location.reload();
+      },
+      error=>{
+        //Nos da igual que no se cierre correctamente
+      }
+    );
+
   }
+
+  abrirModalFinalizar(titulo:string,label:string,botonFin:string, botonCancel:string):Promise<any>{
+    var data=[
+      
+    ];
+    var config={
+      data:data,
+      label:label,
+      botonFin:botonFin,
+      botonCancel:botonCancel,
+      titulo:titulo
+    };
+    return this.modalService.abrirModalCuracion(config);
+  }
+
+
+
+
+
 }

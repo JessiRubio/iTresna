@@ -18,6 +18,10 @@ export class ModalGenericoComponent implements OnInit {
   public tituloModal:string;
   @Input()
   public botonFinalizar:string;
+  @Input()
+  public botonCancelar:string;
+  @Input()
+  public labelModal:string;
 
   private formGroup:FormGroup;
 
@@ -31,11 +35,15 @@ export class ModalGenericoComponent implements OnInit {
   }
 
   //Se usa en el html
-  private close(){
+  close(){
     if(this.formGroup.pristine){
       this.modal.close(null);
     }else{
       this.modal.close(this.formGroup.value);
     }
   }
+  dismis(){
+    this.modal.dismiss();
+  }
+
 }

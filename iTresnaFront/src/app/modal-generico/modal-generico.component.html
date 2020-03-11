@@ -6,8 +6,10 @@
     </button>
   </div>
   <div class="modal-body">
+    <p *ngIf="labelModal!=null">{{labelModal}}</p>
     <form [formGroup]="formGroup" class="form-group">
           <ng-container class="input-row" *ngFor="let item of dataConfiguration">
+            
               <text-input
                   [(formGroup)]="formGroup"
                   [data]="item.data"
@@ -55,6 +57,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-primary" (click)="close()">{{botonFinalizar}}</button>
+    <button *ngIf=" botonCancelar!=null" type="button" class="btn btn-outline-primary" (click)="dismis()">{{botonCancelar}}</button>
   </div>
 </ng-container>
   
