@@ -322,10 +322,10 @@ export class UsuariosComponent implements OnInit {
       {
         input:"selectField",
         controlName:usuario.campo_clasificador2,
-        placeHolder:usuario.campo_clasificador2,
+        placeHolder:this.organizacion.categorias[2].tip_clasificacion,
         data:{
           data:this.organizacion.categorias,
-
+          //TODO seleccionado
         }
         
       },
