@@ -295,7 +295,8 @@ export class AdminCopsComponent implements OnInit {
     this.copsService.nuevaEtiqueta(cod_cop,cod_esp,cod_org,desc_etiqueta).subscribe(
       response=>{
         //TODO Alerts
-        location.reload();
+        
+        //location.reload();
       },
       error=>{
         //TODO Alerts

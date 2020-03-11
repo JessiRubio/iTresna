@@ -26,7 +26,8 @@ export class PAdministracionComponent implements OnInit{
     this.showespacios = false;
     this.showcops = false;
     this.showclasificatorios = false;
-    this.showUsuarios= true; }
+    this.showUsuarios= false; 
+  }
 
   ngOnInit() {
     if(localStorage.getItem("usuario")!=null){
