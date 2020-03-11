@@ -1,0 +1,9 @@
+<div  [formGroup]="formGroup" class="form-check form-group">
+    
+    <input type="checkbox"
+        [formControlName]='controlName'
+        class="form-check-input"
+        id="{{controlName}}"
+        [placeholder]="placeHolder">
+    <label [for]="form-check-label">{{placeHolder}}</label>
+</div>

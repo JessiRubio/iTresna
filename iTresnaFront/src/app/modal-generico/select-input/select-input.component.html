@@ -1,0 +1,27 @@
+<div [formGroup]="formGroup" class="formGroup">
+
+  <ng-template *ngIf="data.data.length>0;then datos else vacio">
+  </ng-template>
+
+  <ng-template #datos>
+    <label for="{{controlName}}">
+        {{placeHolder}}
+      </label>
+      <select class="form-control"
+          [formControlName]='controlName'>
+            <option *ngFor="let item of data.data" 
+              [selected]="item==data.seleccionado"
+              [value]="item">
+              {{item}}
+            </option>
+      </select>
+  </ng-template>
+  <ng-template #vacio>
+      <label>
+          {{placeHolder}}
+      </label>
+      <input type="text" class="form-control" placeholder="No hay datos de {{controlName}}" disabled>
+  </ng-template>
+    
+</div>
+    

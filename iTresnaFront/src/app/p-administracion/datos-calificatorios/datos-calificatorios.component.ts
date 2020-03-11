@@ -6,8 +6,8 @@ import { Usuario } from '../../clases/usuario';
 import { ClasificacionService } from '../../servicios/clasificacion.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs';
-import { ModalAdminCopsComponent } from 'src/app/modal-admin-cops/modal-admin-cops.component';
-
+import { ModalAdminCopsComponent } from '../../modal-admin-cops/modal-admin-cops.component';
+import {ModalServiceService}from '../../servicios/modal-service.service';
 @Component({
   selector: 'app-datos-calificatorios',
   templateUrl: './datos-calificatorios.component.html',
@@ -34,7 +34,8 @@ export class DatosCalificatoriosComponent implements OnInit{
   constructor(private fBuilder: FormBuilder,
     private organizacionesService: OrganizacionesService,
     private clasificacionService: ClasificacionService,
-    private dialog:MatDialog) 
+    private dialog:MatDialog,
+    private modalService:ModalServiceService) 
     {
       this.form=this.fBuilder.group({
         clasif1:["",Validators.required],
@@ -102,11 +103,9 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   editarCampo(campo:string){
-
-    this.openModalCampo(campo).subscribe(
+    this.abrirModal(campo,"Modificar Capo","Modificar").then(
       data=>{
         if(data!=null){
-        
           this.clasificacionService.modificarCategoria(this.organizacion.cod_org,this.listaCargada, data.campo).subscribe(
             respose=>{
               if(respose.error==0){
@@ -115,46 +114,52 @@ export class DatosCalificatoriosComponent implements OnInit{
             }
           );
         }
+      },
+      error=>{
+        //TODO nos da igual el cierre del modal
       }
     );
   }
 
   anadircampo(){
     var campo = "";
-    this.openModalCampo(campo).subscribe(
+    this.abrirModal(campo,"Alta Campo","Alta").then(
       data=>{
         if(data!=null){
-        
           this.clasificacionService.anadirCategoria(this.organizacion.cod_org,this.listaCargada, data.campo).subscribe(
             respose=>{
+              //TODO ALERT
               if(respose.error==0){
                 location.reload();
               }
+            },
+            error=>{
+              //TODO ALERT
             }
           );
         }
+      },
+      error=>{
+        //Nos da igual el cierre del modal
       }
     );
   }
-
-private openModalCampo(campo:string):Observable<any>{
-  const dialogConfig = new MatDialogConfig();
-  dialogConfig.autoFocus=true;
-  dialogConfig.minWidth="50%";
-  dialogConfig.data=[
-    {
-      input:"inputField",
-      controlName:"campo",
-      placeHolder:"Escribe el nombre del campo",
-      data:{
-        desc:campo
-      },
-    }
-  ];
-
-  const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-  return dialogRef.afterClosed()
-}
+  private abrirModal(campo:string,titulo:string,botonFin:string):Promise<any>{
+    var data=[
+      {
+        input:"inputField",
+        controlName:"campo",
+        placeHolder:"Escribe el nombre del campo",
+        data:campo,
+      }
+    ];
+    var config={
+      data:data,
+      titulo:titulo,
+      botonFin:botonFin
+    };
+    return this.modalService.abrirModal(config);
+  }
 
   cargarlistas(){
     this.listaClasif1 = [];

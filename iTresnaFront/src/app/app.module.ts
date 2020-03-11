@@ -45,6 +45,13 @@ import { PPerfilComponent } from './p-perfil/p-perfil/p-perfil.component';
 import { PasswordFieldComponent } from './modal-admin-cops/password-field/password-field/password-field.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PObjetoCuracionComponent } from './p-curacion/drag-drop-list/p-objeto-curacion/p-objeto-curacion.component';
+import { ModalGenericoComponent } from './modal-generico/modal-generico.component';
+import { TextInputComponent } from './modal-generico/text-input/text-input.component';
+import { PasswordInputComponent } from './modal-generico/password-input/password-input.component';
+import { FileInputComponent } from './modal-generico/file-input/file-input.component';
+import { CheckboxInputComponent } from './modal-generico/checkbox-input/checkbox-input.component';
+import { NumberInputComponent } from './modal-generico/number-input/number-input.component';
+import { SelectInputComponent } from './modal-generico/select-input/select-input.component';
 
 @NgModule({
 
@@ -77,7 +84,14 @@ import { PObjetoCuracionComponent } from './p-curacion/drag-drop-list/p-objeto-c
     DragDropListComponent,
     PPerfilComponent,
     PasswordFieldComponent,
-    PObjetoCuracionComponent
+    PObjetoCuracionComponent,
+    ModalGenericoComponent,
+    TextInputComponent,
+    PasswordInputComponent,
+    FileInputComponent,
+    CheckboxInputComponent,
+    NumberInputComponent,
+    SelectInputComponent,
     
   ],
   imports: [
@@ -108,7 +122,8 @@ import { PObjetoCuracionComponent } from './p-curacion/drag-drop-list/p-objeto-c
     SelectFieldComponent,
     InputFieldComponent,
     CheckboxFieldComponent,
-    AlertGenericoComponent
+    AlertGenericoComponent,
+    ModalGenericoComponent
   ]
 })
 export class AppModule { 

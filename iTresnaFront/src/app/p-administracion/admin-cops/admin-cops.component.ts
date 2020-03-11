@@ -8,6 +8,7 @@ import { EtiquetaItem } from '../../clases/copsitem';
 import { ModalAdminCopsComponent } from './../../modal-admin-cops/modal-admin-cops.component';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import {ModalServiceService} from '../../servicios/modal-service.service';
 @Component({
   selector: 'app-admin-cops',
   templateUrl: './admin-cops.component.html',
@@ -26,7 +27,8 @@ export class AdminCopsComponent implements OnInit {
   constructor(
     private espaciosService:EspaciosService,
     private copsService:CopsService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private modalService:ModalServiceService
   ) { }
 
   ngOnInit() {
@@ -59,14 +61,10 @@ export class AdminCopsComponent implements OnInit {
       }
     );
   }
-  nuevo(){
-
-  }
-
-
   editar(cod_org,cod_esp,cod_cop){
     this.copsService.getCop(cod_org,cod_esp,cod_cop).subscribe(
       respose=>{
+        //TODO Alerts
         if(respose.error==0)
           this.editarCop(respose.cop);
       },
@@ -76,79 +74,64 @@ export class AdminCopsComponent implements OnInit {
     );
   }
 
-  openModal(cop:CopsItem):Observable<any>{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
+  abrirModal(cop:CopsItem,titulo:string,botonFin:string):Promise<any>{
+    var data=[
       {
         input:"inputField",
         controlName:"nombre",
         placeHolder:"Escribe el nombre de la cop",
-        data:{
-          desc:cop.desc_cop
-        }
+        data:cop.desc_cop
       },
       {
         input:"fileField",
         controlName:"imagen",
         placeHolder:"Selecciona un archivo",
-        data:{
-          desc:""
-        }
+        data:""
       },
     ];
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    return dialogRef.afterClosed();
+    var config={
+      data:data,
+      botonFin:botonFin,
+      titulo:titulo
+    };
+    return this.modalService.abrirModal(config);
   }
-
   
   editarCop(cop:CopsItem){
-    this.openModal(cop).subscribe(
+    this.abrirModal(cop,"Modificar Cop","Guardar").then(
       data=>{
         if(data!=null){
-          var file="";
           if(data.imagen!=null){
-            var reader = new FileReader();
-            reader.readAsDataURL(data.imagen);
-            reader.onload = () =>{
-              this.modificar(cop.cod_org,
-                            cop.cod_esp,
-                            cop.cod_cop,
-                            data.nombre,
-                            reader.result.toString().split(',')[1]);
-            };
+            this.modificar(cop.cod_org,cop.cod_esp,cop.cod_cop,data.nombre,data.imagen);
             
           }else{
             this.modificar(cop.cod_org,cop.cod_esp,cop.cod_cop,data.nombre,"");
           }
         }
+      },
+      error=>{
+        //Nos da igual que no se cierre correctamente
       }
     );
   
   }
+  
   addCop(){
     var cop:CopsItem=new CopsItem();
     cop.cod_org=this.espacios[this.selected].cod_org;
     cop.cod_esp=this.espacios[this.selected].cod_esp;
-    this.openModal(cop).subscribe(
+    this.abrirModal(cop,"Alta Cop","Alta").then(
       data=>{
         if(data!=null){
-          var file="";
           if(data.imagen!=null){
-            var reader = new FileReader();
-            reader.readAsDataURL(data.imagen);
-            reader.onload = () =>{
-              this.nuevaCop(cop.cod_org,
-                            cop.cod_esp,
-                            data.nombre,
-                            reader.result.toString().split(',')[1]);
-            };
-            
+            this.nuevaCop(cop.cod_org,cop.cod_esp,data.nombre,data.imagen);
           }else{
             this.nuevaCop(cop.cod_org,cop.cod_esp,data.nombre,"");
           }
         }
+      },
+      error=>{
+        //Nos da igual que se cierre el modal
       }
     );
   }
@@ -156,6 +139,7 @@ export class AdminCopsComponent implements OnInit {
   nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string){
     this.copsService.nuevaCop(cod_org,cod_esp,desc,imagen).subscribe(
       response=>{
+        //TODO Alerts
         if(response.error==0){
           location.reload();
         }else{
@@ -173,6 +157,7 @@ export class AdminCopsComponent implements OnInit {
     this.copsService.modificarCop(cod_org,cod_esp,cod_cop,desc_cop,file_encoded)
     .subscribe(
       response=>{
+        //TODO Alerts
         console.log(response);
       },
       error=>{
@@ -184,6 +169,7 @@ export class AdminCopsComponent implements OnInit {
     if(window.confirm("¿Estas seguro de querer eliminar la cop?")){
       this.copsService.eliminarCop(cop.cod_org,cop.cod_esp,cop.cod_cop).subscribe(
         response=>{
+          //TODO Alerts
           if(response.error==0){
             location.reload();
           }else{
@@ -207,7 +193,6 @@ export class AdminCopsComponent implements OnInit {
     .subscribe(
       response=>{
         if(response.error==0){
-        
           this.etiquetas=response.cop.etiquetas;
         }else{
           window.alert("No se han podido cargar las etiquetas")
@@ -216,112 +201,108 @@ export class AdminCopsComponent implements OnInit {
     )
   }
 
-
-  private openModalEtiqueta(etiquetas:EtiquetaItem):Observable<any>{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
+  private abrirModalEtiquetas(etiqueta:EtiquetaItem,titulo:string,botonFin:string):Promise<any>{
+  
+    var data=[
       {
         input:"inputField",
         controlName:"etiqueta",
         placeHolder:"Escribe el nombre de la etiqueta",
-        data:{
-          desc:etiquetas.desc_etiqueta
-        },
+        data:etiqueta.desc_etiqueta
       }
     ];
-
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    return dialogRef.afterClosed()
+    var conf={
+      data:data,
+      titulo:titulo,
+      botonFin:botonFin
+    }
+    return this.modalService.abrirModal(conf);
   }
 
-  editarEtiqueta(etiquetas:EtiquetaItem){
-
-    this.openModalEtiqueta(etiquetas).subscribe(
+  editarEtiqueta(etiqueta:EtiquetaItem){
+    this.abrirModalEtiquetas(etiqueta,"Modificar Etiqueta","Modificar").then(
       data=>{
+        console.log(data);
         if(data!=null){
-        
-            this.modificarEtiquetas(data.etiqueta,etiquetas.cod_etiqueta);
+          this.modificarEtiquetas(data.etiqueta,etiqueta.cod_etiqueta);
         }
+      },
+      error=>{
+        //Nos da igual que el modal se cierre
       }
     );
 
 }
 
-modificarEtiquetas(desc_etiqueta, cod_etiqueta){
+  modificarEtiquetas(desc_etiqueta, cod_etiqueta){
   this.copsService.modificarEtiqueta(desc_etiqueta, cod_etiqueta)
   .subscribe(
     response=>{
+      //TODO Alerts
+      if(response.error==0){
+
+      }
       location.reload();
     },
     error=>{
+      //TODO Alerts
       console.log(error);
     }
   );
-}
+  }
 
 
-borrarEtiqueta(etiquetas:EtiquetaItem){
-  if(window.confirm("¿Estas seguro de querer eliminar la Etiqueta?")){
-    this.copsService.eliminarEtiqueta(etiquetas.cod_etiqueta,etiquetas.desc_etiqueta).subscribe(
-      response=>{
-        location.reload();
-        
+  borrarEtiqueta(etiquetas:EtiquetaItem){
+    if(window.confirm("¿Estas seguro de querer eliminar la Etiqueta?")){
+      this.copsService.eliminarEtiqueta(etiquetas.cod_etiqueta,etiquetas.desc_etiqueta).subscribe(
+        response=>{
+          location.reload();
+          //TODO Alerts
+        },
+        error=>{
+          //TODO Alerts
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  addEtiqueta(){
+    var cop:CopsItem=new CopsItem();
+    
+    var etiqueta:EtiquetaItem=new EtiquetaItem();
+    etiqueta.desc_etiqueta="";
+    cop.cod_org=this.cops[this.copSelected].cod_org;
+    cop.cod_esp=this.cops[this.copSelected].cod_esp;
+    cop.cod_cop=this.cops[this.copSelected].cod_cop;
+    
+    this.abrirModalEtiquetas(etiqueta,"Alta Etiqueta","Alta").then(
+      data=>{
+        if(data!=null){
+          this.nuevaEtiqueta(cop.cod_cop,cop.cod_esp,cop.cod_org,data.etiqueta);
+        }else{
+          this.nuevaEtiqueta(cop.cod_cop,cop.cod_esp,cop.cod_org,data.etiqueta);
+        }
       },
       error=>{
+        //Nos da igual que se cierre el modal
+      }
+    );
+  }
+
+
+  nuevaEtiqueta(cod_cop:number,cod_esp:number,cod_org:number,desc_etiqueta:string){
+    this.copsService.nuevaEtiqueta(cod_cop,cod_esp,cod_org,desc_etiqueta).subscribe(
+      response=>{
+        //TODO Alerts
+        location.reload();
+      },
+      error=>{
+        //TODO Alerts
         console.log(error);
       }
     );
   }
-}
-
-addEtiqueta(){
-  var cop:CopsItem=new CopsItem();
-  
-  var etiquetas:EtiquetaItem=new EtiquetaItem();
-  cop.cod_org=this.cops[this.copSelected].cod_org;
-  cop.cod_esp=this.cops[this.copSelected].cod_esp;
-  cop.cod_cop=this.cops[this.copSelected].cod_cop;
-  
-  this.openModalEtiqueta(etiquetas).subscribe(
-    data=>{
-      if(data!=null){
-            this.nuevaEtiqueta(
-                          cop.cod_cop,
-                          cop.cod_esp,
-                          cop.cod_org,
-                          data.etiqueta,
-                          );
-            
-
-                        
-          
-          
-        }else{
-          this.nuevaEtiqueta(
-            cop.cod_cop,
-            cop.cod_esp,
-            cop.cod_org,
-            data.etiqueta,
-            );
-          }
-        });
-      }
-
-
-      nuevaEtiqueta(cod_cop:number,cod_esp:number,cod_org:number,desc_etiqueta:string){
-        this.copsService.nuevaEtiqueta(cod_cop,cod_esp,cod_org,desc_etiqueta).subscribe(
-          response=>{
-            location.reload();
-            
-            
-          },
-          error=>{
-            console.log(error);
-          }
-        )
-      }
 
   atrasEtiquetas(){
     this.showEtiquetas =false;

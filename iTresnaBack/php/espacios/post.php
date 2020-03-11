@@ -10,21 +10,21 @@
     $orden=$data->orden;
     $result=array();
     $result["error"]=1;
+    if($orden==0){
+        $orden=1;
+    }
     if(isset($cod_org) && isset($orden) && isset($desc_esp)
          && $desc_esp!="" && isset($ind_esp_curacion)){
         $cantidad=getNuevaCodEspacio($cod_org);
-        if($cantidad==0){
-            $cod_esp=1;
-        }else{
-            $cod_esp=$cantidad+1;
-        }
+        $cod_esp=$cantidad+1;
+        $cantidad=$cantidad+1;
         $sql="INSERT INTO t_espacios(cod_org,cod_esp,desc_esp,ind_esp_curacion)
             VALUES(?,?,?,?)";
         $query=$conexion->prepare($sql);
         $query->bind_param("iisi",$cod_org,$cod_esp,$desc_esp,$ind_esp_curacion);
         $query->execute();
-        if($orden<=0||$orden>$cantidad){
-            $orden=$cantidad+1;
+        if($orden<0||$orden>$cantidad){
+            $orden=$cantidad;
             $result["error"]=(updateOrden($cod_org,$cod_esp,$orden))?0:1;
         }else{
             //verificar si en el orden dado por el usuario existe algun espacio
@@ -98,15 +98,15 @@
 
     function getNuevaCodEspacio($cod_org):int{
         include("./../conexion.php");
-        $sql="SELECT MAX(cod_esp)
+        $sql="SELECT COUNT(cod_esp)
                 FROM t_espacios
                 WHERE cod_org=?";
         $query=$conexion->prepare($sql);
         $query->bind_param("i",$cod_org);
         $query->execute();
-        $query->bind_result($cod_esp);
+        $query->bind_result($cantidad);
         $query->fetch();
         $query->close();
-        return ($cod_esp!=null)?$cod_esp+1:1;
+        return $cantidad;
     }
 ?>

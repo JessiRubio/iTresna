@@ -1,0 +1,8 @@
+<div  [formGroup]="formGroup"  class="form-group">
+    <label [for]="controlName">{{placeHolder}}:</label>
+    <input type="number"
+        [formControlName]='controlName'
+        class="form-control" 
+        [placeholder]=""
+        min="0">
+</div>

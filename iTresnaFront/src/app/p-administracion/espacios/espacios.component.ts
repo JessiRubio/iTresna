@@ -6,6 +6,8 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalAdminCopsComponent } from '../../modal-admin-cops/modal-admin-cops.component';
 import { Observable } from 'rxjs';
+import { ModalServiceService } from '../../servicios/modal-service.service';
+import { doesNotThrow } from 'assert';
 
 @Component({
   selector: 'app-espacios',
@@ -19,7 +21,8 @@ export class EspaciosComponent implements OnInit {
   listaEspacios:EspaciosItem[];
   constructor(private espaciosService:EspaciosService,
     private usuarioService:UsuariosService,
-    private dialog:MatDialog) 
+    private dialog:MatDialog,
+    private modalService:ModalServiceService) 
     { 
       this.listaEspacios=[];
     }
@@ -66,8 +69,10 @@ export class EspaciosComponent implements OnInit {
       }
     );
   }
+
+  
   private editarEspacio(espacio:EspaciosItem){
-    this.openModal(espacio).subscribe(
+    this.abrirModal(espacio,"Modificar Espacio","Modificar").then(
       data=>{
         if(data!=null){
           espacio.desc_esp=data.nombre;
@@ -79,45 +84,43 @@ export class EspaciosComponent implements OnInit {
               location.reload();
             }
           );
-        }        
+        }
+      },
+      error=>{
+        //Nos da igual si el modal se ha cerrado sin guardar
       }
     );
   }
-  private openModal(espacio:EspaciosItem):Observable<any>{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
+  private abrirModal(espacio:EspaciosItem,textoTitulo:string,textoBoton:string):Promise<any>{
+    var dataConfig=[
       {
         input:"inputField",
         controlName:"nombre",
         placeHolder:"Escribe el nombre de la cop",
-        data:{
-          desc:espacio.desc_esp
-        },
+        data:espacio.desc_esp,
         
       },
       {
         input:"checkboxField",
         controlName:"curacion",
         placeHolder:"Se puede curar",
-        data:{
-          desc:espacio.ind_esp_curacion
-        }
+        data:espacio.ind_esp_curacion
       },
       {
         input:"numberField",
         controlName:"orden",
         placeHolder:"Pone el orden en el que aparecera el espacio",
-        data:{
-          desc:espacio.orden
-        }
+        data:espacio.orden
       }
     ];
-
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    return dialogRef.afterClosed()
+    var config={
+      titulo:textoTitulo,
+      data:dataConfig,
+      botonFin:textoBoton
+    };
+    return this.modalService.abrirModal(config);
   }
+  
 
   public borrar(item:EspaciosItem){
     if(window.confirm("¿Estas seguro de eliminar el espacio seleccionado?")){
@@ -138,7 +141,7 @@ export class EspaciosComponent implements OnInit {
     espacio.desc_esp="";
     espacio.orden=0;
     espacio.ind_esp_curacion=false;
-    this.openModal(espacio).subscribe(
+    this.abrirModal(espacio,"Alta Espacio","Alta").then(
       data=>{
         if(data.nombre.length>0){
           espacio.desc_esp=data.nombre;
@@ -146,10 +149,13 @@ export class EspaciosComponent implements OnInit {
           espacio.orden=data.orden;
           this.espaciosService.addEspacio(espacio).subscribe(
             response=>{
-              location.reload();
+              console.log("Se ha creado correctamente");
             }
           );
         }        
+      },
+      error=>{
+        //Nos da igual si el modal se ha cerrado sin guardar
       }
     );
   }

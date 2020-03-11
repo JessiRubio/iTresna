@@ -1,11 +1,13 @@
 section{
     margin-top: 2%;
 }
-
+label{
+    font-size: 2em;
+}
 a{
-    margin-top: 5%;
+    vertical-align: top;
     display: inline-block;
-    width: 20%;
+    width: 15%;
     vertical-align: top;
 }
 

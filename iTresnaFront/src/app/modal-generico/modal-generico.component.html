@@ -1,0 +1,60 @@
+<ng-container style="z-index: 1000;">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{tituloModal}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" class="form-group">
+          <ng-container class="input-row" *ngFor="let item of dataConfiguration">
+              <text-input
+                  [(formGroup)]="formGroup"
+                  [data]="item.data"
+                  [controlName]="item.controlName" 
+                  [placeHolder]="item.placeHolder" 
+                  *ngIf="item.input==='inputField'">
+              </text-input>
+              <password-input
+                  [(formGroup)]="formGroup"
+                  [data]="item.data"
+                  [controlName]="item.controlName" 
+                  [placeHolder]="item.placeHolder" 
+                  *ngIf="item.input==='passwordField'">
+              </password-input>
+              <file-input
+                  [(formGroup)]="formGroup"
+                  [data]="item.data"
+                  [controlName]="item.controlName" 
+                  [placeHolder]="item.placeHolder" 
+                  *ngIf="item.input==='fileField'">
+              </file-input>
+              <checkbox-input
+                  [(formGroup)]="formGroup"
+                  [data]="item.data"
+                  [controlName]="item.controlName" 
+                  [placeHolder]="item.placeHolder" 
+                  *ngIf="item.input==='checkboxField'">
+              </checkbox-input>
+              <number-input
+                  [(formGroup)]="formGroup"
+                  [data]="item.data"
+                  [controlName]="item.controlName" 
+                  [placeHolder]="item.placeHolder" 
+                  *ngIf="item.input==='numberField'">
+              </number-input>
+              <select-input
+                  [(formGroup)]="formGroup"
+                  [data]="item.data"
+                  [controlName]="item.controlName" 
+                  [placeHolder]="item.placeHolder" 
+                  *ngIf="item.input==='selectField'">
+              </select-input>
+          </ng-container>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="close()">{{botonFinalizar}}</button>
+  </div>
+</ng-container>
+  

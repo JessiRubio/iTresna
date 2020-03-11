@@ -2,34 +2,9 @@
     <a [href]="url">
         <img [src]="img" alt="">
     </a>
-    <form class="contenedor" [formGroup]="form">
-        <mat-form-field id="nombreOrg">
-            <input matInput
-                placeholder="Nombre Organizacion"
-                formControlName="orgName">
-        </mat-form-field>
+    <div class="contenedor">
+        <label><span class="badge badge-pill badge-light">{{organizacion.desc_org}}</span></label>
         <br>
-        <mat-form-field id="descOrg">
-            <input matInput
-                placeholder="Descripcion Organizacion"
-                formControlName="orgDesc">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="expand" id="enlace">
-            <input matInput
-                placeholder="Enlace a la página"
-                formControlName="enlace">
-        </mat-form-field>
-        <br>
-        <mat-form-field #input class="expand" [class]="placeHolder">
-            <ngx-mat-file-input
-                placeholder="Seleccione una imagen"
-                formControlName='imagen'>
-            </ngx-mat-file-input>
-        </mat-form-field>
-        <br>
-        <button *ngIf="deshabilitado" mat-raised-button (click)="editarOrganizacion()">Editar</button>
-        <button *ngIf="!deshabilitado" mat-raised-button (click)="editarOrganizacion()">Guardar</button>
-        
-    </form>
+        <label><span class="badge badge-pill badge-light">{{organizacion.eslogan_org}}</span></label>
+    </div>
 </section>
