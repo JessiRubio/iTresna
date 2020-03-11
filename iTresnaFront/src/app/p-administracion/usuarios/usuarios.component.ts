@@ -10,7 +10,7 @@ import { EspaciosItem } from '../../clases/espaciosItem';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalAdminCopsComponent } from './../../modal-admin-cops/modal-admin-cops.component';
 import { Observable } from 'rxjs';
-
+import {ModalServiceService} from '../../servicios/modal-service.service'
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -53,7 +53,8 @@ export class UsuariosComponent implements OnInit {
               private espaciosService:EspaciosService,
               private usuarioService:UsuariosService,
               private organizacionService:OrganizacionesService,
-              private dialog:MatDialog) 
+              private dialog:MatDialog,
+              private modalService:ModalServiceService) 
   {
     this.permisos=false;
     this.usuarios=false;
@@ -216,37 +217,30 @@ export class UsuariosComponent implements OnInit {
 
     if(listaUsuarios.permisos.length===0){
 
-      this.usuarioService.nuevoPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso, this.cod_espPermiso,listaUsuarios.cod_org,this.ind_admin)
-    .subscribe(
-      response=>{
-        
-        location.reload();
-      },
-      error=>{
-        
-      }
-    );
+      this.usuarioService.nuevoPermisos(listaUsuarios.cod_usuario,
+        this.cod_copPermiso, this.cod_espPermiso,
+        listaUsuarios.cod_org,this.ind_admin).subscribe(
+          response=>{
+            
+            location.reload();
+          },
+          error=>{
+            
+          }
+      );
     }else{
-      
-      this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
-          .subscribe(
-            response=>{
-              
-              location.reload();
-            },
-            error=>{
-              
-            }
-          );
-        }
-
-
-    
-
-
-    
+      this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,
+        listaUsuarios.cod_org,this.ind_admin).subscribe(
+          response=>{
+            
+            location.reload();
+          },
+          error=>{
+            
+          }
+        );
+    }
   }
-
   checkedUso(e,listaUsuarios:Usuario){
 
     this.usuarioService.borrarPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso, this.cod_espPermiso,listaUsuarios.cod_org,this.ind_admin)
@@ -289,7 +283,6 @@ export class UsuariosComponent implements OnInit {
     this.usuarioService.getUsuarios(this.organizacion.cod_org).subscribe(
       res=>{
         this.listaUsuarios= res.usuarios;
-      
       },
         err=>{
           console.log(err);
@@ -297,264 +290,147 @@ export class UsuariosComponent implements OnInit {
     );
     this.permisos=false;
     this.usuarios=true;
-
-    
   }
-
-
   
-
-
-  openModalUsuario(listaUsuarios:Usuario):Observable<any>{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
+  abrirModalUsuario(usuario:Usuario,titulo:string,botonFin:string):Promise<any>{
+    var data=[
       {
         input:"inputField",
         controlName:"nombre",
         placeHolder:"Nombre",
-        data:{
-          desc:listaUsuarios.nombre
-        }
+        data:usuario.nombre
       },
       {
         input:"inputField",
         controlName:"ape1",
         placeHolder:"Primer apellido",
-        data:{
-          desc:listaUsuarios.ape1
-        }
+        data:usuario.ape1
+        
       },
       {
         input:"inputField",
         controlName:"ape2",
         placeHolder:"Segundo apellido",
-        data:{
-          desc:listaUsuarios.ape2
-        }
+        data:usuario.ape2
       },
       {
-        input:"inputField",
-        controlName:"departamento",
-        placeHolder:"Departamento",
-        data:{
-          desc:listaUsuarios.campo_clasificador1
-        }
+        input:"selectField",
+        controlName:usuario.campo_clasificador1,
+        placeHolder:usuario.campo_clasificador1,
+        data:usuario.campo_clasificador1
       },
       {
-        input:"inputField",
-        controlName:"edad",
-        placeHolder:"Edad",
+        input:"selectField",
+        controlName:usuario.campo_clasificador2,
+        placeHolder:usuario.campo_clasificador2,
         data:{
-          desc:listaUsuarios.campo_clasificador2
+          data:this.organizacion.categorias,
+
         }
+        
       },
       {
-        input:"inputField",
-        controlName:"horas",
-        placeHolder:"Horas",
-        data:{
-          desc:listaUsuarios.campo_clasificador3
-        }
+        input:"selectField",
+        controlName:usuario.campo_clasificador3,
+        placeHolder:usuario.campo_clasificador3,
+        data:usuario.campo_clasificador3
       },
     ];
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    return dialogRef.afterClosed();
+    var config={
+      data:data,
+      titulo:titulo,
+      botonFin:botonFin
+    };
+    return this.modalService.abrirModal(config);
   }
 
-  openModalUsuarioNuevo(listaUsuarios:Usuario):Observable<any>{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
-      
-      {
-        input:"inputField",
-        controlName:"cod_usuario",
-        placeHolder:"Email",
-        data:{
-          desc:listaUsuarios.cod_usuario
-        }
-      },
-      {
-        input:"passwordField",
-        controlName:"sarbidea",
-        placeHolder:"Contraseña",
-        data:{
-          desc:listaUsuarios.sarbidea
-        }
-      },
-      {
-        input:"inputField",
-        controlName:"nombre",
-        placeHolder:"Nombre",
-        data:{
-          desc:listaUsuarios.nombre
-        }
-      },
-      {
-        input:"inputField",
-        controlName:"ape1",
-        placeHolder:"Primer apellido",
-        data:{
-          desc:listaUsuarios.ape1
-        }
-      },
-      {
-        input:"inputField",
-        controlName:"ape2",
-        placeHolder:"Segundo apellido",
-        data:{
-          desc:listaUsuarios.ape2
-        }
-      },
-      {
-        input:"inputField",
-        controlName:"departamento",
-        placeHolder:"Departamento",
-        data:{
-          desc:listaUsuarios.campo_clasificador1
-        }
-      },
-      {
-        input:"inputField",
-        controlName:"edad",
-        placeHolder:"Edad",
-        data:{
-          desc:listaUsuarios.campo_clasificador2
-        }
-      },
-      {
-        input:"inputField",
-        controlName:"horas",
-        placeHolder:"Horas",
-        data:{
-          desc:listaUsuarios.campo_clasificador3
-        }
-      },
-    ];
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    return dialogRef.afterClosed();
-  }
+  editarUsuario(usuario:Usuario){
 
-
-  editarUsuario(listaUsuarios:Usuario){
-
-    this.openModalUsuario(listaUsuarios).subscribe(
+    this.abrirModalUsuario(usuario,"Modificar Usuario","Modificar").then(
       data=>{
         if(data!=null){
-
-            this.modificarUsuarios(data.nombre,data.ape1,data.ape2,data.departamento,data.edad,data.horas,listaUsuarios.cod_usuario);
-          }else{
-            this.modificarUsuarios(data.nombre,data.ape1,data.ape2,data.departamento,data.edad,data.horas,listaUsuarios.cod_usuario);
-            
-          }
+          this.modificarUsuarios(data.nombre,data.ape1,data.ape2,data.departamento,data.edad,data.horas,usuario.cod_usuario);
         }
+      },
+      error=>{
+        //Nosa da igual que se cierre el modal
+      }
       
     );
 
 }
-modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario){
+  modificarUsuarios(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario){
       
-  if(cod_usuario=="" || nombre=="" || ape1=="" || ape2=="" || campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""){
-    window.alert("Rellena los campos");
+    if(cod_usuario=="" || nombre=="" || ape1=="" || ape2=="" || campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""){
+      
+      window.alert("Rellena los campos");
 
-  }else{
-    
-    this.usuarioService.modificarUsuario(nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3,cod_usuario)
-      .subscribe(
-        response=>{
-          console.log(response);
-          location.reload();
-        },
-        error=>{
-          console.log(error);
-        }
+    }else{
+      this.usuarioService.modificarUsuario(nombre,ape1,ape2,campo_clasificador1,
+        campo_clasificador2,campo_clasificador3,cod_usuario).subscribe(
+          response=>{
+            //TODO Alerts
+            console.log(response);
+            location.reload();
+          },
+          error=>{
+            console.log(error);
+          }
       );
-  
-    
     } 
   }
 
-    addUsuario(){
-      var cop:CopsItem=new CopsItem();
-      var nuevoUsu:Usuario=new Usuario();
-      nuevoUsu.tip_usuario=3;
-      
-      this.openModalUsuarioNuevo(nuevoUsu).subscribe(
-        data=>{
-          if(data!=null){
-                this.nuevoUsuario(data.cod_usuario,
-                  nuevoUsu.tip_usuario,
-                  this.organizacion.cod_org,
-                  data.sarbidea,
-                  data.nombre,
-                  data.ape1,
-                  data.ape2,
-                  data.departamento,
-                  data.edad,
-                  data.horas            
-                  );
-         
-            }else{
-              this.nuevoUsuario(data.cod_usuario,
-                nuevoUsu.tip_usuario,
-                this.organizacion.cod_org,
-                data.sarbidea,
-                data.nombre,
-                data.ape1,
-                data.ape2,
-                data.departamento,
-                data.edad,
-                data.horas           
-                );
-              }
-            });
-          }
+  addUsuario(){
+    var cop:CopsItem=new CopsItem();
+    var usuario:Usuario=new Usuario();
+    usuario.tip_usuario=3;
+    
+    this.abrirModalUsuario(usuario,"Alta Usuario","Alta").then(
+      data=>{
+        if(data!=null){
+          this.nuevoUsuario(data.cod_usuario,usuario.tip_usuario,
+            this.organizacion.cod_org, data.sarbidea, data.nombre, data.ape1,
+                data.ape2, data.departamento, data.edad, data.horas);
+        }
+      },
+      error=>{
+        //TODO Nos da igual que se cierre el modal
+      }
+    );  
+  }
 
 
-          nuevoUsuario(cod_usuario:string,tip_usuario:number,cod_org:number,sarbidea:string,nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string){
+  nuevoUsuario(cod_usuario:string,tip_usuario:number,cod_org:number,sarbidea:string,nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string){
+    if(cod_usuario=="" || tip_usuario==null || cod_org==null || sarbidea=="" || nombre=="" || ape1=="" || ape2=="" || campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""){
+      window.alert("Rellena los campos");
+    }else{
+      this.usuarioService.nuevoUsuario(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3).subscribe(
+      response=>{
+        //TODO Alerts
+        location.reload();
+      },
+      error=>{
+        //TODO Alerts
+        console.log(error);
+      }
+    );
+    }
+  }
 
-            
-            if(cod_usuario=="" || tip_usuario==null || cod_org==null || sarbidea=="" || nombre=="" || ape1=="" || ape2=="" || campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""){
-              window.alert("Rellena los campos");
-
-            }else{
-              
-              this.usuarioService.nuevoUsuario(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3).subscribe(
-              response=>{
-                location.reload();
-                
-                
-              },
-              error=>{
-                console.log(error);
-              }
-            )
-              
-              
-              
-            }
-            
-          }
-
-
-
-          borrarUsuario(listaUsuarios:Usuario){
-            if(window.confirm("¿Estas seguro de querer eliminar el usuario?")){
-              this.usuarioService.eliminarUsuario(listaUsuarios.cod_usuario,this.organizacion.cod_org,).subscribe(
-                response=>{
-
-                  location.reload();
-                  
-                },
-                error=>{
-                  console.log(error);
-                }
-              );
-            }
-          }
+  borrarUsuario(listaUsuarios:Usuario){
+    if(window.confirm("¿Estas seguro de querer eliminar el usuario?")){
+      this.usuarioService.eliminarUsuario(listaUsuarios.cod_usuario,this.organizacion.cod_org,).subscribe(
+        response=>{
+          location.reload();
+          //TODO Alert
+        },
+        error=>{
+          console.log(error);
+          //TODO Alert
+        }
+      );
+    }
+  }
 
 
 

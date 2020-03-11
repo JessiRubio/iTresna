@@ -28,6 +28,7 @@ export class ModalGenericoComponent implements OnInit {
   }
 
   ngOnInit(){
+    
   }
 
   //Se usa en el html
