@@ -108,5 +108,6 @@ export class PCuracionComponent implements OnInit {
         );
       }
     }
+    location.reload();
   }
 }
