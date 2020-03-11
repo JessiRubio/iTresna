@@ -49,10 +49,7 @@ export class OrganizacionesService {
   actualizarCamposClasifOrg(org:Organizacion):Observable<any>{
     let json={
       "accion":"CamposClasif",
-        "cod_org":org.cod_org,
-        "clasif1":org.clasif1,
-        "clasif2":org.clasif2,
-        "clasif3":org.clasif3
+        "cod_org":org.cod_org
     };
     return this.httpClient.post(this.url,json);
   }

@@ -65,9 +65,9 @@ export class UsuariosComponent implements OnInit {
     this.organizacionService.getOrganizacionActual(this.usuarioLogado.cod_org).subscribe(
       response=>{
         this.organizacion=response.organizacion;
-        this.listaClasificacion[0] =this.organizacion.clasif1;
+        /*this.listaClasificacion[0] =this.organizacion.clasif1;
         this.listaClasificacion[1] =this.organizacion.clasif2;
-        this.listaClasificacion[2] =this.organizacion.clasif3;
+        this.listaClasificacion[2] =this.organizacion.clasif3;*/
 
         this.cargarEspacios(this.organizacion.cod_org);
       },
@@ -81,11 +81,11 @@ export class UsuariosComponent implements OnInit {
   filtrarCategorias(clasificacion:string){
     this.show = true;
     this.listaCategorias = [];
-    for(var pos=0;pos<this.organizacion.categorias.length;pos++){
+    /*for(var pos=0;pos<this.organizacion.categorias.length;pos++){
       if (this.organizacion.categorias[pos].tip_clasificacion===clasificacion){
         this.listaCategorias.push(this.organizacion.categorias[pos]);
       }
-    }
+    }*/
 
   }
 
@@ -315,25 +315,25 @@ export class UsuariosComponent implements OnInit {
       },
       {
         input:"selectField",
-        controlName:usuario.campo_clasificador1,
+        /*controlName:usuario.campo_clasificador1,
         placeHolder:usuario.campo_clasificador1,
-        data:usuario.campo_clasificador1
+        data:usuario.campo_clasificador1*/
       },
       {
         input:"selectField",
-        controlName:usuario.campo_clasificador2,
+        /*controlName:usuario.campo_clasificador2,
         placeHolder:this.organizacion.categorias[2].tip_clasificacion,
         data:{
           data:this.organizacion.categorias,
           //TODO seleccionado
         }
-        
+        */
       },
       {
         input:"selectField",
-        controlName:usuario.campo_clasificador3,
+        /*controlName:usuario.campo_clasificador3,
         placeHolder:usuario.campo_clasificador3,
-        data:usuario.campo_clasificador3
+        data:usuario.campo_clasificador3*/
       },
     ];
     var config={
@@ -366,8 +366,8 @@ export class UsuariosComponent implements OnInit {
       window.alert("Rellena los campos");
 
     }else{
-      this.usuarioService.modificarUsuario(nombre,ape1,ape2,campo_clasificador1,
-        campo_clasificador2,campo_clasificador3,cod_usuario).subscribe(
+      this.usuarioService.modificarUsuario(nombre,ape1,ape2/*,campo_clasificador1,
+        campo_clasificador2,campo_clasificador3*/,cod_usuario).subscribe(
           response=>{
             //TODO Alerts
             console.log(response);
@@ -390,7 +390,7 @@ export class UsuariosComponent implements OnInit {
         if(data!=null){
           this.nuevoUsuario(data.cod_usuario,usuario.tip_usuario,
             this.organizacion.cod_org, data.sarbidea, data.nombre, data.ape1,
-                data.ape2, data.departamento, data.edad, data.horas);
+                data.ape2/*, data.departamento, data.edad, data.horas*/);
         }
       },
       error=>{
@@ -400,11 +400,11 @@ export class UsuariosComponent implements OnInit {
   }
 
 
-  nuevoUsuario(cod_usuario:string,tip_usuario:number,cod_org:number,sarbidea:string,nombre:string,ape1:string,ape2:string,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string){
-    if(cod_usuario=="" || tip_usuario==null || cod_org==null || sarbidea=="" || nombre=="" || ape1=="" || ape2=="" || campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""){
+  nuevoUsuario(cod_usuario:string,tip_usuario:number,cod_org:number,sarbidea:string,nombre:string,ape1:string,ape2:string/*,campo_clasificador1:string,campo_clasificador2:string,campo_clasificador3:string*/){
+    if(cod_usuario=="" || tip_usuario==null || cod_org==null || sarbidea=="" || nombre=="" || ape1=="" || ape2=="" /*|| campo_clasificador1=="" || campo_clasificador2==null || campo_clasificador3==""*/){
       window.alert("Rellena los campos");
     }else{
-      this.usuarioService.nuevoUsuario(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3).subscribe(
+      this.usuarioService.nuevoUsuario(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2/*,campo_clasificador1,campo_clasificador2,campo_clasificador3*/).subscribe(
       response=>{
         //TODO Alerts
         location.reload();
