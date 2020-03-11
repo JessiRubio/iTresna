@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 11-03-2020 a las 12:44:42
--- Versión del servidor: 10.1.44-MariaDB-0+deb9u1
--- Versión de PHP: 7.0.33-25+0~20200225.32+debian9~1.gbpa11893
+-- Host: 127.0.0.1
+-- Generation Time: Mar 11, 2020 at 02:05 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,18 +19,61 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `itresna_itresna`
+-- Database: `bditresna`
 --
+DROP database bditresna;
+CREATE database bditresna;
+use bditresna;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_clasificacion`
+--
+
+CREATE TABLE `t_clasificacion` (
+  `cod_org` int(11) NOT NULL,
+  `clasificacion` varchar(64) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_clasificacion`
+--
+
+INSERT INTO `t_clasificacion` (`cod_org`, `clasificacion`) VALUES
+(1, 'Departamento'),
+(1, 'Edad'),
+(1, 'Hora Semana'),
+(2, 'Fecha Ingreso'),
+(2, 'Puesto'),
+(2, 'Salario');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_comentarios`
+-- Table structure for table `t_clasificacion_usuarios`
 --
 
-drop database bditresna;
-create database bditresna;
-use bditresna;
+CREATE TABLE `t_clasificacion_usuarios` (
+  `cod_org` int(11) NOT NULL,
+  `tip_clasificacion` varchar(64) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `categoria` varchar(32) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `cod_usuario` varchar(32) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_clasificacion_usuarios`
+--
+
+INSERT INTO `t_clasificacion_usuarios` (`cod_org`, `tip_clasificacion`, `categoria`, `cod_usuario`) VALUES
+(1, 'Departamento', 'Informatica', 'rubiovargas.jessica@gmail.com'),
+(1, 'Departamento', 'Matematicas', 'jonanderdecastro@gmail.com'),
+(1, 'Edad', '<25', 'jonanderdecastro@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_comentarios`
+--
 
 CREATE TABLE `t_comentarios` (
   `cod_comentario` int(11) NOT NULL,
@@ -41,7 +86,7 @@ CREATE TABLE `t_comentarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_comentarios`
+-- Dumping data for table `t_comentarios`
 --
 
 INSERT INTO `t_comentarios` (`cod_comentario`, `cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usuario`, `comentario`) VALUES
@@ -50,7 +95,7 @@ INSERT INTO `t_comentarios` (`cod_comentario`, `cod_senal`, `cod_cop`, `cod_esp`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_cops`
+-- Table structure for table `t_cops`
 --
 
 CREATE TABLE `t_cops` (
@@ -63,7 +108,7 @@ CREATE TABLE `t_cops` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_cops`
+-- Dumping data for table `t_cops`
 --
 
 INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `ind_cop_graficos`) VALUES
@@ -85,7 +130,7 @@ INSERT INTO `t_cops` (`cod_cop`, `cod_esp`, `cod_org`, `desc_cop`, `img_cop`, `i
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_espacios`
+-- Table structure for table `t_espacios`
 --
 
 CREATE TABLE `t_espacios` (
@@ -97,7 +142,7 @@ CREATE TABLE `t_espacios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_espacios`
+-- Dumping data for table `t_espacios`
 --
 
 INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`, `orden`) VALUES
@@ -112,7 +157,7 @@ INSERT INTO `t_espacios` (`cod_esp`, `cod_org`, `desc_esp`, `ind_esp_curacion`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_etiquetas`
+-- Table structure for table `t_etiquetas`
 --
 
 CREATE TABLE `t_etiquetas` (
@@ -124,7 +169,7 @@ CREATE TABLE `t_etiquetas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_etiquetas`
+-- Dumping data for table `t_etiquetas`
 --
 
 INSERT INTO `t_etiquetas` (`cod_etiqueta`, `cod_cop`, `cod_esp`, `cod_org`, `desc_etiqueta`) VALUES
@@ -147,7 +192,7 @@ INSERT INTO `t_etiquetas` (`cod_etiqueta`, `cod_cop`, `cod_esp`, `cod_org`, `des
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_megusta`
+-- Table structure for table `t_megusta`
 --
 
 CREATE TABLE `t_megusta` (
@@ -159,7 +204,7 @@ CREATE TABLE `t_megusta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_megusta`
+-- Dumping data for table `t_megusta`
 --
 
 INSERT INTO `t_megusta` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usuario`) VALUES
@@ -168,7 +213,7 @@ INSERT INTO `t_megusta` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_usua
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_org`
+-- Table structure for table `t_org`
 --
 
 CREATE TABLE `t_org` (
@@ -176,24 +221,21 @@ CREATE TABLE `t_org` (
   `desc_org` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
   `img_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `enlace_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `eslogan_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `clasif1` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
-  `clasif2` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
-  `clasif3` varchar(32) COLLATE utf8_spanish_ci NOT NULL
+  `eslogan_org` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_org`
+-- Dumping data for table `t_org`
 --
 
-INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`, `clasif1`, `clasif2`, `clasif3`) VALUES
-(1, 'FP Txurdinaga', 'http://localhost:8080/media/1/logo_1.png', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen', 'Departamento', 'Edad', 'horas semanas'),
-(2, 'Ibermatica S.A.', 'http://itresna.fptxurdinaga.in/media/Org/LogoIbermatica.png', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización', 'Puesto', 'Salario', 'fecha_ingreso');
+INSERT INTO `t_org` (`cod_org`, `desc_org`, `img_org`, `enlace_org`, `eslogan_org`) VALUES
+(1, 'FP Txurdinaga', 'http://localhost:8080/media/1/logo_1.png', 'http://www.fptxurdinaga.hezkuntza.net', 'Gaurko eta biharko profesionalak prestatzen'),
+(2, 'Ibermatica S.A.', 'http://itresna.fptxurdinaga.in/media/Org/LogoIbermatica.png', 'https://ibermatica.com', 'Ponemos la tecnología y el talento al servicio de tu organización');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_permisos`
+-- Table structure for table `t_permisos`
 --
 
 CREATE TABLE `t_permisos` (
@@ -205,7 +247,7 @@ CREATE TABLE `t_permisos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_permisos`
+-- Dumping data for table `t_permisos`
 --
 
 INSERT INTO `t_permisos` (`cod_usuario`, `cod_cop`, `cod_esp`, `cod_org`, `ind_admin`) VALUES
@@ -218,7 +260,7 @@ INSERT INTO `t_permisos` (`cod_usuario`, `cod_cop`, `cod_esp`, `cod_org`, `ind_a
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_senales`
+-- Table structure for table `t_senales`
 --
 
 CREATE TABLE `t_senales` (
@@ -230,14 +272,14 @@ CREATE TABLE `t_senales` (
   `cod_usuario` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `desc_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `enlace` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha_hora` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_hora` timestamp NULL DEFAULT current_timestamp(),
   `ind_fich_gest` tinyint(4) DEFAULT NULL,
   `img_senal` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `titulo` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_senales`
+-- Dumping data for table `t_senales`
 --
 
 INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiqueta`, `cod_usuario`, `desc_senal`, `enlace`, `fecha_hora`, `ind_fich_gest`, `img_senal`, `titulo`) VALUES
@@ -252,34 +294,38 @@ INSERT INTO `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`, `cod_etiq
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_tip_clasificacion`
+-- Table structure for table `t_tip_clasificacion`
 --
 
 CREATE TABLE `t_tip_clasificacion` (
   `cod_org` int(11) NOT NULL,
-  `cod_tip` int(1) NOT NULL,
-  `tip_clasificacion` varchar(32) COLLATE utf8_spanish2_ci NOT NULL,
-  `categoria` varchar(32) COLLATE utf8_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+  `tip_clasificacion` varchar(64) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `categoria` varchar(32) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `t_tip_clasificacion`
+-- Dumping data for table `t_tip_clasificacion`
 --
 
-INSERT INTO `t_tip_clasificacion` (`cod_org`, `cod_tip`, `tip_clasificacion`, `categoria`) VALUES
-(1, 1, 'Departamento', 'F.O.L'),
-(1, 1, 'Departamento', 'Informatica'),
-(1, 1, 'Departamento', 'Kimika'),
-(1, 1, 'Departamento', 'Matematicas'),
-(2, 1, 'Puesto', 'Analista'),
-(2, 1, 'Puesto', 'Jefe de equipo'),
-(2, 1, 'Puesto', 'Programador junior'),
-(2, 1, 'Puesto', 'Programador señor');
+INSERT INTO `t_tip_clasificacion` (`cod_org`, `tip_clasificacion`, `categoria`) VALUES
+(1, 'Departamento', 'Informatica'),
+(1, 'Departamento', 'Matematicas'),
+(1, 'Edad', '<25'),
+(1, 'Edad', '25<x<50'),
+(1, 'Hora Semana', '15'),
+(1, 'Hora Semana', '20'),
+(2, 'Fecha Ingreso', '2000'),
+(2, 'Fecha Ingreso', '2010'),
+(2, 'Fecha Ingreso', '2020'),
+(2, 'Puesto', 'Analista'),
+(2, 'Puesto', 'Programador'),
+(2, 'Salario', '<16000'),
+(2, 'Salario', '16000<x<20000');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_tip_usuario`
+-- Table structure for table `t_tip_usuario`
 --
 
 CREATE TABLE `t_tip_usuario` (
@@ -288,7 +334,7 @@ CREATE TABLE `t_tip_usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_tip_usuario`
+-- Dumping data for table `t_tip_usuario`
 --
 
 INSERT INTO `t_tip_usuario` (`tip_usuario`, `desc_usuario`) VALUES
@@ -299,7 +345,7 @@ INSERT INTO `t_tip_usuario` (`tip_usuario`, `desc_usuario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_tip_variable`
+-- Table structure for table `t_tip_variable`
 --
 
 CREATE TABLE `t_tip_variable` (
@@ -308,7 +354,7 @@ CREATE TABLE `t_tip_variable` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_tip_variable`
+-- Dumping data for table `t_tip_variable`
 --
 
 INSERT INTO `t_tip_variable` (`tip_variable`, `desc_variable`) VALUES
@@ -321,7 +367,7 @@ INSERT INTO `t_tip_variable` (`tip_variable`, `desc_variable`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_usuarios`
+-- Table structure for table `t_usuarios`
 --
 
 CREATE TABLE `t_usuarios` (
@@ -338,7 +384,7 @@ CREATE TABLE `t_usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_usuarios`
+-- Dumping data for table `t_usuarios`
 --
 
 INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `nombre`, `ape1`, `ape2`, `campo_clasificador1`, `campo_clasificador2`, `campo_clasificador3`) VALUES
@@ -353,7 +399,7 @@ INSERT INTO `t_usuarios` (`cod_usuario`, `tip_usuario`, `cod_org`, `sarbidea`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_variable`
+-- Table structure for table `t_variable`
 --
 
 CREATE TABLE `t_variable` (
@@ -366,11 +412,24 @@ CREATE TABLE `t_variable` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `t_comentarios`
+-- Indexes for table `t_clasificacion`
+--
+ALTER TABLE `t_clasificacion`
+  ADD PRIMARY KEY (`cod_org`,`clasificacion`);
+
+--
+-- Indexes for table `t_clasificacion_usuarios`
+--
+ALTER TABLE `t_clasificacion_usuarios`
+  ADD PRIMARY KEY (`cod_org`,`tip_clasificacion`,`categoria`,`cod_usuario`),
+  ADD KEY `cod_usuario` (`cod_usuario`);
+
+--
+-- Indexes for table `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
   ADD PRIMARY KEY (`cod_comentario`,`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
@@ -378,48 +437,48 @@ ALTER TABLE `t_comentarios`
   ADD KEY `fp_comentario_usuario` (`cod_usuario`);
 
 --
--- Indices de la tabla `t_cops`
+-- Indexes for table `t_cops`
 --
 ALTER TABLE `t_cops`
   ADD PRIMARY KEY (`cod_cop`,`cod_esp`,`cod_org`),
   ADD KEY `fk_t_cops` (`cod_esp`,`cod_org`);
 
 --
--- Indices de la tabla `t_espacios`
+-- Indexes for table `t_espacios`
 --
 ALTER TABLE `t_espacios`
   ADD PRIMARY KEY (`cod_esp`,`cod_org`),
   ADD KEY `fk_t_espacios` (`cod_org`);
 
 --
--- Indices de la tabla `t_etiquetas`
+-- Indexes for table `t_etiquetas`
 --
 ALTER TABLE `t_etiquetas`
   ADD PRIMARY KEY (`cod_etiqueta`,`cod_cop`,`cod_esp`,`cod_org`),
   ADD KEY `fk_t_etiquetas` (`cod_cop`,`cod_esp`,`cod_org`);
 
 --
--- Indices de la tabla `t_megusta`
+-- Indexes for table `t_megusta`
 --
 ALTER TABLE `t_megusta`
   ADD KEY `fk_t_meguta_usuario` (`cod_usuario`),
   ADD KEY `cod_senal` (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) USING BTREE;
 
 --
--- Indices de la tabla `t_org`
+-- Indexes for table `t_org`
 --
 ALTER TABLE `t_org`
   ADD PRIMARY KEY (`cod_org`);
 
 --
--- Indices de la tabla `t_permisos`
+-- Indexes for table `t_permisos`
 --
 ALTER TABLE `t_permisos`
   ADD PRIMARY KEY (`cod_usuario`,`cod_cop`,`cod_esp`,`cod_org`),
   ADD KEY `fk_t_permisos_cop` (`cod_cop`,`cod_esp`,`cod_org`);
 
 --
--- Indices de la tabla `t_senales`
+-- Indexes for table `t_senales`
 --
 ALTER TABLE `t_senales`
   ADD PRIMARY KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
@@ -428,25 +487,25 @@ ALTER TABLE `t_senales`
   ADD KEY `fk_t_senales_etiqueta` (`cod_etiqueta`);
 
 --
--- Indices de la tabla `t_tip_clasificacion`
+-- Indexes for table `t_tip_clasificacion`
 --
 ALTER TABLE `t_tip_clasificacion`
-  ADD PRIMARY KEY (`cod_org`,`cod_tip`,`tip_clasificacion`,`categoria`);
+  ADD PRIMARY KEY (`cod_org`,`tip_clasificacion`,`categoria`);
 
 --
--- Indices de la tabla `t_tip_usuario`
+-- Indexes for table `t_tip_usuario`
 --
 ALTER TABLE `t_tip_usuario`
   ADD PRIMARY KEY (`tip_usuario`);
 
 --
--- Indices de la tabla `t_tip_variable`
+-- Indexes for table `t_tip_variable`
 --
 ALTER TABLE `t_tip_variable`
   ADD PRIMARY KEY (`tip_variable`);
 
 --
--- Indices de la tabla `t_usuarios`
+-- Indexes for table `t_usuarios`
 --
 ALTER TABLE `t_usuarios`
   ADD PRIMARY KEY (`cod_usuario`),
@@ -454,101 +513,122 @@ ALTER TABLE `t_usuarios`
   ADD KEY `fk_t_usuario_org` (`cod_org`);
 
 --
--- Indices de la tabla `t_variable`
+-- Indexes for table `t_variable`
 --
 ALTER TABLE `t_variable`
   ADD PRIMARY KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`),
   ADD KEY `fk_variable_tipo` (`tip_variable`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `t_comentarios`
+-- AUTO_INCREMENT for table `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
   MODIFY `cod_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `t_cops`
+-- AUTO_INCREMENT for table `t_cops`
 --
 ALTER TABLE `t_cops`
   MODIFY `cod_cop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
--- AUTO_INCREMENT de la tabla `t_espacios`
+-- AUTO_INCREMENT for table `t_espacios`
 --
 ALTER TABLE `t_espacios`
   MODIFY `cod_esp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT de la tabla `t_etiquetas`
+-- AUTO_INCREMENT for table `t_etiquetas`
 --
 ALTER TABLE `t_etiquetas`
   MODIFY `cod_etiqueta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
--- AUTO_INCREMENT de la tabla `t_org`
+-- AUTO_INCREMENT for table `t_org`
 --
 ALTER TABLE `t_org`
   MODIFY `cod_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `t_senales`
+-- AUTO_INCREMENT for table `t_senales`
 --
 ALTER TABLE `t_senales`
   MODIFY `cod_senal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT de la tabla `t_tip_usuario`
+-- AUTO_INCREMENT for table `t_tip_usuario`
 --
 ALTER TABLE `t_tip_usuario`
   MODIFY `tip_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT de la tabla `t_tip_variable`
+-- AUTO_INCREMENT for table `t_tip_variable`
 --
 ALTER TABLE `t_tip_variable`
   MODIFY `tip_variable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `t_comentarios`
+-- Constraints for table `t_clasificacion`
+--
+ALTER TABLE `t_clasificacion`
+  ADD CONSTRAINT `t_clasificacion_ibfk_1` FOREIGN KEY (`cod_org`) REFERENCES `t_org` (`cod_org`);
+
+--
+-- Constraints for table `t_clasificacion_usuarios`
+--
+ALTER TABLE `t_clasificacion_usuarios`
+  ADD CONSTRAINT `t_clasificacion_usuarios_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`),
+  ADD CONSTRAINT `t_clasificacion_usuarios_ibfk_2` FOREIGN KEY (`cod_org`,`tip_clasificacion`,`categoria`) REFERENCES `t_tip_clasificacion` (`cod_org`, `tip_clasificacion`, `categoria`);
+
+--
+-- Constraints for table `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
   ADD CONSTRAINT `fk_comentario_usuario` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_t_comentario_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `t_cops`
+-- Constraints for table `t_cops`
 --
 ALTER TABLE `t_cops`
   ADD CONSTRAINT `fk_t_cops` FOREIGN KEY (`cod_esp`,`cod_org`) REFERENCES `t_espacios` (`cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `t_espacios`
+-- Constraints for table `t_espacios`
 --
 ALTER TABLE `t_espacios`
   ADD CONSTRAINT `fk_t_espacios` FOREIGN KEY (`cod_org`) REFERENCES `t_org` (`cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `t_etiquetas`
+-- Constraints for table `t_etiquetas`
 --
 ALTER TABLE `t_etiquetas`
   ADD CONSTRAINT `fk_t_etiquetas` FOREIGN KEY (`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_cops` (`cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `t_megusta`
+-- Constraints for table `t_megusta`
 --
 ALTER TABLE `t_megusta`
   ADD CONSTRAINT `fk_t_megusta_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_t_meguta_usuario` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `t_permisos`
+-- Constraints for table `t_permisos`
 --
 ALTER TABLE `t_permisos`
   ADD CONSTRAINT `fk_t_permisos_USUARIO` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_t_permisos_cop` FOREIGN KEY (`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_cops` (`cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `t_senales`
+-- Constraints for table `t_senales`
 --
 ALTER TABLE `t_senales`
   ADD CONSTRAINT `fk_t_senales_cop` FOREIGN KEY (`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_cops` (`cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -556,18 +636,25 @@ ALTER TABLE `t_senales`
   ADD CONSTRAINT `fk_t_senales_usuario` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `t_usuarios`
+-- Constraints for table `t_tip_clasificacion`
+--
+ALTER TABLE `t_tip_clasificacion`
+  ADD CONSTRAINT `t_tip_clasificacion_ibfk_1` FOREIGN KEY (`cod_org`,`tip_clasificacion`) REFERENCES `t_clasificacion` (`cod_org`, `clasificacion`);
+
+--
+-- Constraints for table `t_usuarios`
 --
 ALTER TABLE `t_usuarios`
   ADD CONSTRAINT `fK_t_usuario_tip` FOREIGN KEY (`tip_usuario`) REFERENCES `t_tip_usuario` (`tip_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_t_usuario_org` FOREIGN KEY (`cod_org`) REFERENCES `t_org` (`cod_org`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `t_variable`
+-- Constraints for table `t_variable`
 --
 ALTER TABLE `t_variable`
   ADD CONSTRAINT `fk_t_variable_senal` FOREIGN KEY (`cod_senal`,`cod_cop`,`cod_esp`,`cod_org`) REFERENCES `t_senales` (`cod_senal`, `cod_cop`, `cod_esp`, `cod_org`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_variable_tipo` FOREIGN KEY (`tip_variable`) REFERENCES `t_tip_variable` (`tip_variable`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
