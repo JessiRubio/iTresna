@@ -8,6 +8,7 @@ export class Usuario{
     permisos:Permiso[];
     sarbidea:string;
     tip_usuario:number;
+    clasificacion:ClasificacionUsuario[]=[];
 }
 export class Permiso{
     cod_org:number;
