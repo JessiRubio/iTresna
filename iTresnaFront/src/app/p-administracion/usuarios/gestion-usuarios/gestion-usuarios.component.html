@@ -1,0 +1,52 @@
+
+<section class="usuarios" *ngIf="usuarios">
+
+    <table>
+        <tr>
+            <th rowspan="2">EMAIL</th>
+            <th colspan="3">USUARIOS</th>
+            <th colspan="3">DATOS CLASIFICATORIOS</th>
+            <th rowspan="2">MODIFICAR</th>
+            <th rowspan="2">ELIMINAR</th>
+        </tr>
+
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido 1</th>
+            <th>Apellido 2</th>
+            <th>{{listaClasificacion[0]}}</th>
+            <th>{{listaClasificacion[1]}}</th>
+            <th>{{listaClasificacion[2]}}</th>
+        </tr>
+
+        <tr *ngFor="let item of listaUsuarios; let i=index">
+            <td>{{item.cod_usuario}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.ape1}}</td>
+            <td>{{item.ape2}}</td>
+            <td>{{item.campo_clasificador1}}</td>
+            <td>{{item.campo_clasificador2}}</td>
+            <td>{{item.campo_clasificador3}}</td>
+            <td>
+                <button (click)="editarUsuario(item)" class="boton">
+                    <img class="papelera" src="assets/edit.png" alt="papelera">
+                </button>
+            </td>
+            <td>
+                <button (click)="borrarUsuario(item)">
+                    <img class="papelera" src="assets/papelera.png" alt="papelera">
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="9">
+                <button (click)="addUsuario()" class="btnAñadir">
+                    <p>AÑADIR</p>
+                </button>
+            </td>
+        </tr>
+        
+    </table>
+
+</section>
