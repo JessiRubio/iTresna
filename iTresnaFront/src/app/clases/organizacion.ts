@@ -4,11 +4,16 @@ export class Organizacion {
     img_org:string="";
     enlace_org:string="";
     eslogan_org:string="";
+<<<<<<< HEAD
     clasificacion:Categorias[]=[];
+=======
+    clasificaciones:Categorias[]=[];
+>>>>>>> 48da4fe0a5dee8fa7271782df7eb83552d8e909c
     contacto:string="";
     usuarios:string[]=[];
 }
 
 export class Categorias{
-    categoria:string;
+    clasificacion:string;
+    categoria:string[]=[];
 }
