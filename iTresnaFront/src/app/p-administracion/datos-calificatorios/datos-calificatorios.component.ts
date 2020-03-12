@@ -109,14 +109,18 @@ export class DatosCalificatoriosComponent implements OnInit{
     );
   }
 
-  editarCampo(campo:string){
-    this.abrirModal(campo,"Modificar Capo","Modificar").then(
+  editarCampo(campoAntiguo:string){
+
+    
+    var clasificacion=this.organizacion.clasificacion[this.listaCargada-1].clasificacion;
+    this.abrirModal(campoAntiguo,"Modificar Campo","Modificar").then(
       data=>{
         if(data!=null){
-          this.clasificacionService.modificarCategoria(this.organizacion.cod_org,this.listaCargada, data.campo).subscribe(
+          this.clasificacionService.modificarCategoria(this.organizacion.cod_org, clasificacion,campoAntiguo, data.campo).subscribe(
             respose=>{
               if(respose.error==0){
-                location.reload();
+                this.cargarOrg();
+                this.editar(this.listaCargada);
               }
             }
           );
@@ -151,6 +155,7 @@ export class DatosCalificatoriosComponent implements OnInit{
       }
     );
   }
+  
   private abrirModal(campo:string,titulo:string,botonFin:string):Promise<any>{
     var data=[
       {
