@@ -20,22 +20,19 @@
         $nombre = $data->nombre;
         $ape1=$data->ape1;
         $ape2=$data->ape2;
-        $campo_clasificador1=$data->campo_clasificador1;
-        $campo_clasificador2=$data->campo_clasificador2;
-        $campo_clasificador3=$data->campo_clasificador3;
         $cod_usuario=$data->cod_usuario;
-
 
         if(isset($cod_usuario) && $cod_usuario!=""){
             
             include("./../conexion.php");
-            $sql="INSERT INTO t_usuarios(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2,campo_clasificador1,campo_clasificador2,campo_clasificador3)
-                VALUES(?,?,?,?,?,?,?,?,?,?)";
+            $sql="INSERT INTO t_usuarios(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2)
+                VALUES(?,?,?,?,?,?,?)";
             $query=$conexion->prepare($sql);
-            $query->bind_param("siisssssss",$cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2,$campo_clasificador1,$campo_clasificador2,$campo_clasificador3);
+            $query->bind_param("siissss",$cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2);
             $query->execute();
             $query->close();
-            return;
+
+            $result["error"]=0;
     
         }
 
@@ -51,13 +48,13 @@
 
 
         include("./../conexion.php");
-            $sql="INSERT INTO t_permisos(cod_usuario,cod_cop,cod_esp,cod_org,ind_admin)
-                VALUES(?,?,?,?,?)";
-            $query=$conexion->prepare($sql);
-            $query->bind_param("siiii",$cod_usuario,$cod_cop,$cod_esp,$cod_org,$ind_admin);
-            $query->execute();
-            $query->close();
-            return;
+        $sql="INSERT INTO t_permisos(cod_usuario,cod_cop,cod_esp,cod_org,ind_admin)
+            VALUES(?,?,?,?,?)";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("siiii",$cod_usuario,$cod_cop,$cod_esp,$cod_org,$ind_admin);
+        $query->execute();
+        $query->close();
+        $result["error"] = 0;
     }
     else{
         $password=$data->password;
@@ -89,6 +86,7 @@
     }
 
     echo json_encode($result);
+    
     function obtenerPermisos($cod_usuario){
         include("./../conexion.php");
         $result=array();

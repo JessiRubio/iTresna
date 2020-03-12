@@ -582,8 +582,8 @@ ALTER TABLE `t_clasificacion`
 -- Constraints for table `t_clasificacion_usuarios`
 --
 ALTER TABLE `t_clasificacion_usuarios`
-  ADD CONSTRAINT `t_clasificacion_usuarios_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`),
-  ADD CONSTRAINT `t_clasificacion_usuarios_ibfk_2` FOREIGN KEY (`cod_org`,`tip_clasificacion`,`categoria`) REFERENCES `t_tip_clasificacion` (`cod_org`, `tip_clasificacion`, `categoria`);
+  ADD CONSTRAINT `t_clasificacion_usuarios_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `t_usuarios` (`cod_usuario`) ON UPDATE CASCADE ON DELETE SET NULL,
+  ADD CONSTRAINT `t_clasificacion_usuarios_ibfk_2` FOREIGN KEY (`cod_org`,`tip_clasificacion`,`categoria`) REFERENCES `t_tip_clasificacion` (`cod_org`, `tip_clasificacion`, `categoria`) ON UPDATE CASCADE ON DELETE SET NULL;
 
 --
 -- Constraints for table `t_comentarios`
