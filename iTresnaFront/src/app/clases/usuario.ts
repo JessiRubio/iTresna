@@ -16,7 +16,7 @@ export class Permiso{
     cod_cop:number;
     ind_admin:boolean;
 }
-class ClasificacionUsuario{
+export class ClasificacionUsuario{
     tip_clasificacion:string;
     categoria:string;
 }

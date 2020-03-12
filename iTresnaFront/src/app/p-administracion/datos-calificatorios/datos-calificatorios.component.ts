@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrganizacionesService } from '../../servicios/organizaciones.service';
-import { Organizacion, Categorias } from '../../clases/organizacion';
+import { Organizacion } from '../../clases/organizacion';
 import { Usuario } from '../../clases/usuario';
 import { ClasificacionService } from '../../servicios/clasificacion.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
@@ -57,12 +57,12 @@ export class DatosCalificatoriosComponent implements OnInit{
     this.organizacionesService.getOrganizacionActual(this.usuarioLogeado.cod_org).subscribe(
       res=>{
         this.organizacion=res.organizacion;
-        this.form.controls["clasif1"].setValue(this.organizacion.clasificaciones[0],Validators.required);
-        if(this.organizacion.clasificaciones.length==2){
-          this.form.controls["clasif2"].setValue(this.organizacion.clasificaciones[1],Validators.required);
+        this.form.controls["clasif1"].setValue(this.organizacion.clasificacion[0].clasificacion,Validators.required);
+        if(this.organizacion.clasificacion.length>1){
+          this.form.controls["clasif2"].setValue(this.organizacion.clasificacion[1].clasificacion,Validators.required);
         }
-        else if (this.organizacion.clasificaciones.length==3){
-          this.form.controls["clasif3"].setValue(this.organizacion.clasificaciones[2],Validators.required);
+        if (this.organizacion.clasificacion.length>2){
+          this.form.controls["clasif3"].setValue(this.organizacion.clasificacion[2].clasificacion,Validators.required);
         }
         this.cargarlistas();
       }
@@ -91,12 +91,12 @@ export class DatosCalificatoriosComponent implements OnInit{
 
   guardarCambios(){
     this.form.disable();
-    this.organizacion.clasificaciones[0].clasificacion = this.form.controls["clasif1"].value;
-    if(this.organizacion.clasificaciones.length=2){
-      this.organizacion.clasificaciones[1].clasificacion = this.form.controls["clasif2"].value;
+    this.organizacion.clasificacion[0].clasificacion = this.form.controls["clasif1"].value;
+    if(this.organizacion.clasificacion.length=2){
+      this.organizacion.clasificacion[1].clasificacion = this.form.controls["clasif2"].value;
     }
-    else if(this.organizacion.clasificaciones.length=2){
-      this.organizacion.clasificaciones[2].clasificacion = this.form.controls["clasif3"].value;
+    else if(this.organizacion.clasificacion.length=2){
+      this.organizacion.clasificacion[2].clasificacion = this.form.controls["clasif3"].value;
     }
     this.organizacionesService.actualizarCamposClasifOrg(this.organizacion).subscribe(
       res=>{
@@ -169,12 +169,9 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   cargarlistas(){
-    this.listaClasif1 = this.organizacion.clasificaciones[0].categoria;
-    console.log(this.listaClasif1);
-    this.listaClasif2 = this.organizacion.clasificaciones[1].categoria;
-    console.log(this.listaClasif2);
-    this.listaClasif3 = this.organizacion.clasificaciones[2].categoria;
-    console.log(this.listaClasif3);
+    this.listaClasif1 = this.organizacion.clasificacion[0].categorias;
+    this.listaClasif2 = this.organizacion.clasificacion[1].categorias;
+    this.listaClasif3 = this.organizacion.clasificacion[2].categorias;
   }
 
   atrasClasificacion(){

@@ -1,0 +1,27 @@
+button>img{
+    height: 20px;
+    width: 20px;
+}
+section{
+    padding: 2%;
+}
+table{
+    text-align: center;
+    margin: auto;
+}
+tr{
+    margin:20px;
+    
+}
+th{
+    margin: 15px;
+    width: 15%;
+}
+.subrayado{
+    border-bottom: 1px solid;
+}
+.btnAnadir{
+    width: 100%;
+    background: transparent;
+    border-radius: 0.75rem;
+}

@@ -4,12 +4,12 @@ export class Organizacion {
     img_org:string="";
     enlace_org:string="";
     eslogan_org:string="";
-    clasificaciones:Categorias[]=[];
+    clasificacion:Clasificacion[]=[];
     contacto:string="";
     usuarios:string[]=[];
 }
 
-export class Categorias{
+export class Clasificacion{
     clasificacion:string;
-    categoria:string[]=[];
+    categorias:string[]=[];
 }
