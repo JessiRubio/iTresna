@@ -5,12 +5,6 @@
         <mat-form-field id="clasif1">
             <input matInput
                 formControlName="clasif1"/>
-            <mat-select [(value)]="selected" >
-                <mat-option [value]="0"></mat-option>
-                <mat-option *ngFor="let item of listaClasif1;let i=index" [value]="i">
-                    {{item}}
-                </mat-option>
-            </mat-select>
         </mat-form-field>
         <button (click)="editar(1)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
@@ -20,11 +14,6 @@
         <mat-form-field id="clasif1">
             <input matInput
                 formControlName="clasif2">
-            <mat-select [(value)]="selected" >
-                <mat-option *ngFor="let item of listaClasif2;let i=index" [value]="i">
-                    {{item}}
-                </mat-option>
-            </mat-select>
         </mat-form-field>
         <button (click)="editar(2)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
@@ -34,11 +23,6 @@
         <mat-form-field id="clasif3">
             <input matInput
                 formControlName="clasif3">
-            <mat-select [(value)]="selected">
-                <mat-option *ngFor="let item of listaClasif3;let i=index" [value]="i">
-                    {{item}}
-                </mat-option>
-            </mat-select>
         </mat-form-field>
         <button (click)="editar(3)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
