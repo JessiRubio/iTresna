@@ -2,21 +2,24 @@
     require_once("./../conexion.php");
     $json = file_get_contents('php://input');
     $data = json_decode($json);
-    $result=array();
-    $result["error"]=1;
-    $categoria = $data->categoria;
-    $cod_tip = $data->cod_tip;
-    $cod_org = $data->cod_org;
-    if(isset($categoria) && $categoria!="" && isset($cod_org) 
-        && $cod_org!="" && isset($cod_tip) && $cod_tip!=""){
 
+    $cod_org=$data->cod_org;
+    $clasificacion=$data->clasificacion;
+    $categoriaVieja=$data->categoriaVieja;
+    $categoriaNueva=$data->categoriaNueva;
+
+    $result=array();
+    $result["error"]=0;
+
+    if( $cod_org>0 && $clasificacion!="" && $categoriaVieja!=""&& $categoriaNueva!=""){
         $sql="UPDATE t_tip_clasificacion
-                        SET categoria=?
-                        WHERE cod_org=? AND cod_tip=?";
+            SET categoria=?
+            WHERE cod_org=? AND tip_clasificacion=? AND categoria=?";
         $query=$conexion->prepare($sql);
-        $query->bind_param("sii",$categoria,$cod_org,$cod_tip);
+        $query->bind_param("siss",$categoriaNueva,$cod_org,$clasificacion, $categoriaVieja);
         $query->execute();
         $affected_rows=$query->affected_rows;
-        $result["error"]=($affected_rows==1)?0:1;
+        var_dump($query);
+        die();
     }
     echo json_encode($result);
