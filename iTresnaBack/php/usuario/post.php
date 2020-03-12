@@ -60,7 +60,7 @@
         $password=$data->password;
         $usuario=$data->usuario;
         if(isset($usuario) && $usuario!="" && isset($password) && $password!=""){
-            $sql="SELECT *
+            $sql="SELECT cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2
                 FROM t_usuarios
                 WHERE cod_usuario=? and sarbidea=?";
             $query=$conexion->prepare($sql);
