@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Usuario} from '../../../clases/usuario';
+import {Usuario, ClasificacionUsuario} from '../../../clases/usuario';
 import {Organizacion} from '../../../clases/organizacion';
 import {OrganizacionesService} from './../../../servicios/organizaciones.service';
+import { UsuariosService } from './../../../servicios/usuarios.service';
+import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
+import { ModalServiceService } from '../../../servicios/modal-service.service';
 @Component({
   selector: 'gestion-usuarios',
   templateUrl: './gestion-usuarios.component.html',
@@ -12,24 +15,25 @@ export class GestionUsuariosComponent implements OnInit {
   private organizacion:Organizacion;
   private listaUsuarios:Usuario[]=[];
   constructor(
-    private organizacionService:OrganizacionesService
+    private organizacionService:OrganizacionesService,
+    private usuariosService:UsuariosService,
+    private modalService:ModalServiceService
   ) { }
 
   ngOnInit() {
 
     var usuario:Usuario=JSON.parse(localStorage.getItem("usuario"));
-    console.log(usuario);
     this.iniciarDescargaDatos(usuario);
   }
-  iniciarDescargaDatos(usuario:Usuario){
+  private iniciarDescargaDatos(usuario:Usuario){
     this.cargarOrganizacion(usuario.cod_org);
   }
-  cargarOrganizacion(cod_org:number){
+  private cargarOrganizacion(cod_org:number){
     this.organizacionService.getOrganizacionActual(cod_org).subscribe(
       response=>{
-        if(response.data==0){
+        if(response.error==0){
           this.organizacion=response.organizacion;
-
+          this.organizacion.usuarios.forEach(usuario=>this.cargarUsuarios(usuario));
         }else{
           //TODO Poner alerta error al cargar la organizacion
         }
@@ -39,5 +43,101 @@ export class GestionUsuariosComponent implements OnInit {
       }
     );
   }
+  private cargarUsuarios(cod_usuario:string){
+    this.usuariosService.getUsuarioPorCodUsuario(cod_usuario).subscribe(
+      response=>{
+        console.log(response);
+        if(response.error==0){
+          this.listaUsuarios.push(response.usuario);
+          this.listaUsuarios.forEach(x=>this.ordenarClasificacionSegunOrg(x));
+          this.listaUsuarios.forEach(x=>console.log(x.clasificacion));
+        }
+      },
+      error=>{
+        //TODO alerta
+      }
+    );
+  }
+  ordenarClasificacionSegunOrg(usuario:Usuario){
+    if(usuario.clasificacion!=null){
+      var listaClasificacion=new Array<ClasificacionUsuario>();
+      this.organizacion.clasificacion.forEach(x=>{
+          var aux=usuario.clasificacion.find(clasifiacion=>clasifiacion.tip_clasificacion===x.clasificacion);
+          if(aux!=null){
+            listaClasificacion.push(aux);
+          }else{
+            listaClasificacion.push(new ClasificacionUsuario());
+          }
+        }
+      );
+      usuario.clasificacion=listaClasificacion;
+    }
+    else{
+      usuario.clasificacion=[];
+      this.ordenarClasificacionSegunOrg(usuario);
+    }
+   
+  }
 
+  abrirModal(usuario:Usuario,titulo:string,botonFin:string):Promise<any>{
+    var data:any[]=[
+      {
+        input:"inputField",
+        controlName:"email",
+        placeHolder:"Escribe el email del usuario",
+        data:usuario.cod_usuario
+      },
+      {
+        input:"inputField",
+        controlName:"nombre",
+        placeHolder:"Escribe el nombre del usuario",
+        data:usuario.nombre
+      },
+      {
+        input:"inputField",
+        controlName:"ape1",
+        placeHolder:"Escribe el primer apellido del usuario",
+        data:usuario.ape1
+      },
+      {
+        input:"inputField",
+        controlName:"ape2",
+        placeHolder:"Escribe el segundo apellido del usuario",
+        data:usuario.ape2
+      },
+      
+    ];
+    for(var i=0;i<this.organizacion.clasificacion.length;i++){
+      let clasi=this.organizacion.clasificacion[i];
+      data.push(
+        {
+          input:"selectField",
+          controlName:"clas"+i,
+          placeHolder:"Selecciona un dato clasificatorio de "+clasi.clasificacion,
+          data:{
+            data:clasi.categorias,
+            seleccionado:usuario.clasificacion[i].categoria
+          }
+        }
+      );
+    }
+    var conf={
+      data:data,
+      titulo:titulo,
+      botonFin:botonFin
+    };
+    return this.modalService.abrirModal(conf);
+  }
+  editar(usuario:Usuario){
+    this.abrirModal(usuario,"Modificar Usuario","Modificar").then(
+      data=>{
+        if(data!=null){
+          console.log(data);
+        }
+      },
+      error=>{
+
+      }
+    );
+  }
 }
