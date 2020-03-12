@@ -377,7 +377,7 @@ CREATE TABLE `t_usuarios` (
   `sarbidea` varchar(16) COLLATE utf8_spanish_ci DEFAULT NULL,
   `nombre` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ape1` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ape2` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ape2` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --

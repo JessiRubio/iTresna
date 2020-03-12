@@ -24,9 +24,9 @@ export class DatosCalificatoriosComponent implements OnInit{
   selected:string
   listaClasif:string[];
 
-  /*listaClasif1:string[];
+  listaClasif1:string[];
   listaClasif2:string[];
-  listaClasif3:string[];*/
+  listaClasif3:string[];
 
   private listaCargada:number =0;
 
@@ -57,10 +57,14 @@ export class DatosCalificatoriosComponent implements OnInit{
     this.organizacionesService.getOrganizacionActual(this.usuarioLogeado.cod_org).subscribe(
       res=>{
         this.organizacion=res.organizacion;
-        /*this.form.controls["clasif1"].setValue(this.organizacion.clasif1,Validators.required);
-        this.form.controls["clasif2"].setValue(this.organizacion.clasif2,Validators.required);
-        this.form.controls["clasif3"].setValue(this.organizacion.clasif3,Validators.required);
-        this.cargarlistas(); */
+        this.form.controls["clasif1"].setValue(this.organizacion.clasificaciones[0],Validators.required);
+        if(this.organizacion.clasificaciones.length==2){
+          this.form.controls["clasif2"].setValue(this.organizacion.clasificaciones[1],Validators.required);
+        }
+        else if (this.organizacion.clasificaciones.length==3){
+          this.form.controls["clasif3"].setValue(this.organizacion.clasificaciones[2],Validators.required);
+        }
+        this.cargarlistas();
       }
     );
     
@@ -71,15 +75,15 @@ export class DatosCalificatoriosComponent implements OnInit{
       this.datosprevios = false;
 
       if (num == 1){
-       /* this.listaClasif = this.listaClasif1;*/
+       this.listaClasif = this.listaClasif1;
         this.listaCargada = 1;
       }
       else if(num == 2){
-        /*this.listaClasif = this.listaClasif2;*/
+        this.listaClasif = this.listaClasif2;
         this.listaCargada = 2;
       } 
       else if (num == 3){
-        /*this.listaClasif = this.listaClasif3;*/
+        this.listaClasif = this.listaClasif3;
         this.listaCargada = 3;
       }
     
@@ -87,9 +91,10 @@ export class DatosCalificatoriosComponent implements OnInit{
 
   guardarCambios(){
     this.form.disable();
-    /*this.organizacion.clasif1 = this.form.controls["clasif1"].value;
-    this.organizacion.clasif2 = this.form.controls["clasif2"].value;
-    this.organizacion.clasif3 = this.form.controls["clasif3"].value;*/
+    this.organizacion.clasificaciones[0].clasificacion = this.form.controls["clasif1"].value;
+    if(this.organizacion.clasificaciones.length=2)
+    this.organizacion.clasificaciones[1].clasificacion = this.form.controls["clasif2"].value;
+    this.organizacion.clasificaciones[2].clasificacion = this.form.controls["clasif3"].value;
 
     this.organizacionesService.actualizarCamposClasifOrg(this.organizacion).subscribe(
       res=>{
@@ -161,20 +166,20 @@ export class DatosCalificatoriosComponent implements OnInit{
     return this.modalService.abrirModal(config);
   }
 
-  /*cargarlistas(){
+  cargarlistas(){
     this.listaClasif1 = [];
     this.listaClasif2 = [];
     this.listaClasif3 = [];
-    for(var pos=0;pos<this.organizacion.categorias.length;pos++){
-      if (this.organizacion.categorias[pos].tip_clasificacion === this.organizacion.clasif1){
-        this.listaClasif1.push(this.organizacion.categorias[pos].categoria);
-      }else if(this.organizacion.categorias[pos].tip_clasificacion === this.organizacion.clasif2){
-        this.listaClasif2.push(this.organizacion.categorias[pos].categoria);
-      }else if(this.organizacion.categorias[pos].tip_clasificacion === this.organizacion.clasif3){
-        this.listaClasif3.push(this.organizacion.categorias[pos].categoria);
+    for(var pos=0;pos<this.organizacion.clasificaciones.length;pos++){
+      if (this.organizacion.clasificaciones[pos].clasificacion === this.organizacion.clasificaciones[0].clasificacion){
+        this.listaClasif1.push(this.organizacion.clasificaciones[pos].categoria);
+      }else if(this.organizacion.clasificaciones[pos].clasificacion === this.organizacion.clasificaciones[1].clasificacion){
+        this.listaClasif2.push(this.organizacion.clasificaciones[pos].categoria);
+      }else if(this.organizacion.clasificaciones[pos].clasificacion === this.organizacion.clasificaciones[2].clasificacion){
+        this.listaClasif3.push(this.organizacion.clasificaciones[pos].categoria);
       }
     }
-  }*/
+  }
 
   atrasClasificacion(){
     this.editarClasificacion = false;

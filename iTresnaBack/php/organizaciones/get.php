@@ -104,6 +104,7 @@
         $query->close();
         return $result;
     }
+    
     function cargarContactos($cod_org){
         $result=array();
         include("./../conexion.php");

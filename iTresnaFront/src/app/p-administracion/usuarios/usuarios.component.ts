@@ -15,4 +15,8 @@ export class UsuariosComponent implements OnInit {
     this.usuarios=false;
     this.permisos=true;
   }
+
+  ngOnInit(){
+    
+  }
 }
