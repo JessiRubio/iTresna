@@ -24,9 +24,9 @@ export class DatosCalificatoriosComponent implements OnInit{
   selected:string
   listaClasif:string[];
 
-  listaClasif1:string[];
-  listaClasif2:string[];
-  listaClasif3:string[];
+  listaClasif1:string[] = [];
+  listaClasif2:string[] = [];
+  listaClasif3:string[] = [];
 
   private listaCargada:number =0;
 
@@ -92,10 +92,12 @@ export class DatosCalificatoriosComponent implements OnInit{
   guardarCambios(){
     this.form.disable();
     this.organizacion.clasificaciones[0].clasificacion = this.form.controls["clasif1"].value;
-    if(this.organizacion.clasificaciones.length=2)
-    this.organizacion.clasificaciones[1].clasificacion = this.form.controls["clasif2"].value;
-    this.organizacion.clasificaciones[2].clasificacion = this.form.controls["clasif3"].value;
-
+    if(this.organizacion.clasificaciones.length=2){
+      this.organizacion.clasificaciones[1].clasificacion = this.form.controls["clasif2"].value;
+    }
+    else if(this.organizacion.clasificaciones.length=2){
+      this.organizacion.clasificaciones[2].clasificacion = this.form.controls["clasif3"].value;
+    }
     this.organizacionesService.actualizarCamposClasifOrg(this.organizacion).subscribe(
       res=>{
         console.log(res)
@@ -167,18 +169,12 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   cargarlistas(){
-    this.listaClasif1 = [];
-    this.listaClasif2 = [];
-    this.listaClasif3 = [];
-    for(var pos=0;pos<this.organizacion.clasificaciones.length;pos++){
-      if (this.organizacion.clasificaciones[pos].clasificacion === this.organizacion.clasificaciones[0].clasificacion){
-        this.listaClasif1.push(this.organizacion.clasificaciones[pos].categoria);
-      }else if(this.organizacion.clasificaciones[pos].clasificacion === this.organizacion.clasificaciones[1].clasificacion){
-        this.listaClasif2.push(this.organizacion.clasificaciones[pos].categoria);
-      }else if(this.organizacion.clasificaciones[pos].clasificacion === this.organizacion.clasificaciones[2].clasificacion){
-        this.listaClasif3.push(this.organizacion.clasificaciones[pos].categoria);
-      }
-    }
+    this.listaClasif1 = this.organizacion.clasificaciones[0].categoria;
+    console.log(this.listaClasif1);
+    this.listaClasif2 = this.organizacion.clasificaciones[1].categoria;
+    console.log(this.listaClasif2);
+    this.listaClasif3 = this.organizacion.clasificaciones[2].categoria;
+    console.log(this.listaClasif3);
   }
 
   atrasClasificacion(){
