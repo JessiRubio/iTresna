@@ -5,6 +5,7 @@ import {OrganizacionesService} from './../../../servicios/organizaciones.service
 import { UsuariosService } from './../../../servicios/usuarios.service';
 import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 import { ModalServiceService } from '../../../servicios/modal-service.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'gestion-usuarios',
   templateUrl: './gestion-usuarios.component.html',
@@ -46,11 +47,9 @@ export class GestionUsuariosComponent implements OnInit {
   private cargarUsuarios(cod_usuario:string){
     this.usuariosService.getUsuarioPorCodUsuario(cod_usuario).subscribe(
       response=>{
-        console.log(response);
         if(response.error==0){
           this.listaUsuarios.push(response.usuario);
           this.listaUsuarios.forEach(x=>this.ordenarClasificacionSegunOrg(x));
-          this.listaUsuarios.forEach(x=>console.log(x.clasificacion));
         }
       },
       error=>{
@@ -109,17 +108,32 @@ export class GestionUsuariosComponent implements OnInit {
     ];
     for(var i=0;i<this.organizacion.clasificacion.length;i++){
       let clasi=this.organizacion.clasificacion[i];
-      data.push(
-        {
-          input:"selectField",
-          controlName:"clas"+i,
-          placeHolder:"Selecciona un dato clasificatorio de "+clasi.clasificacion,
-          data:{
-            data:clasi.categorias,
-            seleccionado:usuario.clasificacion[i].categoria
+      if(usuario.clasificacion.length<i+1){
+        data.push(
+          {
+            input:"selectField",
+            controlName:"clas"+(i+1),
+            placeHolder:"Selecciona un dato clasificatorio de "+clasi.clasificacion,
+            data:{
+              data:clasi.categorias,
+              seleccionado:""
+            }
           }
-        }
-      );
+        );
+      }else{
+        data.push(
+          {
+            input:"selectField",
+            controlName:"clas"+(i+1),
+            placeHolder:"Selecciona un dato clasificatorio de "+clasi.clasificacion,
+            data:{
+              data:clasi.categorias,
+              seleccionado:usuario.clasificacion[i].categoria
+            }
+          }
+        );
+      }
+      
     }
     var conf={
       data:data,
@@ -130,14 +144,97 @@ export class GestionUsuariosComponent implements OnInit {
   }
   editar(usuario:Usuario){
     this.abrirModal(usuario,"Modificar Usuario","Modificar").then(
-      data=>{
+      async data=>{
         if(data!=null){
-          console.log(data);
+          await this.editarPerfil(data.email,data.nombre,data.ape1,
+            data.ape2,usuario.cod_usuario,usuario.cod_org);
+            
+          for(var i = 0; i<this.organizacion.clasificacion.length;i++){
+            this.editarDatosClasificatoriosUsuario(usuario.cod_usuario,
+              this.organizacion.cod_org,this.organizacion.clasificacion[i].clasificacion,data["clas"+(i+1)]);
+          }
         }
       },
       error=>{
-
+        //Nos da igual que se cierre el modal
       }
     );
   }
+  private editarDatosClasificatoriosUsuario(cod_usuario:string,cod_org:number,tip_clasif:string,categoria:string){
+    this.usuariosService.modificarDatosClasificatorios(cod_usuario,cod_org,
+      tip_clasif,categoria).subscribe(
+        response=>{
+          if(response==0){
+            //TODO Alert
+            
+          }else{
+            //TODO Alert
+          }
+        },
+        error=>{
+          //TODO Alert
+        }
+      )
+  }
+  private async editarPerfil(cod_usuario:string,nombre:string,ape1:string,
+    ape2:string,cod_usuario_anterior:string,cod_org:number):Promise<any>{
+      var obser:Observable<any>= this.usuariosService.modificarPerfil(nombre,ape1,ape2,cod_usuario,
+        cod_usuario_anterior,cod_org);
+        obser.subscribe(
+          response=>{
+            if(response.error==0){
+              //TODO Alert
+            }
+            else{
+              //TODO Alert
+            }
+          },
+          error=>{
+            //TODO ALERT
+          }
+        );
+      return obser.toPromise();
+  }
+  nuevo(){
+    var usuario=new Usuario();
+    usuario.clasificacion=new Array<ClasificacionUsuario>();
+    this.abrirModal(usuario,"Alta Usuario","Alta").then(
+      async data=>{
+        if(data!=null){
+          await this.altaUsuario(data.email,data.nombre,data.ape1,data.ape2,this.organizacion.cod_org);
+          for(var i = 0; i<this.organizacion.clasificacion.length;i++){
+            this.editarDatosClasificatoriosUsuario(data.email,
+              this.organizacion.cod_org,this.organizacion.clasificacion[i].clasificacion,data["clas"+(i+1)]);
+          }
+        }
+      },
+      error=>{
+        //Nos da igual que se cierre el modal
+      }
+    );
+  }
+  private async altaUsuario(cod_usuario:string,nombre:string,ape1:string,
+    ape2:string,cod_org:number):Promise<any>{
+      var obser:Observable<any> = this.usuariosService.nuevoUsuario(cod_usuario,3,cod_org,"123",nombre,ape1,ape2);
+      this.usuariosService.nuevoUsuario(cod_usuario,3,cod_org,"123",nombre,ape1,ape2)
+      .subscribe(
+        response=>{
+          if(response.error=0){
+            //TODO Alert
+          }
+          else{
+            //TODO Alert
+          }
+        },
+        error=>{
+          //TODO Alert
+        }
+      );
+      return obser.toPromise();
+  }
+
+  borrar(usuario:Usuario){
+    
+  }
+
 }

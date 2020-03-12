@@ -17,6 +17,6 @@ export class Permiso{
     ind_admin:boolean;
 }
 export class ClasificacionUsuario{
-    tip_clasificacion:string;
-    categoria:string;
+    tip_clasificacion:string="";
+    categoria:string="";
 }
