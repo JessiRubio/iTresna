@@ -234,20 +234,21 @@ export class GestionUsuariosComponent implements OnInit {
   }
 
   borrar(usuario:Usuario){
-    this.usuariosService.eliminarUsuario(usuario.cod_usuario,usuario.cod_org)
-    .subscribe(
-      response=>{
-        if(response.error==0){
+    if(window.confirm("Estas seguro de eliminar el usuario")){
+      this.usuariosService.eliminarUsuario(usuario.cod_usuario,usuario.cod_org)
+      .subscribe(
+        response=>{
+          if(response.error==0){
+            //TODO Alert
+          }
+          else{
+            //TODO Alert
+          }
+        },
+        error=>{
           //TODO Alert
         }
-        else{
-          //TODO Alert
-        }
-      },
-      error=>{
-        //TODO Alert
-      }
-    );
+      );
+    }
   }
-
 }
