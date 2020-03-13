@@ -4,9 +4,7 @@ import { OrganizacionesService } from '../../servicios/organizaciones.service';
 import { Organizacion } from '../../clases/organizacion';
 import { Usuario } from '../../clases/usuario';
 import { ClasificacionService } from '../../servicios/clasificacion.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { Observable } from 'rxjs';
-import { ModalAdminCopsComponent } from '../../modal-admin-cops/modal-admin-cops.component';
+import { MatDialog } from '@angular/material';
 import {ModalServiceService}from '../../servicios/modal-service.service';
 @Component({
   selector: 'app-datos-calificatorios',

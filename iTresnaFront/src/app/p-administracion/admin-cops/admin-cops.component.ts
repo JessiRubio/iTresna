@@ -5,7 +5,6 @@ import { EspaciosService } from '../../servicios/espacios.service';
 import {CopsService} from './../../servicios/cops.service';
 import { CopsItem } from '../../clases/copsitem';
 import { EtiquetaItem } from '../../clases/copsitem';
-import { ModalAdminCopsComponent } from './../../modal-admin-cops/modal-admin-cops.component';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import {ModalServiceService} from '../../servicios/modal-service.service';

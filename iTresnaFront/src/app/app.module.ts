@@ -33,7 +33,6 @@ import { InputFieldComponent } from './modal-admin-cops/input-field/input-field.
 import { FileFieldComponent } from './modal-admin-cops/file-field/file-field.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { CheckboxFieldComponent } from './modal-admin-cops/checkbox-field/checkbox-field.component';
-import { ModalcomentariosComponent } from './p-cops/modalcomentarios/modalcomentarios/modalcomentarios.component';
 import { NumberFieldComponent } from './modal-admin-cops/number-field/number-field.component';
 import { DatosCalificatoriosComponent } from './p-administracion/datos-calificatorios/datos-calificatorios.component';
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -78,7 +77,6 @@ import { GestionUsuariosComponent } from './p-administracion/usuarios/gestion-us
     FileFieldComponent,
     CheckboxFieldComponent,
     NumberFieldComponent,
-    ModalcomentariosComponent,
     DatosCalificatoriosComponent,
     AlertGenericoComponent,
     PCuracionComponent,
@@ -120,7 +118,6 @@ import { GestionUsuariosComponent } from './p-administracion/usuarios/gestion-us
   entryComponents:[
     ModalSenalComponent,
     ModalAdminCopsComponent,
-    ModalcomentariosComponent,
     SelectFieldComponent,
     InputFieldComponent,
     CheckboxFieldComponent,

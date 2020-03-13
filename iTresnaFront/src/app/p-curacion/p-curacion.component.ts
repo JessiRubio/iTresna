@@ -52,30 +52,25 @@ export class PCuracionComponent implements OnInit {
                         event.currentIndex);
     }
   }
-  
-  openModalNuevaLista():Observable<any>{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
-      
+  abrirModalListaNueva(titulo:string,botonFin:string){
+    var data=[
       {
         input:"inputField",
         controlName:"nombreLista",
-        placeHolder:"Nombre",
-        data:{
-          desc:this.nombreLista
-        }
+        placeHolder:"Nuevo nombre de señal",
+        data:this.nombreLista
       },
-      
     ];
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    return dialogRef.afterClosed();
-    
+    var config={
+      data:data,
+      titulo:titulo,
+      botonFin:botonFin
+    }
+    return this.modalService.abrirModal(config);
   }
 
   nuevaLista(){
-    this.openModalNuevaLista().subscribe(
+    this.abrirModalListaNueva("NuevaLista","Añadir").then(
       data=>{
         if(data!=null){
           var pruebaLista:SenalesItem[]=[];
@@ -88,13 +83,15 @@ export class PCuracionComponent implements OnInit {
           this.listaSenales.push({nombre:data.nombreLista,senales:pruebaLista});
           
         }
+      },
+      error=>{
+        //Nos da igual que se cierre el modal
       }
     );
             
   }
 
   finalizarCuracion(){
-    console.log("Finalizar Curación");
     var texto = "¿Esta seguro de que quiere eliminar las " + this.eliminar.senales.length + " que contiene la lista Eliminar?";
     this.abrirModalFinalizar("Finalizar curación",texto,"Si", "No").then(
       data=>{

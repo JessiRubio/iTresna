@@ -1,0 +1,13 @@
+*{
+    background: black;
+    color:white;
+}
+.modal-content{
+    border-radius: 0.75em;
+}
+.comentarios{
+    border-radius: 0.75em;  
+}
+ul{
+    list-style: none;
+}

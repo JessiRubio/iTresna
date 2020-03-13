@@ -1,15 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router, RouteConfigLoadEnd, RouteConfigLoadStart } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SenalesItem } from '../../clases/senales-item';
 import { Usuario } from  './../../clases/usuario';
 import { SenalesService } from '../../servicios/senales.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModalSenalComponent } from '../modalsenal/modalsenal.component';
-import { ModalcomentariosComponent } from '../modalcomentarios/modalcomentarios/modalcomentarios.component';
 import { EtiquetaItem } from '../../clases/copsitem';
 import { Comentario } from '../../clases/comentario';
-import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-material-extensions/link-preview';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ComentariosService } from './../../servicios/comentarios.service';
 import {UsuariosService} from './../../servicios/usuarios.service';
 import { ModalServiceService } from '../../servicios/modal-service.service';
@@ -172,16 +169,7 @@ export class SenalesComponent implements OnInit {
   }
 
   comentarios(){
-    const dialogConfig = new MatDialogConfig();
-      dialogConfig.autoFocus=true;
-      dialogConfig.minWidth="50%";
-      dialogConfig.data={
-        senal:this.senal,
-        cod_senal:this.senal.cod_senal,
-        
-      }
-      const dialogRef=this.dialog.open(ModalcomentariosComponent,dialogConfig);
-
+    this.modalService.abrirModalComentarios(this.listaComentarios);
   }
 
   borrar(){
