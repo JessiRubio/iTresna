@@ -52,6 +52,7 @@ import { CheckboxInputComponent } from './modal-generico/checkbox-input/checkbox
 import { NumberInputComponent } from './modal-generico/number-input/number-input.component';
 import { SelectInputComponent } from './modal-generico/select-input/select-input.component';
 import { GestionUsuariosComponent } from './p-administracion/usuarios/gestion-usuarios/gestion-usuarios.component';
+import { ComentariosComponent } from './p-cops/comentarios/comentarios.component';
 
 @NgModule({
 
@@ -92,6 +93,7 @@ import { GestionUsuariosComponent } from './p-administracion/usuarios/gestion-us
     NumberInputComponent,
     SelectInputComponent,
     GestionUsuariosComponent,
+    ComentariosComponent
     
   ],
   imports: [
@@ -122,7 +124,8 @@ import { GestionUsuariosComponent } from './p-administracion/usuarios/gestion-us
     InputFieldComponent,
     CheckboxFieldComponent,
     AlertGenericoComponent,
-    ModalGenericoComponent
+    ModalGenericoComponent,
+    ComentariosComponent
   ]
 })
 export class AppModule { 
