@@ -21,4 +21,4 @@
         $result["aniadido"]=$query->affected_rows;
         $query->close();
     }
-?>
+    echo json_encode($result);
