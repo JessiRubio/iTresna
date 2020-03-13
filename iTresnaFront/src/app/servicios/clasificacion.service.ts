@@ -30,6 +30,7 @@ export class ClasificacionService {
 
   anadirCategoria(cod_org:number,cod_tip:number,categoria:string):Observable<any>{
     var clasificacion ={
+      "accion":"añadir Categoria",
       "cod_org":cod_org,
       "cod_tip":cod_tip,
       "categoria":categoria

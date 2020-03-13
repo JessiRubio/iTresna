@@ -110,8 +110,6 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   editarCampo(campoAntiguo:string){
-
-    
     var clasificacion=this.organizacion.clasificacion[this.listaCargada-1].clasificacion;
     this.abrirModal(campoAntiguo,"Modificar Campo","Modificar").then(
       data=>{
@@ -141,7 +139,8 @@ export class DatosCalificatoriosComponent implements OnInit{
             respose=>{
               //TODO ALERT
               if(respose.error==0){
-                location.reload();
+                this.cargarOrg();
+                this.editar(this.listaCargada);
               }
             },
             error=>{
