@@ -19,7 +19,7 @@
         $query=$conexion->prepare($sql);
         $query->bind_param("iss",$cod_org,$tip_clasificacion,$categoria);
         $query->execute();
-        $affected_rows=$query->affected_rows;
+        $affected_rows=$query->affected_rows ;
         $query->close();
         $result["error"]=($affected_rows>0)?0:1;
     }

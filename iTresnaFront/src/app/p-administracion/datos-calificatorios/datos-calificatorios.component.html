@@ -7,6 +7,9 @@
                 formControlName="clasif1"/>
         </mat-form-field>
         <button (click)="editar(1)"> 
+            <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
+        </button>
+        <button (click)="guardarCambios(1)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
         </button>
 
@@ -16,6 +19,9 @@
                 formControlName="clasif2">
         </mat-form-field>
         <button (click)="editar(2)"> 
+            <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
+        </button>
+        <button (click)="guardarCambios(2)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
         </button>
 
@@ -25,10 +31,14 @@
                 formControlName="clasif3">
         </mat-form-field>
         <button (click)="editar(3)"> 
+            <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
+        </button>
+        <button (click)="guardarCambios(3)"> 
             <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
         </button>
     </form>
 </section>
+
 <section *ngIf="editarClasificacion" >
 
     <button (click)="atrasClasificacion()" >

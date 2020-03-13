@@ -87,16 +87,11 @@ export class DatosCalificatoriosComponent implements OnInit{
     
   }
 
-  guardarCambios(){
-    this.form.disable();
-    this.organizacion.clasificacion[0].clasificacion = this.form.controls["clasif1"].value;
-    if(this.organizacion.clasificacion.length=2){
-      this.organizacion.clasificacion[1].clasificacion = this.form.controls["clasif2"].value;
-    }
-    else if(this.organizacion.clasificacion.length=2){
-      this.organizacion.clasificacion[2].clasificacion = this.form.controls["clasif3"].value;
-    }
-    this.organizacionesService.actualizarCamposClasifOrg(this.organizacion).subscribe(
+  guardarCambios(clasificacion:number){
+    var clasifAntiguo=this.organizacion.clasificacion[clasificacion - 1].clasificacion;
+    
+    var clasifNuevo = this.form.controls["clasif"+clasificacion].value;
+    this.clasificacionService.actualizarClasifOrg(this.organizacion.cod_org,clasifAntiguo,clasifNuevo).subscribe(
       res=>{
         console.log(res)
       },
