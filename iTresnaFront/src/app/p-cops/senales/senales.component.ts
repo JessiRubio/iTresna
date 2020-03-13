@@ -12,6 +12,7 @@ import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-materia
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ComentariosService } from './../../servicios/comentarios.service';
 import {UsuariosService} from './../../servicios/usuarios.service';
+import { ModalServiceService } from '../../servicios/modal-service.service';
 
 
 @Component({
@@ -44,7 +45,8 @@ export class SenalesComponent implements OnInit {
     private senalesService:SenalesService,
     private comentariosService:ComentariosService,
     private usuarioService:UsuariosService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private modalService:ModalServiceService
     ) {
    }
 
@@ -143,39 +145,30 @@ export class SenalesComponent implements OnInit {
   }
 
   editar(){
-      const dialofConfig = new MatDialogConfig();
-      dialofConfig.autoFocus=true;
-      dialofConfig.minWidth="50%";
-      dialofConfig.data={
-        etiquetas:this.etiquetas,
-        url:this.senal.enlace,
-        descripcion:this.senal.desc_senal,
-        etiquetaSenal:this.senal.cod_etiqueta
-      }
-      const dialogRef=this.dialog.open(ModalSenalComponent,dialofConfig);
-      dialogRef.afterClosed().subscribe(
-        data=>{
-          if(data!=null){
-            this.senal.enlace=data.url;
-            this.senal.desc_senal=data.descripcion;
-            this.senal.cod_etiqueta=data.etiqueta;
-            this.senalesService.modificarSenal(this.senal).subscribe(
-              response=>{
-                if(response.error!=0){
-                  window.alert("No se ha podido modificar la senñal");
-                }
-                else{
-                  window.alert("Señal modificada correctamente");
-                }
-              },
-              error=>{
-                console.error(error);
-                window.alert("Error de conexion o fallo en servidor");
+    this.abrirModal(this.senal,"Modificar Señal","Modificar").then(
+      data=>{
+        if(data!=null){
+          this.senal.enlace=data.enlace;
+          this.senal.desc_senal=data.descripcion;
+          this.senal.desc_etiqueta=data.etiqueta;
+          this.senal.cod_etiqueta=this.etiquetas.find(x=>x.desc_etiqueta==data.etiqueta).cod_etiqueta;
+          this.senalesService.modificarSenal(this.senal).subscribe(
+            response=>{
+              if(response.error!=0){
+                window.alert("No se ha podido modificar la senñal");
               }
-            );
-          }
+              else{
+                window.alert("Señal modificada correctamente");
+              }
+            },
+            error=>{
+              console.error(error);
+              window.alert("Error de conexion o fallo en servidor");
+            }
+          );
         }
-      );
+      }
+    );
   }
 
   comentarios(){
@@ -211,6 +204,39 @@ export class SenalesComponent implements OnInit {
 
   mostrarSenalCompleta(){
     this.acortado=!this.acortado;
+  }
+  private abrirModal(senal:SenalesItem, titulo:string,botonFin:string){
+    var etiquetas:string[]=[];
+    this.etiquetas.forEach(etiqueta=>etiquetas.push(etiqueta.desc_etiqueta));
+    var data=[
+      {
+        input:"inputField",
+        controlName:"enlace",
+        placeHolder:"Escribe el nombre de la org",
+        data:senal.enlace
+      },
+      {
+        input:"inputField",
+        controlName:"descripcion",
+        placeHolder:"Escribe el nombre de la org",
+        data:senal.desc_senal
+      },
+      {
+        input:"selectField",
+        controlName:"etiqueta",
+        placeHolder:"Escribe el nombre de la org",
+        data:{
+          data:etiquetas,
+          seleccionado:senal.desc_etiqueta
+        }
+      }
+    ];
+    var config={
+      data:data,
+      botonFin:botonFin,
+      titulo:titulo
+    }
+    return this.modalService.abrirModal(config);
   }
 }
 
