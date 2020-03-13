@@ -4,10 +4,7 @@ import { EspaciosItem } from '../../clases/espaciosItem';
 import { EspaciosService } from '../../servicios/espacios.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModalAdminCopsComponent } from '../../modal-admin-cops/modal-admin-cops.component';
-import { Observable } from 'rxjs';
 import { ModalServiceService } from '../../servicios/modal-service.service';
-import { doesNotThrow } from 'assert';
 
 @Component({
   selector: 'app-espacios',

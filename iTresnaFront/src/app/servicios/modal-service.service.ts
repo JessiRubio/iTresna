@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalGenericoComponent } from '../modal-generico/modal-generico.component';
 import { timeout } from 'q';
+import { Comentario } from '../clases/comentario';
+import { ComentariosComponent } from '../p-cops/comentarios/comentarios.component';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ModalServiceService {
 
   constructor(private modalService:NgbModal) { }
@@ -32,6 +35,11 @@ export class ModalServiceService {
     return modalRef.result;
   }
 
-
+  abrirModalComentarios(comentarios:Comentario[]){
+    var modalRef = this.modalService.open(ComentariosComponent,{centered:true,scrollable:true,size:"lg",windowClass:"comentarios"});
+    var instance:ComentariosComponent=modalRef.componentInstance;
+    instance.comentarios=comentarios;
+    return modalRef.result;
+  }
 
 }
