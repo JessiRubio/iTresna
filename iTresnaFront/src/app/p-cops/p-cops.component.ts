@@ -260,26 +260,26 @@ export class PCopsComponent implements OnInit {
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
     return preview.linkPreviewService.fetchLink(url);
   }
-  abrirModal(titulo:string,botonFin:string){
+  abrirModal(titulo:string,botonFin:string):Promise<any>{
     var etiquetas:Array<string>=new Array<string>();
     this.cop.etiquetas.forEach(etiqueta=>etiquetas.push(etiqueta.desc_etiqueta));
     var data=[
       {
         input:"inputField",
         controlName:"enlace",
-        placeHolder:"Escribe el nombre de la org",
+        placeHolder:"Introduce una URL",
         data:""
       },
       {
         input:"inputField",
         controlName:"descripcion",
-        placeHolder:"Escribe el nombre de la org",
+        placeHolder:"Escribe una descripcion a la cop",
         data:""
       },
       {
         input:"selectField",
         controlName:"etiqueta",
-        placeHolder:"Escribe el nombre de la org",
+        placeHolder:"Selecciona una etiqueta",
         data:{
           data:etiquetas,
           seleccionado:""
@@ -295,40 +295,35 @@ export class PCopsComponent implements OnInit {
   }
 
   nuevaSenal(){
-    const dialofConfig = new MatDialogConfig();
-    dialofConfig.autoFocus=true;
-    dialofConfig.minWidth="50%";
-    dialofConfig.data={
-      etiquetas:this.cop.etiquetas
-    }
-    const dialogRef=this.dialog.open(ModalSenalComponent,dialofConfig);
-    
-    dialogRef.afterClosed().subscribe(
+    this.abrirModal("Alta Señal","Alta").then(
       data=>{
         if(data!=null){
-          this.cargarLink(data.url).subscribe(
+          this.cargarLink(data.enlace).subscribe(
             response=>{
+              console.log(response);
               var titulo=response.title;
-              
               var imagen=response.image;
+              var cod_etiqueta=this.cop.etiquetas.find(etiquita=>etiquita.desc_etiqueta==data.etiqueta).cod_etiqueta;
               this.senalesService.nuevaSenal(this.cop.cod_org,this.cop.cod_esp,
                 this.cop.cod_cop,this.usuarioLogeado.cod_usuario,
-                data.etiqueta, data.descripcion, data.url,titulo,imagen).subscribe(
+                cod_etiqueta, data.descripcion, data.enlace,titulo,imagen).subscribe(
                   response=>{
-                    if(response.error!=0 && response.aniadido==0){
-                      let alert:Alerta = {
-                        message:"No se ha podido añadir la señal", 
-                        type:'danger'
-                      };
-                      this.abrirAlerta(alert);
-                    }
-                    else if(response.error==0 && response.aniadido==1){
-                      let alert:Alerta = {
-                        message:"Señal añadida correctamente", 
+                    console.log(response);
+                    var alert:Alerta;
+                    if(response.error==0 && response.aniadido>0){
+                      
+                      alert = {
+                        message:"Señal añadida correctamente.", 
                         type:'success'
                       };
-                    this.abrirAlerta(alert);
                     }
+                    else{
+                      alert = {
+                        message:"No se ha podido añadir la señal.", 
+                        type:'warning'
+                      };
+                    }
+                    this.abrirAlerta(alert);
                   },
                   err=>{
                     let alert:Alerta = {
@@ -344,7 +339,6 @@ export class PCopsComponent implements OnInit {
         }
       }
     );
-    
   }
 
 

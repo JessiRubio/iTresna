@@ -33,7 +33,7 @@ export class SenalesService {
   nuevaSenal(cod_org:number,cod_esp:number,cod_cop:number,cod_usuario:string,
     cod_etiqueta:number, desc_sen:string, url:string, titulo:String, img_senal:string):Observable<any>
   {
-    var senal={
+    var json={
       "accion":"nueva_senal",
       "cod_org":cod_org,
       "cod_esp":cod_esp,
@@ -45,7 +45,8 @@ export class SenalesService {
       "titulo":titulo,
       "img_senal":img_senal
     };
-    return this.http.post(this.URL,senal);
+    console.log(json);
+    return this.http.post(this.URL,json);
   }
   modificarSenal(senal:SenalesItem):Observable<any>{
     return this.http.put(this.URL,senal);
