@@ -76,15 +76,15 @@ export class DatosCalificatoriosComponent implements OnInit{
 
       if (num == 1){
        this.listaClasif = this.listaClasif1;
-        this.listaCargada = 1;
+        this.listaCargada = 0;
       }
       else if(num == 2){
         this.listaClasif = this.listaClasif2;
-        this.listaCargada = 2;
+        this.listaCargada = 1;
       } 
       else if (num == 3){
         this.listaClasif = this.listaClasif3;
-        this.listaCargada = 3;
+        this.listaCargada = 2;
       }
     
   }
@@ -110,7 +110,7 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   editarCampo(campoAntiguo:string){
-    var clasificacion=this.organizacion.clasificacion[this.listaCargada-1].clasificacion;
+    var clasificacion=this.organizacion.clasificacion[this.listaCargada].clasificacion;
     this.abrirModal(campoAntiguo,"Modificar Campo","Modificar").then(
       data=>{
         if(data!=null){
@@ -134,11 +134,12 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   anadircampo(){
+    var clasificacion = this.organizacion.clasificacion[this.listaCargada].clasificacion;
     var campo = "";
     this.abrirModal(campo,"Alta Campo","Alta").then(
       data=>{
         if(data!=null){
-          this.clasificacionService.anadirCategoria(this.organizacion.cod_org,this.listaCargada, data.campo).subscribe(
+          this.clasificacionService.anadirCategoria(this.organizacion.cod_org,clasificacion, data.campo).subscribe(
             respose=>{
               //TODO ALERT
               if(respose.error==0){
@@ -187,8 +188,9 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   borrarCampo(categoria:string){
+    var clasificacion = this.organizacion.clasificacion[this.listaCargada].clasificacion;
     if(window.confirm("¿Estas seguro de eliminar el espacio seleccionado?")){
-      this.clasificacionService.deleteCategoria(this.organizacion.cod_org,this.listaCargada, categoria).subscribe(
+      this.clasificacionService.deleteCategoria(this.organizacion.cod_org,clasificacion, categoria).subscribe(
         respose=>{
           console.log(respose);
           if(respose.error==0){

@@ -11,9 +11,9 @@ export class ClasificacionService {
   private url=data.domain+"clasificacion/";
   constructor(private httpClient:HttpClient,private http:HttpClient) { }
 
-  deleteCategoria(cod_org:number,cod_tip:number,categoria:string):Observable<any>{
+  deleteCategoria(cod_org:number,tip_clasificacion:string,categoria:string):Observable<any>{
     return this.httpClient.delete(this.url+"?cod_org="+cod_org
-                                  +"&cod_tip="+cod_tip
+                                  +"&tip_clasificacion="+tip_clasificacion
                                   +"&categoria="+categoria);
   }
 
@@ -27,13 +27,13 @@ export class ClasificacionService {
     return this.httpClient.put(this.url,json);
   }
 
-  anadirCategoria(cod_org:number,cod_tip:number,categoria:string):Observable<any>{
-    var clasificacion ={
+  anadirCategoria(cod_org:number,tip_clasificacion:string,categoria:string):Observable<any>{
+    let json ={
       "accion":"añadir Categoria",
       "cod_org":cod_org,
-      "cod_tip":cod_tip,
+      "tip_clasificacion":tip_clasificacion,
       "categoria":categoria
     }
-    return this.httpClient.post(this.url,categoria);
+    return this.httpClient.post(this.url,json);
   }
 }
