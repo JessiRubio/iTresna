@@ -18,14 +18,13 @@ export class ClasificacionService {
   }
 
   modificarCategoria(cod_org:number,clasificacion:string,categoriaVieja:string,categoriaNueva:string):Observable<any>{
-    var clasificar ={
+    var json ={
       "cod_org":cod_org,
       "clasificacion":clasificacion,
       "categoriaVieja":categoriaVieja,
       "categoriaNueva":categoriaNueva
     }
-    console.log(clasificar);
-    return this.httpClient.put(this.url,clasificacion);
+    return this.httpClient.put(this.url,json);
   }
 
   anadirCategoria(cod_org:number,cod_tip:number,categoria:string):Observable<any>{

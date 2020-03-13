@@ -16,6 +16,7 @@ import { NgbModal, NgbModalOptions, NgbModalRef, NgbModalConfig } from '@ng-boot
 import { AlertGenericoComponent } from '../alert-generico/alert-generico.component';
 import { MatLinkPreviewComponent, MatLinkPreviewService } from '@angular-material-extensions/link-preview';
 import { HttpClient } from '@angular/common/http';
+import { ModalServiceService } from '../servicios/modal-service.service';
 
 
 @Component({
@@ -45,8 +46,9 @@ export class PCopsComponent implements OnInit {
     private copsService:CopsService,
     private senalesService:SenalesService,
     private dialog:MatDialog,
-    private modalService:NgbModal,
-    private http:HttpClient
+    private ngbModalService:NgbModal,
+    private http:HttpClient,
+    private modalService:ModalServiceService
     ) {}
 
   ngOnInit() {
@@ -258,6 +260,39 @@ export class PCopsComponent implements OnInit {
     var preview:MatLinkPreviewComponent=new MatLinkPreviewComponent(new MatLinkPreviewService(this.http));
     return preview.linkPreviewService.fetchLink(url);
   }
+  abrirModal(titulo:string,botonFin:string){
+    var etiquetas:Array<string>=new Array<string>();
+    this.cop.etiquetas.forEach(etiqueta=>etiquetas.push(etiqueta.desc_etiqueta));
+    var data=[
+      {
+        input:"inputField",
+        controlName:"enlace",
+        placeHolder:"Escribe el nombre de la org",
+        data:""
+      },
+      {
+        input:"inputField",
+        controlName:"descripcion",
+        placeHolder:"Escribe el nombre de la org",
+        data:""
+      },
+      {
+        input:"selectField",
+        controlName:"etiqueta",
+        placeHolder:"Escribe el nombre de la org",
+        data:{
+          data:etiquetas,
+          seleccionado:""
+        }
+      }
+    ];
+    var config={
+      data:data,
+      titulo:titulo,
+      botonFin:botonFin
+    };
+    return this.modalService.abrirModal(config);
+  }
 
   nuevaSenal(){
     const dialofConfig = new MatDialogConfig();
@@ -315,7 +350,7 @@ export class PCopsComponent implements OnInit {
 
   abrirAlerta(alerta:Alerta){
     let modalRef:NgbModalRef;
-    modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
+    modalRef=this.ngbModalService.open(AlertGenericoComponent, {centered:true});
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
   }
 

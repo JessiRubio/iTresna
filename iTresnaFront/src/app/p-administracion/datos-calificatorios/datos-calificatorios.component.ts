@@ -120,6 +120,9 @@ export class DatosCalificatoriosComponent implements OnInit{
                 this.cargarOrg();
                 this.editar(this.listaCargada);
               }
+            },
+            error=>{
+              console.log(error.error);
             }
           );
         }
