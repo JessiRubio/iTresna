@@ -19,7 +19,5 @@
         $query->bind_param("siss",$categoriaNueva,$cod_org,$clasificacion, $categoriaVieja);
         $query->execute();
         $affected_rows=$query->affected_rows;
-        var_dump($query);
-        die();
     }
     echo json_encode($result);
