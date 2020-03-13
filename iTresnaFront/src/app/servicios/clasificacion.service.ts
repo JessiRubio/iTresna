@@ -19,6 +19,7 @@ export class ClasificacionService {
 
   modificarCategoria(cod_org:number,clasificacion:string,categoriaVieja:string,categoriaNueva:string):Observable<any>{
     var json ={
+      "accion":"Modificar Categoria",
       "cod_org":cod_org,
       "clasificacion":clasificacion,
       "categoriaVieja":categoriaVieja,
@@ -35,5 +36,15 @@ export class ClasificacionService {
       "categoria":categoria
     }
     return this.httpClient.post(this.url,json);
+  }
+
+  actualizarClasifOrg(cod_org:number,clasifAntiguo:string,clasifNuevo:string):Observable<any>{
+    var json = {
+      "accion":"modificar clasificacion",
+      "cod_org":cod_org,
+      "clasifAntiguo":clasifAntiguo,
+      "clasifNuevo":clasifNuevo
+    }
+    return this.httpClient.put(this.url,json);
   }
 }
