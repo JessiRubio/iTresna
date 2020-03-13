@@ -13,7 +13,6 @@ export class ComentariosComponent implements OnInit {
   constructor(private modal:NgbActiveModal) { }
 
   ngOnInit() {
-    console.log(this.comentarios);
   }
 
 }
