@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrganizacionesService } from '../../servicios/organizaciones.service';
 import { Organizacion } from '../../clases/organizacion';
@@ -6,6 +6,7 @@ import { Usuario } from '../../clases/usuario';
 import { ClasificacionService } from '../../servicios/clasificacion.service';
 import { MatDialog } from '@angular/material';
 import {ModalServiceService}from '../../servicios/modal-service.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-datos-calificatorios',
   templateUrl: './datos-calificatorios.component.html',
@@ -33,7 +34,8 @@ export class DatosCalificatoriosComponent implements OnInit{
     private organizacionesService: OrganizacionesService,
     private clasificacionService: ClasificacionService,
     private dialog:MatDialog,
-    private modalService:ModalServiceService) 
+    private modalService:ModalServiceService,
+    private cd:ChangeDetectorRef) 
     {
       this.form=this.fBuilder.group({
         clasif1:["",Validators.required],
@@ -52,7 +54,8 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   cargarOrg(){
-    this.organizacionesService.getOrganizacionActual(this.usuarioLogeado.cod_org).subscribe(
+    var observable:Observable<any>=this.organizacionesService.getOrganizacionActual(this.usuarioLogeado.cod_org);
+    observable.subscribe(
       res=>{
         this.organizacion=res.organizacion;
         this.form.controls["clasif1"].setValue(this.organizacion.clasificacion[0].clasificacion,Validators.required);
@@ -65,6 +68,7 @@ export class DatosCalificatoriosComponent implements OnInit{
         this.cargarlistas();
       }
     );
+    return observable.toPromise();
     
   }
 
@@ -108,10 +112,12 @@ export class DatosCalificatoriosComponent implements OnInit{
       data=>{
         if(data!=null){
           this.clasificacionService.modificarCategoria(this.organizacion.cod_org, clasificacion,campoAntiguo, data.campo).subscribe(
-            respose=>{
+            async respose=>{
               if(respose.error==0){
-                this.cargarOrg();
+                await this.cargarOrg();
                 this.editar(this.listaCargada);
+                this.cd.detectChanges();
+                console.log(this.organizacion.clasificacion[this.listaCargada].categorias);
               }
             },
             error=>{
@@ -133,10 +139,10 @@ export class DatosCalificatoriosComponent implements OnInit{
       data=>{
         if(data!=null){
           this.clasificacionService.anadirCategoria(this.organizacion.cod_org,clasificacion, data.campo).subscribe(
-            respose=>{
+            async respose=>{
               //TODO ALERT
               if(respose.error==0){
-                this.cargarOrg();
+                await this.cargarOrg();
                 this.editar(this.listaCargada);
               }
             },

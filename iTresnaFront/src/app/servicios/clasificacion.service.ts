@@ -46,6 +46,7 @@ export class ClasificacionService {
       "clasifAntiguo":clasifAntiguo,
       "clasifNuevo":clasifNuevo
     }
+    
     return this.httpClient.put(this.url,json);
   }
 }
