@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Comentario } from '../../clases/comentario';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-comentarios',
@@ -9,7 +10,7 @@ import { Comentario } from '../../clases/comentario';
 export class ComentariosComponent implements OnInit {
   @Input()
   public comentarios:Comentario[];
-  constructor() { }
+  constructor(private modal:NgbActiveModal) { }
 
   ngOnInit() {
     console.log(this.comentarios);
