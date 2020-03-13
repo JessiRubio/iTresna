@@ -6,6 +6,7 @@ import * as data from '../server-config.json';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ClasificacionService {
 
   private url=data.domain+"clasificacion/";
