@@ -188,8 +188,9 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   borrarCampo(categoria:string){
+    var clasificacion = this.organizacion.clasificacion[this.listaCargada].clasificacion;
     if(window.confirm("¿Estas seguro de eliminar el espacio seleccionado?")){
-      this.clasificacionService.deleteCategoria(this.organizacion.cod_org,this.listaCargada, categoria).subscribe(
+      this.clasificacionService.deleteCategoria(this.organizacion.cod_org,clasificacion, categoria).subscribe(
         respose=>{
           console.log(respose);
           if(respose.error==0){
