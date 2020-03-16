@@ -7,6 +7,9 @@ import { ClasificacionService } from '../../servicios/clasificacion.service';
 import { MatDialog } from '@angular/material';
 import {ModalServiceService}from '../../servicios/modal-service.service';
 import { Observable } from 'rxjs';
+import { Alerta } from '../../clases/alerta';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertGenericoComponent } from '../../alert-generico/alert-generico.component';
 @Component({
   selector: 'app-datos-calificatorios',
   templateUrl: './datos-calificatorios.component.html',
@@ -34,6 +37,7 @@ export class DatosCalificatoriosComponent implements OnInit{
     private organizacionesService: OrganizacionesService,
     private clasificacionService: ClasificacionService,
     private dialog:MatDialog,
+    private modalServiceAlert:NgbModal,  
     private modalService:ModalServiceService,
     private cd:ChangeDetectorRef) 
     {
@@ -140,8 +144,12 @@ export class DatosCalificatoriosComponent implements OnInit{
         if(data!=null){
           this.clasificacionService.anadirCategoria(this.organizacion.cod_org,clasificacion, data.campo).subscribe(
             async respose=>{
-              //TODO ALERT
               if(respose.error==0){
+                let alert:Alerta = {
+                  message:"Categoria añadida correctamente, redirigiendo", 
+                  type:'success'
+                };
+                this.abrirAlerta(alert);
                 await this.cargarOrg();
                 this.editar(this.listaCargada);
               }
@@ -158,6 +166,12 @@ export class DatosCalificatoriosComponent implements OnInit{
     );
   }
   
+  abrirAlerta(alerta:Alerta){
+    let modalRef:NgbModalRef;
+    modalRef=this.modalServiceAlert.open(AlertGenericoComponent, {centered:true});
+    (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
+  }
+
   private abrirModal(campo:string,titulo:string,botonFin:string):Promise<any>{
     var data=[
       {
@@ -193,6 +207,11 @@ export class DatosCalificatoriosComponent implements OnInit{
         respose=>{
           console.log(respose);
           if(respose.error==0){
+            let alert:Alerta = {
+              message:"Categoria eliminada correctamente, redirigiendo", 
+              type:'success'
+            };
+            this.abrirAlerta(alert);
             location.reload();
           }
         }

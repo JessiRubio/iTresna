@@ -8,6 +8,9 @@ import { EtiquetaItem } from '../../clases/copsitem';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import {ModalServiceService} from '../../servicios/modal-service.service';
+import { Alerta } from '../../clases/alerta';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertGenericoComponent } from '../../alert-generico/alert-generico.component';
 @Component({
   selector: 'app-admin-cops',
   templateUrl: './admin-cops.component.html',
@@ -25,6 +28,7 @@ export class AdminCopsComponent implements OnInit {
   copsRows:string[]=["nombre","editar","borrar"]
   constructor(
     private espaciosService:EspaciosService,
+    private modalServiceAlert:NgbModal,  
     private copsService:CopsService,
     private dialog:MatDialog,
     private modalService:ModalServiceService
@@ -63,14 +67,25 @@ export class AdminCopsComponent implements OnInit {
   editar(cod_org,cod_esp,cod_cop){
     this.copsService.getCop(cod_org,cod_esp,cod_cop).subscribe(
       respose=>{
-        //TODO Alerts
-        if(respose.error==0)
+        if(respose.error==0){
           this.editarCop(respose.cop);
+          let alert:Alerta = {
+            message:"Cop modificada, redirigiendo", 
+            type:'success'
+          };
+          this.abrirAlerta(alert);
+        }
       },
       error=>{
         window.alert("Error de conexion con el servidor");
       }
     );
+  }
+
+  abrirAlerta(alerta:Alerta){
+    let modalRef:NgbModalRef;
+    modalRef=this.modalServiceAlert.open(AlertGenericoComponent, {centered:true});
+    (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
   }
 
   abrirModal(cop:CopsItem,titulo:string,botonFin:string):Promise<any>{
@@ -138,11 +153,17 @@ export class AdminCopsComponent implements OnInit {
   nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string){
     this.copsService.nuevaCop(cod_org,cod_esp,desc,imagen).subscribe(
       response=>{
-        //TODO Alerts
+
         if(response.error==0){
+          
+          let alert:Alerta = {
+            message:"Cop añadida, redirigiendo", 
+            type:'success'
+          };
+          this.abrirAlerta(alert);
           location.reload();
         }else{
-          window.alert("No se ha podido eliminar la cop, espero a otro momento" 
+          window.alert("No se ha podido añadir la cop, espero a otro momento" 
           +"o contacte con el administrador");
         }
       },
@@ -156,8 +177,15 @@ export class AdminCopsComponent implements OnInit {
     this.copsService.modificarCop(cod_org,cod_esp,cod_cop,desc_cop,file_encoded)
     .subscribe(
       response=>{
-        //TODO Alerts
         console.log(response);
+        if(response.error == 0){
+          let alert:Alerta = {
+            message:"Cop modificada correctamente, redirigiendo", 
+            type:'success'
+          };
+          this.abrirAlerta(alert);
+          location.reload();
+        }
       },
       error=>{
         console.log(error);
@@ -168,8 +196,12 @@ export class AdminCopsComponent implements OnInit {
     if(window.confirm("¿Estas seguro de querer eliminar la cop?")){
       this.copsService.eliminarCop(cop.cod_org,cop.cod_esp,cop.cod_cop).subscribe(
         response=>{
-          //TODO Alerts
           if(response.error==0){
+            let alert:Alerta = {
+              message:"Cop eliminada correctamente, redirigiendo", 
+              type:'success'
+            };
+            this.abrirAlerta(alert);
             location.reload();
           }else{
             window.alert("No se ha podido eliminar la cop")
@@ -230,16 +262,18 @@ export class AdminCopsComponent implements OnInit {
         //Nos da igual que el modal se cierre
       }
     );
-
-}
+  }
 
   modificarEtiquetas(desc_etiqueta, cod_etiqueta){
   this.copsService.modificarEtiqueta(desc_etiqueta, cod_etiqueta)
   .subscribe(
     response=>{
-      //TODO Alerts
       if(response.error==0){
-
+        let alert:Alerta = {
+          message:"Etiqueta modificada correctamente, redirigiendo", 
+          type:'success'
+        };
+        this.abrirAlerta(alert);
       }
       location.reload();
     },
@@ -255,8 +289,14 @@ export class AdminCopsComponent implements OnInit {
     if(window.confirm("¿Estas seguro de querer eliminar la Etiqueta?")){
       this.copsService.eliminarEtiqueta(etiquetas.cod_etiqueta,etiquetas.desc_etiqueta).subscribe(
         response=>{
-          location.reload();
-          //TODO Alerts
+          if(response.error == 0){
+            let alert:Alerta = {
+              message:"Etiqueta borrada correctamente, redirigiendo", 
+              type:'success'
+            };
+            this.abrirAlerta(alert);
+            location.reload();
+          }
         },
         error=>{
           //TODO Alerts
@@ -279,8 +319,6 @@ export class AdminCopsComponent implements OnInit {
       data=>{
         if(data!=null){
           this.nuevaEtiqueta(cop.cod_cop,cop.cod_esp,cop.cod_org,data.etiqueta);
-        }else{
-          this.nuevaEtiqueta(cop.cod_cop,cop.cod_esp,cop.cod_org,data.etiqueta);
         }
       },
       error=>{
@@ -293,9 +331,14 @@ export class AdminCopsComponent implements OnInit {
   nuevaEtiqueta(cod_cop:number,cod_esp:number,cod_org:number,desc_etiqueta:string){
     this.copsService.nuevaEtiqueta(cod_cop,cod_esp,cod_org,desc_etiqueta).subscribe(
       response=>{
-        //TODO Alerts
-        
-        //location.reload();
+        if(response.error == 0){
+          let alert:Alerta = {
+            message:"Etiqueta añadida correctamente, redirigiendo", 
+            type:'success'
+          };
+          this.abrirAlerta(alert);
+          location.reload();
+        } 
       },
       error=>{
         //TODO Alerts
@@ -308,4 +351,6 @@ export class AdminCopsComponent implements OnInit {
     this.showEtiquetas =false;
     this.showCops =true;
   }
+
+  
 }
