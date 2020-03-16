@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Usuario } from '../../clases/usuario';
-import { Observable } from 'rxjs';
-import { MatDialogConfig, MatDialog } from '@angular/material';
-import { ModalAdminCopsComponent } from 'src/app/modal-admin-cops/modal-admin-cops.component';
+
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Alerta } from '../../clases/alerta'
 import { NgbModal, NgbModalOptions, NgbModalRef, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AlertGenericoComponent } from '../../alert-generico/alert-generico.component';
+import { ModalServiceService } from '../../servicios/modal-service.service';
 
 @Component({
   selector: 'app-p-perfil',
@@ -19,76 +18,60 @@ export class PPerfilComponent implements OnInit {
   form:FormGroup;
   usuarioLogeado:Usuario;
   placeHolder:string;
-  sarbideActual:string;
-  sarbideNueva:string;
   deshabilitado:boolean=true;
   cod_usuarioAnterior:string;
 
   constructor(private fBuilder: FormBuilder,
-    private dialog:MatDialog,
-    private modalService:NgbModal,
+    private alertModalService:NgbModal,
+    private modalService:ModalServiceService,
     private usuarioService:UsuariosService
     ) {
-      this.form=this.fBuilder.group({
-        nombreUsu:["",Validators.required],
-        ape1Usu:["",Validators.required],
-        ape2Usu:["",Validators.required],
-        emailUsu:["",Validators.required]
-      });
-      this.form.disable();
+      
     }
 
   ngOnInit() {
     this.usuarioLogeado=JSON.parse(localStorage.getItem("usuario"));
-
-    this.form.controls["nombreUsu"].setValue(this.usuarioLogeado.nombre);
-    this.form.controls["ape1Usu"].setValue(this.usuarioLogeado.ape1);
-    this.form.controls["ape2Usu"].setValue(this.usuarioLogeado.ape2);
-    this.form.controls["emailUsu"].setValue(this.usuarioLogeado.cod_usuario);
+    this.form=this.fBuilder.group({
+      nombreUsu:[this.usuarioLogeado.nombre,Validators.required],
+      ape1Usu:[this.usuarioLogeado.ape1,Validators.required],
+      ape2Usu:[this.usuarioLogeado.ape2,Validators.required],
+      emailUsu:[this.usuarioLogeado.cod_usuario,Validators.required]
+    });
+    this.form.disable();  
     this.cod_usuarioAnterior=this.usuarioLogeado.cod_usuario;
 
   }
 
 
-
-
-  openModalModificarContrasena(usuarioLogeado):Observable<any>{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
-      
+  private abrirModal(usuarioLogeado):Promise<any>{
+    var data=[
       {
         input:"passwordField",
         controlName:"sarbideActual",
         placeHolder:"Contraseña actual",
-        data:{
-          desc:this.sarbideActual
-        }
+        data:""
       },
       {
         input:"passwordField",
         controlName:"sarbideNueva",
-        placeHolder:"Nueva contraseña",
-        data:{
-          desc:this.sarbideNueva
-        }
-      },
+        placeHolder:"Contraseña nueva",
+        data:""
+      }
     ];
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    return dialogRef.afterClosed();
+    var config={
+      data:data,
+      titulo:"Cambiar Contraseña",
+      botonFin:"Cambiar"
+    }
+    return this.modalService.abrirModal(config);
   }
-
-
   modificarContrasena(){
-
-    this.openModalModificarContrasena(this.usuarioLogeado).subscribe(
+    this.abrirModal(this.usuarioLogeado).then(
       data=>{
-        if(data!=null){
+        if(data!=null ){
 
-          if(data.sarbideActual===this.usuarioLogeado.sarbidea){
+          if(data.sarbideActual===this.usuarioLogeado.sarbidea && data.sarbideNueva!="" && data.sarbideNueva.length>3){
             this.modificarContrasenas(data.sarbideNueva,this.usuarioLogeado.cod_org, this.usuarioLogeado.cod_usuario);
-            
           }else{
             let alert:Alerta = {
               message:"Datos erroneos", 
@@ -96,28 +79,16 @@ export class PPerfilComponent implements OnInit {
             };
             this.abrirAlerta(alert);
           }
-
-        }else{
-            if(data.sarbideActual===this.usuarioLogeado.sarbidea){
-              this.modificarContrasenas(data.sarbideNueva,this.usuarioLogeado.cod_org, this.usuarioLogeado.cod_usuario);
-  
-            }else{
-              let alert:Alerta = {
-                message:"Datos erroneos", 
-                type:'danger'
-              };
-              this.abrirAlerta(alert);
-            }
-            
-          }
         }
-      
+      },
+      error=>{
+        //Nos da igual que se cierre el modal
+      }
     );
 
 }
 
-modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
-      
+  modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
     this.usuarioService.modificarContrasena(sarbideNueva,cod_org,cod_usuario)
       .subscribe(
         response=>{
@@ -129,14 +100,18 @@ modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
           this.abrirAlerta(alert);
 
           setTimeout(() => { 
-          this.usuarioService.logout();
-          this.cerrarAlerta(alert);
-          
+            this.usuarioService.logout();
+            this.cerrarAlerta(alert);
           }, 3000);
           
         },
         error=>{
-          console.log(error);
+          //TODO Alert verifica que siempre es la misma respues de error con el servidor  
+          let alert:Alerta = {
+            message:"Error con el servidor", 
+            type:'danger'
+          };
+        this.abrirAlerta(alert);
         }
       );
   
@@ -145,14 +120,12 @@ modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
 
   abrirAlerta(alerta:Alerta){
     let modalRef:NgbModalRef;
-    modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
+    modalRef=this.alertModalService.open(AlertGenericoComponent, {centered:true});
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
   }
 
   cerrarAlerta(alerta:Alerta){
-    let modalRef:NgbModalRef;
-    this.modalService.dismissAll(AlertGenericoComponent);
-    (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
+    this.alertModalService.dismissAll(AlertGenericoComponent);
   }
 
 
@@ -160,15 +133,16 @@ modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
   editarPerfil(){
     this.deshabilitado=!this.deshabilitado;
     if(this.deshabilitado){
-      this.usuarioLogeado.nombre=this.form.value.nombreUsu;
-      this.usuarioLogeado.ape1=this.form.value.ape1Usu;
-      this.usuarioLogeado.ape2=this.form.value.ape2Usu;
-      this.usuarioLogeado.cod_usuario=this.form.value.emailUsu;
-     
-      this.modificarPerfil(this.usuarioLogeado.nombre,this.usuarioLogeado.ape1,
-        this.usuarioLogeado.ape2,this.usuarioLogeado.cod_usuario,this.cod_usuarioAnterior, this.usuarioLogeado.cod_org );
+      if(!this.form.pristine && this.form.dirty){
+        this.usuarioLogeado.nombre=this.form.value.nombreUsu;
+        this.usuarioLogeado.ape1=this.form.value.ape1Usu;
+        this.usuarioLogeado.ape2=this.form.value.ape2Usu;
+        this.usuarioLogeado.cod_usuario=this.form.value.emailUsu;
       
-      
+        this.modificarPerfil(this.usuarioLogeado.nombre,this.usuarioLogeado.ape1,
+          this.usuarioLogeado.ape2,this.usuarioLogeado.cod_usuario,this.cod_usuarioAnterior, this.usuarioLogeado.cod_org );
+        
+      }
       this.form.disable();
     }else{
       this.form.enable();
@@ -189,11 +163,4 @@ modificarContrasenas(sarbideNueva,cod_org ,cod_usuario){
       }
     );
   }
-
-
-
-
-
-
-
 }
