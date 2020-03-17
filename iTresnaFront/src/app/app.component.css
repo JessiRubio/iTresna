@@ -2,7 +2,7 @@
 
 
 body {
-    margin-bottom:20%;
+   
     height: 100%;
 }
 
@@ -10,13 +10,13 @@ footer{
 
     background-color: #000000d7;
     width: 100%;
-    position: relative;
+    position: fixed;
     bottom: 0;
     color: white;
     padding: 0.5em;
-    height: 10%;  
+    height: 7%;  
     z-index: 0;
-    margin-top: 10%;
+    
    
   
 } 
