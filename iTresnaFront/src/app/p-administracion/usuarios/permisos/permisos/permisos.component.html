@@ -1,0 +1,104 @@
+
+<section class="permisos">
+
+    <form class="filtro" >
+        <label>Selecciona un espacio</label>
+        <select  class="form-control" [(value)]="selectedEspacio" (change)="cargarCops($event)" >
+            <option value="0">----</option>
+            <option *ngFor="let item of listaEspacios;let i=index" [value]="item.desc_esp">
+                {{item.desc_esp}}
+            </option>
+        </select>
+    </form>
+
+    <form class="filtro"  >
+        <label>Selecciona una cop</label>
+        <select class="form-control" [(value)]="selectedCop" (change)="cargarTabla($event)" >
+            <option value="0">----</option>
+            <option *ngFor="let item of listaCops;let i=index" [value]="item.desc_cop">
+                {{item.desc_cop}}
+            </option>
+        </select>
+    </form>
+
+    <form class="filtro">
+        <label>Selecciona una clasificacion</label>
+        <select class="form-control" (change)="filtrarCategorias($event)" >
+            <option value="0">----</option>
+            <option *ngFor="let item of listaClasificacion;let i=index" [value]="item">
+                {{item}}
+            </option>
+        </select>
+    </form>
+
+    <form class="filtro" >
+        <label>Selecciona una categoria</label>
+        <select class="form-control" [(value)]="selectedCategoria" (change)="filtrar($event)" >
+            <option value="0">----</option>
+            <option *ngFor="let item of listaCategorias;let i=index" [value]="item">
+                {{item}}
+            </option>
+        </select>
+    </form>
+
+    <br>
+
+
+
+
+    <table *ngIf="showTabla">
+        <tr>
+            <th rowspan="3">EMAIL</th>
+            <th colspan="3">USUARIOS</th>
+            <th colspan="3">DATOS CLASIFICATORIOS</th>
+            <th colspan="2">PERMISOS</th>
+        </tr>
+        <tr>
+            <th rowspan="2">Nombre</th>
+            <th rowspan="2">Apellido 1</th>
+            <th rowspan="2">Apellido 2</th>
+            <th rowspan="2">{{listaClasificacion[0]}}</th>
+            <th rowspan="2">{{listaClasificacion[1]}}</th>
+            <th rowspan="2">{{listaClasificacion[2]}}</th>
+            <th colspan="2">{{selectedCop.desc_cop}}</th>
+        </tr>
+        <tr>
+            <th>Uso</th>
+            <th>Admin</th>
+        </tr>
+
+        <tr *ngFor="let item of listaUsuarios; let i=index">
+            <td>{{item.cod_usuario}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.ape1}}</td>
+            <td>{{item.ape2}}</td>
+            <td>{{item.clasificacion[0].categoria}}</td>
+            <td>{{item.clasificacion[1].categoria}}</td>
+            <td>{{item.clasificacion[2].categoria}}</td>
+            
+            <td>
+                <input type="checkbox" name="uso" *ngIf="pruebaUso(item); else noEsUso"  (change)="checkedUso($event.target.value, item)" value="checked" checked >
+                
+                <ng-template #noEsUso>
+                    
+                   <input type="checkbox" name="uso"  (change)="uncheckedUso($event.target.value, item)" value="checked" >
+                  
+                </ng-template>
+
+            </td>
+
+
+
+            <td>
+                <input type="checkbox" name="admin" value="checked" *ngIf="pruebaAdmin(item); else noEsAdmin" (change)="checkedAdmin($event.target.value, item)" checked >
+                
+                <ng-template #noEsAdmin>
+                    <input type="checkbox" name="admin" value="unchecked" (change)="uncheckedAdmin($event.target.value, item)">
+                </ng-template>
+            </td>
+            
+            
+        </tr>
+        
+    </table>
+</section>
