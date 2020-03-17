@@ -142,7 +142,7 @@ export class SenalesComponent implements OnInit {
   }
 
   editar(){
-    this.abrirModal(this.senal,"Modificar Señal","Modificar").then(
+    this.abrirModal(this.senal,"Modificar Señal","Modificar", "Cancelar").then(
       data=>{
         if(data!=null){
           this.senal.enlace=data.enlace;
@@ -193,7 +193,7 @@ export class SenalesComponent implements OnInit {
   mostrarSenalCompleta(){
     this.acortado=!this.acortado;
   }
-  private abrirModal(senal:SenalesItem, titulo:string,botonFin:string){
+  private abrirModal(senal:SenalesItem, titulo:string,botonFin:string, botonCancel:string){
     var etiquetas:string[]=[];
     this.etiquetas.forEach(etiqueta=>etiquetas.push(etiqueta.desc_etiqueta));
     var data=[
@@ -222,6 +222,7 @@ export class SenalesComponent implements OnInit {
     var config={
       data:data,
       botonFin:botonFin,
+      botonCancel:botonCancel,
       titulo:titulo
     }
     return this.modalService.abrirModal(config);
