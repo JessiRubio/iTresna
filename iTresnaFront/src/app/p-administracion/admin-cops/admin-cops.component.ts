@@ -64,6 +64,7 @@ export class AdminCopsComponent implements OnInit {
       }
     );
   }
+  
   editar(cod_org,cod_esp,cod_cop){
     this.copsService.getCop(cod_org,cod_esp,cod_cop).subscribe(
       respose=>{
