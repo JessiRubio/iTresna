@@ -15,9 +15,9 @@
             $ind_admin=$data->ind_admin;
             $sql="UPDATE t_permisos
                 SET ind_admin=?
-                WHERE cod_usuario=? AND cod_org=?";
+                WHERE cod_usuario=? AND cod_org=? AND cod_cop=?";
             $query=$conexion->prepare($sql);
-            $query->bind_param("isi",$ind_admin,$cod_usuario,$cod_org);
+            $query->bind_param("isii",$ind_admin,$cod_usuario,$cod_org,$cod_cop);
             $query->execute();
             $result["error"]=0;
     

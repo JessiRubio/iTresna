@@ -53,6 +53,7 @@ import { NumberInputComponent } from './modal-generico/number-input/number-input
 import { SelectInputComponent } from './modal-generico/select-input/select-input.component';
 import { GestionUsuariosComponent } from './p-administracion/usuarios/gestion-usuarios/gestion-usuarios.component';
 import { ComentariosComponent } from './p-cops/comentarios/comentarios.component';
+import { PermisosComponent } from './p-administracion/usuarios/permisos/permisos/permisos.component';
 
 @NgModule({
 
@@ -93,7 +94,8 @@ import { ComentariosComponent } from './p-cops/comentarios/comentarios.component
     NumberInputComponent,
     SelectInputComponent,
     GestionUsuariosComponent,
-    ComentariosComponent
+    ComentariosComponent,
+    PermisosComponent
     
   ],
   imports: [
