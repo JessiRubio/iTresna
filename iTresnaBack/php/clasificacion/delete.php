@@ -11,7 +11,6 @@
     $result = array();
     $result["error"]=1;
 
-
     if(isset($cod_org) && $cod_org!="" && isset($tip_clasificacion) && $tip_clasificacion!="" 
         && isset($categoria) && $categoria!=""){
         $sql="DELETE FROM t_tip_clasificacion
@@ -22,5 +21,19 @@
         $affected_rows=$query->affected_rows ;
         $query->close();
         $result["error"]=($affected_rows>0)?0:1;
+    }
+    else {
+     
+        if(isset($cod_org) && $cod_org!="" && isset($clasificacion) && $clasificacion!="" ){
+            $sql="DELETE FROM t_clasificacion
+            WHERE cod_org=? AND clasificacion=?";
+            $query=$conexion->prepare($sql);
+            $query->bind_param("is",$cod_org,$clasificacion,;
+            $query->execute();
+            $affected_rows=$query->affected_rows ;
+            $query->close();
+            $result["error"]=($affected_rows>0)?0:1;
+        }
+
     }
     echo json_encode($result);

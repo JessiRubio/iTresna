@@ -52,7 +52,7 @@ export class PCuracionComponent implements OnInit {
                         event.currentIndex);
     }
   }
-  abrirModalListaNueva(titulo:string,botonFin:string){
+  abrirModalListaNueva(titulo:string,botonFin:string,botonCancel:string){
     var data=[
       {
         input:"inputField",
@@ -64,13 +64,14 @@ export class PCuracionComponent implements OnInit {
     var config={
       data:data,
       titulo:titulo,
-      botonFin:botonFin
+      botonFin:botonFin,
+      botonCancel:botonCancel
     }
     return this.modalService.abrirModal(config);
   }
 
   nuevaLista(){
-    this.abrirModalListaNueva("NuevaLista","Añadir").then(
+    this.abrirModalListaNueva("Nueva lista","Añadir","Cancelar").then(
       data=>{
         if(data!=null){
           var pruebaLista:SenalesItem[]=[];

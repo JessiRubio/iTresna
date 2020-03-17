@@ -25,6 +25,7 @@ export class DatosCalificatoriosComponent implements OnInit{
   editarClasificacion:Boolean;
   selected:string
   listaClasif:string[];
+  campoClasif:string;
 
   listaClasif1:string[] = [];
   listaClasif2:string[] = [];
@@ -112,7 +113,7 @@ export class DatosCalificatoriosComponent implements OnInit{
 
   editarCampo(campoAntiguo:string){
     var clasificacion=this.organizacion.clasificacion[this.listaCargada].clasificacion;
-    this.abrirModal(campoAntiguo,"Modificar Campo","Modificar").then(
+    this.abrirModal(campoAntiguo,"Modificar Campo","Modificar","Cancelar").then(
       data=>{
         if(data!=null){
           this.clasificacionService.modificarCategoria(this.organizacion.cod_org, clasificacion,campoAntiguo, data.campo).subscribe(
@@ -139,7 +140,7 @@ export class DatosCalificatoriosComponent implements OnInit{
   anadircampo(){
     var clasificacion = this.organizacion.clasificacion[this.listaCargada].clasificacion;
     var campo = "";
-    this.abrirModal(campo,"Alta Campo","Alta").then(
+    this.abrirModal(campo,"Alta Campo","Alta","Cancelar").then(
       data=>{
         if(data!=null){
           this.clasificacionService.anadirCategoria(this.organizacion.cod_org,clasificacion, data.campo).subscribe(
@@ -172,7 +173,7 @@ export class DatosCalificatoriosComponent implements OnInit{
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
   }
 
-  private abrirModal(campo:string,titulo:string,botonFin:string):Promise<any>{
+  private abrirModal(campo:string,titulo:string,botonFin:string,botonCancel:string):Promise<any>{
     var data=[
       {
         input:"inputField",
@@ -184,7 +185,8 @@ export class DatosCalificatoriosComponent implements OnInit{
     var config={
       data:data,
       titulo:titulo,
-      botonFin:botonFin
+      botonFin:botonFin,
+      botonCancel:botonCancel
     };
     return this.modalService.abrirModal(config);
   }
@@ -213,9 +215,71 @@ export class DatosCalificatoriosComponent implements OnInit{
             this.abrirAlerta(alert);
             location.reload();
           }
+        },
+        error=>{
+          window.alert("Error de conexion o fallo en servidor");
         }
       )
     }
     
   }
+
+  borrar(num:number){
+    
+    if (num == 1){
+     this.campoClasif=this.organizacion.clasificacion[0].clasificacion;
+     }
+     else if(num == 2){
+      this.campoClasif=this.organizacion.clasificacion[1].clasificacion;
+
+     } 
+     else if (num == 3){
+      this.campoClasif=this.organizacion.clasificacion[2].clasificacion;
+     }
+
+     console.log(this.organizacion.cod_org,this.campoClasif);
+     
+    this.abrirModalBorrar("Eliminar campo clasificatorio","¿Desea eliminar el campo clasificatorio "+ this.campoClasif+"?","Si", "No").then(
+      data=>{
+        this.clasificacionService.borrarCampo(this.organizacion.cod_org,this.campoClasif).subscribe(
+          respose=>{
+            if(respose.error==0){
+              let alert:Alerta = {
+                message:"Campo eliminado correctamente, redirigiendo", 
+                type:'success'
+              };
+              this.abrirAlerta(alert);
+              location.reload();
+            }
+          },
+          error=>{
+            window.alert("Error de conexion o fallo en servidor");
+          }
+        )
+        
+      },
+      error=>{
+        //Nos da igual que no se cierre correctamente
+      }
+    );
+
+
+  }
+
+  abrirModalBorrar(titulo:string,label:string,botonFin:string, botonCancel:string):Promise<any>{
+    var data=[
+      
+    ];
+    var config={
+      data:data,
+      label:label,
+      botonFin:botonFin,
+      botonCancel:botonCancel,
+      titulo:titulo
+    };
+    return this.modalService.abrirModalTexto(config);
+  }
+
+
+
 }
