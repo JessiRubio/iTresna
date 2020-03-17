@@ -129,7 +129,7 @@ export class PCuracionComponent implements OnInit {
       botonCancel:botonCancel,
       titulo:titulo
     };
-    return this.modalService.abrirModalCuracion(config);
+    return this.modalService.abrirModalTexto(config);
   }
 
 

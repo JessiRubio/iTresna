@@ -173,17 +173,41 @@ export class SenalesComponent implements OnInit {
   }
 
   borrar(){
-    this.senalesService.deleteSenal(this.senal).subscribe(
-      response =>{
-        if (response.error ==1){
-        }else{
-          location.reload();
-        }
+
+    this.abrirModalEliminar("Eliminar señal","¿Desea eliminar la señal?","Si", "No").then(
+      data=>{
+
+        this.senalesService.deleteSenal(this.senal).subscribe(
+          response =>{
+            if (response.error ==1){
+            }else{
+              location.reload();
+            }
+          },
+          error =>{
+            window.alert("Error de conexion o fallo en servidor");
+          }
+        );
+        location.reload();
       },
-      error =>{
-        window.alert("Error de conexion o fallo en servidor");
-      }
-    );
+        error=>{
+          //Nos da igual que no se cierre correctamente     
+        }
+    );   
+  }
+
+  abrirModalEliminar(titulo:string,label:string,botonFin:string, botonCancel:string):Promise<any>{
+    var data=[
+      
+    ];
+    var config={
+      data:data,
+      label:label,
+      botonFin:botonFin,
+      botonCancel:botonCancel,
+      titulo:titulo
+    };
+    return this.modalService.abrirModalTexto(config);
   }
   
   mostrarEnvioComentarios(){

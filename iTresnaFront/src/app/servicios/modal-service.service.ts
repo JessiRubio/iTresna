@@ -24,7 +24,7 @@ export class ModalServiceService {
     return modalRef.result;
   }
 
-  abrirModalCuracion(config:{data:any,titulo:string,label:string,botonFin:string,botonCancel:string}):Promise<any>{
+  abrirModalTexto(config:{data:any,titulo:string,label:string,botonFin:string,botonCancel:string}):Promise<any>{
     //TODO Options to, data config, inputs, etc.
     var modalRef = this.modalService.open(ModalGenericoComponent,{centered:true,scrollable:true,size:"lg"});
     var instance:ModalGenericoComponent=modalRef.componentInstance;
