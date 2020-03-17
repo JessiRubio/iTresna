@@ -75,9 +75,20 @@ export class AdminCopsComponent implements OnInit {
           };
           this.abrirAlerta(alert);
         }
+        else{
+          let alert:Alerta = {
+            message:"No se ha podido modificar la cop correctamente, intentelo más tarde", 
+            type:'danger'
+          };
+          this.abrirAlerta(alert);
+        }
       },
       error=>{
-        window.alert("Error de conexion con el servidor");
+        let alert:Alerta = {
+          message:"Error de conexión con el servidor, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
     );
   }
@@ -163,13 +174,21 @@ export class AdminCopsComponent implements OnInit {
           this.abrirAlerta(alert);
           location.reload();
         }else{
-          window.alert("No se ha podido añadir la cop, espero a otro momento" 
-          +"o contacte con el administrador");
+          let alert:Alerta = {
+            message:"No se ha podido añadir la cop correctamente, intentelo más tarde", 
+            type:'danger'
+          };
+          this.abrirAlerta(alert);
         }
       },
       error=>{
-        console.log(error);
+        let alert:Alerta = {
+          message:"Error de conexión con el servidor, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
+      
     )
   }
 
@@ -186,12 +205,24 @@ export class AdminCopsComponent implements OnInit {
           this.abrirAlerta(alert);
           location.reload();
         }
+        else{
+          let alert:Alerta = {
+            message:"No se ha podido modificar la cop correctamente, intentelo más tarde", 
+            type:'danger'
+          };
+          this.abrirAlerta(alert);
+        }
       },
       error=>{
-        console.log(error);
+        let alert:Alerta = {
+          message:"Error de conexión con el servidor, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
     );
   }
+
   borrar(cop:CopsItem){
     if(window.confirm("¿Estas seguro de querer eliminar la cop?")){
       this.copsService.eliminarCop(cop.cod_org,cop.cod_esp,cop.cod_cop).subscribe(
@@ -204,12 +235,16 @@ export class AdminCopsComponent implements OnInit {
             this.abrirAlerta(alert);
             location.reload();
           }else{
-            window.alert("No se ha podido eliminar la cop")
+            window.alert("No se ha podido eliminar la cop, intentelo más tarde")
           }
         },
         error=>{
-          console.log(error);
-        }
+          let alert:Alerta = {
+          message:"Error de conexión con el servidor, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
+      }
       );
     }
   }
@@ -226,8 +261,19 @@ export class AdminCopsComponent implements OnInit {
         if(response.error==0){
           this.etiquetas=response.cop.etiquetas;
         }else{
-          window.alert("No se han podido cargar las etiquetas")
+          let alert:Alerta = {
+            message:"No se han podido cargar las etiquetas", 
+            type:'danger'
+          };
+          this.abrirAlerta(alert);
         }
+      },
+      error=>{
+        let alert:Alerta = {
+          message:"Error de conexión con el servidor, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
     )
   }
@@ -259,7 +305,11 @@ export class AdminCopsComponent implements OnInit {
         }
       },
       error=>{
-        //Nos da igual que el modal se cierre
+        let alert:Alerta = {
+          message:"Error de conexión con el servidor, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
     );
   }
@@ -274,12 +324,22 @@ export class AdminCopsComponent implements OnInit {
           type:'success'
         };
         this.abrirAlerta(alert);
+        location.reload();
       }
-      location.reload();
+      else{
+        let alert:Alerta = {
+          message:"No se ha podido modificar la etiqueta correctamente, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
+      }
     },
     error=>{
-      //TODO Alerts
-      console.log(error);
+      let alert:Alerta = {
+        message:"Error de conexión con el servidor, intentelo más tarde", 
+        type:'danger'
+      };
+      this.abrirAlerta(alert);
     }
   );
   }
@@ -297,10 +357,18 @@ export class AdminCopsComponent implements OnInit {
             this.abrirAlerta(alert);
             location.reload();
           }
+          let alert:Alerta = {
+            message:"No se ha podido borrar la etiqueta correctamente, intentelo más tarde", 
+            type:'danger'
+          };
+          this.abrirAlerta(alert);
         },
         error=>{
-          //TODO Alerts
-          console.log(error);
+          let alert:Alerta = {
+            message:"Error de conexión con el servidor, intentelo más tarde", 
+            type:'danger'
+          };
+          this.abrirAlerta(alert);
         }
       );
     }
@@ -322,7 +390,11 @@ export class AdminCopsComponent implements OnInit {
         }
       },
       error=>{
-        //Nos da igual que se cierre el modal
+        let alert:Alerta = {
+          message:"Error de conexión con el servidor, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
     );
   }
@@ -339,10 +411,20 @@ export class AdminCopsComponent implements OnInit {
           this.abrirAlerta(alert);
           location.reload();
         } 
+        else{
+          let alert:Alerta = {
+            message:"No se ha podido añadir la etiqueta correctamente, intentelo más tarde", 
+            type:'danger'
+          };
+          this.abrirAlerta(alert);
+        }
       },
       error=>{
-        //TODO Alerts
-        console.log(error);
+        let alert:Alerta = {
+          message:"Error de conexión con el servidor, intentelo más tarde", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
     );
   }

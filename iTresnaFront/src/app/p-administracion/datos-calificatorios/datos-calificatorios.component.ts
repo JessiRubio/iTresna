@@ -205,7 +205,6 @@ export class DatosCalificatoriosComponent implements OnInit{
     if(window.confirm("¿Estas seguro de eliminar el espacio seleccionado?")){
       this.clasificacionService.deleteCategoria(this.organizacion.cod_org,clasificacion, categoria).subscribe(
         respose=>{
-          console.log(respose);
           if(respose.error==0){
             let alert:Alerta = {
               message:"Categoria eliminada correctamente, redirigiendo", 
