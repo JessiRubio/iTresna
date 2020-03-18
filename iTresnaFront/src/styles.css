@@ -42,3 +42,53 @@ h2{
 }
 
 
+
+footer{
+
+  background-color: #000000d7;
+  width: 100%;
+  color: white;
+  padding: 0.5em;
+  height: 3em;  
+  z-index: 0;
+  
+ 
+
+} 
+
+.footerIber{
+  margin-top: -3%;
+  text-align: right;
+  
+}
+
+.imgTxur{
+ 
+  height: 40px;
+  width: 50px;
+
+}
+
+.imgFp{
+
+  height: 40px;
+  width: 40x;
+  margin-left: 40%;
+
+}
+
+.imgTknika{
+ 
+  height: 40px;
+  width: 40x;
+  margin-left: 1%;
+  
+}
+
+.imgIber{
+  
+  height: 30px;
+  width: 70px;
+  margin-left: 38%;
+  
+}
