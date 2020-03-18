@@ -98,15 +98,15 @@
 
     function getNuevaCodEspacio($cod_org):int{
         include("./../conexion.php");
-        $sql="SELECT COUNT(cod_esp)
+        $sql="SELECT MAX(cod_esp)
                 FROM t_espacios
                 WHERE cod_org=?";
         $query=$conexion->prepare($sql);
         $query->bind_param("i",$cod_org);
         $query->execute();
-        $query->bind_result($cantidad);
+        $query->bind_result($cod_esp);
         $query->fetch();
         $query->close();
-        return $cantidad;
+        return ($cod_esp!=null)?$cod_esp:1;
     }
 ?>

@@ -144,11 +144,9 @@ export class DragDropListComponent implements OnInit{
   }
 
   generarSenalRelevante(){
-
     var nombreDoc,titulo,departamento, descripcion;
     var links="";
     var tituloRelevante="";
-
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
       if(this.pCuracionComponent.listaSenales[i]===this.senales){

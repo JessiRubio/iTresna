@@ -6,42 +6,21 @@ html {
   overflow-x: hidden;
   color: black;
   font-family: 'Merienda', cursive;
-  height: 100%;
   
    
 }
-body {
+body{
+  background: #F1E7F2;  
+}
+#body {
   margin:0;
   background: #F1E7F2;
-  height: 100%;
- 
+  min-height: 40em;
 }
 
 h2{
   font-family: 'Cinzel', serif;
 }
-
-@media only screen and (min-width: 320px) {
-
-  footer{
-    height: 4%;
-  } 
-
-  footer p{
-    font-size: 12px;
-  }
-
-
-}
-
-
-@media only screen and (min-width: 375px) {
-  footer p{
-    font-size: 14px;
-  }
-}
-
-
 
 footer{
 
@@ -51,9 +30,6 @@ footer{
   padding: 0.5em;
   height: 3em;  
   z-index: 0;
-  
- 
-
 } 
 
 .footerIber{
