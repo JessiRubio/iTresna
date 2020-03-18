@@ -25,6 +25,7 @@ export class CopsService {
   modificarCop(cod_org:number,cod_esp:number,cod_cop:number,desc:string,imagen:string):Observable<any>{
     
     let json={
+      "accion":"cop",
       "cod_org":cod_org,
       "cod_esp":cod_esp,
       "cod_cop":cod_cop,
@@ -37,18 +38,19 @@ export class CopsService {
   modificarEtiqueta(desc_etiqueta:string,cod_etiqueta:number):Observable<any>{
     
     let json={
+      "accion":"etiqueta",
       "desc_etiqueta":desc_etiqueta,
       "cod_etiqueta":cod_etiqueta
-      
-     
     };  
     return this.httpClient.put(this.url,json);
   }
 
 
-  eliminarEtiqueta(cod_etiqueta:number, desc_etiqueta:string):Observable<any>{
+  eliminarEtiqueta(cod_org:number,cod_esp:number,cod_cop:number,cod_etiqueta:number):Observable<any>{
     return this.httpClient.delete(this.url+"?cod_etiqueta="+cod_etiqueta
-                                  +"&desc_etiqueta="+desc_etiqueta);
+                                +"&cod_org="+cod_org
+                                +"&cod_esp="+cod_esp
+                                +"&cod_cop="+cod_cop);
   }
 
   nuevaEtiqueta(cod_cop:number,cod_esp:number,cod_org:number,desc_etiqueta:string):Observable<any>{
@@ -58,7 +60,7 @@ export class CopsService {
       "cod_esp":cod_esp,
       "cod_org":cod_org,
       "desc_etiqueta":desc_etiqueta
-    };  
+    }; 
     return this.httpClient.post(this.url,json);
   }
 

@@ -14,16 +14,28 @@
         "error"=>1,
     );
     if(existeOrg($cod_org)){
-        if(existeUsuario($contacto)){
-            $cod_usuario=getAdministradorActual($cod_org);
-            if(cambiarUsuario($cod_usuario,$contacto)){
-                if(!actualizarOrganizacion($cod_org,$desc_org,$eslogan,$enlace)){
-                    $result["error"]=1;
-                }else{
-                    $result["error"]=0;
-                    if($imagen!=""){
-                        actualizarImagen($cod_org,$imagen);
+        if($contacto!=null){
+            if(existeUsuario($contacto)){
+                $cod_usuario=getAdministradorActual($cod_org);
+                if(cambiarUsuario($cod_usuario,$contacto)){
+                    if(!actualizarOrganizacion($cod_org,$desc_org,$eslogan,$enlace)){
+                        $result["error"]=1;
+                    }else{
+                        $result["error"]=0;
+                        if($imagen!=""){
+                            actualizarImagen($cod_org,$imagen);
+                        }
                     }
+                }
+            }
+        }
+        else{
+            if(!actualizarOrganizacion($cod_org,$desc_org,$eslogan,$enlace)){
+                $result["error"]=1;
+            }else{
+                $result["error"]=0;
+                if($imagen!=""){
+                    actualizarImagen($cod_org,$imagen);
                 }
             }
         }

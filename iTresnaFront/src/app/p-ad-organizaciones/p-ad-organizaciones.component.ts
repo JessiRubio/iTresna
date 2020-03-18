@@ -111,36 +111,57 @@ export class PAdOrganizacionesComponent implements OnInit {
     this.ordenarOrganizaciones();
   }
   borrar(item:Organizacion){
-    if(window.confirm("¿Esta seguro de querer eliminar la organizacion?")){
-      if(window.confirm("Esta acción no tiene vuelta atras,¿Seguro que desea eliminarlo?")){
-        this.organizacionesService.eliminarOrganizacion(item.cod_org).subscribe(
-          response=>{
-            var alert:Alerta;
-            if(response.error==0){
-              alert = {
-                message:"Organización borrada correctamente", 
-                type:'success'
-              };
-            }else{
-              alert = {
-                message:"No se pudo eliminar la Organización", 
-                type:'danger'
-              };
-            }
-            this.alertaService.abrirAlerta(alert);
+    var config:{titulo:string,label:string,botonFin:string,botonCancel:string};
+    config={
+      botonCancel:"Cancelar",
+      botonFin:"Aceptar",
+      titulo:"Borrar",
+      label:"¿Esta seguro de querer eliminar la organizacion?"
+    }
+    this.modalService.abrirModalTexto(config).then(
+      data=>{
+        config.label="Esta acción no tiene vuelta atras,¿Seguro que desea eliminarlo?";
+        this.modalService.abrirModalTexto(config).then(
+          data=>{
+            this.borrarOrganizacion(item);
           },
           error=>{
-            let alert:Alerta = {
-              message:"Error con el servidor",
-              type:'danger'
-            };
-            this.alertaService.abrirAlerta(alert);
+            //Se cierra mediante el boton cancelar
           }
         );
+      },
+      error=>{
+        //Se cierra mendiante el boton cancelar
       }
-    }
+    );
   }
-
+  private borrarOrganizacion(organizacion:Organizacion){
+    this.organizacionesService.eliminarOrganizacion(organizacion.cod_org).subscribe(
+      response=>{
+        var alert:Alerta;
+        if(response.error==0){
+          alert = {
+            message:"Organización borrada correctamente", 
+            type:'success'
+          };
+          this.cargarOrganizaciones();
+        }else{
+          alert = {
+            message:"No se pudo eliminar la Organización", 
+            type:'warning'
+          };
+        }
+        this.alertaService.abrirAlerta(alert);
+      },
+      error=>{
+        let alert:Alerta = {
+          message:"Error con el servidor",
+          type:'danger'
+        };
+        this.alertaService.abrirAlerta(alert);
+      }
+    );
+  }
   nueva(){
     var organizacion=new Organizacion();
     organizacion.usuarios=[];
@@ -177,10 +198,11 @@ export class PAdOrganizacionesComponent implements OnInit {
             message:"Organización creada correctamente", 
             type:'success'
           };
+          this.cargarOrganizaciones();
         }else{
           alert = {
             message:"Fallo al crear la Organización", 
-            type:'danger'
+            type:'warning'
           };
         }
         this.alertaService.abrirAlerta(alert);
@@ -203,7 +225,6 @@ export class PAdOrganizacionesComponent implements OnInit {
           data=>{
             if(data!=null){
               var contacto=data.contacto;
-              console.log(data.imagen);
               if(data.imagen!=""||data.imagen==null){
                 var file:File=data.imagen;
                 this.modificar(item.cod_org,
@@ -216,11 +237,18 @@ export class PAdOrganizacionesComponent implements OnInit {
                 this.modificar(item.cod_org,data.nombre,data.descripcion,contacto,data.enlace,"");
               }
             }
+          },
+          error=>{
+            //Nos da igual que se cierre sin datos (por dismiss)
           }
         );
       },
       error=>{
-        //Nos da igual que se cierre sin datos (por dismiss)
+        let alert:Alerta = {
+          message:"Error con el servidor, no se han podido cargar los datos.",
+          type:'danger'
+        };
+        this.alertaService.abrirAlerta(alert);
       }
     );
   }
@@ -228,17 +256,16 @@ export class PAdOrganizacionesComponent implements OnInit {
     this.organizacionesService.modificarOrganizacion(cod_org,desc_org,eslogan,contacto,enlace,imagen).subscribe(
       response=>{
         var alert:Alerta;
-        console.log(response);
         if(response.error==0){
           alert = {
             message:"Organización modificada correctamente", 
             type:'success'
           };
-          
+          this.cargarOrganizaciones();
         }else{
           alert = {
             message:"Fallo al modificar la Organización", 
-            type:'danger'
+            type:'warning'
           };
         }
         this.alertaService.abrirAlerta(alert);
@@ -248,7 +275,6 @@ export class PAdOrganizacionesComponent implements OnInit {
           message:"Error con el servidor",
           type:'danger'
         };
-        console.log(error);
         this.alertaService.abrirAlerta(alert);
       }
     );

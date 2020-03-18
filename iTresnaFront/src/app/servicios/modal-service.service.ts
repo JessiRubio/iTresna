@@ -23,11 +23,10 @@ export class ModalServiceService {
     return modalRef.result;
   }
 
-  abrirModalTexto(config:{data:any,titulo:string,label:string,botonFin:string,botonCancel:string}):Promise<any>{
+  abrirModalTexto(config:{titulo:string,label:string,botonFin:string,botonCancel:string}):Promise<any>{
     //TODO Options to, data config, inputs, etc.
     var modalRef = this.modalService.open(ModalGenericoComponent,{centered:true,scrollable:true,size:"lg"});
     var instance:ModalGenericoComponent=modalRef.componentInstance;
-    instance.dataConfiguration=config.data;
     instance.tituloModal=config.titulo;
     instance.labelModal=config.label;
     instance.botonFinalizar=config.botonFin;

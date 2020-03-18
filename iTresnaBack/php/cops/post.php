@@ -22,9 +22,9 @@
             $query=$conexion->prepare($sql);
             $query->bind_param("iiiis",$cod_etiqueta,$cod_cop,$cod_esp,$cod_org,$desc_etiqueta);
             $query->execute();
+            $result["error"]=(($query->affected_rows)==1)?0:1;
             $query->close();
-            return;
-    
+            
         }
     }else if($accion!="" && $accion=="nueva_cop"){
         

@@ -5,6 +5,9 @@ import { EspaciosService } from '../../servicios/espacios.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalServiceService } from '../../servicios/modal-service.service';
+import { Alert } from 'selenium-webdriver';
+import { Alerta } from '../../clases/alerta';
+import { AlertService } from '../../servicios/alert.service';
 
 @Component({
   selector: 'app-espacios',
@@ -18,7 +21,7 @@ export class EspaciosComponent implements OnInit {
   listaEspacios:EspaciosItem[];
   constructor(private espaciosService:EspaciosService,
     private usuarioService:UsuariosService,
-    private dialog:MatDialog,
+    private alertaService:AlertService,
     private modalService:ModalServiceService) 
     { 
       this.listaEspacios=[];
@@ -43,22 +46,6 @@ export class EspaciosComponent implements OnInit {
       );
   }
 
-  setIndCuracion(item:EspaciosItem){
-    if(item.ind_esp_curacion){
-      item.ind_esp_curacion = false;
-    }
-    else{
-      item.ind_esp_curacion = true;
-    }
-    this.espaciosService.updateEspacio(item).subscribe(
-      res =>{
-        console.log(res);
-      },
-      err=>{
-
-      }
-    );
-  }
   editar(cod_org:number,cod_esp:number){
     this.espaciosService.getEspacio(cod_org,cod_esp).subscribe(
       response=>{
@@ -77,8 +64,27 @@ export class EspaciosComponent implements OnInit {
           espacio.orden=data.orden
           this.espaciosService.updateEspacio(espacio).subscribe(
             response=>{
-              console.log(response);
-              location.reload();
+              var alert:Alerta;
+              if(response.error==0){
+                alert = {
+                  message:"Espacio editado correctamente", 
+                  type:'success'
+                };
+                this.cargarListaEspacios();
+              }else{
+                alert = {
+                  message:"Fallo al editar el Espacio", 
+                  type:'warning'
+                };
+              }
+              this.alertaService.abrirAlerta(alert);
+            },
+            error=>{
+              var alert:Alerta = {
+                message:"Error con el servidor", 
+                type:'danger'
+              };
+              this.alertaService.abrirAlerta(alert);
             }
           );
         }
@@ -120,16 +126,27 @@ export class EspaciosComponent implements OnInit {
   
 
   public borrar(item:EspaciosItem){
-    if(window.confirm("¿Estas seguro de eliminar el espacio seleccionado?")){
-      this.espaciosService.deleteEspacio(item.cod_org,item.cod_esp).subscribe(
-        respose=>{
-          console.log(respose);
-          if(respose.error==0){
-            location.reload();
-          }
-        }
-      )
+    var config:{titulo:string,label:string,botonFin:string,botonCancel:string};
+    config={
+      botonCancel:"Cancelar",
+      botonFin:"Aceptar",
+      titulo:"Borrar",
+      label:"¿Estas seguro de eliminar el espacio seleccionado?"
     }
+    this.modalService.abrirModalTexto(config).then(
+      data=>{
+        this.espaciosService.deleteEspacio(item.cod_org,item.cod_esp).subscribe(
+          respose=>{
+            if(respose.error==0){
+              location.reload();
+            }
+          }
+        );
+      },
+      error=>{
+        //Se ha cerrado con cancelar o boton cerrar
+      }
+    );
   }
 
   public addEspacio(){
@@ -146,7 +163,27 @@ export class EspaciosComponent implements OnInit {
           espacio.orden=data.orden;
           this.espaciosService.addEspacio(espacio).subscribe(
             response=>{
-              console.log("Se ha creado correctamente");
+              var alert:Alerta;
+              if(response.error==0){
+                alert = {
+                  message:"Espacio creado correctamente", 
+                  type:'success'
+                };
+                this.cargarListaEspacios();
+              }else{
+                alert = {
+                  message:"Fallo al crear el espacio", 
+                  type:'warning'
+                };
+              }
+              this.alertaService.abrirAlerta(alert);
+            },
+            error=>{
+              var alert:Alerta = {
+                message:"Error con el servidor", 
+                type:'danger'
+              };
+              this.alertaService.abrirAlerta(alert);
             }
           );
         }        

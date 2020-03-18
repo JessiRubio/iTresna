@@ -25,7 +25,6 @@ export class AdminCopsComponent implements OnInit {
   copSelected=0;
   public showEtiquetas:boolean = false;
   public showCops:boolean=true;
-  copsRows:string[]=["nombre","editar","borrar"]
   constructor(
     private espaciosService:EspaciosService,
     private modalServiceAlert:NgbModal,  
@@ -60,7 +59,11 @@ export class AdminCopsComponent implements OnInit {
         }
       },
       error=>{
-
+        let alert:Alerta = {
+          message:"Error con el servidor, no se han podido cargar los datos.", 
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
     );
   }
@@ -70,23 +73,18 @@ export class AdminCopsComponent implements OnInit {
       respose=>{
         if(respose.error==0){
           this.editarCop(respose.cop);
-          let alert:Alerta = {
-            message:"Cop modificada, redirigiendo", 
-            type:'success'
-          };
-          this.abrirAlerta(alert);
         }
         else{
           let alert:Alerta = {
-            message:"No se ha podido modificar la cop correctamente, intentelo más tarde", 
-            type:'danger'
+            message:"No se ha podido cargar la cop.", 
+            type:'warning'
           };
           this.abrirAlerta(alert);
         }
       },
       error=>{
         let alert:Alerta = {
-          message:"Error de conexión con el servidor, intentelo más tarde", 
+          message:"Error con el servidor.", 
           type:'danger'
         };
         this.abrirAlerta(alert);
@@ -165,26 +163,26 @@ export class AdminCopsComponent implements OnInit {
   nuevaCop(cod_org:number,cod_esp:number,desc:string,imagen:string){
     this.copsService.nuevaCop(cod_org,cod_esp,desc,imagen).subscribe(
       response=>{
-
+        var alert:Alerta;
         if(response.error==0){
           
-          let alert:Alerta = {
-            message:"Cop añadida, redirigiendo", 
+          alert = {
+            message:"La cop se ha añadido", 
             type:'success'
           };
-          this.abrirAlerta(alert);
-          location.reload();
+          this.cargarCops();
         }else{
-          let alert:Alerta = {
-            message:"No se ha podido añadir la cop correctamente, intentelo más tarde", 
-            type:'danger'
+          alert = {
+            message:"No se ha podido añadir la cop.", 
+            type:'warning'
           };
-          this.abrirAlerta(alert);
+          
         }
+        this.abrirAlerta(alert);
       },
       error=>{
         let alert:Alerta = {
-          message:"Error de conexión con el servidor, intentelo más tarde", 
+          message:"Error con el servidor", 
           type:'danger'
         };
         this.abrirAlerta(alert);
@@ -197,26 +195,25 @@ export class AdminCopsComponent implements OnInit {
     this.copsService.modificarCop(cod_org,cod_esp,cod_cop,desc_cop,file_encoded)
     .subscribe(
       response=>{
-        console.log(response);
+        var alert:Alerta;
         if(response.error == 0){
-          let alert:Alerta = {
-            message:"Cop modificada correctamente, redirigiendo", 
+          alert = {
+            message:"Cop modificada correctamente.", 
             type:'success'
           };
-          this.abrirAlerta(alert);
-          location.reload();
+          this.cargarCops();
         }
         else{
-          let alert:Alerta = {
-            message:"No se ha podido modificar la cop correctamente, intentelo más tarde", 
-            type:'danger'
+          alert = {
+            message:"No se ha podido modificar la cop correctamente.", 
+            type:'warning'
           };
-          this.abrirAlerta(alert);
         }
+        this.abrirAlerta(alert);
       },
       error=>{
-        let alert:Alerta = {
-          message:"Error de conexión con el servidor, intentelo más tarde", 
+        var alert:Alerta = {
+          message:"Error con el servidor", 
           type:'danger'
         };
         this.abrirAlerta(alert);
@@ -225,37 +222,55 @@ export class AdminCopsComponent implements OnInit {
   }
 
   borrar(cop:CopsItem){
-    if(window.confirm("¿Estas seguro de querer eliminar la cop?")){
-      this.copsService.eliminarCop(cop.cod_org,cop.cod_esp,cop.cod_cop).subscribe(
-        response=>{
-          if(response.error==0){
+    var config:{titulo:string,label:string,botonFin:string,botonCancel:string};
+    config={
+      botonCancel:"Cancelar",
+      botonFin:"Aceptar",
+      titulo:"Borrar",
+      label:"¿Estas seguro de eliminar el espacio seleccionado?"
+    }
+    this.modalService.abrirModalTexto(config).then(
+      data=>{
+        this.copsService.eliminarCop(cop.cod_org,cop.cod_esp,cop.cod_cop).subscribe(
+          response=>{
+            var alert:Alerta;
+            if(response.error==0){
+              alert = {
+                message:"Cop eliminada correctamente", 
+                type:'success'
+              };
+              this.cargarCops();
+            }else{
+              alert = {
+                message:"No se ha podido eliminar la cop", 
+                type:'warning'
+              };
+            }
+            this.abrirAlerta(alert);
+          },
+          error=>{
             let alert:Alerta = {
-              message:"Cop eliminada correctamente, redirigiendo", 
-              type:'success'
+              message:"Error con el servidor", 
+              type:'danger'
             };
             this.abrirAlerta(alert);
-            location.reload();
-          }else{
-            window.alert("No se ha podido eliminar la cop, intentelo más tarde")
           }
-        },
-        error=>{
-          let alert:Alerta = {
-          message:"Error de conexión con el servidor, intentelo más tarde", 
-          type:'danger'
-        };
-        this.abrirAlerta(alert);
+        );
+      },
+      error=>{
+        //Se ha cerrado el modal mediante cancelar u otro boton
       }
-      );
-    }
+    );
   }
 
   gestionarEtiquetas(index:number){
-
-    var cop=this.cops[index];
     this.copSelected=index;
     this.showEtiquetas =true;
     this.showCops =false;
+    this.cargarEtiquetas();
+  }
+  private cargarEtiquetas(){
+    var cop=this.cops[this.copSelected];
     this.copsService.getCop(cop.cod_org, cop.cod_esp,cop.cod_cop)
     .subscribe(
       response=>{
@@ -264,14 +279,14 @@ export class AdminCopsComponent implements OnInit {
         }else{
           let alert:Alerta = {
             message:"No se han podido cargar las etiquetas", 
-            type:'danger'
+            type:'warning'
           };
           this.abrirAlerta(alert);
         }
       },
       error=>{
         let alert:Alerta = {
-          message:"Error de conexión con el servidor, intentelo más tarde", 
+          message:"Error con el servidor", 
           type:'danger'
         };
         this.abrirAlerta(alert);
@@ -300,17 +315,12 @@ export class AdminCopsComponent implements OnInit {
   editarEtiqueta(etiqueta:EtiquetaItem){
     this.abrirModalEtiquetas(etiqueta,"Modificar Etiqueta","Modificar").then(
       data=>{
-        console.log(data);
         if(data!=null){
           this.modificarEtiquetas(data.etiqueta,etiqueta.cod_etiqueta);
         }
       },
       error=>{
-        let alert:Alerta = {
-          message:"Error de conexión con el servidor, intentelo más tarde", 
-          type:'danger'
-        };
-        this.abrirAlerta(alert);
+        //Nos da igual que se cierre el modal
       }
     );
   }
@@ -319,25 +329,26 @@ export class AdminCopsComponent implements OnInit {
   this.copsService.modificarEtiqueta(desc_etiqueta, cod_etiqueta)
   .subscribe(
     response=>{
+      var alert:Alerta;
       if(response.error==0){
-        let alert:Alerta = {
-          message:"Etiqueta modificada correctamente, redirigiendo", 
+        alert = {
+          message:"Etiqueta modificada correctamente", 
           type:'success'
         };
-        this.abrirAlerta(alert);
-        location.reload();
+      this.cargarEtiquetas();
       }
       else{
-        let alert:Alerta = {
-          message:"No se ha podido modificar la etiqueta correctamente, intentelo más tarde", 
-          type:'danger'
+        alert = {
+          message:"No se ha podido modificar la etiqueta correctamente.", 
+          type:'warning'
         };
-        this.abrirAlerta(alert);
       }
+      this.abrirAlerta(alert);
+
     },
     error=>{
       let alert:Alerta = {
-        message:"Error de conexión con el servidor, intentelo más tarde", 
+        message:"Error con el servidor.", 
         type:'danger'
       };
       this.abrirAlerta(alert);
@@ -346,33 +357,48 @@ export class AdminCopsComponent implements OnInit {
   }
 
 
-  borrarEtiqueta(etiquetas:EtiquetaItem){
-    if(window.confirm("¿Estas seguro de querer eliminar la Etiqueta?")){
-      this.copsService.eliminarEtiqueta(etiquetas.cod_etiqueta,etiquetas.desc_etiqueta).subscribe(
-        response=>{
-          if(response.error == 0){
-            let alert:Alerta = {
-              message:"Etiqueta borrada correctamente, redirigiendo", 
-              type:'success'
-            };
-            this.abrirAlerta(alert);
-            location.reload();
-          }
-          let alert:Alerta = {
-            message:"No se ha podido borrar la etiqueta correctamente, intentelo más tarde", 
-            type:'danger'
-          };
-          this.abrirAlerta(alert);
-        },
-        error=>{
-          let alert:Alerta = {
-            message:"Error de conexión con el servidor, intentelo más tarde", 
-            type:'danger'
-          };
-          this.abrirAlerta(alert);
-        }
-      );
+  borrarEtiqueta(etiqueta:EtiquetaItem){
+    var config:{titulo:string,label:string,botonFin:string,botonCancel:string};
+    config={
+      botonCancel:"Cancelar",
+      botonFin:"Aceptar",
+      titulo:"Borrar",
+      label:"¿Estas seguro de eliminar el espacio seleccionado?"
     }
+    this.modalService.abrirModalTexto(config).then(
+      data=>{
+        var cop=this.cops[this.copSelected];
+        this.copsService.eliminarEtiqueta(cop.cod_org,cop.cod_esp,
+          cop.cod_cop,etiqueta.cod_etiqueta).subscribe(
+            response=>{
+              var alert:Alerta;
+              if(response.error == 0){
+                alert = {
+                  message:"Etiqueta borrada correctamente.", 
+                  type:'success'
+                };
+                this.cargarEtiquetas();
+              }else{
+                alert = {
+                  message:"No se ha podido borrar la etiqueta correctamente.", 
+                  type:'warning'
+                };
+              }
+              this.abrirAlerta(alert);
+            },
+            error=>{
+              let alert:Alerta = {
+                message:"Error con el servidor.", 
+                type:'danger'
+              };
+              this.abrirAlerta(alert);
+            }
+        );
+      },
+      error=>{
+        //Se ha cancelado el usuario
+      }
+    );
   }
 
   addEtiqueta(){
@@ -391,11 +417,7 @@ export class AdminCopsComponent implements OnInit {
         }
       },
       error=>{
-        let alert:Alerta = {
-          message:"Error de conexión con el servidor, intentelo más tarde", 
-          type:'danger'
-        };
-        this.abrirAlerta(alert);
+        //Nos da igual que se cierre el modal
       }
     );
   }
@@ -404,25 +426,25 @@ export class AdminCopsComponent implements OnInit {
   nuevaEtiqueta(cod_cop:number,cod_esp:number,cod_org:number,desc_etiqueta:string){
     this.copsService.nuevaEtiqueta(cod_cop,cod_esp,cod_org,desc_etiqueta).subscribe(
       response=>{
+        var alert:Alerta;
         if(response.error == 0){
-          let alert:Alerta = {
-            message:"Etiqueta añadida correctamente, redirigiendo", 
+          alert = {
+            message:"Etiqueta añadida correctamente.", 
             type:'success'
           };
-          this.abrirAlerta(alert);
-          location.reload();
+          this.cargarEtiquetas();
         } 
         else{
-          let alert:Alerta = {
-            message:"No se ha podido añadir la etiqueta correctamente, intentelo más tarde", 
-            type:'danger'
+          alert = {
+            message:"No se ha podido añadir la etiqueta.", 
+            type:'warning'
           };
-          this.abrirAlerta(alert);
         }
+        this.abrirAlerta(alert);
       },
       error=>{
         let alert:Alerta = {
-          message:"Error de conexión con el servidor, intentelo más tarde", 
+          message:"Error con el servidor.", 
           type:'danger'
         };
         this.abrirAlerta(alert);

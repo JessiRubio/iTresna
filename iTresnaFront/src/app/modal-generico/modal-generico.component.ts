@@ -43,7 +43,7 @@ export class ModalGenericoComponent implements OnInit {
       this.modal.close(this.formGroup.value);
     }
   }
-  dismis(){
+  dismiss(){
     this.modal.dismiss();
   }
 
