@@ -56,6 +56,12 @@ export class PPerfilComponent implements OnInit {
         controlName:"sarbideNueva",
         placeHolder:"Contraseña nueva",
         data:""
+      },
+      {
+        input:"passwordField",
+        controlName:"sarbideNuevaRepeticion",
+        placeHolder:"Repetir contraseña nueva",
+        data:""
       }
     ];
     var config={
@@ -70,7 +76,8 @@ export class PPerfilComponent implements OnInit {
       data=>{
         if(data!=null ){
 
-          if(data.sarbideActual===this.usuarioLogeado.sarbidea && data.sarbideNueva!="" && data.sarbideNueva.length>3){
+          if(data.sarbideActual===this.usuarioLogeado.sarbidea && data.sarbideNueva!="" && data.sarbideNueva.length>3 
+          && data.sarbideNueva===data.sarbideNuevaRepeticion){
             this.modificarContrasenas(data.sarbideNueva,this.usuarioLogeado.cod_org, this.usuarioLogeado.cod_usuario);
           }else{
             let alert:Alerta = {
