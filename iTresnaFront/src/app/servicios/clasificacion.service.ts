@@ -9,7 +9,7 @@ import * as data from '../server-config.json';
 
 export class ClasificacionService {
 
-  private url=data.domain+"clasificacion/";
+  private url=data.domain+"/clasificacion/";
   constructor(private httpClient:HttpClient,private http:HttpClient) { }
 
   deleteCategoria(cod_org:number,tip_clasificacion:string,categoria:string):Observable<any>{
