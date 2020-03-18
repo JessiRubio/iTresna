@@ -27,18 +27,10 @@ export class DragDropListComponent implements OnInit{
   @Input() nombre:string; 
   @Input() listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   @Input() type:string;
-  cod_org:number;
-  cod_esp:number;
-  cod_cop:number;
-  cod_senal:number;
   nombreLista:string;
   cop:CopsItem=new CopsItem();
   usuarioLogeado:Usuario;
   item:any;
-  
-  modalTitulo:string;
-  modalDescripcion:string;
-  modalDepartamento:string;
 
   constructor(
     private senalesService:SenalesService,
@@ -75,11 +67,11 @@ export class DragDropListComponent implements OnInit{
 
         for (var j =0; j<this.senales.senales.length; j++){
 
-          this.cod_org=this.senales.senales[j].cod_org;
-          this.cod_esp=this.senales.senales[j].cod_esp;
-          this.cod_cop=this.senales.senales[j].cod_cop;
-          this.cod_senal=this.senales.senales[j].cod_senal;
-          this.borrarSenal(this.cod_org, this.cod_esp, this.cod_cop,this.cod_senal );
+          var cod_org=this.senales.senales[j].cod_org;
+          var cod_esp=this.senales.senales[j].cod_esp;
+          var cod_cop=this.senales.senales[j].cod_cop;
+          var cod_senal=this.senales.senales[j].cod_senal;
+          this.borrarSenal(cod_org, cod_esp, cod_cop, cod_senal);
         }
         i=this.pCuracionComponent.listaSenales.length;
       }
@@ -90,11 +82,28 @@ export class DragDropListComponent implements OnInit{
 
   borrarSenal(cod_org:number, cod_esp:number, cod_cop:number, cod_senal:number){
 
-    this.senalesService.deleteSenalCuracion(this.cod_org, this.cod_esp, this.cod_cop, this.cod_senal).subscribe(
+    this.senalesService.deleteSenalCuracion(cod_org, cod_esp, cod_cop, cod_senal).subscribe(
       response =>{
+        var alert:Alerta;
+        if(response.error==0){
+          alert = {
+            message:"Error con el servidor",
+            type:'success'
+          };
+        }else{
+          alert = {
+            message:"No se ha podido eliminar la señal",
+            type:'warning'
+          };
+        }
+        this.abrirAlerta(alert);
       },
       error =>{
-        window.alert("Error de conexion o fallo en servidor");
+        let alert:Alerta = {
+          message:"Error con el servidor",
+          type:'danger'
+        };
+        this.abrirAlerta(alert);
       }
     );
   }
@@ -173,7 +182,6 @@ export class DragDropListComponent implements OnInit{
               tituloRelevante= departamento+": "+titulo;
               this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
               this.nuevaSenal(tituloRelevante,descripcion);
-              
             }
           },
           error=>{
@@ -213,14 +221,14 @@ export class DragDropListComponent implements OnInit{
       cod_relevante,this.usuarioLogeado.cod_usuario,
       etiqueta_relevante, descripcion, url_relevante,tituloRelevante,img_relevante).subscribe(
         response=>{
-          if(response.error!=0 && response.aniadido==0){
+          if(response.error!=0 && response.aniadido!=1){
             let alert:Alerta = {
               message:"No se ha podido añadir la señal", 
               type:'danger'
             };
             this.abrirAlerta(alert);
           }
-          else if(response.error==0 && response.aniadido==1){
+          else{
             let alert:Alerta = {
               message:"Señal añadida correctamente", 
               type:'success'
