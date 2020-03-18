@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Inject, ComponentFactoryResolver } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +17,7 @@ import { SenalesService} from './servicios/senales.service';
 import { MenuOverflowComponent } from './menu-overflow/menu-overflow.component';
 import { HeaderGenericoComponent } from './header-generico/header-generico.component';
 import { ModalSenalComponent } from './p-cops/modalsenal/modalsenal.component';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatLinkPreviewModule } from '@angular-material-extensions/link-preview';
 import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizaciones.component';
 import { OrganizacionComponent } from './p-administracion/organizacion/organizacion.component';
@@ -27,7 +27,6 @@ import { PAdministracionComponent } from './p-administracion/p-administracion.co
 import { CopComponent } from './p-espacios/cops/cop.component';
 import { AdminCopsComponent } from './p-administracion/admin-cops/admin-cops.component';
 import { MatTableModule} from '@angular/material/table';
-import { ModalAdminCopsComponent } from './modal-admin-cops/modal-admin-cops.component';
 import { SelectFieldComponent } from './modal-admin-cops/select-field/select-field.component';
 import { InputFieldComponent } from './modal-admin-cops/input-field/input-field.component';
 import { FileFieldComponent } from './modal-admin-cops/file-field/file-field.component';
@@ -73,7 +72,6 @@ import { PermisosComponent } from './p-administracion/usuarios/permisos/permisos
     EspaciosComponent,
     UsuariosComponent,
     AdminCopsComponent,
-    ModalAdminCopsComponent,
     SelectFieldComponent,
     InputFieldComponent,
     FileFieldComponent,
@@ -121,7 +119,6 @@ import { PermisosComponent } from './p-administracion/usuarios/permisos/permisos
   bootstrap: [AppComponent],
   entryComponents:[
     ModalSenalComponent,
-    ModalAdminCopsComponent,
     SelectFieldComponent,
     InputFieldComponent,
     CheckboxFieldComponent,

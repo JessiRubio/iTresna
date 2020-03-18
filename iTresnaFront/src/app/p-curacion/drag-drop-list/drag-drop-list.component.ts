@@ -3,8 +3,7 @@ import { transferArrayItem, moveItemInArray, CdkDragDrop } from '@angular/cdk/dr
 import jsPDF from 'jspdf';
 import { SenalesItem } from '../../clases/senales-item';
 import { SenalesService } from '../../servicios/senales.service';
-import {PCuracionComponent} from './../p-curacion.component'
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import {PCuracionComponent} from './../p-curacion.component';
 import { ModalAdminCopsComponent } from './../../modal-admin-cops/modal-admin-cops.component';
 import { Observable } from 'rxjs';
 import { CopsItem } from 'src/app/clases/copsitem';
@@ -12,6 +11,7 @@ import { Usuario } from 'src/app/clases/usuario';
 import { Alerta } from '../../clases/alerta'
 import { AlertGenericoComponent } from '../../alert-generico/alert-generico.component';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalServiceService } from '../../servicios/modal-service.service';
 
 
 @Component({
@@ -43,8 +43,8 @@ export class DragDropListComponent implements OnInit{
   constructor(
     private senalesService:SenalesService,
     private pCuracionComponent:PCuracionComponent,
-    private modalService:NgbModal,
-    private dialog:MatDialog
+    private alertModalService:NgbModal,
+    private modalSerive:ModalServiceService,
     ) { 
     
   }
@@ -105,41 +105,33 @@ export class DragDropListComponent implements OnInit{
     }
     else return true;
   }
-
-  openModalSenalRelevante():Observable<any>{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus=true;
-    dialogConfig.minWidth="50%";
-    dialogConfig.data=[
+  abrirModalSenalRelevante(titulo:string,botonFin:string):Promise<any>{
+    var data=[
       
       {
         input:"inputField",
         controlName:"titulo",
         placeHolder:"Titulo",
-        data:{
-          desc:this.modalTitulo
-        }
+        data:""
       },{
         input:"inputField",
         controlName:"departamento",
         placeHolder:"Departamento",
-        data:{
-          desc:this.modalDepartamento
-        }
+        data:""
       },
       {
         input:"inputField",
         controlName:"descripcion",
         placeHolder:"Descripcion",
-        data:{
-          desc:this.modalDescripcion
-        }
+        data:""
       },
-      
     ];
-    const dialogRef=this.dialog.open(ModalAdminCopsComponent,dialogConfig);
-    return dialogRef.afterClosed();
-    
+    var config={
+      data:data,
+      titulo:titulo,
+      botonFin:botonFin
+    };
+    return this.modalSerive.abrirModal(config);
   }
 
   generarSenalRelevante(){
@@ -159,38 +151,37 @@ export class DragDropListComponent implements OnInit{
           links=links+" \n\n"+this.senales.senales[j].enlace;
         }
         
-        this.openModalSenalRelevante().subscribe(
-            data=>{
-              if(data!=null){
-                nombreDoc = this.nombreLista;
-                titulo = data.titulo;
-                departamento = data.departamento;
-                descripcion = data.descripcion;
-                
-                this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
-                tituloRelevante= departamento+": "+titulo;
-                this.nuevaSenal(tituloRelevante,descripcion);
-                
-              }
-              else{
-                nombreDoc = this.nombreLista;
-                titulo = data.titulo;
-                departamento = data.departamento;
-                descripcion = data.descripcion;
-
-                tituloRelevante= departamento+": "+titulo;
-                this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
-                this.nuevaSenal(tituloRelevante,descripcion);
-                
-              }
+        this.abrirModalSenalRelevante("Alta Senal Relevante","Alta").then(
+          data=>{
+            if(data!=null){
+              nombreDoc = this.nombreLista;
+              titulo = data.titulo;
+              departamento = data.departamento;
+              descripcion = data.descripcion;
+              
+              this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
+              tituloRelevante= departamento+": "+titulo;
+              this.nuevaSenal(tituloRelevante,descripcion);
+              
             }
-          );
-        
+            else{
+              nombreDoc = this.nombreLista;
+              titulo = data.titulo;
+              departamento = data.departamento;
+              descripcion = data.descripcion;
 
+              tituloRelevante= departamento+": "+titulo;
+              this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
+              this.nuevaSenal(tituloRelevante,descripcion);
+              
+            }
+          },
+          error=>{
+            //Nosa da igual que se cierre el modal
+          }
+        );
       }
-
     }
-
   }
 
   generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links:string){
@@ -250,7 +241,7 @@ export class DragDropListComponent implements OnInit{
 
   abrirAlerta(alerta:Alerta){
     let modalRef:NgbModalRef;
-    modalRef=this.modalService.open(AlertGenericoComponent, {centered:true});
+    modalRef=this.alertModalService.open(AlertGenericoComponent, {centered:true});
     (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
 
   }
