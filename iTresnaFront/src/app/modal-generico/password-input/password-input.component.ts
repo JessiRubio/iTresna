@@ -20,6 +20,6 @@ export class PasswordInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.formGroup.addControl(this.controlName,new FormControl(this.data.desc));
+    this.formGroup.addControl(this.controlName,new FormControl(this.data));
   }
 }

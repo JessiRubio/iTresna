@@ -39,6 +39,7 @@ export class EspaciosService {
       "ind_esp_curacion":item.ind_esp_curacion,
       "orden":item.orden
     };
+    console.log(JSON);
     return this.httpClient.post<any>(this.url,JSON);
   }
   deleteEspacio(cod_org:number,cod_esp:number):Observable<any>{

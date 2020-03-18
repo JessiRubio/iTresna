@@ -23,26 +23,28 @@
         $query=$conexion->prepare($sql);
         $query->bind_param("iisi",$cod_org,$cod_esp,$desc_esp,$ind_esp_curacion);
         $query->execute();
-        if($orden<0||$orden>$cantidad){
-            $orden=$cantidad;
-            $result["error"]=(updateOrden($cod_org,$cod_esp,$orden))?0:1;
-        }else{
-            //verificar si en el orden dado por el usuario existe algun espacio
-            //de ser asi sumar 1 a todos los ordenes empezando por el cod_esp dado y luego introducir
-            //el orden en el espacio
-            if(!hayEspacioEnOrden($orden,$cod_org)){
-                $result["error"]=(updateOrden($cod_org,$cod_esp,$orden))?0:1;                    
-            }else{
-                $cods_esps=array();
-                $cods_esps=getEspaciosAfectados($cod_org,$orden);
-                foreach($cods_esps as $espacio){
-                    if(!updateOrden($cod_org,$espacio["cod_esp"],($espacio["orden"]+1))){
-                        $result["error"]=1;
-                        echo json_encode($result);
-                        return;
-                    }
-                }
+        if($query->affected_rows==1){
+            if($orden<0||$orden>$cantidad){
+                $orden=$cantidad;
                 $result["error"]=(updateOrden($cod_org,$cod_esp,$orden))?0:1;
+            }else{
+                //verificar si en el orden dado por el usuario existe algun espacio
+                //de ser asi sumar 1 a todos los ordenes empezando por el cod_esp dado y luego introducir
+                //el orden en el espacio
+                if(!hayEspacioEnOrden($orden,$cod_org)){
+                    $result["error"]=(updateOrden($cod_org,$cod_esp,$orden))?0:1;                    
+                }else{
+                    $cods_esps=array();
+                    $cods_esps=getEspaciosAfectados($cod_org,$orden);
+                    foreach($cods_esps as $espacio){
+                        if(!updateOrden($cod_org,$espacio["cod_esp"],($espacio["orden"]+1))){
+                            $result["error"]=1;
+                            echo json_encode($result);
+                            return;
+                        }
+                    }
+                    $result["error"]=(updateOrden($cod_org,$cod_esp,$orden))?0:1;
+                }
             }
         }
     }

@@ -32,6 +32,6 @@ export class FileInputComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.formGroup.addControl(this.controlName,new FormControl(this.data.desc));
+    this.formGroup.addControl(this.controlName,new FormControl(this.data));
   }
 }
