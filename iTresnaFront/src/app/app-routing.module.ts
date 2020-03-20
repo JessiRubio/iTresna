@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {PEspaciosComponent} from './p-espacios/p-espacios.component';
 import {PCopsComponent} from './p-cops/p-cops.component'
@@ -45,10 +45,10 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  constructor(private router:Router,private usuarioService:UsuariosService){
+  constructor(private router:Router,private usuarioService:UsuariosService,private activeRoute:ActivatedRoute){
     this.usuarioService.logged().subscribe(
       res=>{
-        if(!res){
+        if(!res && this.router.url.indexOf("RecuperarContraseña")!=-1){
           this.router.navigateByUrl("");
         }
       }
