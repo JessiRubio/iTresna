@@ -90,11 +90,13 @@ export class UsuariosService {
 
 
 
-  modificarPermisos(cod_usuario:string,cod_org:number,ind_admin:number):Observable<any>{
+  modificarPermisos(cod_usuario:string,cod_cop:number,cod_esp:number,cod_org:number,ind_admin:number):Observable<any>{
     
     let json={
       "accion":"modificar_permisos",
       "cod_usuario":cod_usuario,
+      "cod_cop":cod_cop,
+      "cod_esp":cod_esp,
       "cod_org":cod_org,
       "ind_admin":ind_admin
     };  

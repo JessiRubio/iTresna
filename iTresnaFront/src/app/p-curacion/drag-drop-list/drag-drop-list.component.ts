@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { transferArrayItem, moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import { SenalesItem } from '../../clases/senales-item';
 import { SenalesService } from '../../servicios/senales.service';
 import {PCuracionComponent} from './../p-curacion.component';
@@ -30,6 +31,8 @@ export class DragDropListComponent implements OnInit{
   nombreLista:string;
   cop:CopsItem=new CopsItem();
   usuarioLogeado:Usuario;
+  listaLinks=[];
+  imgEnlace:string;
   item:any;
 
   constructor(
@@ -154,7 +157,9 @@ export class DragDropListComponent implements OnInit{
         this.nombreLista=this.pCuracionComponent.listaSenales[i].nombre;
 
         for (var j =0; j<this.senales.senales.length; j++){
-         
+          this.listaLinks.push("\n"+this.senales.senales[j].enlace);
+          this.imgEnlace=this.senales.senales[j].img_senal;
+
           links=links+" \n\n"+this.senales.senales[j].enlace;
         }
         
@@ -166,7 +171,7 @@ export class DragDropListComponent implements OnInit{
               departamento = data.departamento;
               descripcion = data.descripcion;
               
-              this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
+              this.generarPDF(nombreDoc,titulo,departamento,descripcion,this.listaLinks);
               tituloRelevante= departamento+": "+titulo;
               this.nuevaSenal(tituloRelevante,descripcion);
               
@@ -178,8 +183,9 @@ export class DragDropListComponent implements OnInit{
               descripcion = data.descripcion;
 
               tituloRelevante= departamento+": "+titulo;
-              this.generarPDF(nombreDoc,titulo,departamento,descripcion,links);
+              this.generarPDF(nombreDoc,titulo,departamento,descripcion,this.listaLinks);
               this.nuevaSenal(tituloRelevante,descripcion);
+              this.listaLinks=[];
             }
           },
           error=>{
@@ -190,20 +196,59 @@ export class DragDropListComponent implements OnInit{
     }
   }
 
-  generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links:string){
+  generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links){
     var doc = new jsPDF();
     var link, desc;
+    console.log(this.listaLinks);
   
-    link=doc.splitTextToSize(links, 180);
+   /* link=doc.splitTextToSize(links, 180);
     desc=doc.splitTextToSize(descripcion, 180);
     doc.text(titulo,10,20);
     doc.text("Departamento: " + departamento,10,30);
     doc.text(desc,10,40);
     doc.text("Enlaces relacionados:",10,60)
     doc.setTextColor(70, 130, 180);
-    doc.text(link, 10, 65);
+    doc.text(link, 10, 65);*/
+
+
+    doc.autoTable({
+      headStyles: { halign: 'center'},
+      head: [['Titulo']],
+      body: [
+        ["\n"+titulo+"\n"],
+      ],
+    })
+
+    doc.autoTable({
+      headStyles: { halign: 'center'},
+      head: [['Departamento']],
+      body: [
+        ["\n"+departamento+"\n"],
+      ],
+    })
+
+    doc.autoTable({
+      headStyles: { halign: 'center'},
+      head: [['¿Por qué nos parece interesante? ¿Qué proyecto innovador podría llevarse adelante?']],
+      body: [
+        ["\n"+descripcion+"\n"],
+      ],
+    })
+
+    doc.autoTable({
+      headStyles: { halign: 'center'},
+      head: [['Enlaces relacionados']],
+      bodyStyles: {textColor: [0, 128, 255]},
+      body: [
+          [links]
+        
+      ],
+    })
+
+    
   
     doc.save(nombre + '.pdf');
+    
 
   }
 
@@ -211,7 +256,7 @@ export class DragDropListComponent implements OnInit{
   
     var etiqueta_relevante=4;
     var url_relevante="https";
-    var img_relevante="https";
+    var img_relevante=this.imgEnlace;
     var cod_relevante=1;
     var esp_relevante=1;
 
