@@ -53,6 +53,7 @@ import { SelectInputComponent } from './modal-generico/select-input/select-input
 import { GestionUsuariosComponent } from './p-administracion/usuarios/gestion-usuarios/gestion-usuarios.component';
 import { ComentariosComponent } from './p-cops/comentarios/comentarios.component';
 import { PermisosComponent } from './p-administracion/usuarios/permisos/permisos/permisos.component';
+import { PRecuperarContrasenaComponent } from './p-recuperar-contrasena/p-recuperar-contrasena.component';
 
 @NgModule({
 
@@ -93,7 +94,8 @@ import { PermisosComponent } from './p-administracion/usuarios/permisos/permisos
     SelectInputComponent,
     GestionUsuariosComponent,
     ComentariosComponent,
-    PermisosComponent
+    PermisosComponent,
+    PRecuperarContrasenaComponent
     
   ],
   imports: [
