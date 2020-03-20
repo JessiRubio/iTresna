@@ -23,22 +23,17 @@
         $cod_usuario=$data->cod_usuario;
 
         if(isset($cod_usuario) && $cod_usuario!=""){
-            
-            include("./../conexion.php");
-            $sql="INSERT INTO t_usuarios(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2)
-                VALUES(?,?,?,?,?,?,?)";
-            $query=$conexion->prepare($sql);
-            $query->bind_param("siissss",$cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2);
-            $query->execute();
-            $query->close();
-
-            $result["error"]=0;
-    
+            if(!existeUsuario($cod_usuario)){
+                include("./../conexion.php");
+                $sql="INSERT INTO t_usuarios(cod_usuario,tip_usuario,cod_org,sarbidea,nombre,ape1,ape2)
+                    VALUES(?,?,?,?,?,?,?)";
+                $query=$conexion->prepare($sql);
+                $query->bind_param("siissss",$cod_usuario,$tip_usuario,$cod_org,$sarbidea,$nombre,$ape1,$ape2);
+                $query->execute();
+                $query->close();
+                $result["error"]=0;
+            }    
         }
-
-
-
-
     }else if($accion!="" && $accion=="nuevo_permiso"){
         $cod_org=$data->cod_org;
         $cod_usuario=$data->cod_usuario;
@@ -86,7 +81,20 @@
     }
 
     echo json_encode($result);
-    
+    function existeUsuario($cod_usuario){
+        include("./../conexion.php");
+        $sql = "SELECT COUNT(*)
+                FROM t_usuarios
+                WHERE cod_usuario=?";
+        $query->prepare($sql);
+        $query->bind_param("s",$cod_usuario);
+        $query->execute();
+        $query->bind_result($cantidad);
+        $query->fetch();
+        $query->close();
+        return ($cantidad>0);
+    }
+
     function obtenerPermisos($cod_usuario){
         include("./../conexion.php");
         $result=array();
