@@ -79,7 +79,6 @@ export class UsuariosService {
       "ape1":ape1,
       "ape2":ape2,
     };  
-    console.log(json);
     return this.httpClient.post(this.url,json);
   }
 

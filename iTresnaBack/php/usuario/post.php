@@ -32,7 +32,9 @@
                 $query->execute();
                 $query->close();
                 $result["error"]=0;
-            }    
+            }else{
+                $result["error"]=2;
+            }
         }
     }else if($accion!="" && $accion=="nuevo_permiso"){
         $cod_org=$data->cod_org;
@@ -86,7 +88,7 @@
         $sql = "SELECT COUNT(*)
                 FROM t_usuarios
                 WHERE cod_usuario=?";
-        $query->prepare($sql);
+        $query=$conexion->prepare($sql);
         $query->bind_param("s",$cod_usuario);
         $query->execute();
         $query->bind_result($cantidad);
