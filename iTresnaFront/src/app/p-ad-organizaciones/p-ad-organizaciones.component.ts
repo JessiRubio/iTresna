@@ -106,7 +106,7 @@ export class PAdOrganizacionesComponent implements OnInit {
             if(x.contacto==null){
               return false;
             }else{
-              return x.contacto.indexOf(filter)!=-1;
+              return x.contacto.toLowerCase().indexOf(filter)!=-1;
             }
           }
           return true;
@@ -119,7 +119,7 @@ export class PAdOrganizacionesComponent implements OnInit {
             if(x.desc_org==null){
               return false;
             }else{
-              return x.desc_org.indexOf(filter)!=-1
+              return x.desc_org.toLowerCase().indexOf(filter)!=-1
             }
           }
           return true;
