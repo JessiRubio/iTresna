@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {PEspaciosComponent} from './p-espacios/p-espacios.component';
 import {PCopsComponent} from './p-cops/p-cops.component'
@@ -7,6 +7,7 @@ import { UsuariosService } from './servicios/usuarios.service';
 import { PAdministracionComponent } from './p-administracion/p-administracion.component';
 import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizaciones.component';
 import { PPerfilComponent } from './p-perfil/p-perfil/p-perfil.component';
+import { PRecuperarContrasenaComponent } from './p-recuperar-contrasena/p-recuperar-contrasena.component';
 
 const routes: Routes = [
   {
@@ -26,12 +27,16 @@ const routes: Routes = [
     component:PAdministracionComponent
   },
   {
-  path: 'Organizaciones',
+    path: 'Organizaciones',
     component:PAdOrganizacionesComponent
   },
   {
-  path: 'Perfil',
+    path: 'Perfil',
     component:PPerfilComponent
+  },
+  {
+    path:'RecuperarContraseña',
+    component:PRecuperarContrasenaComponent
   }
 ];
 
@@ -40,10 +45,10 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  constructor(private router:Router,private usuarioService:UsuariosService){
+  constructor(private router:Router,private usuarioService:UsuariosService,private activeRoute:ActivatedRoute){
     this.usuarioService.logged().subscribe(
       res=>{
-        if(!res){
+        if(!res && this.router.url.indexOf("RecuperarContraseña")!=-1){
           this.router.navigateByUrl("");
         }
       }

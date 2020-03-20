@@ -6,16 +6,14 @@ html {
   overflow-x: hidden;
   color: black;
   font-family: 'Merienda', cursive;
-  
-   
+  height: 100%;
 }
 body{
-  background: #F1E7F2;  
+  background: #F1E7F2;
+  min-height: 85%;
 }
 #body {
-  margin:0;
   background: #F1E7F2;
-  min-height: 40em;
 }
 
 h2{
@@ -23,48 +21,37 @@ h2{
 }
 
 footer{
-
+  position: relative;
+  clear: both;
   background-color: #000000d7;
   width: 100%;
   color: white;
-  padding: 0.5em;
-  height: 3em;  
   z-index: 0;
+  padding-top: 0.5em;
+  margin-top: 10em;
 } 
-
-.footerIber{
-  margin-top: -3%;
-  text-align: right;
-  
-}
-
-.imgTxur{
- 
+a>img{
   height: 40px;
-  width: 50px;
-
+  width: auto;
 }
-
-.imgFp{
-
-  height: 40px;
-  width: 40x;
-  margin-left: 40%;
-
+footer>*{
+  vertical-align: top;
+  margin:0;
+  display: inline-block;
 }
-
-.imgTknika{
- 
-  height: 40px;
-  width: 40x;
-  margin-left: 1%;
-  
+.izquierda{
+  width: 33%;
 }
-
+.centro{
+  width: 33%;
+}
+.atknika{
+  float: right;
+}
+.derecha{
+  width: 33%;
+}
 .imgIber{
-  
-  height: 30px;
-  width: 70px;
-  margin-left: 38%;
-  
+  text-align: right;
+  float: right; 
 }

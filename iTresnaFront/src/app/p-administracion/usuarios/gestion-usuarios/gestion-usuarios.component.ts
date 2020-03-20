@@ -78,7 +78,7 @@ export class GestionUsuariosComponent implements OnInit {
    
   }
 
-  abrirModal(usuario:Usuario,titulo:string,botonFin:string):Promise<any>{
+  private abrirModal(usuario:Usuario,titulo:string,botonFin:string):Promise<any>{
     var data:any[]=[
       {
         input:"inputField",
@@ -201,11 +201,27 @@ export class GestionUsuariosComponent implements OnInit {
     this.abrirModal(usuario,"Alta Usuario","Alta").then(
       async data=>{
         if(data!=null){
-          await this.altaUsuario(data.email,data.nombre,data.ape1,data.ape2,this.organizacion.cod_org);
-          for(var i = 0; i<this.organizacion.clasificacion.length;i++){
-            this.editarDatosClasificatoriosUsuario(data.email,
-              this.organizacion.cod_org,this.organizacion.clasificacion[i].clasificacion,data["clas"+(i+1)]);
-          }
+          this.altaUsuario(data.email,data.nombre,data.ape1,data.ape2,this.organizacion.cod_org).then(
+            response=>{
+              console.log(response);
+              if(response.error==0){
+                for(var i = 0; i<this.organizacion.clasificacion.length;i++){
+                  this.editarDatosClasificatoriosUsuario(data.email,
+                    this.organizacion.cod_org,this.organizacion.clasificacion[i].clasificacion,data["clas"+(i+1)]);
+                }
+                this.cargarOrganizacion(this.organizacion.cod_org);
+              }else if (response.error==2){
+                //TODO ALERT Existe usuario
+              }else{
+                //TODO ALERT 
+              }
+            },
+            error=>{
+              console.log(error);
+              //TODO ALERT
+            }
+          );
+          
         }
       },
       error=>{
@@ -216,20 +232,7 @@ export class GestionUsuariosComponent implements OnInit {
   private async altaUsuario(cod_usuario:string,nombre:string,ape1:string,
     ape2:string,cod_org:number):Promise<any>{
       var obser:Observable<any> = this.usuariosService.nuevoUsuario(cod_usuario,3,cod_org,"123",nombre,ape1,ape2);
-      this.usuariosService.nuevoUsuario(cod_usuario,3,cod_org,"123",nombre,ape1,ape2)
-      .subscribe(
-        response=>{
-          if(response.error=0){
-            //TODO Alert
-          }
-          else{
-            //TODO Alert
-          }
-        },
-        error=>{
-          //TODO Alert
-        }
-      );
+      this.usuariosService.nuevoUsuario(cod_usuario,3,cod_org,"123",nombre,ape1,ape2);
       return obser.toPromise();
   }
 

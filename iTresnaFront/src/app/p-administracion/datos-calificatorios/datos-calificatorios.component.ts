@@ -4,7 +4,6 @@ import { OrganizacionesService } from '../../servicios/organizaciones.service';
 import { Organizacion } from '../../clases/organizacion';
 import { Usuario } from '../../clases/usuario';
 import { ClasificacionService } from '../../servicios/clasificacion.service';
-import { MatDialog } from '@angular/material';
 import {ModalServiceService}from '../../servicios/modal-service.service';
 import { Observable } from 'rxjs';
 import { Alerta } from '../../clases/alerta';
@@ -37,7 +36,6 @@ export class DatosCalificatoriosComponent implements OnInit{
   constructor(private fBuilder: FormBuilder,
     private organizacionesService: OrganizacionesService,
     private clasificacionService: ClasificacionService,
-    private dialog:MatDialog,
     private modalServiceAlert:NgbModal,  
     private modalService:ModalServiceService,
     private cd:ChangeDetectorRef) 
@@ -63,7 +61,9 @@ export class DatosCalificatoriosComponent implements OnInit{
     observable.subscribe(
       res=>{
         this.organizacion=res.organizacion;
-        this.form.controls["clasif1"].setValue(this.organizacion.clasificacion[0].clasificacion,Validators.required);
+        if(this.organizacion.clasificacion.length>0){
+          this.form.controls["clasif1"].setValue(this.organizacion.clasificacion[0].clasificacion,Validators.required);
+        }
         if(this.organizacion.clasificacion.length>1){
           this.form.controls["clasif2"].setValue(this.organizacion.clasificacion[1].clasificacion,Validators.required);
         }
@@ -98,7 +98,6 @@ export class DatosCalificatoriosComponent implements OnInit{
 
   guardarCambios(clasificacion:number){
     var clasifAntiguo=this.organizacion.clasificacion[clasificacion - 1].clasificacion;
-    
     var clasifNuevo = this.form.controls["clasif"+clasificacion].value;
     this.clasificacionService.actualizarClasifOrg(this.organizacion.cod_org,clasifAntiguo,clasifNuevo).subscribe(
       res=>{
@@ -192,9 +191,15 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   cargarlistas(){
-    this.listaClasif1 = this.organizacion.clasificacion[0].categorias;
-    this.listaClasif2 = this.organizacion.clasificacion[1].categorias;
-    this.listaClasif3 = this.organizacion.clasificacion[2].categorias;
+    if(this.organizacion.clasificacion.length>0){
+      this.listaClasif1 = this.organizacion.clasificacion[0].categorias;
+    }
+    if(this.organizacion.clasificacion.length>1){
+      this.listaClasif2 = this.organizacion.clasificacion[1].categorias;
+    }
+    if(this.organizacion.clasificacion.length>2){
+      this.listaClasif1 = this.organizacion.clasificacion[0].categorias;
+    }
   }
 
   atrasClasificacion(){

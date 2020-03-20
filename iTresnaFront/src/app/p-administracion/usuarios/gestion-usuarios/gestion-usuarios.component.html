@@ -23,10 +23,16 @@
             <td>{{usuario.nombre}}</td>
             <td>{{usuario.ape1}}</td>
             <td>{{usuario.ape2}}</td>
+            
+            
+
             <!--Los datos clasificatorios-->
             <td *ngFor="let clasificacion of usuario.clasificacion">
                 {{clasificacion.categoria}}
             </td>
+            <td *ngIf="organizacion.clasificacion.length<1"></td>
+            <td *ngIf="organizacion.clasificacion.length<2"></td>
+            <td *ngIf="organizacion.clasificacion.length<3  "></td>
             <td>
                 <button (click)="editar(usuario)" class="btn">
                     <img class="papelera" src="assets/edit.png" alt="papelera">
