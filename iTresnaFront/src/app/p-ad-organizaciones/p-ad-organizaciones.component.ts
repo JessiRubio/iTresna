@@ -101,11 +101,29 @@ export class PAdOrganizacionesComponent implements OnInit {
     switch(this.seleccionFiltro){
       case 2:
         
-        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>x.contacto.indexOf(filter)!=-1);
+        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>{
+          if(filter!==""){
+            if(x.contacto==null){
+              return false;
+            }else{
+              return x.contacto.indexOf(filter)!=-1;
+            }
+          }
+          return true;
+        });
         break;
       case 3:
     
-        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>x.desc_org.indexOf(filter)!=-1);
+        this.listaOrgMostradas=this.listaOrganizacion.filter(x=>{
+          if(filter!==""){
+            if(x.desc_org==null){
+              return false;
+            }else{
+              return x.desc_org.indexOf(filter)!=-1
+            }
+          }
+          return true;
+        });
 
     }
     this.ordenarOrganizaciones();
