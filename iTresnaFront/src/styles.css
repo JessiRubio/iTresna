@@ -6,16 +6,19 @@ html {
   overflow-x: hidden;
   color: black;
   font-family: 'Merienda', cursive;
-  
+  height: 100%;
    
 }
 body{
   background: #F1E7F2;
+  height: 100%;;
 }
 #body {
   margin:0;
+  position: relative;
+  height: 100%;
   background: #F1E7F2;
-  min-height: 30em;
+  min-height: 100%;
 }
 
 h2{
@@ -25,7 +28,6 @@ h2{
 footer{
   display: block;
   position: relative;
-  margin-bottom: -33%;
   overflow: hidden;
   background-color: #000000d7;
   width: 100%;
