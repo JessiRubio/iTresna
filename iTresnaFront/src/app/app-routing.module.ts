@@ -7,6 +7,7 @@ import { UsuariosService } from './servicios/usuarios.service';
 import { PAdministracionComponent } from './p-administracion/p-administracion.component';
 import { PAdOrganizacionesComponent } from './p-ad-organizaciones/p-ad-organizaciones.component';
 import { PPerfilComponent } from './p-perfil/p-perfil/p-perfil.component';
+import { PRecuperarContrasenaComponent } from './p-recuperar-contrasena/p-recuperar-contrasena.component';
 
 const routes: Routes = [
   {
@@ -26,12 +27,16 @@ const routes: Routes = [
     component:PAdministracionComponent
   },
   {
-  path: 'Organizaciones',
+    path: 'Organizaciones',
     component:PAdOrganizacionesComponent
   },
   {
-  path: 'Perfil',
+    path: 'Perfil',
     component:PPerfilComponent
+  },
+  {
+    path:'RecuperarContraseña',
+    component:PRecuperarContrasenaComponent
   }
 ];
 
