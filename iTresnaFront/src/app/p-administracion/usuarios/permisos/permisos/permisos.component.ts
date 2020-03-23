@@ -44,6 +44,8 @@ export class PermisosComponent implements OnInit {
   selectedCop:CopsItem = null;
   cod_espPermiso:number;
   cod_copPermiso:number;
+  estadoAdmin:boolean;
+  estadoUso:boolean;
 
   permisos:boolean;
   usuarios:boolean;
@@ -232,7 +234,8 @@ export class PermisosComponent implements OnInit {
 
   pruebaUso(listaUsuarios:Usuario){
     if(listaUsuarios.permisos.length===0){
-
+      
+      this.estadoUso=false;
       return false;
     
 
@@ -241,15 +244,15 @@ export class PermisosComponent implements OnInit {
       for(var i=0;i<listaUsuarios.permisos.length;i++){
        
         if(listaUsuarios.permisos[i].cod_cop===this.cod_copPermiso){
-
+          this.estadoUso=true;
           return true;
         }
-        /*else{
-
-          return false;
+        else{
+          this.estadoUso=false;
+          //return false;
           
           
-        }*/
+        }
       }
       
      
@@ -264,6 +267,8 @@ export class PermisosComponent implements OnInit {
 
     if(listaUsuarios.permisos.length===0){
 
+      this.estadoAdmin=false;
+
       return false;
     
 
@@ -272,47 +277,45 @@ export class PermisosComponent implements OnInit {
       for(var i=0;i<listaUsuarios.permisos.length;i++){
         
         if(listaUsuarios.permisos[i].ind_admin==true && listaUsuarios.permisos[i].cod_cop===this.cod_copPermiso ){
-                 
+          this.estadoAdmin=true;  
           return true;
         }
-        /*else{
+        else{
+
+          this.estadoAdmin=false;
+          //return false;
               
-          return false;
-              
-        }*/
+        }
 
       }
-
-      
-     
     } 
     
-   
-  
   }
   uncheckedAdmin(e,listaUsuarios:Usuario){
 
     this.ind_admin=1;
 
-    if(listaUsuarios.permisos.length===0){
+    if(this.estadoUso===false && this.estadoAdmin===false){
+      console.log("entro 0");
 
       this.usuarioService.nuevoPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso, this.cod_espPermiso,listaUsuarios.cod_org,this.ind_admin)
     .subscribe(
       response=>{
         
-        location.reload();
+        //location.reload();
       },
       error=>{
         
       }
     );
     }else{
+      console.log("entro else");
       
-      this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
+      this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso,this.cod_espPermiso, listaUsuarios.cod_org,this.ind_admin)
           .subscribe(
             response=>{
               
-              location.reload();
+              //location.reload();
             },
             error=>{
               
@@ -325,11 +328,11 @@ export class PermisosComponent implements OnInit {
   checkedAdmin(e,listaUsuarios:Usuario){
 
     this.ind_admin=0;
-    this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,listaUsuarios.cod_org,this.ind_admin)
+    this.usuarioService.modificarPermisos(listaUsuarios.cod_usuario,this.cod_copPermiso, this.cod_espPermiso,listaUsuarios.cod_org,this.ind_admin)
     .subscribe(
       response=>{
         
-        location.reload();
+        //location.reload();
       },
       error=>{
         
@@ -343,7 +346,7 @@ export class PermisosComponent implements OnInit {
     .subscribe(
       response=>{
         console.log(response);
-        location.reload();
+        //location.reload();
       },
       error=>{
         console.log(error);
@@ -360,7 +363,7 @@ export class PermisosComponent implements OnInit {
     .subscribe(
       response=>{
         console.log(response);
-        location.reload();
+        //location.reload();
       },
       error=>{
         console.log(error);

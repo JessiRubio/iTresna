@@ -12,12 +12,15 @@
         if($accion=="modificar_permisos"){
 
             $cod_org=$data->cod_org;
+            $cod_cop=$data->cod_cop;
+            $cod_esp=$data->cod_esp;
             $ind_admin=$data->ind_admin;
+
             $sql="UPDATE t_permisos
                 SET ind_admin=?
-                WHERE cod_usuario=? AND cod_org=? AND cod_cop=?";
+                WHERE cod_usuario=? AND cod_org=? AND cod_cop=? AND cod_esp=?";
             $query=$conexion->prepare($sql);
-            $query->bind_param("isii",$ind_admin,$cod_usuario,$cod_org,$cod_cop);
+            $query->bind_param("isiii",$ind_admin,$cod_usuario,$cod_org,$cod_cop,$cod_esp);
             $query->execute();
             $result["error"]=0;
     
