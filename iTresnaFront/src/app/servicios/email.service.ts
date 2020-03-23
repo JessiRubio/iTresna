@@ -8,7 +8,7 @@ import * as data from '../server-config.json';
 })
 export class EmailService {
 
-  private url=data.domain+"/email/";
+  private url=data.domain+"email/";
   constructor(
     private httpClient:HttpClient
   ) {
@@ -16,6 +16,9 @@ export class EmailService {
   }
 
   sendEmail(userEmail:string):Observable<any>{
-    return this.httpClient.post(this.url,userEmail);
+    var json={
+      "userEmail":userEmail
+    };
+    return this.httpClient.post(this.url,json);
   }
 }

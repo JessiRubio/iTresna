@@ -48,9 +48,11 @@ export class AppRoutingModule {
   constructor(private router:Router,private usuarioService:UsuariosService,private activeRoute:ActivatedRoute){
     this.usuarioService.logged().subscribe(
       res=>{
-        if(!res && this.router.url.indexOf("RecuperarContraseña")!=-1){
-          this.router.navigateByUrl("");
-        }
+        if(!res){
+          if(this.router.url.indexOf("RecuperarContraseña")==-1){
+            this.router.navigateByUrl("");
+          }
+        } 
       }
     );
   }
