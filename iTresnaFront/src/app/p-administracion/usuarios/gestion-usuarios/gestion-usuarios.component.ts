@@ -150,7 +150,7 @@ export class GestionUsuariosComponent implements OnInit {
             data.ape2,usuario.cod_usuario,usuario.cod_org);
             
           for(var i = 0; i<this.organizacion.clasificacion.length;i++){
-            this.editarDatosClasificatoriosUsuario(usuario.cod_usuario,
+            await this.editarDatosClasificatoriosUsuario(usuario.cod_usuario,
               this.organizacion.cod_org,this.organizacion.clasificacion[i].clasificacion,data["clas"+(i+1)]);
           }
         }
@@ -166,8 +166,8 @@ export class GestionUsuariosComponent implements OnInit {
         response=>{
           if(response==0){
             //TODO Alert
-            
-          }else{
+          }
+          else{
             //TODO Alert
           }
         },
@@ -221,7 +221,6 @@ export class GestionUsuariosComponent implements OnInit {
               //TODO ALERT
             }
           );
-          
         }
       },
       error=>{
@@ -237,21 +236,30 @@ export class GestionUsuariosComponent implements OnInit {
   }
 
   borrar(usuario:Usuario){
-    if(window.confirm("Estas seguro de eliminar el usuario")){
-      this.usuariosService.eliminarUsuario(usuario.cod_usuario,usuario.cod_org)
-      .subscribe(
-        response=>{
-          if(response.error==0){
-            //TODO Alert
-          }
-          else{
-            //TODO Alert
-          }
-        },
-        error=>{
-          //TODO Alert
-        }
-      );
+    var config:{titulo:string,label:string,botonFin:string,botonCancel:string};
+    config={
+      botonCancel:"Cancelar",
+      botonFin:"Aceptar",
+      titulo:"Borrar",
+      label:"¿Estas seguro de eliminar el usuario seleccionado?"
     }
+    this.modalService.abrirModalTexto(config).then(
+      data=>{
+        this.usuariosService.eliminarUsuario(usuario.cod_usuario,usuario.cod_org)
+          .subscribe(
+            response=>{
+              if(response.error==0){
+                //TODO Alert
+              }
+              else{
+                //TODO Alert
+              }
+            },
+            error=>{
+              //TODO Alert
+            }
+          );
+      }
+    );
   }
 }
