@@ -116,6 +116,7 @@ import { PRecuperarContrasenaComponent } from './p-recuperar-contrasena/p-recupe
     NgbModule,
     DragDropModule,
     FontAwesomeModule,
+    
   ],
   providers: [UsuariosService,EspaciosService,SenalesService,PCuracionComponent],
   bootstrap: [AppComponent],
