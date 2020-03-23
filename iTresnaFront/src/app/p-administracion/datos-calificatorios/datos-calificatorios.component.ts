@@ -23,12 +23,9 @@ export class DatosCalificatoriosComponent implements OnInit{
   datosprevios:Boolean;
   editarClasificacion:Boolean;
   selected:string
-  listaClasif:string[];
+  listaClasif:Array<string[]>;
   campoClasif:string;
 
-  listaClasif1:string[] = [];
-  listaClasif2:string[] = [];
-  listaClasif3:string[] = [];
 
   private listaCargada:number =0;
 
@@ -40,6 +37,7 @@ export class DatosCalificatoriosComponent implements OnInit{
     private modalService:ModalServiceService,
     private cd:ChangeDetectorRef) 
     {
+      this.listaClasif=new Array();
       this.form=this.fBuilder.group({
         clasif1:["",Validators.required],
         clasif2:["",Validators.required],
@@ -78,22 +76,18 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   editar(num:number){
-      this.editarClasificacion = true;
-      this.datosprevios = false;
+    this.editarClasificacion = true;
+    this.datosprevios = false;
 
-      if (num == 1){
-       this.listaClasif = this.listaClasif1;
-        this.listaCargada = 0;
-      }
-      else if(num == 2){
-        this.listaClasif = this.listaClasif2;
-        this.listaCargada = 1;
-      } 
-      else if (num == 3){
-        this.listaClasif = this.listaClasif3;
-        this.listaCargada = 2;
-      }
-    
+    if (num == 1){
+      this.listaCargada = 0;
+    }
+    else if(num == 2){
+      this.listaCargada = 1;
+    } 
+    else if (num == 3){
+      this.listaCargada = 2;
+    }
   }
 
   guardarCambios(clasificacion:number){
@@ -178,12 +172,14 @@ export class DatosCalificatoriosComponent implements OnInit{
             async respose=>{
               if(respose.error==0){
                 let alert:Alerta = {
-                  message:"Categoria añadida correctamente, redirigiendo", 
+                  message:"Categoria añadida correctamente", 
                   type:'success'
                 };
                 this.abrirAlerta(alert);
                 await this.cargarOrg();
                 this.editar(this.listaCargada);
+              }else{
+                //TODO ALERT
               }
             },
             error=>{
@@ -224,13 +220,13 @@ export class DatosCalificatoriosComponent implements OnInit{
 
   cargarlistas(){
     if(this.organizacion.clasificacion.length>0){
-      this.listaClasif1 = this.organizacion.clasificacion[0].categorias;
+      this.listaClasif.push(this.organizacion.clasificacion[0].categorias);
     }
     if(this.organizacion.clasificacion.length>1){
-      this.listaClasif2 = this.organizacion.clasificacion[1].categorias;
+      this.listaClasif.push(this.organizacion.clasificacion[1].categorias);
     }
     if(this.organizacion.clasificacion.length>2){
-      this.listaClasif1 = this.organizacion.clasificacion[0].categorias;
+      this.listaClasif.push(this.organizacion.clasificacion[0].categorias);
     }
   }
 

@@ -61,7 +61,7 @@
             <th> Eliminar </th>
         </tr>
 
-        <tr *ngFor="let item of listaClasif;let i=index">
+        <tr *ngFor="let item of listaClasif[listaCargada];let i=index">
             <td>{{item}}</td>
             <td>
                 <button (click)="editarCampo(item)">
