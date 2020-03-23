@@ -13,7 +13,7 @@ export class EmailService {
     private httpClient:HttpClient
   ) {
   
-  }
+  } 
 
   sendEmail(userEmail:string):Observable<any>{
     return this.httpClient.post(this.url,userEmail);
