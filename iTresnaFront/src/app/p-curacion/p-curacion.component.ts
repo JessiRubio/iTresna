@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { SenalesService } from '../servicios/senales.service';
 import { ModalServiceService } from '../servicios/modal-service.service';
+import { Alerta } from './../clases/alerta'
+import { AlertGenericoComponent } from './../alert-generico/alert-generico.component';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-p-curacion',
@@ -23,10 +26,12 @@ export class PCuracionComponent implements OnInit {
   listaSenales=Array<{nombre:string,senales:Array<SenalesItem>}>();
   allDropList:string[]=[];
   pruebaLista:SenalesItem[]=[];
+  repetido:boolean=false;
   
   constructor(private dialog:MatDialog,
     private senalesService:SenalesService,
     private modalService:ModalServiceService,
+    private alertModalService:NgbModal,
     private router:Router) { 
   }
 
@@ -57,7 +62,7 @@ export class PCuracionComponent implements OnInit {
       {
         input:"inputField",
         controlName:"nombreLista",
-        placeHolder:"Nuevo nombre de señal",
+        placeHolder:"Nombre de la lista",
         data:this.nombreLista
       },
     ];
@@ -75,20 +80,43 @@ export class PCuracionComponent implements OnInit {
       data=>{
         if(data!=null){
           var pruebaLista:SenalesItem[]=[];
-          this.allDropList.push(data.nombreLista);
-          this.listaSenales.push({nombre:data.nombreLista,senales:pruebaLista});
+          this.repetido=false;
+
+          if(this.listaSenales.length===0){
+    
+            this.allDropList.push(data.nombreLista);
+            this.listaSenales.push({nombre:data.nombreLista,senales:pruebaLista});
+          }
+          else{
+            for(var pos=0;pos<this.listaSenales.length;pos++){
+         
+
+              if(this.listaSenales[pos].nombre===data.nombreLista){
+              
+                this.repetido=true;
+                let alert:Alerta = {
+                  message:"Nombre de lista repitido",
+                  type:'danger'
+                };
+                this.abrirAlerta(alert);
+                
+              }
+            }
+
+            if(this.repetido===false){
+              this.allDropList.push(data.nombreLista);
+              this.listaSenales.push({nombre:data.nombreLista,senales:pruebaLista});
+            }
         }
-        else{
-          var pruebaLista:SenalesItem[]=[];
-          this.allDropList.push(data.nombreLista);
-          this.listaSenales.push({nombre:data.nombreLista,senales:pruebaLista});
-          
-        }
-      },
-      error=>{
-        //Nos da igual que se cierre el modal
       }
-    );
+      else{ 
+        console.log("Error")
+      }
+      
+    },  
+    error=>{
+        //Nos da igual que se cierre el modal 
+      });
             
   }
 
@@ -131,6 +159,14 @@ export class PCuracionComponent implements OnInit {
       titulo:titulo
     };
     return this.modalService.abrirModalTexto(config);
+  }
+
+
+  abrirAlerta(alerta:Alerta){
+    let modalRef:NgbModalRef;
+    modalRef=this.alertModalService.open(AlertGenericoComponent, {centered:true});
+    (<AlertGenericoComponent>modalRef.componentInstance).alert=alerta;
+
   }
 
 

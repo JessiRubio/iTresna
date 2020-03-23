@@ -61,12 +61,17 @@ export class DragDropListComponent implements OnInit{
   }
   
   eliminarLista(){
-
+    
     for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
 
       if(this.pCuracionComponent.listaSenales[i]===this.senales){
 
-        this.pCuracionComponent.listaSenales.splice(i,i-1);
+        if(i===0){
+          this.pCuracionComponent.listaSenales.splice(i,i+1);
+        }
+        else{
+          this.pCuracionComponent.listaSenales.splice(i,i);
+        }
 
         for (var j =0; j<this.senales.senales.length; j++){
 
@@ -77,6 +82,7 @@ export class DragDropListComponent implements OnInit{
           this.borrarSenal(cod_org, cod_esp, cod_cop, cod_senal);
         }
         i=this.pCuracionComponent.listaSenales.length;
+
       }
 
     }
@@ -90,7 +96,7 @@ export class DragDropListComponent implements OnInit{
         var alert:Alerta;
         if(response.error==0){
           alert = {
-            message:"Error con el servidor",
+            message:"Señal borrada",
             type:'success'
           };
         }else{
@@ -160,7 +166,7 @@ export class DragDropListComponent implements OnInit{
           this.listaLinks.push("\n"+this.senales.senales[j].enlace);
           this.imgEnlace=this.senales.senales[j].img_senal;
 
-          links=links+" \n\n"+this.senales.senales[j].enlace;
+          //links=links+" \n\n"+this.senales.senales[j].enlace;
         }
         
         this.abrirModalSenalRelevante("Alta Senal Relevante","Alta").then(
@@ -198,10 +204,9 @@ export class DragDropListComponent implements OnInit{
 
   generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links){
     var doc = new jsPDF();
-    var link, desc;
-    console.log(this.listaLinks);
-  
-   /* link=doc.splitTextToSize(links, 180);
+
+   /* var link, desc;
+    link=doc.splitTextToSize(links, 180);
     desc=doc.splitTextToSize(descripcion, 180);
     doc.text(titulo,10,20);
     doc.text("Departamento: " + departamento,10,30);
@@ -209,7 +214,6 @@ export class DragDropListComponent implements OnInit{
     doc.text("Enlaces relacionados:",10,60)
     doc.setTextColor(70, 130, 180);
     doc.text(link, 10, 65);*/
-
 
     doc.autoTable({
       headStyles: { halign: 'center'},
@@ -238,18 +242,15 @@ export class DragDropListComponent implements OnInit{
     doc.autoTable({
       headStyles: { halign: 'center'},
       head: [['Enlaces relacionados']],
-      bodyStyles: {textColor: [0, 128, 255]},
+      bodyStyles: {textColor: [0, 128, 255],  },
       body: [
           [links]
         
       ],
     })
 
-    
-  
     doc.save(nombre + '.pdf');
     
-
   }
 
   nuevaSenal(tituloRelevante:string,descripcion:string){
