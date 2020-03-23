@@ -20,5 +20,16 @@
         $result["error"]=(($query->affected_rows)>0)?0:1;
         $result["aniadido"]=$query->affected_rows;
         $query->close();
+    }else if($accion=="nueva_clasificacion"){
+        $cod_org=$data->cod_org;
+        $clasificacion=$data->clasificacion;
+
+        $sql="INSERT INTO t_clasificacion(cod_org,clasificacion) VALUES(?,?)";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("is",$cod_org,$clasificacion);
+        $query->execute();
+        $affected_rows=$query->affected_rows;
+        $query->close();
+        $result["error"]=($affected_rows==1)?1:0;        
     }
     echo json_encode($result);

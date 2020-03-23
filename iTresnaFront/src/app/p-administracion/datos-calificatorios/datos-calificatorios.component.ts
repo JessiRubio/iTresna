@@ -97,17 +97,44 @@ export class DatosCalificatoriosComponent implements OnInit{
   }
 
   guardarCambios(clasificacion:number){
-    var clasifAntiguo=this.organizacion.clasificacion[clasificacion - 1].clasificacion;
-    var clasifNuevo = this.form.controls["clasif"+clasificacion].value;
-    this.clasificacionService.actualizarClasifOrg(this.organizacion.cod_org,clasifAntiguo,clasifNuevo).subscribe(
-      res=>{
-        console.log(res)
-      },
-      err=>{
-        console.log(err);
-      }
-      
-    );
+    if(clasificacion<=this.organizacion.clasificacion.length){
+      var clasifAntiguo=this.organizacion.clasificacion[clasificacion - 1].clasificacion;
+      var clasifNuevo = this.form.controls["clasif"+clasificacion].value;
+      this.clasificacionService.actualizarClasifOrg(this.organizacion.cod_org,clasifAntiguo,clasifNuevo).subscribe(
+        response=>{
+          if(response.error==0){
+            this.cargarOrg();
+            //TODO alert
+          }else{
+            //TODO alert
+          }
+        },
+        err=>{
+          console.log(err);
+            //TODO alert
+
+        }
+        
+      );
+    }else{
+      console.log("entro aqui");
+      var clasifNuevo = this.form.controls["clasif"+clasificacion].value;
+      this.clasificacionService.nuevoClasiOrg(this.organizacion.cod_org,clasifNuevo).subscribe(
+        response=>{
+          if(response.error==0){
+            this.cargarOrg();
+            //TODO alert
+          }else{
+            //TODO alert
+          }
+        },
+        err=>{
+            //TODO alert
+          console.log(err);
+        }
+        
+      );
+    }
   }
 
   editarCampo(campoAntiguo:string){
@@ -122,9 +149,14 @@ export class DatosCalificatoriosComponent implements OnInit{
                 this.editar(this.listaCargada);
                 this.cd.detectChanges();
                 console.log(this.organizacion.clasificacion[this.listaCargada].categorias);
+              //TODO alert
+              }
+              else{
+              //TODO alert
               }
             },
             error=>{
+              //TODO alert
               console.log(error.error);
             }
           );

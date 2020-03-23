@@ -49,7 +49,14 @@ export class ClasificacionService {
     
     return this.httpClient.put(this.url,json);
   }
-
+  nuevoClasiOrg(cod_org:number,clasif:string):Observable<any>{
+    var json={
+      "accion":"nueva_clasificacion",
+      "cod_org":cod_org,
+      "clasificacion":clasif
+    };
+    return this.httpClient.post(this.url,json);
+  }
   borrarCampo(cod_org:number,clasificacion:string):Observable<any>{
     return this.httpClient.delete(this.url+"?cod_org="+cod_org
                                   +"&clasificacion="+clasificacion);
