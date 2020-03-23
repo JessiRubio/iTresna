@@ -32,11 +32,7 @@ function sendEmail($userEmail,$sarbidea){
     $mensaje = "¡Hola! \n su antigua contraseña era: \n" . $sarbidea . ". \n 
             Podra iniciar sesión con ella sin problema, pero recuerde cambiarla. \n\n Atentamente, la administración de iTresna";
 
-    $mensaje = "¡Hola! \n su antigua contraseña era: \n" + $sarbidea + ". \n 
-        Podra iniciar sesión con ella sin problema, pero recuerde cambiarla. \n\n Atentamente, la administración de iTresna";
-
-    $contact = "<p><strong>Email:</strong> $userEmail</p>";
-    $content = "<p>".$mensaje."</p>";
+    $from_email = "nnovacion@fptxurdinaga.com";
 
     $contact = "<p><strong>Email:</strong> $userEmail</p>";
     $content = "<p>$message</p>";
