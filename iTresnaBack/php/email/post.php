@@ -51,7 +51,7 @@ function sendEmail($userEmail,$sarbidea){
     $headers .= "From: $from_email\n";
     $headers .= "Reply-To: $userEmail";
 
-    mail($to_email,$email_subject,$email_body,$headers);
+    mail($userEmail,$email_subject,$email_body,$headers);
 
     $response_array['status'] = 'success';
     $response_array['from'] = $from_email;
