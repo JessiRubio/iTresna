@@ -29,24 +29,26 @@
     function sendEmail($userEmail,$sarbidea){
         include("./../conexion.php");
 
-        $mensaje = "¡Hola! \n su antigua contraseña era: \n" + $sarbidea + ". \n 
+        $mensaje = "¡Hola! \n su antigua contraseña era: \n" . $sarbidea . ". \n 
             Podra iniciar sesión con ella sin problema, pero recuerde cambiarla. \n\n Atentamente, la administración de iTresna";
 
         $from_email = "iTresnaDevelopment@gmail.com";
 
         $contact = "<p><strong>Email:</strong> $userEmail</p>";
-        $content = "<p>$message</p>";
+        $content = "<p>".$mensaje."</p>";
 
         $email_subject = "Password";
 
         $email_body = '<html><body>';
-        $email_body .= '$contact $content';
+        $email_body .= $contact;
+        $email_body .= $content;
         $email_body .= '</body></html>';
-
+        
+        $headers = "";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-        $headers .= "From: $from_email\n";
-        $headers .= "Reply-To: $userEmail";
+        $headers .= "From:".$from_email."\n";
+        $headers .= "Reply-To:".$userEmail;
 
         mail($userEmail,$email_subject,$email_body,$headers);
 
