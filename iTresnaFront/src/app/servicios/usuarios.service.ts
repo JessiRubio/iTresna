@@ -68,7 +68,9 @@ export class UsuariosService {
   }
 
 
-  nuevoUsuario(cod_usuario:string,tip_usuario:number,cod_org:number,sarbidea:string,nombre:string,ape1:string,ape2:string):Observable<any>{
+  nuevoUsuario(cod_usuario:string,tip_usuario:number,
+    cod_org:number,sarbidea:string,nombre:string,ape1:string,
+    ape2:string, datosClasificatorios:any[]):Observable<any>{
     let json={
       "accion":"nuevo_usuario",
       "cod_usuario":cod_usuario,
@@ -78,6 +80,7 @@ export class UsuariosService {
       "nombre":nombre,
       "ape1":ape1,
       "ape2":ape2,
+      "datos_clasificatorios":datosClasificatorios
     };  
     return this.httpClient.post(this.url,json);
   }
@@ -138,7 +141,8 @@ export class UsuariosService {
   }
 
 
-  modificarPerfil(nombre:string,ape1:string,ape2:string,cod_usuario:string,cod_usuarioAnterior:string, cod_org:number):Observable<any>{
+  modificarPerfil(nombre:string,ape1:string,ape2:string,cod_usuario:string,
+    cod_usuarioAnterior:string, cod_org:number,datosClasificatorios:any[]):Observable<any>{
     
     let json={
       "accion":"modificar_perfil",
@@ -147,7 +151,8 @@ export class UsuariosService {
       "ape2":ape2,
       "cod_usuario":cod_usuario,
       "cod_usuarioAnterior":cod_usuarioAnterior,
-      "cod_org":cod_org
+      "cod_org":cod_org,
+      "datos_clasificatorios":datosClasificatorios
     };  
     return this.httpClient.put(this.url,json);
   }

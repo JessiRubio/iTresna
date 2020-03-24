@@ -27,7 +27,7 @@ export class DatosCalificatoriosComponent implements OnInit{
   campoClasif:string;
 
 
-  private listaCargada:number =0;
+  private listaCargada:number=0;
 
 
   constructor(private fBuilder: FormBuilder,
@@ -53,8 +53,7 @@ export class DatosCalificatoriosComponent implements OnInit{
     this.cargarOrg();
     
   }
-
-  cargarOrg(){
+  private cargarOrg(){
     var observable:Observable<any>=this.organizacionesService.getOrganizacionActual(this.usuarioLogeado.cod_org);
     observable.subscribe(
       res=>{
@@ -78,16 +77,7 @@ export class DatosCalificatoriosComponent implements OnInit{
   editar(num:number){
     this.editarClasificacion = true;
     this.datosprevios = false;
-
-    if (num == 1){
-      this.listaCargada = 0;
-    }
-    else if(num == 2){
-      this.listaCargada = 1;
-    } 
-    else if (num == 3){
-      this.listaCargada = 2;
-    }
+    this.listaCargada=num-1;
   }
 
   guardarCambios(clasificacion:number){
@@ -111,7 +101,6 @@ export class DatosCalificatoriosComponent implements OnInit{
         
       );
     }else{
-      console.log("entro aqui");
       var clasifNuevo = this.form.controls["clasif"+clasificacion].value;
       this.clasificacionService.nuevoClasiOrg(this.organizacion.cod_org,clasifNuevo).subscribe(
         response=>{
@@ -140,10 +129,10 @@ export class DatosCalificatoriosComponent implements OnInit{
             async respose=>{
               if(respose.error==0){
                 await this.cargarOrg();
-                this.editar(this.listaCargada);
-                this.cd.detectChanges();
                 console.log(this.organizacion.clasificacion[this.listaCargada].categorias);
-              //TODO alert
+                this.cd.detectChanges();
+                
+                //TODO alert
               }
               else{
               //TODO alert
