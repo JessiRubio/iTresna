@@ -27,12 +27,7 @@ export class GestionUsuariosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     var usuario:Usuario=JSON.parse(localStorage.getItem("usuario"));
-    this.iniciarDescargaDatos(usuario);
-  }
-  private iniciarDescargaDatos(usuario:Usuario){
-    
     this.cargarOrganizacion(usuario.cod_org);
   }
   private cargarOrganizacion(cod_org:number){
@@ -43,11 +38,19 @@ export class GestionUsuariosComponent implements OnInit {
           this.organizacion=response.organizacion;
           this.organizacion.usuarios.forEach(usuario=>this.cargarUsuarios(usuario));
         }else{
-          //TODO Poner alerta error al cargar la organizacion
+          var alert:Alerta={
+            message:"No se ha podido cargar los datos.",
+            type:"warning"
+          }
+          this.abrirAlerta(alert);
         }
       },
       error=>{
-        //TODO Poner alerta error al cargar la organizacion
+        var alert:Alerta={
+          message:"Error con el servidor.",
+          type:"danger"
+        }
+        this.abrirAlerta(alert);
       }
     );
   }
@@ -60,7 +63,11 @@ export class GestionUsuariosComponent implements OnInit {
         }
       },
       error=>{
-        //TODO alerta
+        var alert:Alerta={
+          message:"Error con el servidor.",
+          type:"danger"
+        }
+        this.abrirAlerta(alert);
       }
     );
   }
@@ -153,8 +160,6 @@ export class GestionUsuariosComponent implements OnInit {
     this.abrirModal(usuario,"Modificar Usuario","Modificar").then(
       async data=>{
         if(data!=null){
-
-          
           var datosClasificatorios:Array<any>=new Array();
           for(var i = 0; i<this.organizacion.clasificacion.length;i++){
             if(data["clas"+(i+1)]!=""){
@@ -283,15 +288,29 @@ export class GestionUsuariosComponent implements OnInit {
         this.usuariosService.eliminarUsuario(usuario.cod_usuario,usuario.cod_org)
           .subscribe(
             response=>{
+              var alert:Alerta;
               if(response.error==0){
-                //TODO Alert
+                alert={
+                  message:"El usuario se ha borrado",
+                  type:"success"
+                }
+                this.cargarOrganizacion(this.organizacion.cod_org);
               }
               else{
-                //TODO Alert
+                alert={
+                  message:"El usuario no se ha podido borrar",
+                  type:"warning"
+                }
               }
+              this.abrirAlerta(alert);
             },
             error=>{
-              //TODO Alert
+              var alert:Alerta;
+              alert={
+                message:"Error con el servidor",
+                type:"danger"
+              }
+              this.abrirAlerta(alert);
             }
           );
       }
