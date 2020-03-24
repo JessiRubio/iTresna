@@ -147,7 +147,7 @@ export class PPerfilComponent implements OnInit {
         this.usuarioLogeado.cod_usuario=this.form.value.emailUsu;
       
         this.modificarPerfil(this.usuarioLogeado.nombre,this.usuarioLogeado.ape1,
-          this.usuarioLogeado.ape2,this.usuarioLogeado.cod_usuario,this.cod_usuarioAnterior, this.usuarioLogeado.cod_org );
+          this.usuarioLogeado.ape2,this.usuarioLogeado.cod_usuario,this.cod_usuarioAnterior, this.usuarioLogeado.cod_org);
         
       }
       this.form.disable();
@@ -157,7 +157,7 @@ export class PPerfilComponent implements OnInit {
   }
 
   private modificarPerfil(nombre,ape1,ape2,cod_usuario,cod_usuarioAnterior,cod_org){
-    this.usuarioService.modificarPerfil(nombre,ape1,ape2,cod_usuario,cod_usuarioAnterior,cod_org).subscribe(
+    this.usuarioService.modificarPerfil(nombre,ape1,ape2,cod_usuario,cod_usuarioAnterior,cod_org, []).subscribe(
       response=>{
         this.usuarioLogeado.nombre=nombre;
         this.usuarioLogeado.ape1=ape1;

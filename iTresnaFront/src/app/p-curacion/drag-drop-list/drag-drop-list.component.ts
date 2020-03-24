@@ -182,7 +182,7 @@ export class DragDropListComponent implements OnInit{
         this.nombreLista=this.pCuracionComponent.listaSenales[i].nombre;
 
         for (var j =0; j<this.senales.senales.length; j++){
-          this.listaLinks.push("\n"+this.senales.senales[j].enlace);
+          this.listaLinks.push(this.senales.senales[j].enlace);
           this.imgEnlace=this.senales.senales[j].img_senal;
 
           //links=links+" \n\n"+this.senales.senales[j].enlace;
@@ -221,7 +221,7 @@ export class DragDropListComponent implements OnInit{
     }
   }
 
-  generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links){
+  generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links:string[]){
     var doc = new jsPDF();
 
    /* var link, desc;
@@ -257,14 +257,15 @@ export class DragDropListComponent implements OnInit{
         ["\n"+descripcion+"\n"],
       ],
     })
-
+    links.forEach(link=>{
+      console.log(doc.link(0,0,{"url":links}));
+    });
     doc.autoTable({
       headStyles: { halign: 'center'},
       head: [['Enlaces relacionados']],
       bodyStyles: {textColor: [0, 128, 255],  },
       body: [
           [links]
-        
       ],
     })
 

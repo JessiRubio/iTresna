@@ -6,6 +6,10 @@ import { UsuariosService } from './../../../servicios/usuarios.service';
 import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 import { ModalServiceService } from '../../../servicios/modal-service.service';
 import { Observable } from 'rxjs';
+import { Alerta } from '../../../clases/alerta';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {AlertService } from '../../../servicios/alert.service';
+
 @Component({
   selector: 'gestion-usuarios',
   templateUrl: './gestion-usuarios.component.html',
@@ -18,7 +22,8 @@ export class GestionUsuariosComponent implements OnInit {
   constructor(
     private organizacionService:OrganizacionesService,
     private usuariosService:UsuariosService,
-    private modalService:ModalServiceService
+    private modalService:ModalServiceService,
+    private alertaService:AlertService
   ) { }
 
   ngOnInit() {
@@ -27,9 +32,11 @@ export class GestionUsuariosComponent implements OnInit {
     this.iniciarDescargaDatos(usuario);
   }
   private iniciarDescargaDatos(usuario:Usuario){
+    
     this.cargarOrganizacion(usuario.cod_org);
   }
   private cargarOrganizacion(cod_org:number){
+    this.listaUsuarios=[];
     this.organizacionService.getOrganizacionActual(cod_org).subscribe(
       response=>{
         if(response.error==0){
@@ -146,13 +153,21 @@ export class GestionUsuariosComponent implements OnInit {
     this.abrirModal(usuario,"Modificar Usuario","Modificar").then(
       async data=>{
         if(data!=null){
-          await this.editarPerfil(data.email,data.nombre,data.ape1,
-            data.ape2,usuario.cod_usuario,usuario.cod_org);
-            
+
+          
+          var datosClasificatorios:Array<any>=new Array();
           for(var i = 0; i<this.organizacion.clasificacion.length;i++){
-            await this.editarDatosClasificatoriosUsuario(usuario.cod_usuario,
-              this.organizacion.cod_org,this.organizacion.clasificacion[i].clasificacion,data["clas"+(i+1)]);
+            if(data["clas"+(i+1)]!=""){
+              datosClasificatorios.push(
+                {
+                  clasificacion:this.organizacion.clasificacion[i].clasificacion,
+                  categoria:data["clas"+(i+1)]
+                }
+              );
+            }
           }
+          this.editarPerfil(data.email,data.nombre,data.ape1,
+            data.ape2,usuario.cod_usuario,usuario.cod_org,datosClasificatorios);
         }
       },
       error=>{
@@ -160,40 +175,38 @@ export class GestionUsuariosComponent implements OnInit {
       }
     );
   }
-  private editarDatosClasificatoriosUsuario(cod_usuario:string,cod_org:number,tip_clasif:string,categoria:string){
-    this.usuariosService.modificarDatosClasificatorios(cod_usuario,cod_org,
-      tip_clasif,categoria).subscribe(
-        response=>{
-          if(response==0){
-            //TODO Alert
-          }
-          else{
-            //TODO Alert
-          }
-        },
-        error=>{
-          //TODO Alert
-        }
-      )
-  }
+  
   private async editarPerfil(cod_usuario:string,nombre:string,ape1:string,
-    ape2:string,cod_usuario_anterior:string,cod_org:number):Promise<any>{
-      var obser:Observable<any>= this.usuariosService.modificarPerfil(nombre,ape1,ape2,cod_usuario,
-        cod_usuario_anterior,cod_org);
-        obser.subscribe(
+    ape2:string,cod_usuario_anterior:string,cod_org:number,datosClasificatorios:any[]){
+      this.usuariosService.modificarPerfil(nombre,ape1,ape2,cod_usuario,
+        cod_usuario_anterior,cod_org,datosClasificatorios).subscribe(
           response=>{
+            var alerta:Alerta;
             if(response.error==0){
-              //TODO Alert
+              alerta={
+                message:"Perfil modificado con existo",
+                type:"success"
+              }              
+              this.cargarOrganizacion(this.organizacion.cod_org);
             }
             else{
-              //TODO Alert
+              alerta={
+                message:"No se ha podido modificar el perfil correctamente",
+                type:"warning"
+              }
             }
+            this.abrirAlerta(alerta);
           },
           error=>{
-            //TODO ALERT
+            let alerta:Alerta;
+            alerta={
+              message:"Error con el servidor",
+              type:"danger"
+            }
+            this.abrirAlerta(alerta);
+            console.log(error);
           }
         );
-      return obser.toPromise();
   }
   nuevo(){
     var usuario=new Usuario();
@@ -201,14 +214,21 @@ export class GestionUsuariosComponent implements OnInit {
     this.abrirModal(usuario,"Alta Usuario","Alta").then(
       async data=>{
         if(data!=null){
-          this.altaUsuario(data.email,data.nombre,data.ape1,data.ape2,this.organizacion.cod_org).then(
+          var datosClasificatorios:Array<any>=[];
+          for(var i = 0; i<this.organizacion.clasificacion.length;i++){
+            if(data["clas"+(i+1)]!=""){
+              datosClasificatorios.push(
+                {
+                  clasificacion:this.organizacion.clasificacion[i].clasificacion,
+                  categoria:data["clas"+(i+1)]
+                }
+              );
+            }
+          }
+          this.altaUsuario(data.email,data.nombre,data.ape1,data.ape2,this.organizacion.cod_org,datosClasificatorios).then(
             response=>{
               console.log(response);
               if(response.error==0){
-                for(var i = 0; i<this.organizacion.clasificacion.length;i++){
-                  this.editarDatosClasificatoriosUsuario(data.email,
-                    this.organizacion.cod_org,this.organizacion.clasificacion[i].clasificacion,data["clas"+(i+1)]);
-                }
                 this.cargarOrganizacion(this.organizacion.cod_org);
               }else if (response.error==2){
                 //TODO ALERT Existe usuario
@@ -229,10 +249,40 @@ export class GestionUsuariosComponent implements OnInit {
     );
   }
   private async altaUsuario(cod_usuario:string,nombre:string,ape1:string,
-    ape2:string,cod_org:number):Promise<any>{
-      var obser:Observable<any> = this.usuariosService.nuevoUsuario(cod_usuario,3,cod_org,"123",nombre,ape1,ape2);
-      this.usuariosService.nuevoUsuario(cod_usuario,3,cod_org,"123",nombre,ape1,ape2);
-      return obser.toPromise();
+    ape2:string,cod_org:number,datosClasificatorios:any[]){
+      this.usuariosService.nuevoUsuario(cod_usuario,3,cod_org,"123",nombre,ape1,ape2,datosClasificatorios)
+      .subscribe(
+        response=>{
+          var alert:Alerta;
+          if(response.error==0){
+            alert={
+              message:"Usuario añadido con exito.",
+              type:"success"
+            }
+            this.cargarOrganizacion(this.organizacion.cod_org);
+          }else if(response.error==2){
+            alert={
+              message:"Ya existe un usuario con ese correo electronico.",
+              type:"warning"
+            }
+          }else{
+            alert={
+              message:"Hubo fallos al crear el usuario.",
+              type:"warning"
+            }
+            this.cargarOrganizacion(this.organizacion.cod_org);
+          }
+          this.abrirAlerta(alert);
+        },
+        error=>{
+          var alert:Alerta={
+            message:"Error con el servidor.",
+            type:"danger"
+          }
+          this.abrirAlerta(alert);
+          console.log(error);
+        }
+      );
   }
 
   borrar(usuario:Usuario){
@@ -261,5 +311,8 @@ export class GestionUsuariosComponent implements OnInit {
           );
       }
     );
+  }
+  private abrirAlerta(alert:Alerta){
+    this.alertaService.abrirAlerta(alert);
   }
 }

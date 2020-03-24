@@ -32,6 +32,16 @@
                 $query->execute();
                 $query->close();
                 $result["error"]=0;
+
+                $datosClasificatorios=$data->datos_clasificatorios;
+                foreach($datosClasificatorios as $datoClasificatorio){
+                    $categoria=$datoClasificatorio->categoria;
+                    $clasificacion=$datoClasificatorio->clasificacion;
+                    $resultado=nuevaCategoria($cod_org,$cod_usuario,
+                    $clasificacion,$categoria);
+                    
+                    $result["error"]=$resultado?0:1;
+                }
             }else{
                 $result["error"]=2;
             }
@@ -120,5 +130,17 @@
                 }                 
             }
         return $result;
+    }
+    function nuevaCategoria($cod_org,$cod_usuario,$clasificacion,$categoria){
+        include("./../conexion.php");        
+        $sql="INSERT t_clasificacion_usuarios
+            (cod_org,tip_clasificacion,categoria,cod_usuario)
+            VALUES(?,?,?,?)";
+        $query=$conexion->prepare($sql);
+        $query->bind_param("isss",$cod_org,$clasificacion,
+            $categoria,$cod_usuario);
+        $query->execute();
+        $affected_rows=$query->affected_rows;
+        return ($affected_rows<=1 && $affected_rows>=0);
     }
 ?>
