@@ -39,6 +39,7 @@ export class DragDropListComponent implements OnInit{
     private senalesService:SenalesService,
     private pCuracionComponent:PCuracionComponent,
     private alertModalService:NgbModal,
+    private modalService:ModalServiceService,
     private modalSerive:ModalServiceService,
     ) { 
     
@@ -59,28 +60,52 @@ export class DragDropListComponent implements OnInit{
                         event.currentIndex);
     }
   }
-  
+
+
+
+  abrirModalBorrar(titulo:string,label:string,botonFin:string, botonCancel:string):Promise<any>{
+    var data=[
+      
+    ];
+    var config={
+      data:data,
+      label:label,
+      botonFin:botonFin,
+      botonCancel:botonCancel,
+      titulo:titulo
+    };
+    return this.modalService.abrirModalTexto(config);
+  }
+
   eliminarLista(){
 
-    for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
+    this.abrirModalBorrar("Borrar lista","¿Desea eliminar la lista? En el caso de tener señales también se borrarán","Si", "No").then(
+      data=>{
 
-      if(this.pCuracionComponent.listaSenales[i]===this.senales){
+        for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
+          if(this.pCuracionComponent.listaSenales[i]===this.senales){
+            if(i===0){
+              this.pCuracionComponent.listaSenales.splice(i,i+1);
+            }
+            else{
+              this.pCuracionComponent.listaSenales.splice(i,i);
+            }
+            for (var j =0; j<this.senales.senales.length; j++){
 
-        this.pCuracionComponent.listaSenales.splice(i,i-1);
+              var cod_org=this.senales.senales[j].cod_org;
+              var cod_esp=this.senales.senales[j].cod_esp;
+              var cod_cop=this.senales.senales[j].cod_cop;
+              var cod_senal=this.senales.senales[j].cod_senal;
+              this.borrarSenal(cod_org, cod_esp, cod_cop, cod_senal);
+            }
+            i=this.pCuracionComponent.listaSenales.length;
+          }
 
-        for (var j =0; j<this.senales.senales.length; j++){
-
-          var cod_org=this.senales.senales[j].cod_org;
-          var cod_esp=this.senales.senales[j].cod_esp;
-          var cod_cop=this.senales.senales[j].cod_cop;
-          var cod_senal=this.senales.senales[j].cod_senal;
-          this.borrarSenal(cod_org, cod_esp, cod_cop, cod_senal);
         }
-        i=this.pCuracionComponent.listaSenales.length;
-      }
-
-    }
-
+    
+      },  
+      error=>{ 
+      });
   }
 
   borrarSenal(cod_org:number, cod_esp:number, cod_cop:number, cod_senal:number){
@@ -90,7 +115,7 @@ export class DragDropListComponent implements OnInit{
         var alert:Alerta;
         if(response.error==0){
           alert = {
-            message:"Error con el servidor",
+            message:"Señal borrada",
             type:'success'
           };
         }else{
@@ -160,7 +185,7 @@ export class DragDropListComponent implements OnInit{
           this.listaLinks.push("\n"+this.senales.senales[j].enlace);
           this.imgEnlace=this.senales.senales[j].img_senal;
 
-          links=links+" \n\n"+this.senales.senales[j].enlace;
+          //links=links+" \n\n"+this.senales.senales[j].enlace;
         }
         
         this.abrirModalSenalRelevante("Alta Senal Relevante","Alta").then(
@@ -198,10 +223,9 @@ export class DragDropListComponent implements OnInit{
 
   generarPDF(nombre:string, titulo:string, departamento:string, descripcion:string, links){
     var doc = new jsPDF();
-    var link, desc;
-    console.log(this.listaLinks);
-  
-   /* link=doc.splitTextToSize(links, 180);
+
+   /* var link, desc;
+    link=doc.splitTextToSize(links, 180);
     desc=doc.splitTextToSize(descripcion, 180);
     doc.text(titulo,10,20);
     doc.text("Departamento: " + departamento,10,30);
@@ -209,7 +233,6 @@ export class DragDropListComponent implements OnInit{
     doc.text("Enlaces relacionados:",10,60)
     doc.setTextColor(70, 130, 180);
     doc.text(link, 10, 65);*/
-
 
     doc.autoTable({
       headStyles: { halign: 'center'},
@@ -238,18 +261,15 @@ export class DragDropListComponent implements OnInit{
     doc.autoTable({
       headStyles: { halign: 'center'},
       head: [['Enlaces relacionados']],
-      bodyStyles: {textColor: [0, 128, 255]},
+      bodyStyles: {textColor: [0, 128, 255],  },
       body: [
           [links]
         
       ],
     })
 
-    
-  
     doc.save(nombre + '.pdf');
     
-
   }
 
   nuevaSenal(tituloRelevante:string,descripcion:string){
