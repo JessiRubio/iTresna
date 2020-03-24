@@ -42,7 +42,7 @@ function sendEmail($userEmail,$sarbidea){
     $port = "465";
     $to = $userEmail;
     $email_from = "iTresna.TX@gmail.com";
-    $email_subject = "Línea de asunto aquí:";
+    $email_subject = "Itresna Password";
 
     $email_body = '<html><body>';
     $email_body .= $contact;
