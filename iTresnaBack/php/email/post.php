@@ -37,11 +37,11 @@ function sendEmail($userEmail,$sarbidea){
     $content = "<p>$message</p>";
 
     $host = "ssl://smtp.gmail.com";
-    $username = "iTresnaDevelopment@gmail.com";
-    $password = "iTresnaabcd1234";
+    $username = "iTresna.TX@gmail.com";
+    $password = "iTresna1234";
     $port = "465";
     $to = $userEmail;
-    $email_from = "iTresnaDevelopment@gmail.com";
+    $email_from = "iTresna.TX@gmail.com";
     $email_subject = "Línea de asunto aquí:";
 
     $email_body = '<html><body>';
