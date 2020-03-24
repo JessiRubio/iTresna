@@ -95,7 +95,7 @@ export class PCuracionComponent implements OnInit {
               
                 this.repetido=true;
                 let alert:Alerta = {
-                  message:"Nombre de lista repitido",
+                  message:"Nombre de lista repetido",
                   type:'danger'
                 };
                 this.abrirAlerta(alert);
@@ -121,7 +121,14 @@ export class PCuracionComponent implements OnInit {
   }
 
   finalizarCuracion(){
-    var texto = "¿Esta seguro de que quiere eliminar las " + this.eliminar.senales.length + " que contiene la lista Eliminar?";
+
+    if(this.eliminar.senales.length===0){
+      var texto = "¿Desea finalizar la curación?"
+    }
+    else{
+      var texto = "¿Esta seguro de que quiere eliminar las " + this.eliminar.senales.length + " señales que contiene la lista Eliminar?";
+    }
+    
     this.abrirModalFinalizar("Finalizar curación",texto,"Si", "No").then(
       data=>{
         
@@ -134,7 +141,7 @@ export class PCuracionComponent implements OnInit {
           response =>{
           },
           error =>{
-            window.alert("Error de conexion o fallo en servidor");
+            window.alert("Error de conexión o fallo en servidor");
           }
         );
       }

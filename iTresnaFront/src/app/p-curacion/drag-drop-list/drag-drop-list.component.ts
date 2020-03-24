@@ -39,6 +39,7 @@ export class DragDropListComponent implements OnInit{
     private senalesService:SenalesService,
     private pCuracionComponent:PCuracionComponent,
     private alertModalService:NgbModal,
+    private modalService:ModalServiceService,
     private modalSerive:ModalServiceService,
     ) { 
     
@@ -59,34 +60,52 @@ export class DragDropListComponent implements OnInit{
                         event.currentIndex);
     }
   }
-  
+
+
+
+  abrirModalBorrar(titulo:string,label:string,botonFin:string, botonCancel:string):Promise<any>{
+    var data=[
+      
+    ];
+    var config={
+      data:data,
+      label:label,
+      botonFin:botonFin,
+      botonCancel:botonCancel,
+      titulo:titulo
+    };
+    return this.modalService.abrirModalTexto(config);
+  }
+
   eliminarLista(){
+
+    this.abrirModalBorrar("Borrar lista","¿Desea eliminar la lista? En el caso de tener señales también se borrarán","Si", "No").then(
+      data=>{
+
+        for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
+          if(this.pCuracionComponent.listaSenales[i]===this.senales){
+            if(i===0){
+              this.pCuracionComponent.listaSenales.splice(i,i+1);
+            }
+            else{
+              this.pCuracionComponent.listaSenales.splice(i,i);
+            }
+            for (var j =0; j<this.senales.senales.length; j++){
+
+              var cod_org=this.senales.senales[j].cod_org;
+              var cod_esp=this.senales.senales[j].cod_esp;
+              var cod_cop=this.senales.senales[j].cod_cop;
+              var cod_senal=this.senales.senales[j].cod_senal;
+              this.borrarSenal(cod_org, cod_esp, cod_cop, cod_senal);
+            }
+            i=this.pCuracionComponent.listaSenales.length;
+          }
+
+        }
     
-    for(var i= 0; i<this.pCuracionComponent.listaSenales.length; i++){
-
-      if(this.pCuracionComponent.listaSenales[i]===this.senales){
-
-        if(i===0){
-          this.pCuracionComponent.listaSenales.splice(i,i+1);
-        }
-        else{
-          this.pCuracionComponent.listaSenales.splice(i,i);
-        }
-
-        for (var j =0; j<this.senales.senales.length; j++){
-
-          var cod_org=this.senales.senales[j].cod_org;
-          var cod_esp=this.senales.senales[j].cod_esp;
-          var cod_cop=this.senales.senales[j].cod_cop;
-          var cod_senal=this.senales.senales[j].cod_senal;
-          this.borrarSenal(cod_org, cod_esp, cod_cop, cod_senal);
-        }
-        i=this.pCuracionComponent.listaSenales.length;
-
-      }
-
-    }
-
+      },  
+      error=>{ 
+      });
   }
 
   borrarSenal(cod_org:number, cod_esp:number, cod_cop:number, cod_senal:number){
