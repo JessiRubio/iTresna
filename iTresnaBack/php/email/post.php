@@ -29,30 +29,38 @@ if($userEmail!=""){
 }
 
 function sendEmail($userEmail,$sarbidea){
-    $mensaje = "¡Hola! \n su antigua contraseña era: \n" . $sarbidea . ". \n 
+    include("./../conexion.php");
+    $mensaje = "¡Hola! \n su antigua contraseña era: \n".$sarbidea.". \n 
             Podra iniciar sesión con ella sin problema, pero recuerde cambiarla. \n\n Atentamente, la administración de iTresna";
-
-    $mensaje = "¡Hola! \n su antigua contraseña era: \n" + $sarbidea + ". \n 
-        Podra iniciar sesión con ella sin problema, pero recuerde cambiarla. \n\n Atentamente, la administración de iTresna";
-
-    $contact = "<p><strong>Email:</strong> $userEmail</p>";
-    $content = "<p>".$mensaje."</p>";
 
     $contact = "<p><strong>Email:</strong> $userEmail</p>";
     $content = "<p>$message</p>";
+
+    $host = "ssl://smtp.gmail.com";
+    $username = "iTresna.TX@gmail.com";
+    $password = "iTresna1234";
+    $port = "465";
+    $to = $userEmail;
+    $email_from = "iTresna.TX@gmail.com";
+    $email_subject = "Línea de asunto aquí:";
 
     $email_body = '<html><body>';
     $email_body .= $contact;
     $email_body .= $content;
     $email_body .= '</body></html>';
-    
+
+    $email_address = $userEmail;
+
     $headers = "";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-    $headers .= "From:".$from_email."\n";
-    $headers .= "Reply-To:".$userEmail;
+    $headers .= "From:".$email_from."\n";
+    $headers .= "Reply-To: no-reply";
 
-    mail($userEmail,$email_subject,$email_body,$headers);
+    $headers = array ('From' => $email_from, 'To' => $to, 'Subject' => $email_subject, 'Reply-To' => $email_address);
+    $smtp = Mail::factory('smtp', array ('host' => $host, 'port' => $port, 'auth' => true, 'username' => $username, 'password' => $password));
+    $mail = $smtp->send($to, $headers, $email_body,$headers);
+
 
     $response_array['status'] = 'success';
     $response_array['from'] = $from_email;
