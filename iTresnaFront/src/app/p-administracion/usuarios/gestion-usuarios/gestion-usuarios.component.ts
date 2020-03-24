@@ -225,22 +225,7 @@ export class GestionUsuariosComponent implements OnInit {
               );
             }
           }
-          this.altaUsuario(data.email,data.nombre,data.ape1,data.ape2,this.organizacion.cod_org,datosClasificatorios).then(
-            response=>{
-              console.log(response);
-              if(response.error==0){
-                this.cargarOrganizacion(this.organizacion.cod_org);
-              }else if (response.error==2){
-                //TODO ALERT Existe usuario
-              }else{
-                //TODO ALERT 
-              }
-            },
-            error=>{
-              console.log(error);
-              //TODO ALERT
-            }
-          );
+          this.altaUsuario(data.email,data.nombre,data.ape1,data.ape2,this.organizacion.cod_org,datosClasificatorios);
         }
       },
       error=>{
