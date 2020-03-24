@@ -3,12 +3,9 @@ import {Usuario, ClasificacionUsuario} from '../../../clases/usuario';
 import {Organizacion} from '../../../clases/organizacion';
 import {OrganizacionesService} from './../../../servicios/organizaciones.service';
 import { UsuariosService } from './../../../servicios/usuarios.service';
-import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 import { ModalServiceService } from '../../../servicios/modal-service.service';
-import { Observable } from 'rxjs';
 import { Alerta } from '../../../clases/alerta';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {AlertService } from '../../../servicios/alert.service';
+import { AlertService } from '../../../servicios/alert.service';
 
 @Component({
   selector: 'gestion-usuarios',
