@@ -23,12 +23,14 @@ export class ModalGenericoComponent implements OnInit {
   @Input()
   public labelModal:string;
 
-  private formGroup:FormGroup;
+  public formGroup:FormGroup;
+  public modal: NgbActiveModal;
 
   constructor(
-    private modal: NgbActiveModal,
-    private formBuilder: FormBuilder,) {
+    activeModal:NgbActiveModal,
+    public formBuilder: FormBuilder,) {
       this.formGroup=this.formBuilder.group({});
+      this.modal=activeModal;
   }
 
   ngOnInit(){

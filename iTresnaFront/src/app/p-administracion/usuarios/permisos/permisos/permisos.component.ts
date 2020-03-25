@@ -163,8 +163,8 @@ export class PermisosComponent implements OnInit {
     
   }
 
-  cargarTabla(event,cop:CopsItem){
-
+  cargarTabla(event){
+    var cop;
     var copS; 
     copS=event.target.value;
     for(var pos=0;pos<this.listaCops.length;pos++){

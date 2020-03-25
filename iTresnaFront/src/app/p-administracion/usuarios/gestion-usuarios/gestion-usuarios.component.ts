@@ -17,8 +17,8 @@ import {AlertService } from '../../../servicios/alert.service';
 })
 export class GestionUsuariosComponent implements OnInit {
 
-  private organizacion:Organizacion;
-  private listaUsuarios:Usuario[]=[];
+  organizacion:Organizacion;
+  listaUsuarios:Usuario[]=[];
   constructor(
     private organizacionService:OrganizacionesService,
     private usuariosService:UsuariosService,

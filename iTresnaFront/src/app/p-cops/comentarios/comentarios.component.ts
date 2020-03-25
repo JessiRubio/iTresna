@@ -10,7 +10,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ComentariosComponent implements OnInit {
   @Input()
   public comentarios:Comentario[];
-  constructor(private modal:NgbActiveModal) { }
+  modal:NgbActiveModal;
+  constructor( activemodal:NgbActiveModal) {
+    this.modal=activemodal;
+   }
 
   ngOnInit() {
   }

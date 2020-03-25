@@ -27,7 +27,7 @@ export class DatosCalificatoriosComponent implements OnInit{
   campoClasif:string;
 
 
-  private listaCargada:number=0;
+  listaCargada:number=0;
 
 
   constructor(private fBuilder: FormBuilder,

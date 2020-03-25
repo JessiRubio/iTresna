@@ -54,6 +54,7 @@ import { GestionUsuariosComponent } from './p-administracion/usuarios/gestion-us
 import { ComentariosComponent } from './p-cops/comentarios/comentarios.component';
 import { PermisosComponent } from './p-administracion/usuarios/permisos/permisos/permisos.component';
 import { PRecuperarContrasenaComponent } from './p-recuperar-contrasena/p-recuperar-contrasena.component';
+import { ModalAdminCopsComponent } from './modal-admin-cops/modal-admin-cops.component';
 
 @NgModule({
 
@@ -95,7 +96,8 @@ import { PRecuperarContrasenaComponent } from './p-recuperar-contrasena/p-recupe
     GestionUsuariosComponent,
     ComentariosComponent,
     PermisosComponent,
-    PRecuperarContrasenaComponent
+    PRecuperarContrasenaComponent,
+    ModalAdminCopsComponent
     
   ],
   imports: [
