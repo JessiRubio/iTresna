@@ -121,9 +121,6 @@ import { PRecuperarContrasenaComponent } from './p-recuperar-contrasena/p-recupe
   bootstrap: [AppComponent],
   entryComponents:[
     ModalSenalComponent,
-    SelectFieldComponent,
-    InputFieldComponent,
-    CheckboxFieldComponent,
     AlertGenericoComponent,
     ModalGenericoComponent,
     ComentariosComponent
