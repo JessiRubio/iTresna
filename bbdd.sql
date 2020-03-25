@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `itresna_itresna`
 --
+DROP DATABASE IF EXISTS `itresna_itresna`;
 CREATE DATABASE IF NOT EXISTS `itresna_itresna` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `itresna_itresna`;
 
