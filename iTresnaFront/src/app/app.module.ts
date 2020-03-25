@@ -123,9 +123,6 @@ import { ModalAdminCopsComponent } from './modal-admin-cops/modal-admin-cops.com
   bootstrap: [AppComponent],
   entryComponents:[
     ModalSenalComponent,
-    SelectFieldComponent,
-    InputFieldComponent,
-    CheckboxFieldComponent,
     AlertGenericoComponent,
     ModalGenericoComponent,
     ComentariosComponent

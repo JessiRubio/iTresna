@@ -137,9 +137,27 @@ export class EspaciosComponent implements OnInit {
       data=>{
         this.espaciosService.deleteEspacio(item.cod_org,item.cod_esp).subscribe(
           respose=>{
+            var alert:Alerta
             if(respose.error==0){
-              location.reload();
+              alert={
+                message:"Se ha eliminado el espacio.",
+                type:"success"
+              };
+              this.cargarListaEspacios();
+            }else{
+              alert={
+                message:"No se ha podido eliminar el espacio.",
+                type:"warning"
+              };
             }
+            this.alertaService.abrirAlerta(alert);
+          },
+          error=>{
+            var alert:Alerta={
+              message:"Error con el servidor.",
+              type:"danger"
+            };
+            this.alertaService.abrirAlerta(alert);
           }
         );
       },
