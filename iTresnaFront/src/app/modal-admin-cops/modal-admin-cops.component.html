@@ -1,6 +1,6 @@
 <ng-container class="form-row" *ngFor="let item of intData">
     <h2 class="modal-title">Administración</h2>
-    <form [formGroup]="formGroup" class="form-group"></form>
+    <form [formGroup]="formGroup" class="form-group">
         <app-input-field [(formGroup)]="formGroup"
                         [data]="item.data"
                         [controlName]="item.controlName" 

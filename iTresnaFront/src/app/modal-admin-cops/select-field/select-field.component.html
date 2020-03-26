@@ -1,9 +1,9 @@
 <form class="expand" [class]="placeHolder" [formGroup]="formGroup">
     <select class="browser-default custom-select" 
         [(value)]="selected"
-        [placeholder]='placeHolder' 
         [formControlName]='controlName'
         (selectionChange)="changeValue($event.value)">
+        <option selected>{{placeHolder}}</option>
         <option *ngFor="let item of data;let i = index" [value]="i">
             {{item.desc}}
         </option>

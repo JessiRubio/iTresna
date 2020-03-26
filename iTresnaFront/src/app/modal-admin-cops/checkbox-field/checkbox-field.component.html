@@ -1,5 +1,6 @@
-<checkbox [formGroup]="formGroup"
-    (change)="onChange($event.checked)"
-    [formControlName]='controlName'>
-    {{placeHolder}}
-</checkbox>
+<form [formGroup]="formGroup">
+    <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
+        [formControlName]='controlName' 
+        (change)="onChange($event.checked)">
+    <label class="custom-control-label" for="defaultUnchecked">{{placeHolder}}</label>
+</form>
