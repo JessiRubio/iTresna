@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>Administración</h2>
-<mat-dialog-content [formGroup]="formGroup">
-    <ng-container class="form-row" *ngFor="let item of intData">
+<ng-container class="form-row" *ngFor="let item of intData">
+    <h2 class="modal-title">Administración</h2>
+    <form [formGroup]="formGroup" class="form-group"></form>
         <app-input-field [(formGroup)]="formGroup"
                         [data]="item.data"
                         [controlName]="item.controlName" 
@@ -43,8 +43,9 @@
                         [placeHolder]="item.placeHolder" 
                         *ngIf="item.input==='numberField'">
         </app-number-field>
-    </ng-container>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-raised-button class="mat-raised-button mat-primary" [mat-dialog-close]="data" (click)="save()">Publicar</button>
-</mat-dialog-actions>
+    </form>
+    <button type="button" class="btn btn-primary" (click)="save()">Publicar</button>
+</ng-container>
+
+
+

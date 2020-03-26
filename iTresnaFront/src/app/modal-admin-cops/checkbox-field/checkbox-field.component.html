@@ -1,7 +1,5 @@
-<div [formGroup]="formGroup">
-    <mat-checkbox
-        (change)="onChange($event.checked)"
-        [formControlName]='controlName'>
-        {{placeHolder}}
-    </mat-checkbox>
-</div>
+<checkbox [formGroup]="formGroup"
+    (change)="onChange($event.checked)"
+    [formControlName]='controlName'>
+    {{placeHolder}}
+</checkbox>

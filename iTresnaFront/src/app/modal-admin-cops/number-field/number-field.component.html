@@ -1,9 +1,6 @@
-<div [formGroup]="formGroup">
-    <mat-form-field #input class="expand" [class]="placeHolder">
-            <input matInput 
-                    type="number"
-                    (input)="onChange($event.target.value)"
-                    [placeholder]='placeHolder' 
-                    [formControlName]='controlName'>
-    </mat-form-field>
-</div>
+<form [class]="placeHolder" [formGroup]="formGroup">
+    <input type="number"
+        (input)="onChange($event.target.value)"
+        [placeholder]='placeHolder' 
+        [formControlName]='controlName'>
+</form>
