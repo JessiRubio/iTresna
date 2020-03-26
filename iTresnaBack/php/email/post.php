@@ -33,7 +33,7 @@ function sendEmail($userEmail,$sarbidea){
     include("./../conexion.php");
     $mensaje = "\n\n¡Hola! su antigua contraseña era: \n".$sarbidea." \n\nPodrá iniciar sesión con ella sin problema, pero recuerde cambiarla. \n\n Atentamente, la administración de iTresna";
 
-    $contact = "Email para: $userEmail";
+    $contact = "";
     $content = "$mensaje";
 
     $host = "ssl://smtp.gmail.com";
