@@ -2,13 +2,14 @@
     <h2>Siga los pasos para recuperar su contraseña</h2>
     <form>
         <div class="form-group">
-          <label for="exampleInputEmail1">Introduzca su nombre de usuario</label>
+          <label for="exampleInputEmail1">Introduzca su email</label>
           <input type="email" class="form-control" id="exampleInputEmail1" 
-                aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="userEmail" [ngModelOptions]="{standalone: true}">
+                aria-describedby="emailHelp" placeholder="email" [(ngModel)]="userEmail" [ngModelOptions]="{standalone: true}">
           <small id="emailHelp" class="form-text text-muted">
               El formato correcto es de tipo email.
           </small>
         </div>
     </form>
-    <button type="button" class="btn btn-light" (click)="enviarEmail()">Siguiente</button>
+    <button type="button" class="btn btn-light" (click)="enviarEmail()">Enviar</button>
+    <a *ngIf="show">Recibirá un email en los próximos minutos </a>
 </section>

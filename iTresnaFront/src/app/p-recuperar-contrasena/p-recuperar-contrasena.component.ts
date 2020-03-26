@@ -9,6 +9,7 @@ import { EmailService } from '../servicios/email.service';
 export class PRecuperarContrasenaComponent implements OnInit {
 
   userEmail:string;
+  show:boolean=false;
 
   constructor(private emailService:EmailService) { 
     this.userEmail = "";
@@ -20,10 +21,13 @@ export class PRecuperarContrasenaComponent implements OnInit {
   enviarEmail(){
     this.emailService.sendEmail(this.userEmail).subscribe(
       res=>{
-        console.log(res);
+        //console.log(res);
+        if(res==="success"){
+          this.show=true;
+        }
       },
       err=>{
-        console.log(err);
+        //console.log(err);
       }
     )
   }
