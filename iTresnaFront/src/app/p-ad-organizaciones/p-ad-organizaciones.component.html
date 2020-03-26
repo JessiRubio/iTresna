@@ -1,42 +1,37 @@
-
-
-
 <div id="menu">
     <div class="localizacion">
         <p>Administración general</p>
     </div>
 </div>
 
-
-
 <section  class="filtro">
-    <mat-form-field>
-        <mat-label> Ordenar por: </mat-label>
-        <mat-select [(ngModel)]="seleccionOrden" (selectionChange)="ordenarOrganizaciones()" >
-            <mat-option [value]=1>
+    <form>
+        <label> Ordenar por: </label>
+        <select class="browser-default custom-select" [(ngModel)]="seleccionOrden" (selectionChange)="ordenarOrganizaciones()" >
+            <option [value]=1>
                 Ascendente
-            </mat-option>
-            <mat-option [value]=2>
+            </option>
+            <option [value]=2>
                 Descendente
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label> Filtrar por: </mat-label>
-        <mat-select [(ngModel)]="seleccionFiltro" (selectionChange)="filtrarOrganizaciones()" >
-            <mat-option [value]=1>
+            </option>
+        </select>
+    </form>
+    <form>
+        <label> Filtrar por: </label>
+        <select class="browser-default custom-select" [(ngModel)]="seleccionFiltro" (selectionChange)="filtrarOrganizaciones()" >
+            <option [value]=1>
                 Ninguno
-            </mat-option>
-            <mat-option [value]=2>
+            </option>
+            <option [value]=2>
                 Administrador/a
-            </mat-option>
-            <mat-option [value]=3>
+            </option>
+            <option [value]=3>
                 Organizacion
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+            </option>
+        </select>
+    </form>
 
-    <input matInput (keyup)="applyFilter($event.target.value)" [placeholder]="filtroSeleccionado()" name="filtroContacto" *ngIf="show">
+    <input (keyup)="applyFilter($event.target.value)" [placeholder]="filtroSeleccionado()" name="filtroContacto" *ngIf="show">
     
 </section>
 <section class="organizaciones">
