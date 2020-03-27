@@ -53,11 +53,11 @@
 		<div class="infoSenal">
 			<p class="etiqueta center">{{buscarEtiqueta()}}</p>
 			<p class="autor" style="text-align: center">{{senal.nombre_completo||"Anónimo"}}</p>			
-			<div class="opciones center" *ngIf="puedeBorrar()" style="padding-left: 33%; padding-right: 33%;">
+			<div class="opciones center" *ngIf="permisosShow" style="padding-left: 33%; padding-right: 33%;">
 				<button class="btn" (click)="borrar()">
 					<img src="assets/papelera.png" alt="papelera">
 				</button>
-				<button *ngIf="puedeEditar()" (click)="editar()" class="btn inline-block">
+				<button (click)="editar()" class="btn inline-block">
 					<img src="assets/edit.png" alt="papelera">
 				</button>
 			</div>

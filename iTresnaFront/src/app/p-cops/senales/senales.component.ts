@@ -27,6 +27,7 @@ export class SenalesComponent implements OnInit {
   str: string;
   cod_coment:number=15;
   mostrarEnvio:boolean=false;
+  permisosShow:boolean=false;
   
   @Input() senal:SenalesItem;
   @Input() comentario:Comentario;
@@ -55,6 +56,7 @@ export class SenalesComponent implements OnInit {
 
     });
     this.cargarComentarios();
+    this.tienePermisos();
   }
 
   cargarComentarios(){
@@ -116,29 +118,20 @@ export class SenalesComponent implements OnInit {
     this.mostrarEnvioComentarios();
   }
 
-  puedeEditar():boolean{
-    if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario||this.usuarioLogeado.tip_usuario<=2){
-      return true;
-    }else{
-      var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
-      if(permisos.length>0){
-        return permisos[0].ind_admin;
-      }
-      return false;
+  tienePermisos(){
+    if(this.usuarioLogeado.cod_usuario===this.senal.cod_usuario){
+      this.permisosShow=true;
+    }else if(this.usuarioLogeado.tip_usuario==1){
+      this.permisosShow=true;
     }
-  }
-
-  puedeBorrar():boolean{
-    if(this.usuarioLogeado.cod_usuario==this.senal.cod_usuario 
-      || this.usuarioLogeado.tip_usuario<=2){
-      return true;
-    }else{
-      var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
-      if(permisos.length>0){
-        return permisos[0].ind_admin;
+    else{
+      for(var i=0;i<this.usuarioLogeado.permisos.length;i++){
+        if(this.usuarioLogeado.permisos[i].cod_cop==this.cod_cop && this.usuarioLogeado.permisos[i].ind_admin===true){
+          this.permisosShow=true;
+          break;
+        }
       }
-      return false;
-    }
+    } 
   }
 
   editar(){
