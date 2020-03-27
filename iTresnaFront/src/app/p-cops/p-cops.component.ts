@@ -123,14 +123,20 @@ export class PCopsComponent implements OnInit {
   }
 
   tienePermisos(){
-    if(this.usuarioLogeado.permisos.length>0){
-      for(var i=0;i<this.usuarioLogeado.permisos.length;i++){
-        if(this.usuarioLogeado.permisos[i].cod_cop===this.cop.cod_cop && this.usuarioLogeado.permisos[i].ind_admin===true){
-          this.permisosShow=true;
-          break;
+    if(this.usuarioLogeado.tip_usuario==2){
+      this.permisosShow=true;
+    }else{
+      if(this.usuarioLogeado.permisos.length>0){
+        for(var i=0;i<this.usuarioLogeado.permisos.length;i++){
+          if(this.usuarioLogeado.permisos[i].cod_cop===this.cop.cod_cop 
+            && this.usuarioLogeado.permisos[i].ind_admin===true){
+            this.permisosShow=true;
+            break;
+          }
         }
       }
     }
+    
   }
 
   ordenar(valorSelect:String){

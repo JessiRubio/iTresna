@@ -13,27 +13,26 @@
 
 
 <div class="opciones" *ngIf="curando==false">
-        <mat-label class = "ordenar">Ordenar por:
-            <mat-select value="0" class="matSelect" name="filtro" class="filtrar" (selectionChange)="ordenar($event.value)">
-                <mat-option value="0"> Por fecha descendente</mat-option>
-                <mat-option value="1" > Por fecha ascendente</mat-option>
-                <mat-option value="2" > Por Usuario descendente</mat-option>
-                <mat-option value="3" > Por Usuario ascendente</mat-option>
-            </mat-select>
-        </mat-label>
-        <mat-label class = "filtros">Filtrar por:
-            <mat-select value="0" name="filtroEtiquetas"  class="filtrar" (selectionChange)="filtrarEtiquetas($event.value)">
-                <mat-option value="0">Todas las etiquetas</mat-option>
-                <mat-option *ngFor="let item of cop.etiquetas;let i = index" value='{{i+1}}'>{{item.desc_etiqueta}}</mat-option>             
-            </mat-select>
-            <mat-select value="0" name="filtroUsuarios"  class="filtrar" (selectionChange)="filtrarUsuarios($event.value)"  >
-                <mat-option value="0">Todos los usuarios</mat-option>
-                <mat-option *ngFor="let item of cop.usuarios;let i = index" value='{{i+1}}'>{{item}}</mat-option>
-            </mat-select>
-        </mat-label>
-        
-        <button class="botonCurar btn btn-primary" *ngIf="permisosShow" (click)="curar()">Curar señales de la Cop</button>
-        
+    <label class="label-separator" for="ordenar">Ordenar por:</label>
+    <select class="filtrar custom-select"
+        (selectionChange)="ordenar($event.value)">
+        <option  value="0">fecha descendente</option>
+        <option  value="1">fecha ascendente</option>
+        <option  value="2">usuario descendente</option>
+        <option  value="3">usuario ascendente</option>
+    </select>
+    <label class="label-separator" for="ordenar">Filtrar por:</label>
+    <select class="filtrar custom-select"
+        (selectionChange)="filtrarEtiquetas($event.value)">
+        <option value="0">Todas las etiquetas</option>
+        <option *ngFor="let item of cop.etiquetas;let i = index" value='{{i+1}}'>{{item.desc_etiqueta}}</option>             
+    </select>
+    <select class="filtrar custom-select"
+        (selectionChange)="filtrarUsuarios($event.value)">
+        <option value="0">Todas los usuarios</option>        
+        <option *ngFor="let item of cop.usuarios;let i = index" value='{{i+1}}'>{{item}}</option>
+    </select>
+    <button class="botonCurar btn btn-primary" *ngIf="permisosShow" (click)="curar()">Curar señales de la Cop</button>
 </div>
 <div *ngIf="curando==true">
     <app-p-curacion [senales]="listaSenales"></app-p-curacion>
