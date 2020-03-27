@@ -120,23 +120,7 @@ export class PCopsComponent implements OnInit {
 
       }
     );   
-
-    
   }
-
-  /*
-  tienePermisos():boolean{
-    var cod_org_actual=this.cop.cod_org;
-    var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
-    if(permisos.length>0){
-      return permisos[0].ind_admin||this.usuarioLogeado.tip_usuario==1||
-        cod_org_actual==this.usuarioLogeado.cod_org;
-    }
-    return this.usuarioLogeado.tip_usuario==1||
-      cod_org_actual==this.usuarioLogeado.cod_org;
-  }
-  */
-
 
   tienePermisos(){
     if(this.usuarioLogeado.permisos.length>0){
