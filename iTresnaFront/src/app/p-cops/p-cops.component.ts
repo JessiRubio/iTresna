@@ -36,6 +36,7 @@ export class PCopsComponent implements OnInit {
   selected: string = '';
   filtroEtiqueta:number=-1;
   filtroUsuario:number=-1;
+  permisosShow:boolean=false;
   
   listaCops:CopsItem[]=[];
   curando=false;
@@ -63,7 +64,9 @@ export class PCopsComponent implements OnInit {
       this.cargarCop();
       this.cargarSenales();
       this.cargarCopsDeEsp();
+      
     });
+    
   }
   cargarCopsDeEsp(){
     this.copsService.getCops(this.usuarioLogeado.cod_org,this.cod_esp,this.usuarioLogeado.cod_usuario)
@@ -96,6 +99,7 @@ export class PCopsComponent implements OnInit {
         res=>{  
           if(res.error==0){
             this.cop=res.cop;
+            this.tienePermisos();
           }
         },
         err=>{
@@ -120,12 +124,7 @@ export class PCopsComponent implements OnInit {
     
   }
 
-  cambiarCopSeleccion(i:number){
-    if(this.cod_cop=i){
-      this.cod_cop=i;
-    }
-  }
-  
+  /*
   tienePermisos():boolean{
     var cod_org_actual=this.cop.cod_org;
     var permisos=this.usuarioLogeado.permisos.filter(x=>x.cod_esp===this.cod_esp && x.cod_cop===this.cod_cop);
@@ -135,6 +134,19 @@ export class PCopsComponent implements OnInit {
     }
     return this.usuarioLogeado.tip_usuario==1||
       cod_org_actual==this.usuarioLogeado.cod_org;
+  }
+  */
+
+
+  tienePermisos(){
+    if(this.usuarioLogeado.permisos.length>0){
+      for(var i=0;i<this.usuarioLogeado.permisos.length;i++){
+        if(this.usuarioLogeado.permisos[i].cod_cop===this.cop.cod_cop && this.usuarioLogeado.permisos[i].ind_admin===true){
+          this.permisosShow=true;
+          break;
+        }
+      }
+    }
   }
 
   ordenar(valorSelect:String){

@@ -31,9 +31,9 @@
                 <mat-option *ngFor="let item of cop.usuarios;let i = index" value='{{i+1}}'>{{item}}</mat-option>
             </mat-select>
         </mat-label>
-        <a *ngIf="tienePermisos()">
-            <button class="botonCurar btn btn-primary" (click)="curar()">Curar señales de la Cop</button>
-        </a>
+        
+        <button class="botonCurar btn btn-primary" *ngIf="permisosShow" (click)="curar()">Curar señales de la Cop</button>
+        
 </div>
 <div *ngIf="curando==true">
     <app-p-curacion [senales]="listaSenales"></app-p-curacion>
