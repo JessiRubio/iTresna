@@ -183,7 +183,7 @@ export class PAdOrganizacionesComponent implements OnInit {
   nueva(){
     var organizacion=new Organizacion();
     organizacion.usuarios=[];
-    this.abrirModal(organizacion,"Alta Organizacion","Alta",organizacion.contacto).then(
+    this.abrirModal(organizacion,"Alta Organizacion","Aceptar",organizacion.contacto).then(
       data=>{
         if(data!=null){
           var file="";
@@ -303,25 +303,25 @@ export class PAdOrganizacionesComponent implements OnInit {
       {
         input:"inputField",
         controlName:"nombre",
-        placeHolder:"Escribe el nombre de la org",
+        placeHolder:"Nombre",
         data:item.desc_org
       },
       {
         input:"inputField",
         controlName:"descripcion",
-        placeHolder:"Escribe la descripcion de la org",
+        placeHolder:"Presentación",
         data:item.eslogan_org
       },
       {
         input:"fileField",
         controlName:"imagen",
-        placeHolder:"Selecciona un archivo",
+        placeHolder:"Logo",
         data:""
       },
       {
         input:"inputField",
         controlName:"enlace",
-        placeHolder:"Escribe en enlace a la org",
+        placeHolder:"Pagina Web",
         data: item.enlace_org
       },
       {
