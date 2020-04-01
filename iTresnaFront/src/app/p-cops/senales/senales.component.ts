@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 import { ComentariosService } from './../../servicios/comentarios.service';
 import {UsuariosService} from './../../servicios/usuarios.service';
 import { ModalServiceService } from '../../servicios/modal-service.service';
+import { Alerta } from '../../clases/alerta';
+import { AlertService } from '../../servicios/alert.service';
 
 
 @Component({
@@ -44,7 +46,8 @@ export class SenalesComponent implements OnInit {
     private comentariosService:ComentariosService,
     private usuarioService:UsuariosService,
     private dialog:MatDialog,
-    private modalService:ModalServiceService
+    private modalService:ModalServiceService,
+    private alertService:AlertService
     ) {
    }
 
@@ -144,22 +147,34 @@ export class SenalesComponent implements OnInit {
           this.senal.cod_etiqueta=this.etiquetas.find(x=>x.desc_etiqueta==data.etiqueta).cod_etiqueta;
           this.senalesService.modificarSenal(this.senal).subscribe(
             response=>{
+              var alert:Alerta;
               if(response.error!=0){
-                window.alert("No se ha podido modificar la senñal");
+                alert = {
+                  message:"Señal modificada correctamente.", 
+                  type:'success'
+                };
               }
               else{
-                window.alert("Señal modificada correctamente");
+                alert = {
+                  message:"No se ha podido añadir la señal.", 
+                  type:'warning'
+                };
               }
+              this.alertService.abrirAlerta(alert);
             },
             error=>{
-              console.error(error);
-              window.alert("Error de conexion o fallo en servidor");
+              let alert:Alerta = {
+                message:"Error con el servidor",
+                type:'danger'
+              };
+              this.alertService.abrirAlerta(alert);
             }
           );
         }
       }
     );
   }
+
 
   comentarios(){
     this.modalService.abrirModalComentarios(this.listaComentarios);
@@ -169,16 +184,30 @@ export class SenalesComponent implements OnInit {
 
     this.abrirModalEliminar("Eliminar señal","¿Desea eliminar la señal?","Si", "No").then(
       data=>{
-
         this.senalesService.deleteSenal(this.senal).subscribe(
           response =>{
-            if (response.error ==1){
-            }else{
+            var alert:Alerta;
+            if (response.error == 1){
+              alert = {
+                message:"No se ha podido añadir la señal.", 
+                type:'warning'
+              };
+            }
+            else{
+              alert = {
+                message:"Señal modificada correctamente.", 
+                type:'success'
+              };
               location.reload();
             }
+            this.alertService.abrirAlerta(alert);
           },
           error =>{
-            window.alert("Error de conexion o fallo en servidor");
+            let alert:Alerta = {
+              message:"Error con el servidor",
+              type:'danger'
+            };
+            this.alertService.abrirAlerta(alert);
           }
         );
         location.reload();

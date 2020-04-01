@@ -318,6 +318,7 @@ export class PCopsComponent implements OnInit {
                         message:"Señal añadida correctamente.", 
                         type:'success'
                       };
+                      this.cargarSenales();
                     }
                     else{
                       alert = {
