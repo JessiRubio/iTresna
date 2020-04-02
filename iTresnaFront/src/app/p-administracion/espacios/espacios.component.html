@@ -10,22 +10,18 @@
             <td>{{item.desc_esp}}</td>
             <td>{{item.orden}}</td>
             <td>
-                <button (click)="editar(item.cod_org,item.cod_esp)" class="boton">
+                <button (click)="editar(item.cod_org,item.cod_esp)" class="boton btnTabla" >
                     <img class="papelera" src="assets/edit.png" alt="papelera">
                 </button>
             </td>
             <td>
-                <button (click)="borrar(item)">
+                <button (click)="borrar(item)" class="btnTabla">
                     <img class="papelera" src="assets/papelera.png" alt="papelera">
                 </button>
             </td>
         </tr>
-        <tr>
-            <td colspan="4">
-                <button (click)="addEspacio()" class="btnAñadir">
-                    <p>AÑADIR</p>
-                </button>
-            </td>
-        </tr>
     </table>
+    <button (click)="addEspacio()" class="btnAñadir btn btn-primary">
+        <p>Añadir espacio</p>
+    </button>
 </section>

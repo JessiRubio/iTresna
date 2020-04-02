@@ -19,29 +19,25 @@
             <tr *ngFor="let item of cops;let i=index"  class="fila">
                 <td>{{item.desc_cop}}</td>
                 <td>
-                    <button (click)="gestionarEtiquetas(i)">
+                    <button (click)="gestionarEtiquetas(i)" class="btnTabla">
                         <img src="./../../../assets/edit-etiquetas.png" alt="etiqueta">
                     </button>
                 </td>
                 <td>
-                    <button (click)="editar(item.cod_org,item.cod_esp,item.cod_cop)">
+                    <button (click)="editar(item.cod_org,item.cod_esp,item.cod_cop)" class="btnTabla">
                         <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
                     </button>
                 </td>
                 <td>
-                    <button (click)="borrar(item)">
+                    <button (click)="borrar(item)" class="btnTabla">
                         <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
                     </button>
                 </td>
             </tr>
-            <tr>
-                <td colspan="4">
-                    <button (click)="addCop()"class="btnAñadir">
-                        <p>AÑADIR</p>
-                    </button>
-                </td>
-            </tr>
         </table>
+        <button (click)="addCop()"class="btnAñadir btn btn-primary">
+            <p>Añadir cop<p>
+        </button>
     </div>
     <div class="tablaEtiquetas" *ngIf="showEtiquetas">
 
@@ -61,29 +57,20 @@
             <tr *ngFor="let item of etiquetas"  class="fila">
                 <td>{{item.desc_etiqueta}}</td>
                 <td>
-                    <button (click)="editarEtiqueta(item)">
+                    <button (click)="editarEtiqueta(item)" class="btnTabla">
                         <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
                     </button>
                 </td>
                 <td>
-                    <button (click)="borrarEtiqueta(item)">
+                    <button (click)="borrarEtiqueta(item)" class="btnTabla">
                         <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
                     </button>
                 </td>
             </tr>
-
-            <tr>
-                <td colspan="4">
-                    <button (click)="addEtiqueta()"class="btnAñadir">
-                        <p>AÑADIR</p>
-                    </button>
-                </td>
-            </tr>
-
         </table>
-
-
-
+        <button (click)="addEtiqueta()"class="btnAñadir btn btn-primary">
+            <p>Añadir etiqueta</p>
+        </button>
     </div>
 
 

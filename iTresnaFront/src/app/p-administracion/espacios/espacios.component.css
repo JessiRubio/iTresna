@@ -36,10 +36,10 @@ table tr th{
     border-bottom: 1px solid black;
 }
 
-button{
+.btnTabla{
     background: transparent;
     border-radius: 0.75rem;
-}
+ }
 
 .nombre{
     width: 50%;
@@ -53,6 +53,7 @@ img{
 }
 
 .btnAñadir{
-    width: 100%;
-    background-color: var(--colorCopsActivas);
+    width: auto;
+    margin: 2%;
+    /*background-color: var(--colorCopsActivas);*/
 }

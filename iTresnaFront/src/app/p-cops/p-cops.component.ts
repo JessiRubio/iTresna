@@ -275,7 +275,7 @@ export class PCopsComponent implements OnInit {
       {
         input:"inputField",
         controlName:"descripcion",
-        placeHolder:"Escribe una descripcion a la cop",
+        placeHolder:"Escribe una descripción a la señal",
         data:""
       },
       {
@@ -318,7 +318,6 @@ export class PCopsComponent implements OnInit {
                         message:"Señal añadida correctamente.", 
                         type:'success'
                       };
-                      this.cargarSenales();
                     }
                     else{
                       alert = {
