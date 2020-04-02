@@ -1,18 +1,17 @@
 /*Menu espacios y cops*/
 #menu{
+    width: 100%;
     list-style-type: none;
-    margin: 2em;
-    margin-top: 7.5em;
+    margin:0;
+    margin-top: 5em;
     background-color: #760f82;
-    border-radius: 1em;
     color: white;
     padding: 0%;
 }
 .atras{
-    width: 30%;
     display: inline-block;
 }
-.atras img{
+img{
     position: relative;
     height: 30px;
     width: 30px;
@@ -24,11 +23,9 @@
 }
 .localizacion{
     padding: 1%;
-    width: 70%;
-    margin: 0%;
+    width: 90%;
     display: inline-block;
-    margin: auto;
-    text-align: left;
+    text-align: center;
 }
 .localizacion>*{
     margin: 0;
