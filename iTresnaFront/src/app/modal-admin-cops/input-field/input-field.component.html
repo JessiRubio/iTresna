@@ -1,5 +1,5 @@
 <form [class]="placeHolder" [formGroup]="formGroup">
-        <input matInput (input)="onChange($event.target.value)"
+        <input (input)="onChange($event.target.value)"
                 [placeholder]='placeHolder' 
                 [formControlName]='controlName'>
 </form>

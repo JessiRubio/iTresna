@@ -1,9 +1,8 @@
 section{
-    margin-top: 2%;
-    padding: 2%;
-    padding-top: 0;
+    margin: 1%;
+    margin-bottom: 3%;
+    text-align: center;
 }
-
 p{
     width: 45%;
     display: inline-block;
@@ -12,18 +11,26 @@ p{
 }
 
 form{
-    width: auto;
+    width: 100%;
+    min-width: 45em;
+    padding: 5%;
+    padding-top: 0;
+    margin:auto;
     display: inline-block;
+    text-align: center;
+}
+form>div>*{
+    display: inline-block;
+    margin-left:1%;
 }
 
 input{
-    display: inline-block;
+    max-width: 15em;
 }
 
-button{
+.btnItem{
     width: auto;
     margin-left: 5%;
-    background-color: transparent;
     display: inline-block;
     vertical-align: top;
     border-radius: 10px;
@@ -51,11 +58,6 @@ img{
     background: transparent;
 }
 
-.btnAñadir{
-    width: 100%;
-    text-align: left;
-    background-color: var(--colorCopsActivas);
-}
 
 .guardar{
     margin-left: 5%;

@@ -1,56 +1,51 @@
 <section *ngIf="datosprevios">
-        
     <form [formGroup]="form">
-        <p>Campo Clasificatorio 1:</p>
-        <mat-form-field id="clasif1">
-            <input matInput
-                formControlName="clasif1"/>
-        </mat-form-field>
-        <button (click)="editar(1)"> 
-            <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
-        </button>
-        <button (click)="guardarCambios(1)"> 
-            <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
-        </button>
-        <button (click)="borrar(1)"> 
-            <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
-        </button>
+        <div class="calsif">
+            <label>Campo Clasificatorio 1:</label>
+            <input type="text" class="form-control" formControlName="clasif1" >
+            <button class="btnItem" (click)="editar(1)"> 
+                <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
+            </button>
+            <button class="btnItem" (click)="guardarCambios(1)"> 
+                <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
+            </button>
+            <button class="btnItem" (click)="borrar(1)"> 
+                <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
+            </button>
+        </div>
+        <div class="calsif">
+            <label>Campo Clasificatorio 2:</label>
+            <input type="text" class="form-control" formControlName="clasif2" >
+            <button class="btnItem" (click)="editar(2)"> 
+                <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
+            </button>
+            <button class="btnItem" (click)="guardarCambios(2)"> 
+                <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
+            </button>
+            <button class="btnItem" (click)="borrar(2)"> 
+                <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
+            </button>
+        </div>
+        <div class="calsif">
+            <label>Campo Clasificatorio 3:</label>
+            <input type="text" class="form-control" formControlName="clasif3" >
+            <button class="btnItem" (click)="editar(3)"> 
+                <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
+            </button>
+            <button class="btnItem" (click)="guardarCambios(3)"> 
+                <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
+            </button>
+            <button class="btnItem" (click)="borrar(3)"> 
+                <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
+            </button>
+        </div>
 
-        <p>Campo Clasificatorio 2:</p>
-        <mat-form-field id="clasif1">
-            <input matInput
-                formControlName="clasif2">
-        </mat-form-field>
-        <button (click)="editar(2)"> 
-            <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
-        </button>
-        <button (click)="guardarCambios(2)"> 
-            <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
-        </button>
-        <button (click)="borrar(2)"> 
-            <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
-        </button>
-
-        <p>Campo Clasificatorio 3:</p>
-        <mat-form-field id="clasif3">
-            <input matInput
-                formControlName="clasif3">
-        </mat-form-field>
-        <button (click)="editar(3)"> 
-            <img class="papelera" src="./../../../assets/edit-etiquetas.png" alt="papelera">
-        </button>
-        <button (click)="guardarCambios(3)"> 
-            <img class="papelera" src="./../../../assets/edit.png" alt="papelera">
-        </button>
-        <button (click)="borrar(3)"> 
-            <img class="papelera" src="./../../../assets/papelera.png" alt="papelera">
-        </button>
     </form>
 </section>
 
 <section *ngIf="editarClasificacion" >
 
-    <button (click)="atrasClasificacion()" >
+    <button class="btnItem" (click)="atrasClasificacion()" >
         <img src="./../../../assets/atras.svg" alt="atras">
     </button>
 
@@ -64,23 +59,20 @@
         <tr *ngFor="let item of listaClasif[listaCargada];let i=index">
             <td>{{item}}</td>
             <td>
-                <button (click)="editarCampo(item)">
+                <button class="btnItem" (click)="editarCampo(item)">
                     <img  src="./../../../assets/edit.png" alt="papelera">
                 </button>
             </td>
             <td>
-                <button (click)="borrarCampo(item)">
+                <button class="btnItem" (click)="borrarCampo(item)">
                     <img src="./../../../assets/papelera.png" alt="papelera">
                 </button>
             </td>
 
         </tr>
-        <tr>
-            <td colspan="3">
-                <button  class="btnAñadir" (click)="anadircampo()">
-                    <p>AÑADIR</p> 
-                </button>
-            </td>
-        </tr>
     </table>
+    <br>
+    <button class="btn btn-primary" (click)="anadircampo()">
+        AÑADIR
+    </button>
 </section>
