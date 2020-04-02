@@ -27,9 +27,11 @@ img{
 
 .btnAñadir{
     width: auto;
+    height: 40px;
     margin: 2%;
-    /*background-color: var(--colorCopsActivas);*/
 }
+
+
 
 .filtro{
     text-align: center;

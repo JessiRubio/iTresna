@@ -53,7 +53,7 @@ img{
 }
 
 .btnAñadir{
-    width: auto;
+    width: auto; 
+    height: 40px;
     margin: 2%;
-    /*background-color: var(--colorCopsActivas);*/
 }
