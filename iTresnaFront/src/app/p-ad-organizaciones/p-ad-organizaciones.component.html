@@ -4,34 +4,33 @@
     </div>
 </div>
 
-<section  class="filtro">
-    <form>
-        <label> Ordenar por: </label>
-        <select class="browser-default custom-select" [(ngModel)]="seleccionOrden" (selectionChange)="ordenarOrganizaciones()" >
-            <option [value]=1>
-                Ascendente
-            </option>
-            <option [value]=2>
-                Descendente
-            </option>
-        </select>
-    </form>
-    <form>
-        <label> Filtrar por: </label>
-        <select class="browser-default custom-select" [(ngModel)]="seleccionFiltro" (selectionChange)="filtrarOrganizaciones()" >
-            <option [value]=1>
-                Ninguno
-            </option>
-            <option [value]=2>
-                Administrador/a
-            </option>
-            <option [value]=3>
-                Organizacion
-            </option>
-        </select>
-    </form>
-
-    <input (keyup)="applyFilter($event.target.value)" [placeholder]="filtroSeleccionado()" name="filtroContacto" *ngIf="show">
+<section class="filtro">
+    <label> Ordenar por: </label>
+    <select class="browser-default custom-select" 
+        [(ngModel)]="seleccionOrden" 
+        (change)="ordenarOrganizaciones()" >
+        <option [value]=1>
+            Nombre Ascendente
+        </option>
+        <option [value]=2>
+            Nombre Descendente
+        </option>
+    </select>
+    <label> Filtrar por: </label>
+    <select class="browser-default custom-select" 
+        [(ngModel)]="seleccionFiltro" 
+        (change)="filtrarOrganizaciones()" >
+        <option [value]=1>
+            Ninguno
+        </option>
+        <option [value]=2>
+            Administrador/a
+        </option>
+        <option [value]=3>
+            Organizacion
+        </option>
+    </select>
+    <input class="form-control" (keyup)="applyFilter($event.target.value)" [placeholder]="filtroSeleccionado()" name="filtroContacto" *ngIf="show">
     
 </section>
 <section class="organizaciones">

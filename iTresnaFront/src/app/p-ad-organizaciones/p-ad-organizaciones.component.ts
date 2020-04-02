@@ -82,13 +82,13 @@ export class PAdOrganizacionesComponent implements OnInit {
     this.show=this.seleccionFiltro!=1;
   }
   ordenarOrganizaciones(){
-    switch(this.seleccionOrden){
-      case 1:
+    switch(this.seleccionOrden+""){
+      case "1":
         this.listaOrgMostradas=this.listaOrgMostradas.sort((a,b)=>{
           return a.desc_org.localeCompare(b.desc_org);
         });
         break;
-      case 2:
+      case "2":
           this.listaOrgMostradas=this.listaOrgMostradas.sort((a,b)=>{
             return a.desc_org.localeCompare(b.desc_org)*-1;
           });
@@ -98,21 +98,21 @@ export class PAdOrganizacionesComponent implements OnInit {
     }
   }
   applyFilter(filter:string){
-    switch(this.seleccionFiltro){
-      case 2:
+    switch(this.seleccionFiltro+""){
+      case "2":
         
         this.listaOrgMostradas=this.listaOrganizacion.filter(x=>{
           if(filter!==""){
             if(x.contacto==null){
               return false;
             }else{
-              return x.contacto.toLowerCase().indexOf(filter)!=-1;
+              return x.contacto.toLowerCase().indexOf(filter.toLowerCase())!=-1;
             }
           }
           return true;
         });
         break;
-      case 3:
+      case "3":
     
         this.listaOrgMostradas=this.listaOrganizacion.filter(x=>{
           if(filter!==""){

@@ -38,19 +38,17 @@ img{
 }
 
 .filtro *{
-    width: 30%;
     margin: 1%;
     padding: 0%;
     display: inline-block;
     text-align: center;
+    min-width: 11em;
+    max-width: 12em;
 }
 
 .filtro input{
-
-    margin-bottom: 2.5%;
-    border-bottom: 1px solid black;
+    text-align: center;
 }
-
 #menu{
     list-style-type: none;
     margin: 2em;
