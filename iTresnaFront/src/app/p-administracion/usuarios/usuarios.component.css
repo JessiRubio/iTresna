@@ -52,9 +52,9 @@ img{
 
 .btnAñadir{
     width: 100%;
-    background-color: var(--colorCopsActivas);
+    height: 40px;
+    
 }
-
 .filtro{
     text-align: center;
     width: 40%;
