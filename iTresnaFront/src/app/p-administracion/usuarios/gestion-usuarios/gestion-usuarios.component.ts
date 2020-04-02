@@ -216,7 +216,18 @@ export class GestionUsuariosComponent implements OnInit {
     this.abrirModal(usuario,"Alta Usuario","Alta").then(
       async data=>{
         if(data!=null){
-          var datosClasificatorios:Array<any>=[];
+
+          if(data.email===null||data.nombre===null|| data.ape1===null|| data.ape2===null){
+            this.nuevo();
+            var alert:Alerta={
+              message:"Hay campos vacíos.",
+              type:"warning"
+            }
+            this.abrirAlerta(alert);
+
+
+          }else{
+            var datosClasificatorios:Array<any>=[];
           for(var i = 0; i<this.organizacion.clasificacion.length;i++){
             if(data["clas"+(i+1)]!=""){
               datosClasificatorios.push(
@@ -228,6 +239,8 @@ export class GestionUsuariosComponent implements OnInit {
             }
           }
           this.altaUsuario(data.email,data.nombre,data.ape1,data.ape2,this.organizacion.cod_org,datosClasificatorios);
+          }
+          
         }
       },
       error=>{
@@ -257,6 +270,7 @@ export class GestionUsuariosComponent implements OnInit {
               message:"Hubo fallos al crear el usuario.",
               type:"warning"
             }
+            this.nuevo();
             this.cargarOrganizacion(this.organizacion.cod_org);
           }
           this.abrirAlerta(alert);

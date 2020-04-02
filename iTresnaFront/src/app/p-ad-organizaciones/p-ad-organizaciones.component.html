@@ -60,27 +60,23 @@
                 {{item.contacto}}
             </td>
             <td>
-                <button (click)="editar(item)">
+                <button (click)="editar(item)" class="btnTabla">
                     <img src="assets/edit.png" alt="img">
                 </button>
             </td>
             <td>
-                <button (click)="administrar(item)">
+                <button (click)="administrar(item)" class="btnTabla">
                     <img src="assets/edit-etiquetas.png" alt="img">
                 </button>
             </td>
             <td>
-                <button (click)="borrar(item)">
+                <button (click)="borrar(item)" class="btnTabla">
                     <img src="assets/papelera.png" alt="img">
                 </button>
             </td>
         </tr>
-        <tr>
-            <td colspan="5">
-                <button (click)="nueva()" class="btnAñadir">
-                    <p>AÑADIR</p>
-                </button>
-            </td>
-        </tr>
     </table>
+    <button (click)="nueva()" class="btnAñadir btn btn-primary">
+        <p>Añadir organización</p>
+    </button>
 </section>

@@ -36,19 +36,19 @@
             <td *ngIf="organizacion.clasificacion.length<2"></td>
             <td *ngIf="organizacion.clasificacion.length<3  "></td>
             <td>
-                <button (click)="editar(usuario)" class="btn">
+                <button (click)="editar(usuario)" class="btnTabla">
                     <img class="papelera" src="assets/edit.png" alt="papelera">
                 </button>
             </td>
             <td>
-                <button (click)="borrar(usuario)" class="btn">
+                <button (click)="borrar(usuario)" class="btnTabla" >
                     <img class="papelera" src="assets/papelera.png" alt="papelera">
                 </button>
             </td>
         </tr>
         
     </table>
-    <button (click)="nuevo()" class="btnAnadir">
-        <p>AÑADIR</p>
+    <button (click)="nuevo()" class="btnAnadir btn btn-primary">
+        <p>Añadir usuario</p>
     </button>
 </section>

@@ -21,7 +21,10 @@ th{
     border-bottom: 1px solid;
 }
 .btnAnadir{
-    width: 100%;
+    width: auto;
+    margin: 2%;
+}
+.btnTabla{
     background: transparent;
     border-radius: 0.75rem;
 }
