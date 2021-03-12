@@ -29,7 +29,7 @@
     "article-extractor": "^1.0.2",
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.2.15",
     "ngx-material-file-input": "^2.0.0",
     "rxjs": "~6.4.0",
